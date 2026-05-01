@@ -534,3 +534,29 @@ main, .footer, .nav { position: relative; z-index: 1; }
 @media (prefers-reduced-motion: reduce) {
   .sys-flow, .sys-nodes circle, .wave-a, .wave-b, .wave-c { animation: none; }
 }
+
+/* Services + Contact upgrades */
+.services-hero-plus { padding-bottom: 88px; }
+.services-hero-grid { display: grid; grid-template-columns: 1fr 520px; gap: 56px; align-items: center; }
+.services-orbit-visual svg { width: 100%; height: auto; }
+.svc-ring { fill: none; stroke: rgba(255,255,255,0.12); stroke-width: 1; }
+.svc-a { stroke: rgba(212,163,115,0.35); }
+.svc-b { stroke: rgba(107,159,212,0.26); }
+.svc-c { stroke: rgba(242,240,235,0.26); }
+.svc-dots circle { fill: var(--accent); filter: drop-shadow(0 0 8px rgba(212,163,115,0.7)); animation: nodePulse 2.8s ease-in-out infinite; }
+.svc-dots circle:nth-child(2n) { animation-delay: .3s; }
+
+.services-flow { padding: 60px 0 var(--section-pad); }
+.flow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+.contact-hero-plus { padding-bottom: 60px; }
+.contact-hero-grid { display: grid; grid-template-columns: 1fr 480px; gap: 46px; align-items: center; }
+.contact-signal-visual { border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 18px; background: rgba(255,255,255,0.02); }
+.contact-signal-visual svg { width: 100%; height: auto; }
+.contact-booking-embed { border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.02); }
+.contact-location iframe { filter: saturate(0.7) contrast(1.05); }
+
+@media (max-width: 980px) {
+  .services-hero-grid, .contact-hero-grid { grid-template-columns: 1fr; }
+  .flow-grid { grid-template-columns: 1fr; }
+}

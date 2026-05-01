@@ -23,32 +23,38 @@
 <body>
   <div data-include="/components/header.html"></div>
   <main>
-    <section class="page-hero">
-      <div class="container">
-        <span class="section-num">Contact</span>
-        <h1>Begin a conversation.</h1>
-        <p class="hero-sub">Discuss your priorities, timeline, and risk posture. Under-NDA discussions are routine.</p>
+    <section class="page-hero contact-hero-plus">
+      <div class="container contact-hero-grid">
+        <div>
+          <span class="section-num">Contact</span>
+          <h1>Begin a conversation.</h1>
+          <p class="hero-sub">Discuss priorities, timelines, and risk posture. Under-NDA discussions are routine.</p>
+        </div>
+        <div class="contact-signal-visual" aria-hidden="true">
+          <svg viewBox="0 0 560 260" role="presentation">
+            <path d="M0,150 C80,80 140,220 220,150 C300,80 360,220 440,150 C500,95 540,140 560,150" class="wave-line wave-a"/>
+            <path d="M0,165 C80,95 140,235 220,165 C300,95 360,235 440,165 C500,110 540,155 560,165" class="wave-line wave-b"/>
+          </svg>
+        </div>
       </div>
     </section>
 
     <section class="contact-page">
       <div class="container">
         <div class="contact-page-grid">
-          <article class="contact-booking">
+          <article class="contact-booking reveal">
             <h3>Book an initial call</h3>
-            <p class="booking-sub">Choose a consultation format, then book directly on the calendar.</p>
+            <p class="booking-sub">Choose a consultation format and schedule directly.</p>
             <div class="contact-actions contact-actions-left">
               <button class="btn-outline active" type="button" data-cal-link="https://cal.com/nathan-heath-byhebw/30min?embed=1&theme=dark">30-min Initial Consultation</button>
               <button class="btn-outline" type="button" data-cal-link="https://cal.com/nathan-heath-byhebw/initial-consultation?embed=1&theme=dark">60-min Engagement Scoping</button>
             </div>
-            <div class="contact-booking-embed">
-              <iframe title="Scheduling" data-cal-frame src="https://cal.com/nathan-heath-byhebw/30min?embed=1&theme=dark" loading="lazy"></iframe>
-            </div>
+            <div class="contact-booking-embed"><iframe title="Scheduling" data-cal-frame src="https://cal.com/nathan-heath-byhebw/30min?embed=1&theme=dark" loading="lazy"></iframe></div>
           </article>
 
-          <article class="contact-form-wrap">
+          <article class="contact-form-wrap reveal reveal-d1">
             <h3>Direct inquiry</h3>
-            <p class="form-sub">Send a structured request and we will respond within one business day.</p>
+            <p class="form-sub">Send a structured request. We respond within one business day.</p>
             <form action="https://formspree.io/f/placeholder" method="post">
               <div class="form-group"><label for="name">Name</label><input id="name" name="name" type="text" required></div>
               <div class="form-group"><label for="organization">Organization</label><input id="organization" name="organization" type="text" required></div>
@@ -59,7 +65,6 @@
               <button class="btn-dark" type="submit">Submit inquiry</button>
               <p class="form-note">Under-NDA discussions are routine. We can provide our standard NDA on request.</p>
             </form>
-
             <div class="contact-direct">
               <div class="contact-direct-item"><span>Email:</span> <a href="mailto:hello@syntonyresearch.org">hello@syntonyresearch.org</a></div>
               <div class="contact-direct-item"><span>Phone:</span> <span>(919) 555-0000</span></div>
@@ -67,13 +72,9 @@
           </article>
         </div>
 
-        <article class="contact-location">
-          <div class="contact-map">
-            <iframe title="Research Triangle Park map" src="https://www.openstreetmap.org/export/embed.html?bbox=-78.9143%2C35.8787%2C-78.8143%2C35.9187&layer=mapnik&marker=35.8987%2C-78.8643" loading="lazy"></iframe>
-          </div>
-          <div class="contact-location-info">
-            <p class="contact-location-text"><strong>Research Triangle Park, North Carolina</strong> · Engagements conducted globally, in-person or virtual.</p>
-          </div>
+        <article class="contact-location reveal reveal-d2">
+          <div class="contact-map"><iframe title="Research Triangle Park map" src="https://www.openstreetmap.org/export/embed.html?bbox=-78.9143%2C35.8787%2C-78.8143%2C35.9187&layer=mapnik&marker=35.8987%2C-78.8643" loading="lazy"></iframe></div>
+          <div class="contact-location-info"><p class="contact-location-text"><strong>Research Triangle Park, North Carolina</strong> · Engagements conducted globally, in-person or virtual.</p></div>
         </article>
 
         <article class="contact-hours" style="margin-top:32px;">
