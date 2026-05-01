@@ -140,6 +140,35 @@ function initCalEmbed() {
   });
 }
 
+function initCountUp() {
+  const counters = document.querySelectorAll('[data-count]');
+  if (!counters.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    counters.forEach((el) => { el.textContent = el.dataset.count || '0'; });
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const target = entry.target;
+      const max = Number(target.getAttribute('data-count') || 0);
+      let current = 0;
+      const step = Math.max(1, Math.ceil(max / 40));
+      const timer = window.setInterval(() => {
+        current += step;
+        if (current >= max) {
+          target.textContent = String(max);
+          window.clearInterval(timer);
+          return;
+        }
+        target.textContent = String(current);
+      }, 24);
+      observer.unobserve(target);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach((el) => observer.observe(el));
+}
+
 (async function bootstrap() {
   await includePartials();
   initAtmosphere();
@@ -149,4 +178,5 @@ function initCalEmbed() {
   initTiltCards();
   initFaq();
   initCalEmbed();
+  initCountUp();
 })();
