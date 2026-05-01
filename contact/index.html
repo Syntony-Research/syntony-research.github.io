@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Syntony Research</title>
+  <meta name="description" content="Book a consultation with Syntony Research. We respond to all inquiries within one business day.">
+  <meta property="og:title" content="Contact | Syntony Research">
+  <meta property="og:description" content="Begin a conversation with Syntony Research.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://syntonyresearch.org/contact/">
+  <meta property="og:image" content="https://syntonyresearch.org/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact | Syntony Research">
+  <meta name="twitter:description" content="Begin a conversation with Syntony Research.">
+  <meta name="twitter:image" content="https://syntonyresearch.org/assets/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Contact Syntony Research","url":"https://syntonyresearch.org/contact/"}</script>
+</head>
+<body>
+  <div data-include="/components/header.html"></div>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="section-num">Contact</span>
+        <h1>Begin a conversation.</h1>
+        <p class="hero-sub">Discuss your priorities, timeline, and risk posture. Under-NDA discussions are routine.</p>
+      </div>
+    </section>
+
+    <section class="contact-page">
+      <div class="container">
+        <div class="contact-page-grid">
+          <article class="contact-booking">
+            <h3>Book an initial call</h3>
+            <p class="booking-sub">Choose a consultation format, then book directly on the calendar.</p>
+            <div class="contact-actions contact-actions-left">
+              <button class="btn-outline active" type="button" data-cal-link="https://cal.com/syntonyresearch/30min">30-min Initial Consultation</button>
+              <button class="btn-outline" type="button" data-cal-link="https://cal.com/syntonyresearch/60min">60-min Engagement Scoping</button>
+            </div>
+            <div class="contact-booking-embed">
+              <iframe title="Scheduling" data-cal-frame src="https://cal.com/syntonyresearch/30min" loading="lazy"></iframe>
+            </div>
+          </article>
+
+          <article class="contact-form-wrap">
+            <h3>Direct inquiry</h3>
+            <p class="form-sub">Send a structured request and we will respond within one business day.</p>
+            <form action="https://formspree.io/f/placeholder" method="post">
+              <div class="form-group"><label for="name">Name</label><input id="name" name="name" type="text" required></div>
+              <div class="form-group"><label for="organization">Organization</label><input id="organization" name="organization" type="text" required></div>
+              <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" required></div>
+              <div class="form-group"><label for="engagement-type">Engagement Type</label><select id="engagement-type" name="engagement_type" required><option value="">Select one</option><option>Adversarial Evaluation</option><option>AI Safety Research</option><option>Governance Advisory</option><option>Strategic Risk Advisory</option><option>Executive Briefings</option><option>Custom Research</option><option>Technical Writing & Communications</option><option>General Inquiry</option></select></div>
+              <div class="form-group"><label for="description">Brief Description</label><textarea id="description" name="description" required></textarea></div>
+              <div class="form-group form-checkbox"><input id="nda" name="nda_required" type="checkbox"><label for="nda">NDA required</label></div>
+              <button class="btn-dark" type="submit">Submit inquiry</button>
+              <p class="form-note">Under-NDA discussions are routine. We can provide our standard NDA on request.</p>
+            </form>
+
+            <div class="contact-direct">
+              <div class="contact-direct-item"><span>Email:</span> <a href="mailto:hello@syntonyresearch.org">hello@syntonyresearch.org</a></div>
+              <div class="contact-direct-item"><span>Phone:</span> <span>(919) 555-0000</span></div>
+            </div>
+          </article>
+        </div>
+
+        <article class="contact-location">
+          <div class="contact-map">
+            <iframe title="Research Triangle Park map" src="https://www.openstreetmap.org/export/embed.html?bbox=-78.9143%2C35.8787%2C-78.8143%2C35.9187&layer=mapnik&marker=35.8987%2C-78.8643" loading="lazy"></iframe>
+          </div>
+          <div class="contact-location-info">
+            <p class="contact-location-text"><strong>Research Triangle Park, North Carolina</strong> · Engagements conducted globally, in-person or virtual.</p>
+          </div>
+        </article>
+
+        <article class="contact-hours" style="margin-top:32px;">
+          <h3>Office hours and response times</h3>
+          <p>We respond to all inquiries within one business day. Initial consultations are available Monday through Friday, 9am to 6pm Eastern.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <div data-include="/components/footer.html"></div>
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>
