@@ -169,6 +169,34 @@ function initCountUp() {
   counters.forEach((el) => observer.observe(el));
 }
 
+function initHeroAbstracts() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.page-hero, .hero').forEach((hero) => {
+    const layer = document.createElement('div');
+    layer.className = 'hero-abstract-layer';
+    layer.setAttribute('aria-hidden', 'true');
+    layer.innerHTML = `
+      <svg viewBox="0 0 1200 380" role="presentation">
+        <defs>
+          <linearGradient id="hgA" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(212,163,115,0.0)"/>
+            <stop offset="50%" stop-color="rgba(212,163,115,0.55)"/>
+            <stop offset="100%" stop-color="rgba(212,163,115,0.0)"/>
+          </linearGradient>
+          <linearGradient id="hgB" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(107,159,212,0.0)"/>
+            <stop offset="50%" stop-color="rgba(107,159,212,0.45)"/>
+            <stop offset="100%" stop-color="rgba(107,159,212,0.0)"/>
+          </linearGradient>
+        </defs>
+        <path class="hero-wave hero-wave-a" d="M0,240 C160,170 280,310 420,230 C560,150 700,300 840,220 C980,140 1080,280 1200,210"/>
+        <path class="hero-wave hero-wave-b" d="M0,270 C160,200 280,340 420,260 C560,180 700,330 840,250 C980,170 1080,310 1200,240"/>
+      </svg>
+    `;
+    hero.appendChild(layer);
+  });
+}
+
 (async function bootstrap() {
   await includePartials();
   initAtmosphere();
@@ -179,4 +207,5 @@ function initCountUp() {
   initFaq();
   initCalEmbed();
   initCountUp();
+  initHeroAbstracts();
 })();

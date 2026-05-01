@@ -4,36 +4,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Research | Syntony Research</title>
-  <meta name="description" content="Research publications are currently being prepared for release.">
+  <meta name="description" content="Research on AI safety, governance, and evaluation with sourced analysis.">
   <meta property="og:title" content="Research | Syntony Research">
-  <meta property="og:description" content="Research publications coming soon.">
+  <meta property="og:description" content="Sourced analysis on AI safety, governance, and evaluation.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://syntonyresearch.org/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Research | Syntony Research">
-  <meta name="twitter:description" content="Research publications coming soon.">
+  <meta name="twitter:description" content="Sourced analysis on AI safety, governance, and evaluation.">
   <meta name="twitter:image" content="https://syntonyresearch.org/assets/og-image.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles/main.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Syntony Research Publications"}</script>
 </head>
 <body>
-  <div data-include="/components/header.html"></div>
-  <main>
-    <section class="page-hero">
-      <div class="container">
-        <span class="section-num">Research</span>
-        <h1>Publications are <em>coming soon</em>.</h1>
-        <p class="hero-sub">We are rebuilding this section to match the standard of the rest of the site. Sign up for updates or contact us for private materials.</p>
-        <div class="hero-actions">
-          <a class="btn-dark" href="/contact/">Request materials</a>
-          <a class="btn-outline" href="/insights/">Read insights</a>
+<div data-include="/components/header.html"></div>
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Research and Publications</h1>
+      <p class="hero-sub">Sourced work on AI safety, governance, evaluation methodology, and systems-level risk management.</p>
+    </div>
+  </section>
+
+  <section class="research">
+    <div class="container">
+      <article class="pub-feature reveal">
+        <div class="pub-body">
+          <div class="pub-cover-tag">Featured</div>
+          <h3>From Capability to Control: Applying NIST AI RMF to Frontier Deployments</h3>
+          <p>A practical implementation map from measurement to governance control under fast model iteration cycles.</p>
+          <a class="btn-outline" href="/research/frontier-control-nist-rmf/">Read publication</a>
         </div>
+      </article>
+
+      <div style="margin:26px 0;display:flex;gap:12px;flex-wrap:wrap;">
+        <select id="filter-category" class="btn-outline" aria-label="Filter by category">
+          <option value="all">All categories</option>
+          <option value="AI Safety">AI Safety</option>
+          <option value="Governance">Governance</option>
+          <option value="Adversarial Evaluation">Adversarial Evaluation</option>
+          <option value="Evaluation Science">Evaluation Science</option>
+        </select>
+        <select id="sort-date" class="btn-outline" aria-label="Sort by date">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+        </select>
       </div>
-    </section>
-  </main>
-  <div data-include="/components/footer.html"></div>
-  <script src="/assets/js/site.js" defer></script>
+
+      <div id="publication-list" class="services-grid">
+        <a class="service-card pub-item" data-category="Governance" data-date="2026-05-01" href="/research/frontier-control-nist-rmf/"><h3>From Capability to Control: Applying NIST AI RMF to Frontier Deployments</h3><p>Category: Governance</p></a>
+        <a class="service-card pub-item" data-category="AI Safety" data-date="2026-04-30" href="/research/constitutional-alignment-and-adversarial-pressure/"><h3>Constitutional Alignment Under Adversarial Pressure</h3><p>Category: AI Safety</p></a>
+        <a class="service-card pub-item" data-category="Adversarial Evaluation" data-date="2026-04-28" href="/research/red-teaming-at-scale-method-and-limits/"><h3>Red Teaming at Scale: Method and Limits</h3><p>Category: Adversarial Evaluation</p></a>
+        <a class="service-card pub-item" data-category="Evaluation Science" data-date="2026-04-25" href="/research/helm-style-evaluation-for-executive-decision/"><h3>HELM-Style Evaluation for Executive Decision Contexts</h3><p>Category: Evaluation Science</p></a>
+      </div>
+    </div>
+  </section>
+</main>
+<div data-include="/components/footer.html"></div>
+<script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/research.js" defer></script>
 </body>
 </html>
