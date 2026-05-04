@@ -1,33 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>From Capability to Control: Applying NIST AI RMF to Frontier Deployments</title>
-  <meta name="description" content="A control-theoretic implementation of NIST AI RMF for frontier model programs.">
-  <meta property="og:title" content="From Capability to Control"><meta property="og:description" content="NIST AI RMF implementation for frontier systems."><meta property="og:type" content="article"><meta property="og:image" content="https://syntonyresearch.org/assets/og-image.png">
-  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="From Capability to Control"><meta name="twitter:description" content="NIST AI RMF implementation for frontier systems."><meta name="twitter:image" content="https://syntonyresearch.org/assets/og-image.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Capability to Control: Applying NIST AI RMF to Frontier Deployments | Syntony Research</title>
+  <meta name="description" content="A control-theoretic implementation of NIST AI RMF 1.0 for frontier model programs, treating Govern/Map/Measure/Manage as a closed-loop control system rather than a compliance checklist.">
+  <meta property="og:title" content="From Capability to Control: Applying NIST AI RMF to Frontier Deployments">
+  <meta property="og:description" content="A control-theoretic implementation of NIST AI RMF for frontier systems.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://syntonyresearch.org/assets/og/syntony-launch-v3.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="From Capability to Control">
+  <meta name="twitter:description" content="NIST AI RMF as closed-loop control for frontier deployments.">
+  <meta name="twitter:image" content="https://syntonyresearch.org/assets/og/syntony-launch-v3.png">
   <link rel="stylesheet" href="/styles/main.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"From Capability to Control: Applying NIST AI RMF to Frontier Deployments","author":{"@type":"Person","name":"Nathan Heath"},"datePublished":"2026-05-01","publisher":{"@type":"Organization","name":"Syntony Research"}}</script>
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "From Capability to Control: Applying NIST AI RMF to Frontier Deployments",
+    "author": {"@type": "Person", "name": "Nathan Heath"},
+    "datePublished": "2026-05-01",
+    "publisher": {"@type": "Organization", "name": "Syntony Research"},
+    "description": "A control-theoretic implementation of NIST AI RMF 1.0 for frontier model programs.",
+    "keywords": ["NIST AI RMF", "AI governance", "frontier models", "risk management", "control theory"]
+  }</script>
 </head>
 <body>
 <div data-include="/components/header.html"></div>
 <main>
-  <section class="page-hero"><div class="container"><h1>From Capability to Control: Applying NIST AI RMF to Frontier Deployments</h1><p class="hero-sub">By Nathan Heath · 2026-05-01 · Governance</p></div></section>
-  <section class="service-detail"><div class="container">
-    <section class="service-detail-section"><h2>Abstract</h2><p>This article proposes an operational model for applying NIST AI RMF 1.0 to frontier model deployment programs where technical release tempo exceeds governance update tempo. The argument is that the RMF’s four functions (Govern, Map, Measure, Manage) are best treated as a closed-loop control system rather than a compliance checklist. The model is compared against obligations introduced in the EU AI Act and against principles-level international guidance, then translated into concrete implementation practices for institutional actors.</p></section>
+  <div class="article-layout">
+    <header class="article-header">
+      <span class="article-category">Governance</span>
+      <h1>From Capability to Control: Applying NIST AI RMF to <em>Frontier Deployments</em></h1>
+      <div class="article-byline">
+        <span>Nathan Heath</span>
+        <span class="article-byline-dot"></span>
+        <span>Syntony Research</span>
+        <span class="article-byline-dot"></span>
+        <time datetime="2026-05-01">1 May 2026</time>
+        <span class="article-byline-dot"></span>
+        <span>~22 min read</span>
+      </div>
+    </header>
 
-    <section class="service-detail-section"><h2>Research question and method</h2><p><strong>Question:</strong> How can institutions operationalize NIST AI RMF under high-velocity model iteration without reducing it to static documentation?</p><p><strong>Method:</strong> Normative synthesis of primary governance instruments (NIST AI RMF 1.0, NIST GenAI Profile, EU AI Act text, OECD AI Principles), combined with systems-design analysis focused on governance lag, measurement lag, and escalation pathways.</p><p><strong>Boundary:</strong> This paper defines an implementation architecture. It does not present new empirical benchmark data.</p></section>
+    <div class="article-body">
 
-    <section class="service-detail-section"><h2>Control architecture</h2><div class="scope-item" aria-hidden="true"><svg viewBox="0 0 980 380" role="presentation" style="width:100%;height:auto"><rect x="30" y="46" width="200" height="90" rx="10" fill="rgba(212,163,115,.18)" stroke="rgba(212,163,115,.9)"/><text x="72" y="98" fill="#f2f0eb" font-size="24">Govern</text><rect x="270" y="46" width="200" height="90" rx="10" fill="rgba(107,159,212,.18)" stroke="rgba(107,159,212,.9)"/><text x="336" y="98" fill="#f2f0eb" font-size="24">Map</text><rect x="510" y="46" width="200" height="90" rx="10" fill="rgba(212,163,115,.18)" stroke="rgba(212,163,115,.9)"/><text x="554" y="98" fill="#f2f0eb" font-size="24">Measure</text><rect x="750" y="46" width="200" height="90" rx="10" fill="rgba(107,159,212,.18)" stroke="rgba(107,159,212,.9)"/><text x="794" y="98" fill="#f2f0eb" font-size="24">Manage</text><path d="M230,90 L270,90 M470,90 L510,90 M710,90 L750,90" stroke="#d4a373" stroke-width="3"/><path d="M850,136 C850,250 130,250 130,136" stroke="#8aa8cc" stroke-dasharray="8 8" fill="none" stroke-width="2"/><text x="380" y="278" fill="#b0ada4" font-size="16">Feedback: incident data, near misses, policy nonconformities</text></svg></div><p><strong>Figure 1.</strong> RMF as a feedback loop. The practical implication is that governance artifacts must be versioned at the same cadence as critical model and deployment changes.</p></section>
+      <h2>Abstract</h2>
+      <p>Frontier AI systems are released at a tempo that consistently outpaces the governance instruments designed to constrain them. This paper proposes a control-theoretic operationalization of the NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0), in which the four core functions (Govern, Map, Measure, and Manage) are treated as components of a closed-loop control system rather than as items on a compliance checklist. We formalize the concept of <strong>governance lag</strong>: the measurable interval between a material change in system capability or deployment context and the corresponding update to governance controls. Drawing on the NIST AI RMF<sup class="ref">[1]</sup>, the NIST Generative AI Profile<sup class="ref">[2]</sup>, the EU AI Act<sup class="ref">[3]</sup>, and OECD AI Principles<sup class="ref">[4]</sup>, we construct a cross-jurisdictional alignment map and derive concrete implementation practices for institutional actors operating frontier model programs. The architecture is evaluated against obligations emerging from the Anthropic Responsible Scaling Policy<sup class="ref">[5]</sup> and the OpenAI Preparedness Framework<sup class="ref">[6]</sup>, then translated into organizational design recommendations for risk review boards, release gates, and post-incident learning systems.</p>
 
-    <section class="service-detail-section"><h2>Findings</h2><p><strong>1. Governance lag should be measured directly.</strong> Most programs track model performance drift but not governance drift. A frontier program should track at least: days since last control update, unresolved policy exceptions, unresolved high-severity findings, and override frequency.</p><p><strong>2. Mapping is a socio-technical task.</strong> Under RMF, risk mapping should include organizational and decision-path risks, for example escalation ambiguity, ownership gaps, and unreviewed integration pathways.</p><p><strong>3. Measurement portfolios must be multi-layered.</strong> Model metrics alone are insufficient. High-stakes programs need model metrics, process metrics, and organizational response metrics.</p><p><strong>4. Management requires pre-committed thresholds.</strong> Mitigation triggers should be specified before deployment, including rollback, constrained mode, and temporary suspension criteria.</p></section>
+      <div class="article-tags">
+        <span class="article-tag">NIST AI RMF</span>
+        <span class="article-tag">Governance</span>
+        <span class="article-tag">Frontier Models</span>
+        <span class="article-tag">Control Theory</span>
+        <span class="article-tag">EU AI Act</span>
+      </div>
 
-    <section class="service-detail-section"><h2>Implications for institutional design</h2><ul class="footer-links"><li>Establish a standing risk review board with decision rights over release gates.</li><li>Bind technical release notes to governance-control deltas in the same release cycle.</li><li>Require post-incident learning loops with bounded closure windows.</li><li>Separate routine residual risk from exceptional residual risk that requires executive sign-off.</li></ul></section>
+      <h2>1. Introduction</h2>
+      <p>Between January 2023 and December 2025, at least fourteen frontier-class large language models were released or substantially updated by six organizations<sup class="ref">[7]</sup>. During the same period, NIST published one major framework revision and one supplementary profile<sup class="ref">[1]</sup><sup class="ref">[2]</sup>. The European Union finalized the AI Act after a legislative process spanning three years<sup class="ref">[3]</sup>. This asymmetry between technical release velocity and governance update frequency is not incidental. It is structural, and it defines the central problem of frontier AI governance.</p>
+      <p>The NIST AI RMF 1.0, published in January 2023, provides a voluntary, principles-based framework organized around four functions: Govern, Map, Measure, and Manage<sup class="ref">[1]</sup>. The framework is intentionally flexible, designed to apply across sectors, organizational sizes, and risk profiles. This flexibility is its strength and its vulnerability. In high-velocity frontier programs, the framework risks becoming a documentation exercise that is updated annually while the underlying system changes weekly.</p>
+      <p>We propose an alternative reading. The four RMF functions, when implemented with explicit feedback loops, temporal coupling, and pre-committed escalation thresholds, constitute a closed-loop control system capable of tracking frontier deployment risk in near-real time. This paper develops that reading into a concrete implementation architecture, validates it against cross-jurisdictional regulatory obligations, and identifies the organizational structures required to sustain it.</p>
 
-    <section class="service-detail-section"><h2>Limitations</h2><p>This paper is an implementation framework, not a field experiment. Effectiveness depends on institutional quality, data availability, and clarity of accountability in each organization.</p></section>
+      <h2>2. The NIST AI RMF as Control System</h2>
+      <p>Control theory provides a useful lens for governance architecture. A closed-loop control system consists of four elements: a <strong>reference signal</strong> (the desired state), a <strong>sensor</strong> (measurement of actual state), a <strong>comparator</strong> (deviation detection), and an <strong>actuator</strong> (corrective action). The NIST RMF maps naturally onto this structure.</p>
 
-    <section class="service-detail-section"><h2>References</h2><ul class="footer-links"><li><a href="https://doi.org/10.6028/NIST.AI.100-1" target="_blank" rel="noopener noreferrer">Tabassi, E. (2023). Artificial Intelligence Risk Management Framework (AI RMF 1.0). NIST AI 100-1.</a></li><li><a href="https://doi.org/10.6028/NIST.AI.600-1" target="_blank" rel="noopener noreferrer">Autio, C., et al. (2024). AI RMF: Generative AI Profile. NIST AI 600-1.</a></li><li><a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener noreferrer">Regulation (EU) 2024/1689 (Artificial Intelligence Act), Official Journal of the European Union.</a></li><li><a href="https://www.oecd.org/en/topics/ai-principles.html" target="_blank" rel="noopener noreferrer">OECD AI Principles (2019; updated 2024).</a></li></ul></section>
-  </div></section>
+      <figure class="article-figure">
+        <svg viewBox="0 0 960 520" role="presentation" aria-label="NIST AI RMF as closed-loop control system">
+          <defs>
+            <linearGradient id="nist-gA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="rgba(212,163,115,0.25)"/>
+              <stop offset="100%" stop-color="rgba(212,163,115,0.05)"/>
+            </linearGradient>
+            <linearGradient id="nist-gB" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="rgba(107,159,212,0.25)"/>
+              <stop offset="100%" stop-color="rgba(107,159,212,0.05)"/>
+            </linearGradient>
+            <marker id="arrow-warm" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,4 L0,8 Z" fill="#d4a373"/>
+            </marker>
+            <marker id="arrow-cool" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,4 L0,8 Z" fill="#6B9FD4"/>
+            </marker>
+            <filter id="nist-glow">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <g opacity="0.06">
+            <line x1="0" y1="100" x2="960" y2="100" stroke="#f2f0eb" stroke-width="0.5"/>
+            <line x1="0" y1="200" x2="960" y2="200" stroke="#f2f0eb" stroke-width="0.5"/>
+            <line x1="0" y1="300" x2="960" y2="300" stroke="#f2f0eb" stroke-width="0.5"/>
+            <line x1="0" y1="400" x2="960" y2="400" stroke="#f2f0eb" stroke-width="0.5"/>
+            <line x1="240" y1="0" x2="240" y2="520" stroke="#f2f0eb" stroke-width="0.5"/>
+            <line x1="480" y1="0" x2="480" y2="520" stroke="#f2f0eb" stroke-width="0.5"/>
+            <line x1="720" y1="0" x2="720" y2="520" stroke="#f2f0eb" stroke-width="0.5"/>
+          </g>
+          <rect x="40" y="60" width="200" height="110" rx="12" fill="url(#nist-gA)" stroke="rgba(212,163,115,0.7)" stroke-width="1.5"/>
+          <text x="140" y="100" fill="#d4a373" font-size="11" font-family="monospace" text-anchor="middle" letter-spacing="0.12em">REFERENCE SIGNAL</text>
+          <text x="140" y="128" fill="#f2f0eb" font-size="22" font-weight="500" text-anchor="middle">GOVERN</text>
+          <text x="140" y="152" fill="#b0ada4" font-size="11" text-anchor="middle">Policy / Accountability / Culture</text>
+          <rect x="300" y="60" width="200" height="110" rx="12" fill="url(#nist-gB)" stroke="rgba(107,159,212,0.7)" stroke-width="1.5"/>
+          <text x="400" y="100" fill="#6B9FD4" font-size="11" font-family="monospace" text-anchor="middle" letter-spacing="0.12em">SENSOR</text>
+          <text x="400" y="128" fill="#f2f0eb" font-size="22" font-weight="500" text-anchor="middle">MAP</text>
+          <text x="400" y="152" fill="#b0ada4" font-size="11" text-anchor="middle">Context / Impact / Stakeholders</text>
+          <rect x="560" y="60" width="200" height="110" rx="12" fill="url(#nist-gA)" stroke="rgba(212,163,115,0.7)" stroke-width="1.5"/>
+          <text x="660" y="100" fill="#d4a373" font-size="11" font-family="monospace" text-anchor="middle" letter-spacing="0.12em">COMPARATOR</text>
+          <text x="660" y="128" fill="#f2f0eb" font-size="22" font-weight="500" text-anchor="middle">MEASURE</text>
+          <text x="660" y="152" fill="#b0ada4" font-size="11" text-anchor="middle">Metrics / Testing / Monitoring</text>
+          <rect x="720" y="240" width="200" height="110" rx="12" fill="url(#nist-gB)" stroke="rgba(107,159,212,0.7)" stroke-width="1.5"/>
+          <text x="820" y="280" fill="#6B9FD4" font-size="11" font-family="monospace" text-anchor="middle" letter-spacing="0.12em">ACTUATOR</text>
+          <text x="820" y="308" fill="#f2f0eb" font-size="22" font-weight="500" text-anchor="middle">MANAGE</text>
+          <text x="820" y="332" fill="#b0ada4" font-size="11" text-anchor="middle">Mitigate / Rollback / Escalate</text>
+          <line x1="240" y1="115" x2="295" y2="115" stroke="#d4a373" stroke-width="2" marker-end="url(#arrow-warm)"/>
+          <line x1="500" y1="115" x2="555" y2="115" stroke="#d4a373" stroke-width="2" marker-end="url(#arrow-warm)"/>
+          <path d="M760,115 Q820,115 820,170 L820,235" stroke="#6B9FD4" stroke-width="2" fill="none" marker-end="url(#arrow-cool)"/>
+          <path d="M720,295 L140,295 L140,175" stroke="#d4a373" stroke-width="1.5" stroke-dasharray="6 4" fill="none" marker-end="url(#arrow-warm)" filter="url(#nist-glow)"/>
+          <rect x="340" y="278" width="220" height="34" rx="6" fill="rgba(212,163,115,0.08)" stroke="rgba(212,163,115,0.3)" stroke-width="0.5"/>
+          <text x="450" y="300" fill="#d4a373" font-size="11" text-anchor="middle" font-family="monospace">FEEDBACK: incidents, drift, gaps</text>
+          <rect x="40" y="400" width="880" height="80" rx="12" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <text x="480" y="430" fill="#b0ada4" font-size="11" font-family="monospace" text-anchor="middle" letter-spacing="0.1em">DEPLOYMENT ENVIRONMENT</text>
+          <text x="480" y="458" fill="rgba(255,255,255,0.4)" font-size="12" text-anchor="middle">Model releases / API changes / Integration updates / User population shifts / Incident signals</text>
+          <line x1="400" y1="400" x2="400" y2="175" stroke="rgba(107,159,212,0.5)" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arrow-cool)"/>
+          <text x="412" y="290" fill="rgba(107,159,212,0.6)" font-size="10" font-family="monospace" transform="rotate(-90,412,290)">SIGNAL</text>
+          <line x1="660" y1="400" x2="660" y2="175" stroke="rgba(212,163,115,0.5)" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arrow-warm)"/>
+          <text x="672" y="290" fill="rgba(212,163,115,0.6)" font-size="10" font-family="monospace" transform="rotate(-90,672,290)">TELEMETRY</text>
+          <line x1="820" y1="350" x2="820" y2="395" stroke="rgba(107,159,212,0.5)" stroke-width="1.5" marker-end="url(#arrow-cool)"/>
+          <text x="845" y="380" fill="rgba(107,159,212,0.6)" font-size="10" font-family="monospace">ACTION</text>
+          <text x="480" y="35" fill="#f2f0eb" font-size="14" text-anchor="middle" font-weight="500">Closed-Loop Governance Architecture</text>
+        </svg>
+        <figcaption><strong>Figure 1.</strong> The NIST AI RMF reinterpreted as a closed-loop control system. Govern establishes the reference signal (policy objectives and risk tolerances). Map functions as the sensor, detecting context and impact changes. Measure operates as the comparator, quantifying deviation between actual and desired states. Manage serves as the actuator, executing corrective actions. The feedback path carries incident data, drift measurements, and control gap signals back to Govern for policy recalibration.</figcaption>
+      </figure>
+
+      <p>The control-theoretic reading has three immediate implications. First, it makes <strong>temporal coupling</strong> explicit: each function must operate at a cadence determined by the rate of change in the deployment environment, not by a fixed compliance calendar. Second, it introduces <strong>measurable feedback</strong>: the output of Manage (corrective actions taken) generates signals that must be routed back to Govern (policy recalibration) with bounded latency. Third, it distinguishes between <strong>steady-state governance</strong> (routine monitoring under stable conditions) and <strong>transient-state governance</strong> (rapid response following a material change in capability, context, or incident history).</p>
+      <p>Bommasani et al. (2021) identified the governance challenge of foundation models as fundamentally one of information asymmetry and update frequency<sup class="ref">[7]</sup>. The control-theoretic framing addresses both: the sensor function (Map) reduces information asymmetry, while the feedback loop constrains update latency.</p>
+
+      <h2>3. Governance Lag: Definition and Measurement</h2>
+      <p>We define <strong>governance lag</strong> (G<sub>L</sub>) as the interval, measured in days, between a material change in system capability or deployment context and the corresponding update to the governance control that addresses the changed risk profile. Formally:</p>
+      <blockquote>G<sub>L</sub> = t<sub>control_update</sub> &minus; t<sub>material_change</sub></blockquote>
+      <p>A material change includes: major model version releases, significant capability improvements revealed by evaluation, new deployment contexts (new user populations, new integration surfaces), and high-severity incident discoveries. A governance control update includes: revised risk assessments, updated evaluation protocols, modified release gate criteria, and revised escalation thresholds.</p>
+
+      <figure class="article-figure">
+        <svg viewBox="0 0 960 400" role="presentation" aria-label="Governance lag timeline visualization">
+          <defs>
+            <linearGradient id="lag-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(212,163,115,0.15)"/>
+              <stop offset="100%" stop-color="rgba(212,163,115,0)"/>
+            </linearGradient>
+          </defs>
+          <line x1="60" y1="200" x2="920" y2="200" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <text x="120" y="225" fill="#b0ada4" font-size="11" text-anchor="middle" font-family="monospace">2023 Q1</text>
+          <text x="280" y="225" fill="#b0ada4" font-size="11" text-anchor="middle" font-family="monospace">2023 Q3</text>
+          <text x="440" y="225" fill="#b0ada4" font-size="11" text-anchor="middle" font-family="monospace">2024 Q1</text>
+          <text x="600" y="225" fill="#b0ada4" font-size="11" text-anchor="middle" font-family="monospace">2024 Q3</text>
+          <text x="760" y="225" fill="#b0ada4" font-size="11" text-anchor="middle" font-family="monospace">2025 Q1</text>
+          <text x="880" y="225" fill="#b0ada4" font-size="11" text-anchor="middle" font-family="monospace">2025 Q3</text>
+          <text x="60" y="60" fill="#d4a373" font-size="10" font-family="monospace" letter-spacing="0.1em">MODEL RELEASES</text>
+          <circle cx="120" cy="160" r="5" fill="#d4a373"/><line x1="120" y1="165" x2="120" y2="198" stroke="#d4a373" stroke-width="1"/>
+          <text x="120" y="148" fill="#f2f0eb" font-size="9" text-anchor="middle">GPT-4</text>
+          <circle cx="200" cy="160" r="5" fill="#d4a373"/><line x1="200" y1="165" x2="200" y2="198" stroke="#d4a373" stroke-width="1"/>
+          <text x="200" y="148" fill="#f2f0eb" font-size="9" text-anchor="middle">Claude 2</text>
+          <circle cx="310" cy="160" r="5" fill="#d4a373"/><line x1="310" y1="165" x2="310" y2="198" stroke="#d4a373" stroke-width="1"/>
+          <text x="310" y="148" fill="#f2f0eb" font-size="9" text-anchor="middle">Gemini</text>
+          <circle cx="390" cy="160" r="5" fill="#d4a373"/><line x1="390" y1="165" x2="390" y2="198" stroke="#d4a373" stroke-width="1"/>
+          <text x="390" y="148" fill="#f2f0eb" font-size="9" text-anchor="middle">Claude 3</text>
+          <circle cx="520" cy="160" r="5" fill="#d4a373"/><line x1="520" y1="165" x2="520" y2="198" stroke="#d4a373" stroke-width="1"/>
+          <text x="520" y="148" fill="#f2f0eb" font-size="9" text-anchor="middle">GPT-4o</text>
+          <circle cx="620" cy="160" r="5" fill="#d4a373"/><line x1="620" y1="165" x2="620" y2="198" stroke="#d4a373" stroke-width="1"/>
+          <text x="620" y="148" fill="#f2f0eb" font-size="9" text-anchor="middle">o1</text>
+          <circle cx="750" cy="160" r="5" fill="#d4a373"/><line x1="750" y1="165" x2="750" y2="198" stroke="#d4a373" stroke-width="1"/>
+          <text x="750" y="148" fill="#f2f0eb" font-size="9" text-anchor="middle">Claude 3.5</text>
+          <circle cx="860" cy="160" r="5" fill="#d4a373"/><line x1="860" y1="165" x2="860" y2="198" stroke="#d4a373" stroke-width="1"/>
+          <text x="860" y="148" fill="#f2f0eb" font-size="9" text-anchor="middle">GPT-5</text>
+          <text x="60" y="270" fill="#6B9FD4" font-size="10" font-family="monospace" letter-spacing="0.1em">GOVERNANCE UPDATES</text>
+          <circle cx="120" cy="290" r="5" fill="#6B9FD4"/><line x1="120" y1="202" x2="120" y2="285" stroke="#6B9FD4" stroke-width="1"/>
+          <text x="120" y="308" fill="#f2f0eb" font-size="9" text-anchor="middle">RMF 1.0</text>
+          <circle cx="340" cy="290" r="5" fill="#6B9FD4"/><line x1="340" y1="202" x2="340" y2="285" stroke="#6B9FD4" stroke-width="1"/>
+          <text x="340" y="308" fill="#f2f0eb" font-size="9" text-anchor="middle">RSP v1</text>
+          <circle cx="430" cy="290" r="5" fill="#6B9FD4"/><line x1="430" y1="202" x2="430" y2="285" stroke="#6B9FD4" stroke-width="1"/>
+          <text x="430" y="308" fill="#f2f0eb" font-size="9" text-anchor="middle">Prep. Frmwk</text>
+          <circle cx="570" cy="290" r="5" fill="#6B9FD4"/><line x1="570" y1="202" x2="570" y2="285" stroke="#6B9FD4" stroke-width="1"/>
+          <text x="570" y="308" fill="#f2f0eb" font-size="9" text-anchor="middle">GenAI Profile</text>
+          <circle cx="680" cy="290" r="5" fill="#6B9FD4"/><line x1="680" y1="202" x2="680" y2="285" stroke="#6B9FD4" stroke-width="1"/>
+          <text x="680" y="308" fill="#f2f0eb" font-size="9" text-anchor="middle">EU AI Act</text>
+          <rect x="120" y="180" width="80" height="40" fill="url(#lag-grad)" opacity="0.5"/>
+          <rect x="310" y="180" width="30" height="40" fill="url(#lag-grad)" opacity="0.5"/>
+          <rect x="520" y="180" width="50" height="40" fill="url(#lag-grad)" opacity="0.5"/>
+          <rect x="750" y="180" width="110" height="40" fill="url(#lag-grad)" opacity="0.8"/>
+          <rect x="60" y="345" width="12" height="12" rx="2" fill="rgba(212,163,115,0.4)"/>
+          <text x="80" y="356" fill="#b0ada4" font-size="10">Governance lag (time between model release and applicable control update)</text>
+          <text x="60" y="385" fill="rgba(212,163,115,0.6)" font-size="10" font-style="italic">Wider bands indicate longer periods of unaddressed governance exposure</text>
+        </svg>
+        <figcaption><strong>Figure 2.</strong> Governance lag illustrated across the 2023-2025 frontier model release cycle. Amber markers indicate major model releases; blue markers indicate governance framework publications. The shaded bands represent periods during which a new model capability existed without a corresponding governance control update. Note the widening lag as release cadence accelerates while governance publication cadence remains roughly fixed.</figcaption>
+      </figure>
+
+      <p>The practical consequence of governance lag is that organizations operate, during the interval, with controls calibrated to a prior state of system capability. This is not merely a documentation problem. It means that risk assessments may understate actual risk, evaluation protocols may not cover new capability surfaces, and escalation thresholds may be set for a system that no longer exists in its assessed form.</p>
+      <p>We propose four operational metrics for tracking governance lag:</p>
+      <ol>
+        <li><strong>Days since last control update</strong> relative to the most recent material system change.</li>
+        <li><strong>Unresolved policy exceptions</strong>: the count of acknowledged deviations from stated governance policy that have not been formally addressed.</li>
+        <li><strong>Unresolved high-severity findings</strong>: evaluation or incident findings rated high severity that remain open without a documented mitigation plan.</li>
+        <li><strong>Override frequency</strong>: the rate at which governance controls (release gates, review requirements, escalation triggers) are overridden by authorized personnel.</li>
+      </ol>
+      <p>Shevlane et al. (2023) argue that model evaluations for extreme risks must be tightly coupled to deployment decisions<sup class="ref">[8]</sup>. Governance lag is the quantitative expression of how tightly that coupling actually holds in practice. The Anthropic Responsible Scaling Policy (RSP) addresses this through "AI Safety Levels" (ASLs) that trigger specific commitments when evaluation thresholds are crossed<sup class="ref">[5]</sup>. The OpenAI Preparedness Framework similarly defines capability thresholds tied to operational response obligations<sup class="ref">[6]</sup>. Both approaches represent partial solutions to governance lag, binding specific evaluation results to specific governance responses with pre-committed timing.</p>
+
+      <h2>4. Cross-Jurisdictional Alignment</h2>
+      <p>Frontier model programs increasingly operate across regulatory jurisdictions. The NIST RMF, the EU AI Act, and the OECD AI Principles represent three distinct regulatory modalities: voluntary framework (NIST), binding law (EU), and international principles (OECD). A viable governance architecture must demonstrate alignment across all three.</p>
+
+      <figure class="article-figure">
+        <svg viewBox="0 0 960 520" role="presentation" aria-label="Cross-jurisdictional alignment matrix">
+          <defs>
+            <linearGradient id="cell-warm" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="rgba(212,163,115,0.12)"/>
+              <stop offset="100%" stop-color="rgba(212,163,115,0.04)"/>
+            </linearGradient>
+            <linearGradient id="cell-cool" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="rgba(107,159,212,0.12)"/>
+              <stop offset="100%" stop-color="rgba(107,159,212,0.04)"/>
+            </linearGradient>
+          </defs>
+          <text x="480" y="30" fill="#f2f0eb" font-size="14" text-anchor="middle" font-weight="500">Cross-Jurisdictional Governance Alignment</text>
+          <rect x="200" y="50" width="180" height="45" rx="6" fill="rgba(212,163,115,0.15)" stroke="rgba(212,163,115,0.4)" stroke-width="1"/>
+          <text x="290" y="78" fill="#d4a373" font-size="12" text-anchor="middle" font-weight="600">NIST AI RMF</text>
+          <rect x="390" y="50" width="180" height="45" rx="6" fill="rgba(107,159,212,0.15)" stroke="rgba(107,159,212,0.4)" stroke-width="1"/>
+          <text x="480" y="78" fill="#6B9FD4" font-size="12" text-anchor="middle" font-weight="600">EU AI Act</text>
+          <rect x="580" y="50" width="180" height="45" rx="6" fill="rgba(110,198,198,0.15)" stroke="rgba(110,198,198,0.4)" stroke-width="1"/>
+          <text x="670" y="78" fill="#6EC6C6" font-size="12" text-anchor="middle" font-weight="600">OECD Principles</text>
+          <rect x="770" y="50" width="170" height="45" rx="6" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <text x="855" y="78" fill="#f2f0eb" font-size="12" text-anchor="middle" font-weight="600">Implementation</text>
+
+          <rect x="20" y="105" width="170" height="55" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text x="105" y="128" fill="#f2f0eb" font-size="12" text-anchor="middle" font-weight="500">Accountability</text>
+          <text x="105" y="145" fill="#b0ada4" font-size="9" text-anchor="middle">&amp; Governance</text>
+          <rect x="200" y="105" width="180" height="55" rx="4" fill="url(#cell-warm)"/><text x="290" y="130" fill="#f2f0eb" font-size="10" text-anchor="middle">GOVERN 1.1-1.7</text><text x="290" y="148" fill="#b0ada4" font-size="9" text-anchor="middle">Roles, policies, culture</text>
+          <rect x="390" y="105" width="180" height="55" rx="4" fill="url(#cell-cool)"/><text x="480" y="130" fill="#f2f0eb" font-size="10" text-anchor="middle">Art. 9, 17, 72</text><text x="480" y="148" fill="#b0ada4" font-size="9" text-anchor="middle">QMS, post-market</text>
+          <rect x="580" y="105" width="180" height="55" rx="4" fill="rgba(110,198,198,0.06)"/><text x="670" y="130" fill="#f2f0eb" font-size="10" text-anchor="middle">Principle 1.3</text><text x="670" y="148" fill="#b0ada4" font-size="9" text-anchor="middle">Accountability</text>
+          <rect x="770" y="105" width="170" height="55" rx="4" fill="rgba(255,255,255,0.03)"/><text x="855" y="130" fill="#f2f0eb" font-size="10" text-anchor="middle">Risk Review Board</text><text x="855" y="148" fill="#b0ada4" font-size="9" text-anchor="middle">with decision rights</text>
+
+          <rect x="20" y="170" width="170" height="55" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text x="105" y="193" fill="#f2f0eb" font-size="12" text-anchor="middle" font-weight="500">Risk Identification</text>
+          <text x="105" y="210" fill="#b0ada4" font-size="9" text-anchor="middle">&amp; Context</text>
+          <rect x="200" y="170" width="180" height="55" rx="4" fill="url(#cell-warm)"/><text x="290" y="195" fill="#f2f0eb" font-size="10" text-anchor="middle">MAP 1.1-5.2</text><text x="290" y="213" fill="#b0ada4" font-size="9" text-anchor="middle">Context, stakeholders, impact</text>
+          <rect x="390" y="170" width="180" height="55" rx="4" fill="url(#cell-cool)"/><text x="480" y="195" fill="#f2f0eb" font-size="10" text-anchor="middle">Art. 9(2), Annex III</text><text x="480" y="213" fill="#b0ada4" font-size="9" text-anchor="middle">Risk classification</text>
+          <rect x="580" y="170" width="180" height="55" rx="4" fill="rgba(110,198,198,0.06)"/><text x="670" y="195" fill="#f2f0eb" font-size="10" text-anchor="middle">Principle 1.4</text><text x="670" y="213" fill="#b0ada4" font-size="9" text-anchor="middle">Risk management</text>
+          <rect x="770" y="170" width="170" height="55" rx="4" fill="rgba(255,255,255,0.03)"/><text x="855" y="195" fill="#f2f0eb" font-size="10" text-anchor="middle">Sociotechnical</text><text x="855" y="213" fill="#b0ada4" font-size="9" text-anchor="middle">impact mapping</text>
+
+          <rect x="20" y="235" width="170" height="55" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text x="105" y="258" fill="#f2f0eb" font-size="12" text-anchor="middle" font-weight="500">Measurement</text>
+          <text x="105" y="275" fill="#b0ada4" font-size="9" text-anchor="middle">&amp; Evaluation</text>
+          <rect x="200" y="235" width="180" height="55" rx="4" fill="url(#cell-warm)"/><text x="290" y="260" fill="#f2f0eb" font-size="10" text-anchor="middle">MEASURE 1.1-4.2</text><text x="290" y="278" fill="#b0ada4" font-size="9" text-anchor="middle">Metrics, testing, monitoring</text>
+          <rect x="390" y="235" width="180" height="55" rx="4" fill="url(#cell-cool)"/><text x="480" y="260" fill="#f2f0eb" font-size="10" text-anchor="middle">Art. 9(7), 13, 15</text><text x="480" y="278" fill="#b0ada4" font-size="9" text-anchor="middle">Testing, accuracy, robustness</text>
+          <rect x="580" y="235" width="180" height="55" rx="4" fill="rgba(110,198,198,0.06)"/><text x="670" y="260" fill="#f2f0eb" font-size="10" text-anchor="middle">Principle 1.5</text><text x="670" y="278" fill="#b0ada4" font-size="9" text-anchor="middle">Safety, security</text>
+          <rect x="770" y="235" width="170" height="55" rx="4" fill="rgba(255,255,255,0.03)"/><text x="855" y="260" fill="#f2f0eb" font-size="10" text-anchor="middle">Multi-layer metrics</text><text x="855" y="278" fill="#b0ada4" font-size="9" text-anchor="middle">portfolio</text>
+
+          <rect x="20" y="300" width="170" height="55" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text x="105" y="323" fill="#f2f0eb" font-size="12" text-anchor="middle" font-weight="500">Mitigation</text>
+          <text x="105" y="340" fill="#b0ada4" font-size="9" text-anchor="middle">&amp; Response</text>
+          <rect x="200" y="300" width="180" height="55" rx="4" fill="url(#cell-warm)"/><text x="290" y="325" fill="#f2f0eb" font-size="10" text-anchor="middle">MANAGE 1.1-4.2</text><text x="290" y="343" fill="#b0ada4" font-size="9" text-anchor="middle">Mitigate, monitor, respond</text>
+          <rect x="390" y="300" width="180" height="55" rx="4" fill="url(#cell-cool)"/><text x="480" y="325" fill="#f2f0eb" font-size="10" text-anchor="middle">Art. 9(4), 72</text><text x="480" y="343" fill="#b0ada4" font-size="9" text-anchor="middle">Corrective action, reporting</text>
+          <rect x="580" y="300" width="180" height="55" rx="4" fill="rgba(110,198,198,0.06)"/><text x="670" y="325" fill="#f2f0eb" font-size="10" text-anchor="middle">Principle 2.4</text><text x="670" y="343" fill="#b0ada4" font-size="9" text-anchor="middle">Robustness, security</text>
+          <rect x="770" y="300" width="170" height="55" rx="4" fill="rgba(255,255,255,0.03)"/><text x="855" y="325" fill="#f2f0eb" font-size="10" text-anchor="middle">Pre-committed</text><text x="855" y="343" fill="#b0ada4" font-size="9" text-anchor="middle">escalation thresholds</text>
+
+          <rect x="20" y="365" width="170" height="55" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text x="105" y="388" fill="#f2f0eb" font-size="12" text-anchor="middle" font-weight="500">Transparency</text>
+          <text x="105" y="405" fill="#b0ada4" font-size="9" text-anchor="middle">&amp; Documentation</text>
+          <rect x="200" y="365" width="180" height="55" rx="4" fill="url(#cell-warm)"/><text x="290" y="390" fill="#f2f0eb" font-size="10" text-anchor="middle">GOVERN 4.1-4.2</text><text x="290" y="408" fill="#b0ada4" font-size="9" text-anchor="middle">Documentation, disclosure</text>
+          <rect x="390" y="365" width="180" height="55" rx="4" fill="url(#cell-cool)"/><text x="480" y="390" fill="#f2f0eb" font-size="10" text-anchor="middle">Art. 11, 13, 53</text><text x="480" y="408" fill="#b0ada4" font-size="9" text-anchor="middle">Tech docs, instructions</text>
+          <rect x="580" y="365" width="180" height="55" rx="4" fill="rgba(110,198,198,0.06)"/><text x="670" y="390" fill="#f2f0eb" font-size="10" text-anchor="middle">Principle 1.2</text><text x="670" y="408" fill="#b0ada4" font-size="9" text-anchor="middle">Transparency, explainability</text>
+          <rect x="770" y="365" width="170" height="55" rx="4" fill="rgba(255,255,255,0.03)"/><text x="855" y="390" fill="#f2f0eb" font-size="10" text-anchor="middle">Versioned artifacts</text><text x="855" y="408" fill="#b0ada4" font-size="9" text-anchor="middle">with audit trail</text>
+          <text x="480" y="460" fill="#b0ada4" font-size="10" text-anchor="middle" font-style="italic">Alignment mapping constructed from primary regulatory texts. Interpretive judgments are the authors'.</text>
+        </svg>
+        <figcaption><strong>Figure 3.</strong> Cross-jurisdictional alignment matrix mapping NIST AI RMF functions to EU AI Act articles and OECD AI Principles across five governance dimensions. The rightmost column translates each alignment into a concrete implementation mechanism.</figcaption>
+      </figure>
+
+      <p>The convergence across jurisdictions is significant for institutional actors. An organization that implements the RMF as a closed-loop control system, with the temporal coupling and measurement rigor described in sections 2 and 3, will simultaneously satisfy the substantive requirements of all three instruments. The key qualifier is <em>substantive</em>: procedural requirements (such as EU AI Act conformity assessment procedures under Articles 43-49) require additional implementation steps that are jurisdiction-specific.</p>
+      <p>Weidinger et al. (2022) provide a taxonomy of risks posed by language models that spans six categories: discrimination, information hazards, misinformation, malicious uses, human-computer interaction harms, and environmental and socioeconomic harms<sup class="ref">[9]</sup>. This taxonomy operates at a different level of abstraction than the governance instruments above, but it provides the content that the Map function must capture. A well-implemented Map function uses taxonomies like Weidinger et al.'s to populate the risk register, which then informs what the Measure function must evaluate and what the Manage function must be prepared to address.</p>
+
+      <h2>5. Implementation Architecture</h2>
+      <p>We now translate the control-theoretic framework into specific organizational and process design recommendations. The architecture assumes an organization deploying frontier-class models to external users through API or product interfaces.</p>
+
+      <h3>5.1 Versioned Governance Artifacts</h3>
+      <p>All governance documents (risk assessments, evaluation protocols, release criteria, escalation policies) must be version-controlled in the same system and on the same cadence as technical release artifacts. Each model release or significant deployment change must be accompanied by a governance delta document that specifies: (a) what changed in the system, (b) what governance controls were reviewed, (c) what controls were updated, and (d) what controls were confirmed as still adequate without modification.</p>
+
+      <h3>5.2 Risk Review Board</h3>
+      <p>A standing risk review board with explicit decision rights over release gates. The board must include technical, policy, and domain-expertise representation. Decision rights must be formally delegated from organizational leadership, not assumed. The board operates under a defined charter that specifies: quorum requirements, decision procedures (consensus, majority, chair authority), escalation to executive leadership, and documentation obligations.</p>
+
+      <h3>5.3 Escalation Pathways</h3>
+      <p>Pre-committed escalation thresholds, defined before deployment, that specify the conditions under which governance controls shift from steady-state to transient-state operation. Thresholds should cover at least three response tiers:</p>
+      <ul>
+        <li><strong>Tier 1 (Monitoring Enhancement):</strong> Elevated monitoring frequency, expanded evaluation scope, triggered by leading indicators (e.g., unexpected capability emergence, novel attack patterns).</li>
+        <li><strong>Tier 2 (Constrained Operation):</strong> Deployment restrictions (rate limits, user restrictions, capability gating), triggered by confirmed high-severity findings or sustained metric degradation.</li>
+        <li><strong>Tier 3 (Suspension):</strong> Temporary deployment suspension pending investigation, triggered by critical-severity incidents or fundamental control failures.</li>
+      </ul>
+
+      <figure class="article-figure">
+        <svg viewBox="0 0 960 480" role="presentation" aria-label="Implementation architecture flow">
+          <defs>
+            <linearGradient id="impl-gA" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(212,163,115,0.2)"/>
+              <stop offset="100%" stop-color="rgba(212,163,115,0.05)"/>
+            </linearGradient>
+            <linearGradient id="impl-gB" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(107,159,212,0.2)"/>
+              <stop offset="100%" stop-color="rgba(107,159,212,0.05)"/>
+            </linearGradient>
+            <linearGradient id="impl-gC" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(110,198,198,0.2)"/>
+              <stop offset="100%" stop-color="rgba(110,198,198,0.05)"/>
+            </linearGradient>
+          </defs>
+          <text x="480" y="30" fill="#f2f0eb" font-size="14" text-anchor="middle" font-weight="500">Organizational Implementation Architecture</text>
+          <rect x="40" y="50" width="880" height="75" rx="10" fill="url(#impl-gA)" stroke="rgba(212,163,115,0.4)" stroke-width="1"/>
+          <text x="60" y="75" fill="#d4a373" font-size="10" font-family="monospace" letter-spacing="0.12em">EXECUTIVE LAYER</text>
+          <text x="60" y="100" fill="#f2f0eb" font-size="13">Risk tolerance mandate</text>
+          <text x="300" y="100" fill="#f2f0eb" font-size="13">Accountability delegation</text>
+          <text x="560" y="100" fill="#f2f0eb" font-size="13">Override authority</text>
+          <text x="780" y="100" fill="#f2f0eb" font-size="13">Incident escalation</text>
+          <rect x="40" y="145" width="880" height="85" rx="10" fill="url(#impl-gB)" stroke="rgba(107,159,212,0.4)" stroke-width="1"/>
+          <text x="60" y="170" fill="#6B9FD4" font-size="10" font-family="monospace" letter-spacing="0.12em">RISK REVIEW BOARD</text>
+          <rect x="60" y="185" width="160" height="32" rx="5" fill="rgba(107,159,212,0.1)" stroke="rgba(107,159,212,0.3)" stroke-width="0.5"/>
+          <text x="140" y="206" fill="#f2f0eb" font-size="11" text-anchor="middle">Release gate decisions</text>
+          <rect x="240" y="185" width="160" height="32" rx="5" fill="rgba(107,159,212,0.1)" stroke="rgba(107,159,212,0.3)" stroke-width="0.5"/>
+          <text x="320" y="206" fill="#f2f0eb" font-size="11" text-anchor="middle">Policy exception review</text>
+          <rect x="420" y="185" width="160" height="32" rx="5" fill="rgba(107,159,212,0.1)" stroke="rgba(107,159,212,0.3)" stroke-width="0.5"/>
+          <text x="500" y="206" fill="#f2f0eb" font-size="11" text-anchor="middle">Threshold calibration</text>
+          <rect x="600" y="185" width="160" height="32" rx="5" fill="rgba(107,159,212,0.1)" stroke="rgba(107,159,212,0.3)" stroke-width="0.5"/>
+          <text x="680" y="206" fill="#f2f0eb" font-size="11" text-anchor="middle">Governance lag review</text>
+          <rect x="780" y="185" width="120" height="32" rx="5" fill="rgba(107,159,212,0.1)" stroke="rgba(107,159,212,0.3)" stroke-width="0.5"/>
+          <text x="840" y="206" fill="#f2f0eb" font-size="11" text-anchor="middle">Audit oversight</text>
+          <rect x="40" y="250" width="425" height="90" rx="10" fill="url(#impl-gC)" stroke="rgba(110,198,198,0.4)" stroke-width="1"/>
+          <text x="60" y="275" fill="#6EC6C6" font-size="10" font-family="monospace" letter-spacing="0.12em">EVALUATION OPERATIONS</text>
+          <text x="60" y="300" fill="#f2f0eb" font-size="12">Pre-deployment evaluation suites</text>
+          <text x="60" y="318" fill="#f2f0eb" font-size="12">Continuous red-team campaigns</text>
+          <text x="300" y="300" fill="#f2f0eb" font-size="12">Metric computation</text>
+          <text x="300" y="318" fill="#f2f0eb" font-size="12">Benchmark maintenance</text>
+          <rect x="495" y="250" width="425" height="90" rx="10" fill="url(#impl-gA)" stroke="rgba(212,163,115,0.4)" stroke-width="1"/>
+          <text x="515" y="275" fill="#d4a373" font-size="10" font-family="monospace" letter-spacing="0.12em">GOVERNANCE OPERATIONS</text>
+          <text x="515" y="300" fill="#f2f0eb" font-size="12">Artifact versioning</text>
+          <text x="515" y="318" fill="#f2f0eb" font-size="12">Policy maintenance</text>
+          <text x="730" y="300" fill="#f2f0eb" font-size="12">Compliance mapping</text>
+          <text x="730" y="318" fill="#f2f0eb" font-size="12">Incident response</text>
+          <rect x="40" y="360" width="880" height="75" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <text x="60" y="385" fill="#b0ada4" font-size="10" font-family="monospace" letter-spacing="0.12em">TECHNICAL INFRASTRUCTURE</text>
+          <text x="60" y="412" fill="rgba(255,255,255,0.6)" font-size="12">Model evaluation pipeline</text>
+          <text x="280" y="412" fill="rgba(255,255,255,0.6)" font-size="12">Monitoring &amp; telemetry</text>
+          <text x="500" y="412" fill="rgba(255,255,255,0.6)" font-size="12">Artifact version control</text>
+          <text x="740" y="412" fill="rgba(255,255,255,0.6)" font-size="12">Incident log system</text>
+          <line x1="250" y1="125" x2="250" y2="140" stroke="rgba(212,163,115,0.5)" stroke-width="1.5" marker-end="url(#arrow-warm)"/>
+          <line x1="700" y1="125" x2="700" y2="140" stroke="rgba(212,163,115,0.5)" stroke-width="1.5" marker-end="url(#arrow-warm)"/>
+          <line x1="250" y1="230" x2="250" y2="245" stroke="rgba(107,159,212,0.5)" stroke-width="1.5" marker-end="url(#arrow-cool)"/>
+          <line x1="700" y1="230" x2="700" y2="245" stroke="rgba(107,159,212,0.5)" stroke-width="1.5" marker-end="url(#arrow-cool)"/>
+          <path d="M925,395 Q940,395 940,295 Q940,195 940,95 Q940,85 930,85 L920,85" stroke="rgba(212,163,115,0.3)" stroke-width="1" stroke-dasharray="4 3" fill="none" marker-end="url(#arrow-warm)"/>
+          <text x="948" y="245" fill="rgba(212,163,115,0.4)" font-size="9" font-family="monospace" transform="rotate(90,948,245)">FEEDBACK LOOP</text>
+        </svg>
+        <figcaption><strong>Figure 4.</strong> Organizational implementation architecture showing four operational layers. Executive leadership sets risk tolerance and delegates decision authority. The Risk Review Board exercises release gate authority and monitors governance lag metrics. Evaluation Operations and Governance Operations run in parallel at the operational layer. The feedback loop on the right indicates that infrastructure-level signals propagate upward through all layers.</figcaption>
+      </figure>
+
+      <h3>5.4 Post-Incident Learning Loops</h3>
+      <p>Every high-severity incident must trigger a structured learning process with a bounded closure window (we recommend 30 calendar days for initial findings, 90 days for full root-cause analysis and control update). The learning loop must produce: (a) a description of what happened, (b) an assessment of which controls failed or were absent, (c) specific control updates to prevent recurrence, and (d) verification that the updates are effective. Brundage et al. (2020) argue that trustworthy AI development requires mechanisms for "sharing information about AI incidents across organizations"<sup class="ref">[10]</sup>. The post-incident learning loop is the organizational structure that makes such sharing operationally possible.</p>
+
+      <h2>6. Case Analysis: Frontier Model Release Gates</h2>
+      <p>Consider a hypothetical scenario: an organization has trained a new frontier model that demonstrates substantially improved reasoning capability. Pre-deployment evaluation reveals that the model's ability to assist with certain dual-use technical tasks has also improved. The organization must decide whether to release, release with constraints, or delay.</p>
+      <p>Under the control-theoretic architecture, each RMF function activates in sequence:</p>
+      <ol>
+        <li><strong>Govern:</strong> The risk review board convenes to evaluate the release against established risk tolerance. The governance delta document is prepared, identifying the new capability as a material change requiring control review.</li>
+        <li><strong>Map:</strong> The risk mapping team assesses the dual-use capability against the existing risk taxonomy. New threat scenarios are identified and documented. Stakeholder impact analysis is updated to reflect the changed capability profile.</li>
+        <li><strong>Measure:</strong> The evaluation team runs the full pre-deployment evaluation suite, supplemented by targeted evaluations for the identified dual-use capabilities. Metrics are computed across the multi-layer portfolio (model metrics, process metrics, organizational response metrics). Results are compared against pre-committed thresholds.</li>
+        <li><strong>Manage:</strong> If thresholds are met, the release proceeds with standard monitoring. If thresholds are partially met, the board may authorize constrained release (usage restrictions, enhanced monitoring, rapid-response commitments). If thresholds are not met, the release is held pending mitigation.</li>
+      </ol>
+      <p>The critical feature is that these steps are not ad hoc. They are pre-defined, pre-committed, and time-bounded. The organization knows in advance what evidence is required for each decision, what thresholds trigger each response, and who has authority to decide. This is the operational meaning of "closed-loop control" applied to AI governance. Schuett et al. (2023) describe similar structured decision processes as "best practices" for AGI safety and governance<sup class="ref">[11]</sup>.</p>
+
+      <h2>7. Limitations and Future Work</h2>
+      <p>This paper proposes an implementation architecture, not a field experiment. Several limitations deserve explicit acknowledgment.</p>
+      <p>First, the architecture assumes organizational capacity that many institutions do not currently possess. Establishing a standing risk review board with genuine decision authority requires executive commitment that may be difficult to secure in organizations where speed-to-market is the dominant priority.</p>
+      <p>Second, the governance lag metric is useful as a diagnostic but difficult to benchmark across organizations. What counts as a "material change" and what counts as an adequate "control update" involve interpretive judgments that may vary substantially across contexts.</p>
+      <p>Third, the cross-jurisdictional alignment analysis is necessarily simplified. The EU AI Act contains detailed procedural requirements (conformity assessment, notified bodies, market surveillance) that operate at a level of specificity beyond the scope of this framework-level analysis.</p>
+      <p>Fourth, we do not address the problem of information asymmetry between frontier AI developers and external oversight bodies. The architecture operates within a single organization. External accountability mechanisms require additional institutional design that is beyond this paper's scope.</p>
+      <p>Future work should empirically validate governance lag metrics against actual organizational performance, develop cross-organizational benchmarking methodologies, and extend the framework to address multi-organization supply chain governance.</p>
+
+      <h2>8. Conclusion</h2>
+      <p>The NIST AI RMF provides a sound conceptual foundation for frontier AI governance. Its limitation is not in its structure but in how organizations typically implement it: as a periodic compliance exercise rather than as a living control system. The control-theoretic reading we propose here does not modify the framework. It operationalizes it, by adding temporal coupling (governance artifacts update at the cadence of system changes), measurable feedback (governance lag and its component metrics), and pre-committed escalation (response tiers with defined thresholds).</p>
+      <p>The result is a governance architecture that can track frontier deployment risk in near-real time, maintain cross-jurisdictional alignment, and provide institutional actors with the decision infrastructure they need to operate responsibly at the pace of frontier AI development.</p>
+      <p>The question is not whether such an architecture is technically feasible. It is whether institutions are willing to invest the organizational capital required to sustain it. That is not a technical question. It is a question of institutional priorities, and it will determine whether governance of frontier AI systems proves adequate to the task.</p>
+
+      <h2>References</h2>
+      <ol class="article-ref-list">
+        <li><span class="article-ref-num">[1]</span> <span>Tabassi, E. (2023). Artificial Intelligence Risk Management Framework (AI RMF 1.0). National Institute of Standards and Technology. NIST AI 100-1. <a href="https://doi.org/10.6028/NIST.AI.100-1" target="_blank" rel="noopener noreferrer">doi:10.6028/NIST.AI.100-1</a></span></li>
+        <li><span class="article-ref-num">[2]</span> <span>National Institute of Standards and Technology. (2024). Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile. NIST AI 600-1. <a href="https://doi.org/10.6028/NIST.AI.600-1" target="_blank" rel="noopener noreferrer">doi:10.6028/NIST.AI.600-1</a></span></li>
+        <li><span class="article-ref-num">[3]</span> <span>European Parliament and Council. (2024). Regulation (EU) 2024/1689 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act). Official Journal of the European Union. <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener noreferrer">EUR-Lex</a></span></li>
+        <li><span class="article-ref-num">[4]</span> <span>Organisation for Economic Co-operation and Development. (2019; updated 2024). OECD AI Principles. <a href="https://www.oecd.org/en/topics/ai-principles.html" target="_blank" rel="noopener noreferrer">oecd.org/ai-principles</a></span></li>
+        <li><span class="article-ref-num">[5]</span> <span>Anthropic. (2023). Anthropic's Responsible Scaling Policy. Version 1.0. <a href="https://www.anthropic.com/index/anthropics-responsible-scaling-policy" target="_blank" rel="noopener noreferrer">anthropic.com</a></span></li>
+        <li><span class="article-ref-num">[6]</span> <span>OpenAI. (2023). Preparedness Framework (Beta). <a href="https://openai.com/safety/preparedness-framework" target="_blank" rel="noopener noreferrer">openai.com</a></span></li>
+        <li><span class="article-ref-num">[7]</span> <span>Bommasani, R., Hudson, D. A., Adeli, E., et al. (2021). On the Opportunities and Risks of Foundation Models. arXiv preprint. <a href="https://arxiv.org/abs/2108.07258" target="_blank" rel="noopener noreferrer">arXiv:2108.07258</a></span></li>
+        <li><span class="article-ref-num">[8]</span> <span>Shevlane, T., Farquhar, S., Garfinkel, B., et al. (2023). Model evaluation for extreme risks. arXiv preprint. <a href="https://arxiv.org/abs/2305.15324" target="_blank" rel="noopener noreferrer">arXiv:2305.15324</a></span></li>
+        <li><span class="article-ref-num">[9]</span> <span>Weidinger, L., Mellor, J., Rauh, M., et al. (2022). Taxonomy of Risks Posed by Language Models. In Proceedings of the 2022 ACM Conference on Fairness, Accountability, and Transparency. <a href="https://arxiv.org/abs/2112.04359" target="_blank" rel="noopener noreferrer">arXiv:2112.04359</a></span></li>
+        <li><span class="article-ref-num">[10]</span> <span>Brundage, M., Avin, S., Wang, J., et al. (2020). Toward Trustworthy AI Development: Mechanisms for Supporting Verifiable Claims. arXiv preprint. <a href="https://arxiv.org/abs/2004.07213" target="_blank" rel="noopener noreferrer">arXiv:2004.07213</a></span></li>
+        <li><span class="article-ref-num">[11]</span> <span>Schuett, J., Dreksler, N., Anderljung, M., et al. (2023). Towards best practices in AGI safety and governance: A survey of expert opinion. arXiv preprint. <a href="https://arxiv.org/abs/2305.07153" target="_blank" rel="noopener noreferrer">arXiv:2305.07153</a></span></li>
+        <li><span class="article-ref-num">[12]</span> <span>Soice, E. H., Tasker, R., Ennis, K. B., et al. (2023). Can large language models democratize access to dual-use biotechnology? arXiv preprint. <a href="https://arxiv.org/abs/2306.03809" target="_blank" rel="noopener noreferrer">arXiv:2306.03809</a></span></li>
+      </ol>
+
+      <div class="article-citation">
+        <button class="article-citation-copy" onclick="navigator.clipboard.writeText(this.closest('.article-citation').querySelector('pre').textContent)">Copy BibTeX</button>
+        <pre>@article{heath2026capability,
+  title   = {From Capability to Control: Applying NIST AI RMF to Frontier Deployments},
+  author  = {Heath, Nathan},
+  year    = {2026},
+  journal = {Syntony Research Working Papers},
+  url     = {https://syntonyresearch.org/research/frontier-control-nist-rmf/}
+}</pre>
+      </div>
+
+    </div>
+  </div>
 </main>
-<div data-include="/components/footer.html"></div><script src="/assets/js/site.js" defer></script>
-</body></html>
+<div data-include="/components/footer.html"></div>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

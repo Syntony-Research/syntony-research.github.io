@@ -1,9 +1,468 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>HELM-Style Evaluation for Executive Decision Contexts</title><meta name="description" content="A rigorous adaptation of HELM-style multi-metric evaluation for governance decisions."><meta property="og:title" content="HELM-Style Evaluation for Executive Decision Contexts"><meta property="og:description" content="Multi-metric evaluation for executive governance."><meta property="og:type" content="article"><meta property="og:image" content="https://syntonyresearch.org/assets/og-image.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="HELM-Style Evaluation for Executive Decision Contexts"><meta name="twitter:description" content="Multi-metric evaluation for executive governance."><meta name="twitter:image" content="https://syntonyresearch.org/assets/og-image.png"><link rel="stylesheet" href="/styles/main.css"></head><body><div data-include="/components/header.html"></div><main><section class="page-hero"><div class="container"><h1>HELM-Style Evaluation for Executive Decision Contexts</h1><p class="hero-sub">By Nathan Heath · 2026-04-25 · Evaluation Science</p></div></section><section class="service-detail"><div class="container">
-<section class="service-detail-section"><h2>Abstract</h2><p>HELM introduced a transparent multi-metric approach to language-model evaluation that made tradeoffs visible across scenarios. This article adapts that logic for executive governance settings, where go/no-go decisions require explicit thresholding across accuracy, robustness, fairness, and misuse-related indicators.</p></section>
-<section class="service-detail-section"><h2>Problem framing</h2><p>Many governance workflows still collapse model evaluation into a single headline score. This obscures tradeoffs and can generate false confidence. HELM’s contribution was to show that model quality is inherently multi-dimensional and scenario-dependent.</p></section>
-<section class="service-detail-section"><h2>Decision metric geometry</h2><div class="scope-item" aria-hidden="true"><svg viewBox="0 0 860 420" style="width:100%;height:auto" role="presentation"><polygon points="430,60 650,150 650,280 430,360 210,280 210,150" fill="rgba(255,255,255,.02)" stroke="rgba(255,255,255,.18)"/><text x="402" y="45" fill="#d4a373" font-size="18">Accuracy</text><text x="667" y="155" fill="#8aa8cc" font-size="18">Calibration</text><text x="667" y="290" fill="#d4a373" font-size="18">Robustness</text><text x="396" y="388" fill="#8aa8cc" font-size="18">Fairness</text><text x="125" y="290" fill="#d4a373" font-size="18">Toxicity</text><text x="125" y="155" fill="#8aa8cc" font-size="18">Efficiency</text><polyline points="430,120 575,178 560,252 430,304 300,238 318,170 430,120" fill="rgba(212,163,115,.16)" stroke="#d4a373"/></svg></div><p><strong>Figure 1.</strong> Example multi-metric profile for governance review. A stronger polygon does not eliminate the need for threshold checks on any single critical dimension.</p></section>
-<section class="service-detail-section"><h2>Implementation for leadership decision cycles</h2><ul class="footer-links"><li>Define scenario classes first, then select metrics.</li><li>Set explicit thresholds and escalation triggers per metric.</li><li>Require periodic reevaluation after model updates and context shifts.</li><li>Document tradeoffs and residual risks in board-facing language.</li></ul></section>
-<section class="service-detail-section"><h2>Policy alignment</h2><p>Multi-metric governance approaches are consistent with broader principles in OECD guidance and with risk-based logic in the EU AI Act. The key operational move is translating evaluation outputs into decision rights and response obligations.</p></section>
-<section class="service-detail-section"><h2>References</h2><ul class="footer-links"><li><a href="https://arxiv.org/abs/2211.09110" target="_blank" rel="noopener noreferrer">Liang, P., et al. (2022). Holistic Evaluation of Language Models.</a></li><li><a href="https://www.oecd.org/en/topics/ai-principles.html" target="_blank" rel="noopener noreferrer">OECD AI Principles (2019; updated 2024).</a></li><li><a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener noreferrer">Regulation (EU) 2024/1689 (Artificial Intelligence Act).</a></li></ul></section>
-</div></section></main><div data-include="/components/footer.html"></div><script src="/assets/js/site.js" defer></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Holistic Evaluation for Executive Decision: Adapting HELM for Governance Contexts | Syntony Research</title>
+  <meta name="description" content="A governance-adapted evaluation framework extending HELM's multi-metric logic to executive AI deployment decisions, with threshold design, temporal validity, and regulatory alignment.">
+  <meta property="og:title" content="Holistic Evaluation for Executive Decision: Adapting HELM for Governance Contexts">
+  <meta property="og:description" content="Multi-metric evaluation frameworks for governance-grade AI deployment decisions.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://syntonyresearch.org/assets/og/syntony-launch-v3.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Holistic Evaluation for Executive Decision">
+  <meta name="twitter:description" content="Adapting HELM's multi-metric logic for governance contexts.">
+  <meta name="twitter:image" content="https://syntonyresearch.org/assets/og/syntony-launch-v3.png">
+  <link rel="stylesheet" href="/styles/main.css">
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Holistic Evaluation for Executive Decision: Adapting HELM for Governance Contexts",
+    "author": {"@type": "Person", "name": "Nathan Heath"},
+    "datePublished": "2026-04-25",
+    "publisher": {"@type": "Organization", "name": "Syntony Research"},
+    "keywords": ["HELM", "model evaluation", "AI governance", "multi-metric evaluation", "executive decision"]
+  }</script>
+</head>
+<body>
+<div data-include="/components/header.html"></div>
+<main>
+  <div class="article-layout">
+    <header class="article-header">
+      <span class="article-category">Evaluation Science</span>
+      <h1>Holistic Evaluation for Executive Decision: Adapting HELM for <em>Governance Contexts</em></h1>
+      <div class="article-byline">
+        <span>Nathan Heath</span>
+        <span class="article-byline-dot"></span>
+        <span>Syntony Research</span>
+        <span class="article-byline-dot"></span>
+        <time datetime="2026-04-25">25 April 2026</time>
+        <span class="article-byline-dot"></span>
+        <span>~21 min read</span>
+      </div>
+    </header>
+
+    <div class="article-body">
+
+      <h2>Abstract</h2>
+      <p>The Holistic Evaluation of Language Models (HELM) benchmark introduced a paradigm shift in AI evaluation by making multi-dimensional model quality visible across scenarios, metrics, and adaptation methods<sup class="ref">[1]</sup>. Despite its influence on technical evaluation practice, HELM's outputs have proven difficult to translate into executive governance decisions, where the relevant question is not "how does this model perform?" but "should we deploy this model, and under what constraints?" This paper identifies three structural barriers to that translation: information loss through metric aggregation, context-dependence of risk tolerance, and temporal decay of benchmark validity. We propose a governance-adapted evaluation framework that maps six evaluation dimensions (accuracy, calibration, robustness, fairness, safety, efficiency) onto explicit decision thresholds, threshold logic types (absolute, relative, conditional), and re-evaluation triggers. The framework is aligned with the EU AI Act conformity assessment requirements<sup class="ref">[2]</sup> and the NIST AI RMF Measure function<sup class="ref">[3]</sup>, providing a bridge between technical evaluation science and institutional governance practice.</p>
+
+      <div class="article-tags">
+        <span class="article-tag">HELM</span>
+        <span class="article-tag">Evaluation</span>
+        <span class="article-tag">Governance</span>
+        <span class="article-tag">Multi-Metric</span>
+        <span class="article-tag">Decision Science</span>
+      </div>
+
+      <h2>1. Introduction</h2>
+      <p>Language model evaluation has undergone rapid maturation since 2020. Hendrycks et al. (2020) introduced MMLU to measure broad knowledge and reasoning capabilities<sup class="ref">[4]</sup>. Srivastava et al. (2022) developed BIG-bench with 204 tasks designed to probe model capabilities beyond current performance levels<sup class="ref">[5]</sup>. Liang et al. (2022) introduced HELM, which evaluated models across 42 scenarios, 7 metrics, and multiple adaptation strategies<sup class="ref">[1]</sup>. Each generation of benchmarks has expanded the dimensionality of evaluation and improved the transparency of model capabilities.</p>
+      <p>Yet a persistent gap remains between evaluation outputs and governance decisions. Technical evaluation produces multi-dimensional performance profiles. Governance decisions are binary or ternary: deploy, deploy with constraints, or do not deploy. The translation from the former to the latter is where information loss occurs, where implicit assumptions about risk tolerance are made, and where decisions are most vulnerable to motivated reasoning.</p>
+      <p>This paper proposes a structured framework for that translation, building on HELM's core insight (that model quality is multi-dimensional and scenario-dependent) while adding the decision infrastructure that governance contexts require: explicit thresholds, threshold logic types, and protocols for maintaining evaluation validity over time.</p>
+
+      <h2>2. HELM: Architecture and Contributions</h2>
+      <p>HELM's design rests on three principles that distinguish it from prior evaluation approaches<sup class="ref">[1]</sup>:</p>
+      <ol>
+        <li><strong>Multi-metric evaluation:</strong> Models are evaluated across multiple metrics (accuracy, calibration, robustness, fairness, bias, toxicity, efficiency) simultaneously. This prevents the information loss that occurs when performance is collapsed into a single leaderboard score.</li>
+        <li><strong>Scenario-based design:</strong> Evaluation is organized around scenarios (specific tasks with defined inputs, outputs, and evaluation criteria) rather than abstract benchmarks. This makes results interpretable in context.</li>
+        <li><strong>Transparent methodology:</strong> All data, code, and results are publicly available, enabling independent verification and extension.</li>
+      </ol>
+      <p>The paradigm shift that HELM represents is not primarily technical but epistemic: it changed what we expect to learn from evaluation. Before HELM, the dominant question was "which model is best?" After HELM, the question became "best at what, for whom, under what conditions, and at what tradeoffs?" This latter question is much closer to the question that governance decisions actually require.</p>
+
+      <figure class="article-figure">
+        <svg viewBox="0 0 960 440" role="presentation" aria-label="HELM evaluation architecture">
+          <defs>
+            <linearGradient id="helm-gA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="rgba(212,163,115,0.2)"/>
+              <stop offset="100%" stop-color="rgba(212,163,115,0.04)"/>
+            </linearGradient>
+            <linearGradient id="helm-gB" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="rgba(107,159,212,0.2)"/>
+              <stop offset="100%" stop-color="rgba(107,159,212,0.04)"/>
+            </linearGradient>
+            <marker id="helm-arrow" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,4 L0,8 Z" fill="#d4a373"/>
+            </marker>
+          </defs>
+
+          <text x="480" y="28" fill="#f2f0eb" font-size="14" text-anchor="middle" font-weight="500">From HELM to Governance Decision</text>
+
+          <!-- HELM output (left) -->
+          <rect x="30" y="55" width="280" height="340" rx="12" fill="url(#helm-gA)" stroke="rgba(212,163,115,0.5)" stroke-width="1.5"/>
+          <text x="170" y="82" fill="#d4a373" font-size="10" font-family="monospace" text-anchor="middle" letter-spacing="0.12em">HELM EVALUATION OUTPUT</text>
+
+          <text x="50" y="112" fill="#f2f0eb" font-size="12" font-weight="500">42 Scenarios</text>
+          <text x="50" y="132" fill="#b0ada4" font-size="10">Question answering, summarization,</text>
+          <text x="50" y="148" fill="#b0ada4" font-size="10">information retrieval, reasoning...</text>
+
+          <text x="50" y="178" fill="#f2f0eb" font-size="12" font-weight="500">7 Metric Families</text>
+          <text x="50" y="198" fill="#b0ada4" font-size="10">Accuracy, calibration, robustness,</text>
+          <text x="50" y="214" fill="#b0ada4" font-size="10">fairness, bias, toxicity, efficiency</text>
+
+          <text x="50" y="244" fill="#f2f0eb" font-size="12" font-weight="500">Multiple Adaptations</text>
+          <text x="50" y="264" fill="#b0ada4" font-size="10">Zero-shot, few-shot, chain-of-thought</text>
+
+          <text x="50" y="294" fill="#f2f0eb" font-size="12" font-weight="500">Result: Multi-dimensional profile</text>
+          <text x="50" y="314" fill="#b0ada4" font-size="10">Strengths and tradeoffs made visible</text>
+          <text x="50" y="334" fill="#b0ada4" font-size="10">No single ranking or score</text>
+          <text x="50" y="366" fill="rgba(212,163,115,0.5)" font-size="10" font-style="italic">Technical audience: researchers</text>
+
+          <!-- Translation gap (middle) -->
+          <rect x="340" y="120" width="280" height="230" rx="12" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="6 4"/>
+          <text x="480" y="148" fill="#f2f0eb" font-size="11" text-anchor="middle" font-family="monospace" letter-spacing="0.08em">TRANSLATION GAP</text>
+
+          <text x="360" y="178" fill="rgba(220,100,100,0.7)" font-size="11">Information loss</text>
+          <text x="360" y="196" fill="#b0ada4" font-size="10">Multi-dim profiles collapsed</text>
+          <text x="360" y="212" fill="#b0ada4" font-size="10">to single go/no-go signal</text>
+
+          <text x="360" y="240" fill="rgba(220,100,100,0.7)" font-size="11">Context-dependence</text>
+          <text x="360" y="258" fill="#b0ada4" font-size="10">Risk tolerance varies by sector,</text>
+          <text x="360" y="274" fill="#b0ada4" font-size="10">use case, and population</text>
+
+          <text x="360" y="302" fill="rgba(220,100,100,0.7)" font-size="11">Temporal decay</text>
+          <text x="360" y="320" fill="#b0ada4" font-size="10">Benchmarks go stale as models</text>
+          <text x="360" y="336" fill="#b0ada4" font-size="10">and contexts evolve</text>
+
+          <!-- Arrows -->
+          <line x1="310" y1="225" x2="335" y2="225" stroke="#d4a373" stroke-width="2" marker-end="url(#helm-arrow)"/>
+          <line x1="620" y1="225" x2="645" y2="225" stroke="#d4a373" stroke-width="2" marker-end="url(#helm-arrow)"/>
+
+          <!-- Governance decision (right) -->
+          <rect x="650" y="55" width="280" height="340" rx="12" fill="url(#helm-gB)" stroke="rgba(107,159,212,0.5)" stroke-width="1.5"/>
+          <text x="790" y="82" fill="#6B9FD4" font-size="10" font-family="monospace" text-anchor="middle" letter-spacing="0.12em">GOVERNANCE DECISION</text>
+
+          <text x="670" y="112" fill="#f2f0eb" font-size="12" font-weight="500">Decision types</text>
+          <text x="670" y="132" fill="#b0ada4" font-size="10">Deploy / Constrain / Deny</text>
+
+          <text x="670" y="162" fill="#f2f0eb" font-size="12" font-weight="500">Required inputs</text>
+          <text x="670" y="182" fill="#b0ada4" font-size="10">Thresholds per dimension</text>
+          <text x="670" y="198" fill="#b0ada4" font-size="10">Acceptable tradeoff ranges</text>
+          <text x="670" y="214" fill="#b0ada4" font-size="10">Residual risk acceptance</text>
+
+          <text x="670" y="244" fill="#f2f0eb" font-size="12" font-weight="500">Accountability</text>
+          <text x="670" y="264" fill="#b0ada4" font-size="10">Who decided, on what evidence,</text>
+          <text x="670" y="280" fill="#b0ada4" font-size="10">under what authority</text>
+
+          <text x="670" y="310" fill="#f2f0eb" font-size="12" font-weight="500">Documentation</text>
+          <text x="670" y="330" fill="#b0ada4" font-size="10">Decision rationale, dissenting</text>
+          <text x="670" y="346" fill="#b0ada4" font-size="10">views, conditions for review</text>
+          <text x="670" y="374" fill="rgba(107,159,212,0.5)" font-size="10" font-style="italic">Audience: risk boards, executives</text>
+        </svg>
+        <figcaption><strong>Figure 1.</strong> The translation gap between technical evaluation and governance decision. HELM produces rich multi-dimensional profiles (left) designed for technical audiences. Governance decisions (right) require binary or ternary outputs with explicit accountability and documentation. The translation gap (center, dashed) is where information loss, context-dependence, and temporal decay create risk.</figcaption>
+      </figure>
+
+      <h2>3. The Governance Translation Problem</h2>
+      <p>The gap between evaluation output and governance decision is not merely a communication problem. It is a structural problem with three components.</p>
+      <p><strong>Information loss through aggregation.</strong> When a multi-dimensional evaluation profile is summarized for executive consumption, information is necessarily lost. A model that scores 0.92 on accuracy but 0.61 on fairness presents a different risk profile than one that scores 0.85 on both, yet a simple average treats them identically. The tradeoff structure, which is the most governance-relevant information in the profile, is precisely what aggregation destroys.</p>
+      <p><strong>Context-dependence of risk tolerance.</strong> A fairness score of 0.61 may be acceptable for a low-stakes internal tool and unacceptable for a customer-facing system in a regulated industry. Evaluation outputs are context-free; governance decisions are context-bound. The evaluation framework cannot determine risk tolerance; it can only provide the data against which risk tolerance is applied.</p>
+      <p><strong>Temporal decay of benchmark validity.</strong> Benchmarks measure model performance at a point in time, under a specific set of conditions. As models are updated, as deployment contexts shift, and as new capability surfaces emerge, the relevance of prior evaluation results diminishes. Raji et al. (2020) argue that AI accountability requires ongoing auditing, not one-time assessment<sup class="ref">[6]</sup>. Benchmark validity is the technical expression of this requirement. Mitchell et al. (2019) propose model cards as a mechanism for documenting model capabilities and limitations<sup class="ref">[7]</sup>; the governance framework we propose extends this logic into a temporal dimension.</p>
+
+      <h2>4. A Multi-Metric Governance Framework</h2>
+      <p>We propose a governance-adapted evaluation framework organized around six dimensions. These dimensions are derived from HELM's metric families but restructured to align with the decision requirements of governance contexts.</p>
+
+      <figure class="article-figure">
+        <svg viewBox="0 0 960 560" role="presentation" aria-label="Multi-metric governance radar chart">
+          <defs>
+            <linearGradient id="radar-fill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(212,163,115,0.2)"/>
+              <stop offset="100%" stop-color="rgba(212,163,115,0.05)"/>
+            </linearGradient>
+            <linearGradient id="radar-thresh" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(220,100,100,0.15)"/>
+              <stop offset="100%" stop-color="rgba(220,100,100,0.05)"/>
+            </linearGradient>
+          </defs>
+
+          <text x="480" y="28" fill="#f2f0eb" font-size="14" text-anchor="middle" font-weight="500">Multi-Metric Governance Profile</text>
+
+          <!-- Radar chart center at (380, 295) -->
+          <!-- Hexagonal grid rings -->
+          <g transform="translate(380,280)">
+            <!-- Ring labels -->
+            <text x="0" y="-215" fill="#b0ada4" font-size="9" text-anchor="middle">1.0</text>
+            <text x="0" y="-155" fill="#b0ada4" font-size="9" text-anchor="middle">0.8</text>
+            <text x="0" y="-95" fill="#b0ada4" font-size="9" text-anchor="middle">0.6</text>
+            <text x="0" y="-35" fill="#b0ada4" font-size="9" text-anchor="middle">0.4</text>
+
+            <!-- Outer ring (1.0) -->
+            <polygon points="0,-200 173,-100 173,100 0,200 -173,100 -173,-100" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+            <!-- 0.8 ring -->
+            <polygon points="0,-160 138,-80 138,80 0,160 -138,80 -138,-80" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+            <!-- 0.6 ring -->
+            <polygon points="0,-120 104,-60 104,60 0,120 -104,60 -104,-60" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+            <!-- 0.4 ring -->
+            <polygon points="0,-80 69,-40 69,40 0,80 -69,40 -69,-40" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+            <!-- 0.2 ring -->
+            <polygon points="0,-40 35,-20 35,20 0,40 -35,20 -35,-20" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
+
+            <!-- Axis lines -->
+            <line x1="0" y1="0" x2="0" y2="-200" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+            <line x1="0" y1="0" x2="173" y2="-100" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+            <line x1="0" y1="0" x2="173" y2="100" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+            <line x1="0" y1="0" x2="0" y2="200" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+            <line x1="0" y1="0" x2="-173" y2="100" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+            <line x1="0" y1="0" x2="-173" y2="-100" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+
+            <!-- Threshold polygon (minimum acceptable: 0.7 on all except efficiency at 0.5) -->
+            <polygon points="0,-140 121,-70 87,50 0,100 -87,50 -121,-70" fill="url(#radar-thresh)" stroke="rgba(220,100,100,0.5)" stroke-width="1" stroke-dasharray="5 3"/>
+
+            <!-- Model performance polygon -->
+            <polygon points="0,-184 152,-76 138,60 0,120 -104,50 -121,-80" fill="url(#radar-fill)" stroke="#d4a373" stroke-width="2"/>
+
+            <!-- Data points -->
+            <circle cx="0" cy="-184" r="5" fill="#d4a373"/>
+            <circle cx="152" cy="-76" r="5" fill="#d4a373"/>
+            <circle cx="138" cy="60" r="5" fill="#d4a373"/>
+            <circle cx="0" cy="120" r="5" fill="#d4a373"/>
+            <circle cx="-104" cy="50" r="5" fill="#d4a373"/>
+            <circle cx="-121" cy="-80" r="5" fill="#d4a373"/>
+
+            <!-- Dimension labels with scores -->
+            <text x="0" y="-222" fill="#f2f0eb" font-size="13" text-anchor="middle" font-weight="500">Accuracy</text>
+            <text x="0" y="-238" fill="#d4a373" font-size="10" text-anchor="middle" font-family="monospace">0.92</text>
+            <text x="200" y="-100" fill="#f2f0eb" font-size="13" text-anchor="start" font-weight="500">Calibration</text>
+            <text x="200" y="-84" fill="#d4a373" font-size="10" text-anchor="start" font-family="monospace">0.88</text>
+            <text x="200" y="110" fill="#f2f0eb" font-size="13" text-anchor="start" font-weight="500">Robustness</text>
+            <text x="200" y="126" fill="#d4a373" font-size="10" text-anchor="start" font-family="monospace">0.80</text>
+            <text x="0" y="238" fill="#f2f0eb" font-size="13" text-anchor="middle" font-weight="500">Fairness</text>
+            <text x="0" y="254" fill="rgba(220,100,100,0.8)" font-size="10" text-anchor="middle" font-family="monospace">0.60 (below threshold)</text>
+            <text x="-200" y="110" fill="#f2f0eb" font-size="13" text-anchor="end" font-weight="500">Safety</text>
+            <text x="-200" y="126" fill="#d4a373" font-size="10" text-anchor="end" font-family="monospace">0.75</text>
+            <text x="-200" y="-100" fill="#f2f0eb" font-size="13" text-anchor="end" font-weight="500">Efficiency</text>
+            <text x="-200" y="-84" fill="#d4a373" font-size="10" text-anchor="end" font-family="monospace">0.70</text>
+          </g>
+
+          <!-- Legend -->
+          <rect x="680" y="55" width="250" height="115" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+          <text x="700" y="78" fill="#f2f0eb" font-size="11" font-weight="500">Legend</text>
+          <line x1="700" y1="98" x2="730" y2="98" stroke="#d4a373" stroke-width="2"/>
+          <text x="738" y="102" fill="#b0ada4" font-size="10">Model performance</text>
+          <line x1="700" y1="118" x2="730" y2="118" stroke="rgba(220,100,100,0.5)" stroke-width="1" stroke-dasharray="5 3"/>
+          <text x="738" y="122" fill="#b0ada4" font-size="10">Minimum threshold</text>
+          <circle cx="715" cy="140" r="4" fill="rgba(220,100,100,0.7)"/>
+          <text x="738" y="144" fill="#b0ada4" font-size="10">Threshold violation</text>
+
+          <!-- Decision callout -->
+          <rect x="680" y="195" width="250" height="80" rx="8" fill="rgba(220,100,100,0.06)" stroke="rgba(220,100,100,0.3)" stroke-width="1"/>
+          <text x="700" y="218" fill="rgba(220,100,100,0.8)" font-size="10" font-family="monospace" letter-spacing="0.08em">DECISION SIGNAL</text>
+          <text x="700" y="240" fill="#f2f0eb" font-size="11">Fairness below threshold:</text>
+          <text x="700" y="258" fill="#b0ada4" font-size="10">Deploy with constraints or deny.</text>
+          <text x="700" y="270" fill="#b0ada4" font-size="10">Requires board-level review.</text>
+        </svg>
+        <figcaption><strong>Figure 2.</strong> Multi-metric governance profile for a hypothetical frontier model. The amber polygon shows model performance across six dimensions. The red dashed polygon shows minimum acceptable thresholds. Where the performance polygon falls inside the threshold polygon (here: Fairness at 0.60 against a 0.70 threshold), the governance decision is constrained: the model cannot be deployed without restrictions or remediation in that dimension. Note that a model can score highly on accuracy while failing governance review on a single critical dimension.</figcaption>
+      </figure>
+
+      <p>The six dimensions are:</p>
+      <ol>
+        <li><strong>Accuracy:</strong> Task-relevant correctness across deployment scenarios.</li>
+        <li><strong>Calibration:</strong> The degree to which the model's expressed confidence corresponds to actual performance. Poorly calibrated models generate false confidence in decision-makers.</li>
+        <li><strong>Robustness:</strong> Performance stability under input perturbation, distribution shift, and adversarial attack.</li>
+        <li><strong>Fairness:</strong> Performance parity across demographic groups and protected categories.</li>
+        <li><strong>Safety:</strong> Resistance to producing harmful, dangerous, or policy-violating outputs.</li>
+        <li><strong>Efficiency:</strong> Computational cost, latency, and resource utilization relative to performance.</li>
+      </ol>
+      <p>Each dimension must have an explicit threshold, set before evaluation, that defines the minimum acceptable performance for the deployment context. The threshold is not a technical property of the model; it is a governance decision that reflects organizational risk tolerance, regulatory requirements, and stakeholder expectations.</p>
+
+      <h2>5. Threshold Logic and Decision Rules</h2>
+      <p>Not all thresholds operate the same way. We distinguish three threshold logic types, each appropriate for different governance contexts:</p>
+      <p><strong>Absolute thresholds</strong> define minimum performance levels that must be met regardless of other factors. A safety score below 0.70 blocks deployment, period. Absolute thresholds are appropriate for dimensions where failure has severe and irreversible consequences.</p>
+      <p><strong>Relative thresholds</strong> define performance levels relative to a baseline, typically the currently deployed model or an industry benchmark. A new model must match or exceed the baseline on fairness. Relative thresholds are appropriate for dimensions where absolute standards are not yet established but regression is unacceptable.</p>
+      <p><strong>Conditional thresholds</strong> define performance levels that depend on the values of other dimensions. If safety exceeds 0.90, the robustness threshold may be relaxed from 0.80 to 0.70, on the theory that the model's strong safety performance partially compensates for lower robustness. Conditional thresholds are appropriate for dimensions with genuine tradeoffs, but they must be specified before evaluation to prevent post hoc rationalization.</p>
+
+      <figure class="article-figure">
+        <svg viewBox="0 0 960 440" role="presentation" aria-label="Threshold-based decision flowchart">
+          <defs>
+            <linearGradient id="flow-yes" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(110,198,198,0.15)"/>
+              <stop offset="100%" stop-color="rgba(110,198,198,0.04)"/>
+            </linearGradient>
+            <linearGradient id="flow-no" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(220,100,100,0.15)"/>
+              <stop offset="100%" stop-color="rgba(220,100,100,0.04)"/>
+            </linearGradient>
+            <marker id="flow-arrow" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="5" orient="auto-start-reverse">
+              <path d="M0,0 L10,4 L0,8 Z" fill="#d4a373"/>
+            </marker>
+            <marker id="flow-arrow-g" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="5" orient="auto-start-reverse">
+              <path d="M0,0 L10,4 L0,8 Z" fill="#6EC6C6"/>
+            </marker>
+            <marker id="flow-arrow-r" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="5" orient="auto-start-reverse">
+              <path d="M0,0 L10,4 L0,8 Z" fill="rgba(220,100,100,0.7)"/>
+            </marker>
+          </defs>
+
+          <text x="480" y="28" fill="#f2f0eb" font-size="14" text-anchor="middle" font-weight="500">Threshold-Based Governance Decision Flow</text>
+
+          <!-- Start -->
+          <rect x="370" y="50" width="220" height="45" rx="22" fill="rgba(212,163,115,0.12)" stroke="rgba(212,163,115,0.5)" stroke-width="1.5"/>
+          <text x="480" y="78" fill="#f2f0eb" font-size="12" text-anchor="middle" font-weight="500">Evaluation Results Available</text>
+
+          <line x1="480" y1="95" x2="480" y2="115" stroke="#d4a373" stroke-width="1.5" marker-end="url(#flow-arrow)"/>
+
+          <!-- Decision 1: Absolute thresholds -->
+          <rect x="340" y="118" width="280" height="50" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <text x="480" y="140" fill="#f2f0eb" font-size="12" text-anchor="middle">All absolute thresholds met?</text>
+          <text x="480" y="157" fill="#b0ada4" font-size="9" text-anchor="middle">(Safety, Fairness minimum gates)</text>
+
+          <!-- No branch -->
+          <line x1="620" y1="143" x2="700" y2="143" stroke="rgba(220,100,100,0.7)" stroke-width="1.5" marker-end="url(#flow-arrow-r)"/>
+          <text x="660" y="136" fill="rgba(220,100,100,0.6)" font-size="10">NO</text>
+          <rect x="705" y="118" width="180" height="50" rx="8" fill="url(#flow-no)" stroke="rgba(220,100,100,0.4)" stroke-width="1"/>
+          <text x="795" y="140" fill="rgba(220,100,100,0.8)" font-size="12" text-anchor="middle" font-weight="500">DENY</text>
+          <text x="795" y="157" fill="#b0ada4" font-size="9" text-anchor="middle">Remediate before re-evaluation</text>
+
+          <!-- Yes branch -->
+          <line x1="480" y1="168" x2="480" y2="198" stroke="#6EC6C6" stroke-width="1.5" marker-end="url(#flow-arrow-g)"/>
+          <text x="492" y="188" fill="rgba(110,198,198,0.6)" font-size="10">YES</text>
+
+          <!-- Decision 2: Relative thresholds -->
+          <rect x="340" y="200" width="280" height="50" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <text x="480" y="222" fill="#f2f0eb" font-size="12" text-anchor="middle">All relative thresholds met?</text>
+          <text x="480" y="239" fill="#b0ada4" font-size="9" text-anchor="middle">(No regression from baseline)</text>
+
+          <!-- No branch -->
+          <line x1="620" y1="225" x2="700" y2="225" stroke="rgba(220,100,100,0.7)" stroke-width="1.5" marker-end="url(#flow-arrow-r)"/>
+          <text x="660" y="218" fill="rgba(220,100,100,0.6)" font-size="10">NO</text>
+          <rect x="705" y="200" width="180" height="50" rx="8" fill="rgba(212,163,115,0.08)" stroke="rgba(212,163,115,0.4)" stroke-width="1"/>
+          <text x="795" y="222" fill="#d4a373" font-size="12" text-anchor="middle" font-weight="500">ESCALATE</text>
+          <text x="795" y="239" fill="#b0ada4" font-size="9" text-anchor="middle">Board review required</text>
+
+          <!-- Yes branch -->
+          <line x1="480" y1="250" x2="480" y2="280" stroke="#6EC6C6" stroke-width="1.5" marker-end="url(#flow-arrow-g)"/>
+          <text x="492" y="270" fill="rgba(110,198,198,0.6)" font-size="10">YES</text>
+
+          <!-- Decision 3: Conditional thresholds -->
+          <rect x="340" y="282" width="280" height="50" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <text x="480" y="304" fill="#f2f0eb" font-size="12" text-anchor="middle">Conditional thresholds met?</text>
+          <text x="480" y="321" fill="#b0ada4" font-size="9" text-anchor="middle">(Tradeoff analysis, context rules)</text>
+
+          <!-- No branch -->
+          <line x1="620" y1="307" x2="700" y2="307" stroke="rgba(220,100,100,0.7)" stroke-width="1.5" marker-end="url(#flow-arrow-r)"/>
+          <text x="660" y="300" fill="rgba(220,100,100,0.6)" font-size="10">NO</text>
+          <rect x="705" y="282" width="180" height="50" rx="8" fill="rgba(107,159,212,0.08)" stroke="rgba(107,159,212,0.4)" stroke-width="1"/>
+          <text x="795" y="304" fill="#6B9FD4" font-size="12" text-anchor="middle" font-weight="500">CONSTRAIN</text>
+          <text x="795" y="321" fill="#b0ada4" font-size="9" text-anchor="middle">Deploy with restrictions</text>
+
+          <!-- Yes branch -->
+          <line x1="480" y1="332" x2="480" y2="362" stroke="#6EC6C6" stroke-width="1.5" marker-end="url(#flow-arrow-g)"/>
+          <text x="492" y="352" fill="rgba(110,198,198,0.6)" font-size="10">YES</text>
+
+          <!-- Deploy -->
+          <rect x="370" y="365" width="220" height="50" rx="8" fill="url(#flow-yes)" stroke="rgba(110,198,198,0.5)" stroke-width="1.5"/>
+          <text x="480" y="387" fill="#6EC6C6" font-size="14" text-anchor="middle" font-weight="500">DEPLOY</text>
+          <text x="480" y="405" fill="#b0ada4" font-size="9" text-anchor="middle">Standard monitoring active</text>
+
+          <!-- Annotation -->
+          <rect x="40" y="365" width="260" height="50" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+          <text x="60" y="387" fill="#b0ada4" font-size="10">Thresholds must be set before</text>
+          <text x="60" y="403" fill="#b0ada4" font-size="10">evaluation to prevent post hoc reasoning.</text>
+        </svg>
+        <figcaption><strong>Figure 3.</strong> Decision flowchart implementing three-tier threshold logic. Absolute thresholds (safety, fairness minimums) gate entry: failure blocks deployment entirely. Relative thresholds (no regression) trigger board-level escalation when violated. Conditional thresholds (context-dependent tradeoffs) determine whether deployment proceeds with or without constraints. All thresholds are specified before evaluation begins.</figcaption>
+      </figure>
+
+      <h2>6. Temporal Validity and Re-evaluation Protocols</h2>
+      <p>Evaluation results decay. A benchmark score computed in January may not reflect model behavior in June if the model has been updated, the deployment context has shifted, or new capability surfaces have emerged. Zheng et al. (2023) demonstrate that evaluation methods themselves introduce biases and artifacts that can shift over time, particularly when LLMs are used as evaluators<sup class="ref">[8]</sup>.</p>
+      <p>We propose three re-evaluation triggers:</p>
+      <ol>
+        <li><strong>Material model change:</strong> Any update to model weights, system prompts, or inference configuration triggers re-evaluation on at least the safety and fairness dimensions.</li>
+        <li><strong>Deployment context change:</strong> New user populations, new integration surfaces, or new use cases trigger re-evaluation with scenario sets appropriate to the new context.</li>
+        <li><strong>Calendar ceiling:</strong> Regardless of model or context stability, a maximum interval (we recommend 90 days for high-risk applications, 180 days for moderate-risk) after which full re-evaluation is required.</li>
+      </ol>
+
+      <figure class="article-figure">
+        <svg viewBox="0 0 960 300" role="presentation" aria-label="Evaluation validity decay timeline">
+          <text x="480" y="28" fill="#f2f0eb" font-size="14" text-anchor="middle" font-weight="500">Evaluation Validity Over Time</text>
+
+          <!-- Timeline -->
+          <line x1="80" y1="180" x2="880" y2="180" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <text x="80" y="198" fill="#b0ada4" font-size="9" text-anchor="middle">Day 0</text>
+          <text x="240" y="198" fill="#b0ada4" font-size="9" text-anchor="middle">Day 30</text>
+          <text x="400" y="198" fill="#b0ada4" font-size="9" text-anchor="middle">Day 60</text>
+          <text x="560" y="198" fill="#b0ada4" font-size="9" text-anchor="middle">Day 90</text>
+          <text x="720" y="198" fill="#b0ada4" font-size="9" text-anchor="middle">Day 120</text>
+          <text x="880" y="198" fill="#b0ada4" font-size="9" text-anchor="middle">Day 180</text>
+
+          <!-- Confidence band (decaying) -->
+          <path d="M80,100 C200,105 300,115 400,130 C500,150 600,165 720,172 L880,177" stroke="#d4a373" stroke-width="2" fill="none"/>
+          <path d="M80,100 C200,105 300,115 400,130 C500,150 600,165 720,172 L880,177 L880,180 L80,180 Z" fill="rgba(212,163,115,0.08)"/>
+
+          <!-- Uncertainty band (growing) -->
+          <path d="M80,100 C200,95 300,85 400,70 C500,55 600,48 720,45 L880,43" stroke="rgba(107,159,212,0.5)" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+          <path d="M80,100 C200,95 300,85 400,70 C500,55 600,48 720,45 L880,43 L880,42 L80,98 Z" fill="rgba(107,159,212,0.05)"/>
+
+          <!-- Re-eval trigger markers -->
+          <line x1="260" y1="65" x2="260" y2="175" stroke="rgba(220,100,100,0.5)" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="260" y="60" fill="rgba(220,100,100,0.7)" font-size="9" text-anchor="middle">Model update</text>
+
+          <line x1="500" y1="65" x2="500" y2="175" stroke="rgba(220,100,100,0.5)" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="500" y="60" fill="rgba(220,100,100,0.7)" font-size="9" text-anchor="middle">New user pop.</text>
+
+          <line x1="560" y1="65" x2="560" y2="175" stroke="rgba(110,198,198,0.6)" stroke-width="1.5"/>
+          <text x="560" y="55" fill="#6EC6C6" font-size="9" text-anchor="middle" font-weight="500">90-day ceiling</text>
+
+          <!-- Labels -->
+          <text x="75" y="92" fill="#d4a373" font-size="10" text-anchor="end">High</text>
+          <text x="75" y="178" fill="#d4a373" font-size="10" text-anchor="end">Low</text>
+          <text x="40" y="138" fill="#b0ada4" font-size="10" text-anchor="middle" transform="rotate(-90,40,138)">Confidence</text>
+
+          <!-- Legend -->
+          <line x1="80" y1="230" x2="110" y2="230" stroke="#d4a373" stroke-width="2"/>
+          <text x="118" y="234" fill="#b0ada4" font-size="10">Evaluation validity (decays)</text>
+          <line x1="350" y1="230" x2="380" y2="230" stroke="rgba(107,159,212,0.5)" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="388" y="234" fill="#b0ada4" font-size="10">Uncertainty (grows)</text>
+          <line x1="600" y1="230" x2="630" y2="230" stroke="rgba(220,100,100,0.5)" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="638" y="234" fill="#b0ada4" font-size="10">Event-triggered re-eval</text>
+          <line x1="80" y1="255" x2="110" y2="255" stroke="rgba(110,198,198,0.6)" stroke-width="1.5"/>
+          <text x="118" y="259" fill="#b0ada4" font-size="10">Calendar ceiling (mandatory re-eval)</text>
+        </svg>
+        <figcaption><strong>Figure 4.</strong> Evaluation validity as a function of time. Confidence in evaluation results (amber curve) decays as model updates, context shifts, and new threats accumulate. Uncertainty (blue dashed) grows correspondingly. Event-triggered re-evaluations (red dashed lines) reset confidence at the point of material change. The calendar ceiling (teal line at day 90) mandates re-evaluation regardless of events, preventing validity from decaying below an acceptable level.</figcaption>
+      </figure>
+
+      <h2>7. Alignment with Regulatory Frameworks</h2>
+      <p>The governance evaluation framework maps directly onto requirements in both the EU AI Act and the NIST AI RMF.</p>
+      <p>Under the EU AI Act, high-risk AI systems must undergo conformity assessment that includes testing for accuracy, robustness, and cybersecurity (Article 15), as well as bias testing and fairness evaluation (Article 10)<sup class="ref">[2]</sup>. The multi-metric framework provides the evaluation architecture for these requirements. The threshold logic provides the decision mechanism. The re-evaluation protocol provides the temporal coverage.</p>
+      <p>Under the NIST AI RMF, the Measure function requires organizations to "employ appropriate methods, metrics, and tests" to assess AI risks<sup class="ref">[3]</sup>. The framework we propose is a concrete implementation of this requirement, with the additional governance infrastructure (thresholds, decision rules, re-evaluation protocols) that the RMF implies but does not specify. Weidinger et al. (2022) provide a risk taxonomy that can inform the selection of scenario sets for each evaluation dimension<sup class="ref">[9]</sup>.</p>
+      <p>The key contribution of our framework in the regulatory context is bridging the gap between "what to evaluate" (which the regulations specify at a principles level) and "how to translate evaluation results into deployment decisions" (which the regulations leave to organizational implementation). Shevlane et al. (2023) argue for evaluation frameworks that are tightly coupled to deployment decisions<sup class="ref">[10]</sup>; our threshold logic and decision flowchart provide that coupling.</p>
+
+      <h2>8. Limitations</h2>
+      <p>The framework is a design proposal, not an empirical validation. Several limitations should be noted. First, setting appropriate thresholds requires domain expertise and organizational judgment that the framework structures but cannot supply. Bad thresholds (too high, too low, or poorly calibrated to context) produce bad decisions regardless of the framework's quality. Second, the six dimensions are not exhaustive; some deployment contexts may require additional dimensions (e.g., interpretability, environmental impact) or different dimensional weighting. Third, the re-evaluation protocol adds cost and organizational overhead that may be difficult to sustain, particularly for organizations deploying multiple models across multiple contexts. Fourth, the framework assumes that evaluation metrics are themselves reliable, which is an assumption that Zheng et al. (2023) and others have shown to be non-trivial<sup class="ref">[8]</sup>.</p>
+
+      <h2>9. Conclusion</h2>
+      <p>HELM demonstrated that model quality is multi-dimensional and that transparent, scenario-based evaluation is feasible at scale. The contribution of this paper is extending HELM's logic from technical evaluation into governance decision-making: adding explicit thresholds that transform evaluation outputs into decision inputs, threshold logic types that accommodate different risk profiles, and re-evaluation protocols that maintain validity over time.</p>
+      <p>The result is an evaluation framework that can serve as the Measure function in a closed-loop governance architecture, providing the quantitative evidence that risk review boards need to make informed, defensible, and accountable deployment decisions. The framework does not replace judgment; it structures judgment, making the basis of decisions transparent and the consequences of threshold choices visible.</p>
+      <p>Evaluation science and governance practice have developed largely in parallel. This paper argues they must converge, because the questions that matter most (should this model be deployed, under what constraints, and who is accountable for that decision) can only be answered where technical measurement meets institutional judgment.</p>
+
+      <h2>References</h2>
+      <ol class="article-ref-list">
+        <li><span class="article-ref-num">[1]</span> <span>Liang, P., Bommasani, R., Lee, T., et al. (2022). Holistic Evaluation of Language Models. arXiv preprint. <a href="https://arxiv.org/abs/2211.09110" target="_blank" rel="noopener noreferrer">arXiv:2211.09110</a></span></li>
+        <li><span class="article-ref-num">[2]</span> <span>European Parliament and Council. (2024). Regulation (EU) 2024/1689 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act). Official Journal of the European Union. <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener noreferrer">EUR-Lex</a></span></li>
+        <li><span class="article-ref-num">[3]</span> <span>Tabassi, E. (2023). Artificial Intelligence Risk Management Framework (AI RMF 1.0). National Institute of Standards and Technology. NIST AI 100-1. <a href="https://doi.org/10.6028/NIST.AI.100-1" target="_blank" rel="noopener noreferrer">doi:10.6028/NIST.AI.100-1</a></span></li>
+        <li><span class="article-ref-num">[4]</span> <span>Hendrycks, D., Burns, C., Basart, S., et al. (2020). Measuring Massive Multitask Language Understanding. arXiv preprint. <a href="https://arxiv.org/abs/2009.03300" target="_blank" rel="noopener noreferrer">arXiv:2009.03300</a></span></li>
+        <li><span class="article-ref-num">[5]</span> <span>Srivastava, A., Rastogi, A., Rao, A., et al. (2022). Beyond the Imitation Game: Quantifying and extrapolating the capabilities of language models. arXiv preprint. <a href="https://arxiv.org/abs/2206.04615" target="_blank" rel="noopener noreferrer">arXiv:2206.04615</a></span></li>
+        <li><span class="article-ref-num">[6]</span> <span>Raji, I. D., Smart, A., White, R. N., et al. (2020). Closing the AI Accountability Gap: Defining an End-to-End Framework for Internal Algorithmic Auditing. In Proceedings of the 2020 ACM Conference on Fairness, Accountability, and Transparency. <a href="https://doi.org/10.1145/3351095.3372873" target="_blank" rel="noopener noreferrer">doi:10.1145/3351095.3372873</a></span></li>
+        <li><span class="article-ref-num">[7]</span> <span>Mitchell, M., Wu, S., Zaldivar, A., et al. (2019). Model Cards for Model Reporting. In Proceedings of the Conference on Fairness, Accountability, and Transparency. <a href="https://arxiv.org/abs/1810.03993" target="_blank" rel="noopener noreferrer">arXiv:1810.03993</a></span></li>
+        <li><span class="article-ref-num">[8]</span> <span>Zheng, L., Chiang, W.-L., Sheng, Y., et al. (2023). Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. arXiv preprint. <a href="https://arxiv.org/abs/2306.05685" target="_blank" rel="noopener noreferrer">arXiv:2306.05685</a></span></li>
+        <li><span class="article-ref-num">[9]</span> <span>Weidinger, L., Mellor, J., Rauh, M., et al. (2022). Taxonomy of Risks Posed by Language Models. In Proceedings of the 2022 ACM Conference on Fairness, Accountability, and Transparency. <a href="https://arxiv.org/abs/2112.04359" target="_blank" rel="noopener noreferrer">arXiv:2112.04359</a></span></li>
+        <li><span class="article-ref-num">[10]</span> <span>Shevlane, T., Farquhar, S., Garfinkel, B., et al. (2023). Model evaluation for extreme risks. arXiv preprint. <a href="https://arxiv.org/abs/2305.15324" target="_blank" rel="noopener noreferrer">arXiv:2305.15324</a></span></li>
+        <li><span class="article-ref-num">[11]</span> <span>Bommasani, R., Hudson, D. A., Adeli, E., et al. (2021). On the Opportunities and Risks of Foundation Models. arXiv preprint. <a href="https://arxiv.org/abs/2108.07258" target="_blank" rel="noopener noreferrer">arXiv:2108.07258</a></span></li>
+        <li><span class="article-ref-num">[12]</span> <span>OpenAI. (2023). GPT-4 Technical Report. arXiv preprint. <a href="https://arxiv.org/abs/2303.08774" target="_blank" rel="noopener noreferrer">arXiv:2303.08774</a></span></li>
+      </ol>
+
+      <div class="article-citation">
+        <button class="article-citation-copy" onclick="navigator.clipboard.writeText(this.closest('.article-citation').querySelector('pre').textContent)">Copy BibTeX</button>
+        <pre>@article{heath2026holistic,
+  title   = {Holistic Evaluation for Executive Decision: Adapting HELM for Governance Contexts},
+  author  = {Heath, Nathan},
+  year    = {2026},
+  journal = {Syntony Research Working Papers},
+  url     = {https://syntonyresearch.org/research/helm-style-evaluation-for-executive-decision/}
+}</pre>
+      </div>
+
+    </div>
+  </div>
+</main>
+<div data-include="/components/footer.html"></div>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

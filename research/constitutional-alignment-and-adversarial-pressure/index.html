@@ -1,10 +1,398 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Constitutional Alignment Under Adversarial Pressure</title><meta name="description" content="A serious assessment of constitutional alignment methods under adversarial conditions."><meta property="og:title" content="Constitutional Alignment Under Adversarial Pressure"><meta property="og:description" content="Constitutional alignment and adversarial stress."><meta property="og:type" content="article"><meta property="og:image" content="https://syntonyresearch.org/assets/og-image.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Constitutional Alignment Under Adversarial Pressure"><meta name="twitter:description" content="Constitutional alignment and adversarial stress."><meta name="twitter:image" content="https://syntonyresearch.org/assets/og-image.png"><link rel="stylesheet" href="/styles/main.css"></head><body><div data-include="/components/header.html"></div><main><section class="page-hero"><div class="container"><h1>Constitutional Alignment Under Adversarial Pressure</h1><p class="hero-sub">By Nathan Heath · 2026-04-30 · AI Safety</p></div></section><section class="service-detail"><div class="container">
-<section class="service-detail-section"><h2>Abstract</h2><p>Constitutional AI offers a scalable alignment pathway by replacing much human preference labeling with principle-guided critique and AI feedback. This article examines what that approach can and cannot guarantee under adversarial prompting, using a comparative reading of Constitutional AI and large-scale red-teaming evidence.</p></section>
-<section class="service-detail-section"><h2>Research question and scope</h2><p><strong>Question:</strong> Does constitutional alignment reduce harmful behavior robustly enough for high-stakes deployment on its own?</p><p><strong>Scope:</strong> This is a conceptual and methodological analysis grounded in published alignment and red-team literature. It does not claim new attack-surface statistics beyond cited sources.</p></section>
-<section class="service-detail-section"><h2>Analytic model</h2><div class="scope-item" aria-hidden="true"><svg viewBox="0 0 920 430" role="presentation" style="width:100%;height:auto"><rect x="130" y="40" width="660" height="74" rx="8" fill="rgba(212,163,115,.18)" stroke="#d4a373"/><text x="176" y="86" fill="#f2f0eb" font-size="24">Normative constraints (constitutional principles)</text><rect x="130" y="145" width="660" height="74" rx="8" fill="rgba(107,159,212,.18)" stroke="#8aa8cc"/><text x="176" y="191" fill="#f2f0eb" font-size="24">Self-critique and revision loop</text><rect x="130" y="250" width="660" height="74" rx="8" fill="rgba(212,163,115,.18)" stroke="#d4a373"/><text x="176" y="296" fill="#f2f0eb" font-size="24">Aligned response policy</text><rect x="130" y="355" width="660" height="42" rx="8" fill="rgba(107,159,212,.18)" stroke="#8aa8cc"/><text x="176" y="382" fill="#f2f0eb" font-size="18">External adversarial evaluation + runtime interventions</text><path d="M460,114 L460,145 M460,219 L460,250 M460,324 L460,355" stroke="#f2f0eb" stroke-width="2"/></svg></div><p><strong>Figure 1.</strong> Constitutional alignment as an internal safety layer that still depends on external testing and operational controls.</p></section>
-<section class="service-detail-section"><h2>Findings</h2><p><strong>1. Constitutional alignment meaningfully improves policy adherence.</strong> The constitutional approach demonstrates practical gains in harmlessness and consistency with normative instructions.</p><p><strong>2. Adversarial pressure remains a distinct test domain.</strong> Red-team evidence shows that harmful-output pathways persist across models and evolve with model capabilities.</p><p><strong>3. Alignment and adversarial evaluation are complementary, not substitutive.</strong> Constitutional training reduces baseline risk; adversarial evaluation measures residual risk and discovers bypass patterns.</p><p><strong>4. Deployment decisions should be based on residual-risk governance, not single-method confidence.</strong> High-stakes contexts require multi-layer controls and explicit escalation rules.</p></section>
-<section class="service-detail-section"><h2>Practical implications</h2><ul class="footer-links"><li>Use constitutional principles to stabilize model behavior at scale.</li><li>Run continuous adversarial campaigns before and after release.</li><li>Track residual-risk categories by severity and exploitability.</li><li>Treat alignment as part of defense-in-depth architecture.</li></ul></section>
-<section class="service-detail-section"><h2>Limitations</h2><p>Published alignment and red-team results are informative but not exhaustive. Threat landscapes, attacker incentives, and deployment environments vary materially across sectors.</p></section>
-<section class="service-detail-section"><h2>References</h2><ul class="footer-links"><li><a href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noopener noreferrer">Bai, Y., et al. (2022). Constitutional AI: Harmlessness from AI Feedback.</a></li><li><a href="https://arxiv.org/abs/2209.07858" target="_blank" rel="noopener noreferrer">Ganguli, D., et al. (2022). Red Teaming Language Models to Reduce Harms.</a></li><li><a href="https://arxiv.org/abs/2303.08774" target="_blank" rel="noopener noreferrer">OpenAI (2023). GPT-4 Technical Report.</a></li></ul></section>
-</div></section></main><div data-include="/components/footer.html"></div><script src="/assets/js/site.js" defer></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constitutional Alignment Under Adversarial Pressure | Syntony Research</title>
+  <meta name="description" content="An analysis of constitutional alignment methods under adversarial conditions, examining guarantees, gaps, and defense-in-depth architectures for frontier model safety.">
+  <meta property="og:title" content="Constitutional Alignment Under Adversarial Pressure">
+  <meta property="og:description" content="Guarantees, gaps, and defense in depth for constitutional AI under adversarial conditions.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://syntonyresearch.org/assets/og/syntony-launch-v3.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Constitutional Alignment Under Adversarial Pressure">
+  <meta name="twitter:description" content="What constitutional alignment can and cannot guarantee under attack.">
+  <meta name="twitter:image" content="https://syntonyresearch.org/assets/og/syntony-launch-v3.png">
+  <link rel="stylesheet" href="/styles/main.css">
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Constitutional Alignment Under Adversarial Pressure: Guarantees, Gaps, and Defense in Depth",
+    "author": {"@type": "Person", "name": "Nathan Heath"},
+    "datePublished": "2026-04-30",
+    "publisher": {"@type": "Organization", "name": "Syntony Research"},
+    "keywords": ["constitutional AI", "adversarial robustness", "AI alignment", "red teaming", "defense in depth"]
+  }</script>
+</head>
+<body>
+<div data-include="/components/header.html"></div>
+<main>
+  <div class="article-layout">
+    <header class="article-header">
+      <span class="article-category">AI Safety</span>
+      <h1>Constitutional Alignment Under Adversarial Pressure: <em>Guarantees, Gaps, and Defense in Depth</em></h1>
+      <div class="article-byline">
+        <span>Nathan Heath</span>
+        <span class="article-byline-dot"></span>
+        <span>Syntony Research</span>
+        <span class="article-byline-dot"></span>
+        <time datetime="2026-04-30">30 April 2026</time>
+        <span class="article-byline-dot"></span>
+        <span>~20 min read</span>
+      </div>
+    </header>
+
+    <div class="article-body">
+
+      <h2>Abstract</h2>
+      <p>Constitutional AI (CAI) introduced a scalable alignment pathway by replacing much of the human preference labeling required by reinforcement learning from human feedback (RLHF) with principle-guided self-critique and AI-generated feedback<sup class="ref">[1]</sup>. The method produces models that are measurably less harmful in standard evaluations. This paper examines what constitutional alignment can and cannot guarantee when models are subjected to adversarial pressure: deliberate attempts by users or automated systems to elicit harmful outputs despite alignment training. Drawing on published red-teaming evidence<sup class="ref">[2]</sup><sup class="ref">[3]</sup>, the universal adversarial attack literature<sup class="ref">[4]</sup>, and emerging jailbreak taxonomies<sup class="ref">[5]</sup>, we argue that constitutional alignment is a necessary but insufficient condition for safe deployment. We propose a defense-in-depth architecture that layers training-time alignment, inference-time filtering, runtime monitoring, and human oversight into a unified safety system, and we specify the residual risk governance structures required to manage what no alignment method can eliminate.</p>
+
+      <div class="article-tags">
+        <span class="article-tag">Constitutional AI</span>
+        <span class="article-tag">Adversarial Robustness</span>
+        <span class="article-tag">Alignment</span>
+        <span class="article-tag">Red Teaming</span>
+        <span class="article-tag">Defense in Depth</span>
+      </div>
+
+      <h2>1. Introduction</h2>
+      <p>The alignment problem for large language models has two distinct components. The first is specification: defining what behavior the model should exhibit across the full range of possible inputs. The second is robustness: ensuring that the specified behavior holds under adversarial conditions, where users actively attempt to circumvent safety constraints.</p>
+      <p>Constitutional AI addresses the specification problem with notable elegance. Rather than requiring human annotators to label thousands of comparison pairs, the method defines a set of principles (a "constitution") and trains the model to critique and revise its own outputs according to those principles<sup class="ref">[1]</sup>. The resulting model is then fine-tuned using reinforcement learning from AI feedback (RLAIF), where the AI's own judgments, guided by the constitution, replace human preference labels. Bai et al. (2022) demonstrated that this approach produces models that are both more helpful and more harmless than pure RLHF baselines, while requiring substantially less human annotation effort.</p>
+      <p>The robustness question is harder. Published red-teaming studies consistently show that adversarial actors can elicit harmful outputs from aligned models, including models trained with constitutional methods<sup class="ref">[2]</sup><sup class="ref">[3]</sup>. Zou et al. (2023) demonstrated that universal adversarial suffixes can transfer across models and alignment methods<sup class="ref">[4]</sup>. Wei et al. (2024) provided a systematic taxonomy of why safety training fails under adversarial pressure<sup class="ref">[5]</sup>. These findings do not invalidate constitutional alignment. They do establish that alignment and adversarial robustness are distinct properties that require distinct interventions.</p>
+
+      <h2>2. Constitutional AI: Mechanism and Claims</h2>
+      <p>The CAI training pipeline operates in three stages. First, the model generates responses to potentially harmful prompts. Second, the model critiques its own responses against a set of constitutional principles and produces revised responses. Third, the revised responses are used to train a preference model via RLAIF, which then provides the reward signal for reinforcement learning fine-tuning<sup class="ref">[1]</sup>.</p>
+
+      <figure class="article-figure">
+        <svg viewBox="0 0 960 460" role="presentation" aria-label="Constitutional AI training pipeline">
+          <defs>
+            <linearGradient id="cai-gA" x1="0" y1="0" x2="1" y2="0.5">
+              <stop offset="0%" stop-color="rgba(212,163,115,0.22)"/>
+              <stop offset="100%" stop-color="rgba(212,163,115,0.04)"/>
+            </linearGradient>
+            <linearGradient id="cai-gB" x1="0" y1="0" x2="1" y2="0.5">
+              <stop offset="0%" stop-color="rgba(107,159,212,0.22)"/>
+              <stop offset="100%" stop-color="rgba(107,159,212,0.04)"/>
+            </linearGradient>
+            <linearGradient id="cai-gC" x1="0" y1="0" x2="1" y2="0.5">
+              <stop offset="0%" stop-color="rgba(110,198,198,0.22)"/>
+              <stop offset="100%" stop-color="rgba(110,198,198,0.04)"/>
+            </linearGradient>
+            <marker id="cai-arrow" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,4 L0,8 Z" fill="#d4a373"/>
+            </marker>
+            <marker id="cai-arrow-b" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,4 L0,8 Z" fill="#6B9FD4"/>
+            </marker>
+          </defs>
+
+          <text x="480" y="28" fill="#f2f0eb" font-size="14" text-anchor="middle" font-weight="500">Constitutional AI Training Pipeline</text>
+
+          <!-- Stage 1: Generation -->
+          <rect x="30" y="55" width="270" height="150" rx="12" fill="url(#cai-gA)" stroke="rgba(212,163,115,0.6)" stroke-width="1.5"/>
+          <text x="165" y="82" fill="#d4a373" font-size="10" font-family="monospace" text-anchor="middle" letter-spacing="0.12em">STAGE 1: GENERATION</text>
+          <text x="50" y="112" fill="#f2f0eb" font-size="12">Harmful prompt</text>
+          <text x="50" y="132" fill="#b0ada4" font-size="11">"How do I pick a lock?"</text>
+          <line x1="50" y1="145" x2="270" y2="145" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+          <text x="50" y="168" fill="#f2f0eb" font-size="12">Initial response (unfiltered)</text>
+          <text x="50" y="188" fill="#b0ada4" font-size="11">Model generates candidly</text>
+
+          <!-- Arrow 1-2 -->
+          <line x1="300" y1="130" x2="340" y2="130" stroke="#d4a373" stroke-width="2" marker-end="url(#cai-arrow)"/>
+
+          <!-- Stage 2: Critique & Revision -->
+          <rect x="345" y="55" width="270" height="150" rx="12" fill="url(#cai-gB)" stroke="rgba(107,159,212,0.6)" stroke-width="1.5"/>
+          <text x="480" y="82" fill="#6B9FD4" font-size="10" font-family="monospace" text-anchor="middle" letter-spacing="0.12em">STAGE 2: CRITIQUE &amp; REVISE</text>
+          <text x="365" y="112" fill="#f2f0eb" font-size="12">Constitutional principles</text>
+          <text x="365" y="132" fill="#b0ada4" font-size="11">"Choose the response that</text>
+          <text x="365" y="148" fill="#b0ada4" font-size="11"> is least likely to cause harm"</text>
+          <line x1="365" y1="160" x2="585" y2="160" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+          <text x="365" y="183" fill="#f2f0eb" font-size="12">Self-critique + revised output</text>
+
+          <!-- Arrow 2-3 -->
+          <line x1="615" y1="130" x2="655" y2="130" stroke="#6B9FD4" stroke-width="2" marker-end="url(#cai-arrow-b)"/>
+
+          <!-- Stage 3: RLAIF -->
+          <rect x="660" y="55" width="270" height="150" rx="12" fill="url(#cai-gC)" stroke="rgba(110,198,198,0.6)" stroke-width="1.5"/>
+          <text x="795" y="82" fill="#6EC6C6" font-size="10" font-family="monospace" text-anchor="middle" letter-spacing="0.12em">STAGE 3: RLAIF</text>
+          <text x="680" y="112" fill="#f2f0eb" font-size="12">AI-generated preference pairs</text>
+          <text x="680" y="132" fill="#b0ada4" font-size="11">(original vs. revised)</text>
+          <line x1="680" y1="145" x2="900" y2="145" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+          <text x="680" y="168" fill="#f2f0eb" font-size="12">Preference model training</text>
+          <text x="680" y="188" fill="#b0ada4" font-size="11">RL fine-tuning with AI reward</text>
+
+          <!-- Output -->
+          <rect x="345" y="260" width="270" height="60" rx="10" fill="rgba(212,163,115,0.1)" stroke="rgba(212,163,115,0.5)" stroke-width="1.5"/>
+          <text x="480" y="296" fill="#f2f0eb" font-size="14" text-anchor="middle" font-weight="500">Aligned Model</text>
+
+          <line x1="480" y1="205" x2="480" y2="255" stroke="#d4a373" stroke-width="2" marker-end="url(#cai-arrow)"/>
+
+          <!-- Key claims box -->
+          <rect x="30" y="350" width="900" height="85" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <text x="50" y="378" fill="#d4a373" font-size="10" font-family="monospace" letter-spacing="0.1em">EMPIRICAL CLAIMS (BAI ET AL. 2022)</text>
+          <text x="50" y="406" fill="#f2f0eb" font-size="12">Reduced harmfulness across standard benchmarks</text>
+          <text x="400" y="406" fill="#f2f0eb" font-size="12">Maintained or improved helpfulness</text>
+          <text x="720" y="406" fill="#f2f0eb" font-size="12">Reduced annotation cost</text>
+          <text x="50" y="424" fill="#b0ada4" font-size="11" font-style="italic">These claims hold for distributional evaluations. They do not address worst-case adversarial performance.</text>
+        </svg>
+        <figcaption><strong>Figure 1.</strong> The three-stage Constitutional AI training pipeline. Stage 1 generates unfiltered responses to potentially harmful prompts. Stage 2 applies constitutional principles through self-critique and revision. Stage 3 uses the revised outputs to train a preference model via RLAIF, which provides the reward signal for RL fine-tuning. The empirical claims at bottom hold for distributional evaluation but do not address adversarial robustness.</figcaption>
+      </figure>
+
+      <p>The method's central contribution is replacing a labor-intensive human annotation process with a scalable, principle-driven self-supervision mechanism. The constitutional principles can be specified, inspected, and updated by the development team, providing a degree of transparency about the normative commitments embedded in the training process. This is a meaningful advance over pure RLHF, where the normative commitments are implicit in the preference labels of individual annotators<sup class="ref">[6]</sup><sup class="ref">[7]</sup>.</p>
+      <p>The method's limitation is that it operates on the training distribution. Constitutional self-critique teaches the model to produce safer responses to the kinds of prompts it encounters during training. It does not, by construction, guarantee that the model will resist novel attack strategies that exploit distributional gaps, architectural properties, or emergent capabilities that were not represented in the training data.</p>
+
+      <h2>3. Adversarial Threat Models</h2>
+      <p>Adversarial attacks on aligned language models fall into several categories, each exploiting a different property of the model or its deployment context. We organize these into a threat taxonomy that distinguishes attack surfaces, methods, and persistence characteristics.</p>
+
+      <figure class="article-figure">
+        <svg viewBox="0 0 960 520" role="presentation" aria-label="Adversarial threat taxonomy">
+          <defs>
+            <linearGradient id="tax-root" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="rgba(212,163,115,0.3)"/>
+              <stop offset="100%" stop-color="rgba(212,163,115,0.08)"/>
+            </linearGradient>
+          </defs>
+
+          <text x="480" y="28" fill="#f2f0eb" font-size="14" text-anchor="middle" font-weight="500">Adversarial Attack Taxonomy</text>
+
+          <!-- Root -->
+          <rect x="360" y="45" width="240" height="50" rx="10" fill="url(#tax-root)" stroke="rgba(212,163,115,0.7)" stroke-width="1.5"/>
+          <text x="480" y="76" fill="#f2f0eb" font-size="14" text-anchor="middle" font-weight="500">Adversarial Attacks</text>
+
+          <!-- Level 1 branches -->
+          <line x1="380" y1="95" x2="160" y2="140" stroke="rgba(212,163,115,0.4)" stroke-width="1.5"/>
+          <line x1="480" y1="95" x2="480" y2="140" stroke="rgba(107,159,212,0.4)" stroke-width="1.5"/>
+          <line x1="580" y1="95" x2="800" y2="140" stroke="rgba(110,198,198,0.4)" stroke-width="1.5"/>
+
+          <!-- Branch 1: Direct attacks -->
+          <rect x="40" y="140" width="240" height="45" rx="8" fill="rgba(212,163,115,0.12)" stroke="rgba(212,163,115,0.5)" stroke-width="1"/>
+          <text x="160" y="168" fill="#d4a373" font-size="12" text-anchor="middle" font-weight="500">Direct Prompt Attacks</text>
+
+          <!-- Branch 1 children -->
+          <line x1="80" y1="185" x2="80" y2="210" stroke="rgba(212,163,115,0.3)" stroke-width="1"/>
+          <line x1="160" y1="185" x2="160" y2="210" stroke="rgba(212,163,115,0.3)" stroke-width="1"/>
+          <line x1="240" y1="185" x2="240" y2="210" stroke="rgba(212,163,115,0.3)" stroke-width="1"/>
+
+          <rect x="20" y="210" width="120" height="70" rx="6" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.2)" stroke-width="0.5"/>
+          <text x="80" y="232" fill="#f2f0eb" font-size="10" text-anchor="middle" font-weight="500">Jailbreaking</text>
+          <text x="80" y="248" fill="#b0ada4" font-size="9" text-anchor="middle">Role-play, DAN,</text>
+          <text x="80" y="262" fill="#b0ada4" font-size="9" text-anchor="middle">hypothetical framing</text>
+
+          <rect x="150" y="210" width="120" height="70" rx="6" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.2)" stroke-width="0.5"/>
+          <text x="210" y="232" fill="#f2f0eb" font-size="10" text-anchor="middle" font-weight="500">Token Attacks</text>
+          <text x="210" y="248" fill="#b0ada4" font-size="9" text-anchor="middle">Adversarial suffixes,</text>
+          <text x="210" y="262" fill="#b0ada4" font-size="9" text-anchor="middle">GCG [Zou et al.]</text>
+
+          <rect x="20" y="295" width="120" height="70" rx="6" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.2)" stroke-width="0.5"/>
+          <text x="80" y="317" fill="#f2f0eb" font-size="10" text-anchor="middle" font-weight="500">Encoding</text>
+          <text x="80" y="333" fill="#b0ada4" font-size="9" text-anchor="middle">Base64, rot13,</text>
+          <text x="80" y="347" fill="#b0ada4" font-size="9" text-anchor="middle">payload obfuscation</text>
+          <line x1="80" y1="280" x2="80" y2="295" stroke="rgba(212,163,115,0.2)" stroke-width="0.5"/>
+
+          <rect x="150" y="295" width="120" height="70" rx="6" fill="rgba(212,163,115,0.06)" stroke="rgba(212,163,115,0.2)" stroke-width="0.5"/>
+          <text x="210" y="317" fill="#f2f0eb" font-size="10" text-anchor="middle" font-weight="500">Many-shot</text>
+          <text x="210" y="333" fill="#b0ada4" font-size="9" text-anchor="middle">In-context learning</text>
+          <text x="210" y="347" fill="#b0ada4" font-size="9" text-anchor="middle">with harmful demos</text>
+          <line x1="210" y1="280" x2="210" y2="295" stroke="rgba(212,163,115,0.2)" stroke-width="0.5"/>
+
+          <!-- Branch 2: Indirect attacks -->
+          <rect x="360" y="140" width="240" height="45" rx="8" fill="rgba(107,159,212,0.12)" stroke="rgba(107,159,212,0.5)" stroke-width="1"/>
+          <text x="480" y="168" fill="#6B9FD4" font-size="12" text-anchor="middle" font-weight="500">Indirect / Multi-Turn</text>
+
+          <line x1="420" y1="185" x2="420" y2="210" stroke="rgba(107,159,212,0.3)" stroke-width="1"/>
+          <line x1="540" y1="185" x2="540" y2="210" stroke="rgba(107,159,212,0.3)" stroke-width="1"/>
+
+          <rect x="360" y="210" width="120" height="70" rx="6" fill="rgba(107,159,212,0.06)" stroke="rgba(107,159,212,0.2)" stroke-width="0.5"/>
+          <text x="420" y="232" fill="#f2f0eb" font-size="10" text-anchor="middle" font-weight="500">Crescendo</text>
+          <text x="420" y="248" fill="#b0ada4" font-size="9" text-anchor="middle">Gradual escalation</text>
+          <text x="420" y="262" fill="#b0ada4" font-size="9" text-anchor="middle">across turns</text>
+
+          <rect x="490" y="210" width="120" height="70" rx="6" fill="rgba(107,159,212,0.06)" stroke="rgba(107,159,212,0.2)" stroke-width="0.5"/>
+          <text x="550" y="232" fill="#f2f0eb" font-size="10" text-anchor="middle" font-weight="500">Prompt Injection</text>
+          <text x="550" y="248" fill="#b0ada4" font-size="9" text-anchor="middle">Injected via external</text>
+          <text x="550" y="262" fill="#b0ada4" font-size="9" text-anchor="middle">data sources</text>
+
+          <rect x="360" y="295" width="120" height="70" rx="6" fill="rgba(107,159,212,0.06)" stroke="rgba(107,159,212,0.2)" stroke-width="0.5"/>
+          <text x="420" y="317" fill="#f2f0eb" font-size="10" text-anchor="middle" font-weight="500">Persona Hijack</text>
+          <text x="420" y="333" fill="#b0ada4" font-size="9" text-anchor="middle">System prompt</text>
+          <text x="420" y="347" fill="#b0ada4" font-size="9" text-anchor="middle">override attempts</text>
+          <line x1="420" y1="280" x2="420" y2="295" stroke="rgba(107,159,212,0.2)" stroke-width="0.5"/>
+
+          <rect x="490" y="295" width="120" height="70" rx="6" fill="rgba(107,159,212,0.06)" stroke="rgba(107,159,212,0.2)" stroke-width="0.5"/>
+          <text x="550" y="317" fill="#f2f0eb" font-size="10" text-anchor="middle" font-weight="500">Context Abuse</text>
+          <text x="550" y="333" fill="#b0ada4" font-size="9" text-anchor="middle">Exploiting long</text>
+          <text x="550" y="347" fill="#b0ada4" font-size="9" text-anchor="middle">context windows</text>
+          <line x1="550" y1="280" x2="550" y2="295" stroke="rgba(107,159,212,0.2)" stroke-width="0.5"/>
+
+          <!-- Branch 3: Systemic -->
+          <rect x="680" y="140" width="240" height="45" rx="8" fill="rgba(110,198,198,0.12)" stroke="rgba(110,198,198,0.5)" stroke-width="1"/>
+          <text x="800" y="168" fill="#6EC6C6" font-size="12" text-anchor="middle" font-weight="500">Systemic / Emergent</text>
+
+          <line x1="740" y1="185" x2="740" y2="210" stroke="rgba(110,198,198,0.3)" stroke-width="1"/>
+          <line x1="860" y1="185" x2="860" y2="210" stroke="rgba(110,198,198,0.3)" stroke-width="1"/>
+
+          <rect x="680" y="210" width="120" height="70" rx="6" fill="rgba(110,198,198,0.06)" stroke="rgba(110,198,198,0.2)" stroke-width="0.5"/>
+          <text x="740" y="232" fill="#f2f0eb" font-size="10" text-anchor="middle" font-weight="500">Capability Elicit</text>
+          <text x="740" y="248" fill="#b0ada4" font-size="9" text-anchor="middle">Extracting latent</text>
+          <text x="740" y="262" fill="#b0ada4" font-size="9" text-anchor="middle">dangerous knowledge</text>
+
+          <rect x="800" y="210" width="120" height="70" rx="6" fill="rgba(110,198,198,0.06)" stroke="rgba(110,198,198,0.2)" stroke-width="0.5"/>
+          <text x="860" y="232" fill="#f2f0eb" font-size="10" text-anchor="middle" font-weight="500">Tool Misuse</text>
+          <text x="860" y="248" fill="#b0ada4" font-size="9" text-anchor="middle">Agentic models</text>
+          <text x="860" y="262" fill="#b0ada4" font-size="9" text-anchor="middle">with tool access</text>
+
+          <rect x="680" y="295" width="240" height="70" rx="6" fill="rgba(110,198,198,0.06)" stroke="rgba(110,198,198,0.2)" stroke-width="0.5"/>
+          <text x="800" y="317" fill="#f2f0eb" font-size="10" text-anchor="middle" font-weight="500">Compositional Harm</text>
+          <text x="800" y="333" fill="#b0ada4" font-size="9" text-anchor="middle">Individually benign requests that combine</text>
+          <text x="800" y="347" fill="#b0ada4" font-size="9" text-anchor="middle">into harmful capability chains</text>
+          <line x1="800" y1="280" x2="800" y2="295" stroke="rgba(110,198,198,0.2)" stroke-width="0.5"/>
+
+          <!-- Severity gradient bar -->
+          <rect x="40" y="410" width="880" height="40" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+          <text x="480" y="435" fill="#b0ada4" font-size="10" text-anchor="middle" font-family="monospace" letter-spacing="0.08em">INCREASING COMPLEXITY AND DETECTION DIFFICULTY &rarr;</text>
+          <rect x="44" y="444" width="292" height="3" rx="1" fill="rgba(212,163,115,0.5)"/>
+          <rect x="340" y="444" width="292" height="3" rx="1" fill="rgba(107,159,212,0.5)"/>
+          <rect x="636" y="444" width="280" height="3" rx="1" fill="rgba(110,198,198,0.5)"/>
+
+          <text x="480" y="480" fill="#b0ada4" font-size="10" text-anchor="middle" font-style="italic">Constitutional alignment primarily addresses direct prompt attacks. Indirect and systemic attacks require additional defenses.</text>
+        </svg>
+        <figcaption><strong>Figure 2.</strong> Taxonomy of adversarial attacks against aligned language models, organized by attack surface and increasing complexity. Direct prompt attacks (left) are the most extensively studied and the most amenable to training-time mitigation. Indirect and multi-turn attacks (center) exploit deployment context rather than model weights. Systemic and emergent attacks (right) arise from capability interactions and are the hardest to anticipate or evaluate.</figcaption>
+      </figure>
+
+      <p>Wei et al. (2024) identify two primary failure modes of safety training under adversarial pressure: <strong>competing objectives</strong>, where the model's helpfulness training overrides its safety training when the two conflict, and <strong>mismatched generalization</strong>, where the model's general capabilities generalize to new domains but its safety training does not<sup class="ref">[5]</sup>. Both failure modes are structural properties of the training process. Constitutional alignment reduces their frequency but does not eliminate them, because the training data cannot anticipate every adversarial strategy that the model's general capabilities make possible.</p>
+
+      <h2>4. Empirical Evidence on Robustness</h2>
+      <p>Ganguli et al. (2022) conducted a large-scale red-teaming study of language models across multiple sizes and alignment approaches<sup class="ref">[2]</sup>. Their findings are instructive for understanding what constitutional alignment provides and what it leaves unaddressed.</p>
+      <p>Models trained with RLHF, including those using constitutional methods, exhibited substantially lower attack success rates than non-RLHF baselines. Larger RLHF models were harder to attack than smaller ones, suggesting that alignment quality scales with model capability under non-adversarial conditions. However, the study also found that skilled red teamers could elicit harmful outputs from all model sizes and alignment approaches, and that the attack strategies that succeeded against aligned models were qualitatively different from those that succeeded against unaligned models.</p>
+      <p>Mazeika et al. (2024) introduced HarmBench, a standardized benchmark for evaluating the robustness of language models against adversarial attacks<sup class="ref">[6b]</sup>. Their evaluation across multiple models and attack methods showed that no alignment approach achieved zero attack success rate across all categories. The attack methods that proved most effective against constitutionally aligned models were those that operated outside the training distribution: multi-turn escalation strategies, encoding-based obfuscation, and compositional approaches that combined individually benign requests.</p>
+
+      <figure class="article-figure">
+        <svg viewBox="0 0 960 380" role="presentation" aria-label="Defense in depth architecture">
+          <defs>
+            <linearGradient id="did-g1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(212,163,115,0.2)"/>
+              <stop offset="100%" stop-color="rgba(212,163,115,0.02)"/>
+            </linearGradient>
+            <linearGradient id="did-g2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(107,159,212,0.2)"/>
+              <stop offset="100%" stop-color="rgba(107,159,212,0.02)"/>
+            </linearGradient>
+            <linearGradient id="did-g3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(110,198,198,0.2)"/>
+              <stop offset="100%" stop-color="rgba(110,198,198,0.02)"/>
+            </linearGradient>
+          </defs>
+
+          <text x="480" y="28" fill="#f2f0eb" font-size="14" text-anchor="middle" font-weight="500">Defense-in-Depth Architecture</text>
+
+          <!-- Layer labels on left -->
+          <text x="20" y="80" fill="#d4a373" font-size="10" font-family="monospace" letter-spacing="0.1em">LAYER 1</text>
+          <text x="20" y="155" fill="#6B9FD4" font-size="10" font-family="monospace" letter-spacing="0.1em">LAYER 2</text>
+          <text x="20" y="230" fill="#6EC6C6" font-size="10" font-family="monospace" letter-spacing="0.1em">LAYER 3</text>
+          <text x="20" y="305" fill="#b0ada4" font-size="10" font-family="monospace" letter-spacing="0.1em">LAYER 4</text>
+
+          <!-- Layer 1: Training-time -->
+          <rect x="90" y="55" width="840" height="55" rx="10" fill="url(#did-g1)" stroke="rgba(212,163,115,0.5)" stroke-width="1"/>
+          <text x="110" y="80" fill="#d4a373" font-size="13" font-weight="500">Training-Time Alignment</text>
+          <text x="360" y="80" fill="#f2f0eb" font-size="11">Constitutional principles</text>
+          <text x="540" y="80" fill="#f2f0eb" font-size="11">RLAIF fine-tuning</text>
+          <text x="710" y="80" fill="#f2f0eb" font-size="11">Red-team informed training</text>
+          <text x="110" y="97" fill="#b0ada4" font-size="9">Addresses: distributional harm reduction, baseline safety behavior</text>
+
+          <!-- Layer 2: Inference-time -->
+          <rect x="90" y="125" width="840" height="55" rx="10" fill="url(#did-g2)" stroke="rgba(107,159,212,0.5)" stroke-width="1"/>
+          <text x="110" y="150" fill="#6B9FD4" font-size="13" font-weight="500">Inference-Time Filtering</text>
+          <text x="360" y="150" fill="#f2f0eb" font-size="11">Input classifiers</text>
+          <text x="500" y="150" fill="#f2f0eb" font-size="11">Output classifiers</text>
+          <text x="660" y="150" fill="#f2f0eb" font-size="11">Perplexity filters</text>
+          <text x="800" y="150" fill="#f2f0eb" font-size="11">Content policies</text>
+          <text x="110" y="167" fill="#b0ada4" font-size="9">Addresses: known attack patterns, policy-violating outputs, adversarial token sequences</text>
+
+          <!-- Layer 3: Runtime monitoring -->
+          <rect x="90" y="200" width="840" height="55" rx="10" fill="url(#did-g3)" stroke="rgba(110,198,198,0.5)" stroke-width="1"/>
+          <text x="110" y="225" fill="#6EC6C6" font-size="13" font-weight="500">Runtime Monitoring</text>
+          <text x="360" y="225" fill="#f2f0eb" font-size="11">Anomaly detection</text>
+          <text x="530" y="225" fill="#f2f0eb" font-size="11">Usage pattern analysis</text>
+          <text x="720" y="225" fill="#f2f0eb" font-size="11">Rate limiting</text>
+          <text x="110" y="242" fill="#b0ada4" font-size="9">Addresses: novel attack discovery, automated attack campaigns, deployment-context threats</text>
+
+          <!-- Layer 4: Human oversight -->
+          <rect x="90" y="275" width="840" height="55" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <text x="110" y="300" fill="#f2f0eb" font-size="13" font-weight="500">Human Oversight + Governance</text>
+          <text x="390" y="300" fill="#f2f0eb" font-size="11">Incident response</text>
+          <text x="540" y="300" fill="#f2f0eb" font-size="11">Escalation protocols</text>
+          <text x="720" y="300" fill="#f2f0eb" font-size="11">Policy evolution</text>
+          <text x="110" y="317" fill="#b0ada4" font-size="9">Addresses: residual risk governance, judgment calls, systemic failures, accountability</text>
+
+          <!-- Arrows showing information flow -->
+          <path d="M920,110 Q935,110 935,175 Q935,240 935,305 Q935,340 920,340" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+          <text x="945" y="225" fill="rgba(255,255,255,0.3)" font-size="9" font-family="monospace" transform="rotate(90,945,225)">SIGNAL PROPAGATION</text>
+
+          <text x="480" y="365" fill="#b0ada4" font-size="10" text-anchor="middle" font-style="italic">Each layer catches failures that pass through the layers above it. No single layer is sufficient alone.</text>
+        </svg>
+        <figcaption><strong>Figure 3.</strong> Defense-in-depth architecture for aligned language model deployment. Layer 1 (training-time alignment) reduces baseline harm rates. Layer 2 (inference-time filtering) catches known attack patterns and policy violations. Layer 3 (runtime monitoring) detects novel attacks and deployment-context threats. Layer 4 (human oversight and governance) manages residual risk, exercises judgment, and evolves policy. Each layer addresses failure modes that the layers above it cannot catch.</figcaption>
+      </figure>
+
+      <h2>5. Defense in Depth: A Layered Security Architecture</h2>
+      <p>The evidence reviewed in sections 3 and 4 supports a clear conclusion: no single alignment method is sufficient for safe deployment of frontier models under adversarial conditions. The appropriate response is not to abandon constitutional alignment, which provides genuine and measurable safety benefits, but to embed it within a multi-layer defense architecture.</p>
+      <p>The four layers operate at different timescales and address different failure modes:</p>
+      <ul>
+        <li><strong>Training-time alignment</strong> (constitutional principles, RLAIF) operates on the training distribution and establishes the model's default safety behavior. This is the highest-leverage intervention because it affects every interaction.</li>
+        <li><strong>Inference-time filtering</strong> (input/output classifiers, perplexity filters, content policy enforcement) operates on each request and can block known attack patterns and policy-violating outputs in real time. This layer is updatable without model retraining.</li>
+        <li><strong>Runtime monitoring</strong> (anomaly detection, usage pattern analysis, rate limiting) operates across sessions and users, detecting coordinated attack campaigns, novel attack patterns, and deployment-context threats that individual-request filtering cannot catch.</li>
+        <li><strong>Human oversight and governance</strong> (incident response, escalation protocols, policy evolution) operates at organizational timescales and provides the judgment, accountability, and adaptation capacity that automated systems cannot.</li>
+      </ul>
+      <p>Askell et al. (2021) describe a framework for training language assistants that are helpful, harmless, and honest<sup class="ref">[8]</sup>. The defense-in-depth architecture extends this training-time framework into a deployment-time architecture that maintains those properties under adversarial pressure. The key insight is that each layer catches failures that pass through the layers above it. The residual risk after all four layers is the organization's true risk exposure, and this residual risk is what governance structures must explicitly acknowledge and manage.</p>
+
+      <h2>6. Residual Risk Governance</h2>
+      <p>No defense architecture eliminates all risk. The question for deploying organizations is not "is this system safe?" but "is the residual risk, after all mitigations, within our risk tolerance, and do we have the structures to detect and respond when our assumptions prove wrong?"</p>
+      <p>Residual risk governance requires three components:</p>
+      <ol>
+        <li><strong>Explicit residual risk statements:</strong> Documentation of what the defense architecture does not protect against, with severity and likelihood estimates. These statements must be updated with each material change to the model, the defense layers, or the deployment context.</li>
+        <li><strong>Pre-committed escalation thresholds:</strong> Defined conditions under which the organization will restrict, constrain, or suspend deployment. These must be specified before deployment, not decided ad hoc during an incident.</li>
+        <li><strong>Post-incident learning loops:</strong> Structured processes for converting incident data into defense improvements with bounded closure timelines. The learning loop must cover all four defense layers: was the failure a training gap, a filtering miss, a monitoring blind spot, or a governance breakdown?</li>
+      </ol>
+      <p>The OpenAI GPT-4 Technical Report describes a multi-stage safety process that includes red-teaming, safety evaluations, and post-deployment monitoring<sup class="ref">[9]</sup>. This represents a partial implementation of the defense-in-depth approach. The Anthropic model card and evaluations documentation provides another partial implementation<sup class="ref">[10]</sup>. Neither, as published, includes the explicit pre-committed escalation thresholds that we argue are essential for residual risk governance. The governance architecture described in Heath (2026) provides a framework for this component<sup class="ref">[11]</sup>.</p>
+
+      <h2>7. Limitations</h2>
+      <p>This analysis is grounded in published literature and does not include proprietary red-teaming data that frontier labs hold internally. The adversarial threat landscape evolves continuously; the taxonomy in section 3 reflects the state of published knowledge as of early 2026 and will require revision as new attack strategies emerge. The defense-in-depth architecture is proposed as a design pattern, not a field-tested implementation; empirical validation across organizational contexts is needed. Finally, we do not address the costs (computational, organizational, and opportunity costs) of implementing all four defense layers simultaneously, which may be prohibitive for smaller deployers.</p>
+
+      <h2>8. Conclusion</h2>
+      <p>Constitutional alignment is a genuine and important advance in AI safety. It provides a scalable, principle-driven approach to reducing harmful model behavior that is more transparent and less labor-intensive than pure RLHF. What it cannot provide is robustness against deliberate adversarial attack, because adversarial robustness is a property of the deployment system, not the training process alone.</p>
+      <p>The appropriate response is defense in depth: a layered architecture that combines training-time alignment with inference-time filtering, runtime monitoring, and human oversight. Each layer addresses failure modes that the other layers cannot, and the residual risk after all layers is what governance structures must explicitly manage.</p>
+      <p>The stakes are high enough that organizations deploying frontier models must accept the full cost of this architecture. The alternative, relying on a single alignment method and hoping it holds under adversarial pressure, is not a safety strategy. It is a gamble on the limits of attacker creativity, and the published evidence strongly suggests that gamble will not pay.</p>
+
+      <h2>References</h2>
+      <ol class="article-ref-list">
+        <li><span class="article-ref-num">[1]</span> <span>Bai, Y., Kadavath, S., Kundu, S., et al. (2022). Constitutional AI: Harmlessness from AI Feedback. arXiv preprint. <a href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noopener noreferrer">arXiv:2212.08073</a></span></li>
+        <li><span class="article-ref-num">[2]</span> <span>Ganguli, D., Lovitt, L., Kernion, J., et al. (2022). Red Teaming Language Models to Reduce Harms: Methods, Scaling Behaviors, and Lessons Learned. arXiv preprint. <a href="https://arxiv.org/abs/2209.07858" target="_blank" rel="noopener noreferrer">arXiv:2209.07858</a></span></li>
+        <li><span class="article-ref-num">[3]</span> <span>Perez, E., Huang, S., Song, F., et al. (2022). Red Teaming Language Models with Language Models. arXiv preprint. <a href="https://arxiv.org/abs/2202.03286" target="_blank" rel="noopener noreferrer">arXiv:2202.03286</a></span></li>
+        <li><span class="article-ref-num">[4]</span> <span>Zou, A., Wang, Z., Kolter, J. Z., &amp; Fredrikson, M. (2023). Universal and Transferable Adversarial Attacks on Aligned Language Models. arXiv preprint. <a href="https://arxiv.org/abs/2307.15043" target="_blank" rel="noopener noreferrer">arXiv:2307.15043</a></span></li>
+        <li><span class="article-ref-num">[5]</span> <span>Wei, A., Haghtalab, N., &amp; Steinhardt, J. (2024). Jailbroken: How Does LLM Safety Training Fail? In Advances in Neural Information Processing Systems 36. <a href="https://arxiv.org/abs/2307.02483" target="_blank" rel="noopener noreferrer">arXiv:2307.02483</a></span></li>
+        <li><span class="article-ref-num">[6]</span> <span>Christiano, P. F., Leike, J., Brown, T., et al. (2017). Deep Reinforcement Learning from Human Preferences. In Advances in Neural Information Processing Systems 30. <a href="https://arxiv.org/abs/1706.03741" target="_blank" rel="noopener noreferrer">arXiv:1706.03741</a></span></li>
+        <li><span class="article-ref-num">[6b]</span> <span>Mazeika, M., Phan, L., Yin, X., et al. (2024). HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal. arXiv preprint. <a href="https://arxiv.org/abs/2402.04249" target="_blank" rel="noopener noreferrer">arXiv:2402.04249</a></span></li>
+        <li><span class="article-ref-num">[7]</span> <span>Ouyang, L., Wu, J., Jiang, X., et al. (2022). Training language models to follow instructions with human feedback. In Advances in Neural Information Processing Systems 35. <a href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener noreferrer">arXiv:2203.02155</a></span></li>
+        <li><span class="article-ref-num">[8]</span> <span>Askell, A., Bai, Y., Chen, A., et al. (2021). A General Language Assistant as a Laboratory for Alignment. arXiv preprint. <a href="https://arxiv.org/abs/2112.00861" target="_blank" rel="noopener noreferrer">arXiv:2112.00861</a></span></li>
+        <li><span class="article-ref-num">[9]</span> <span>OpenAI. (2023). GPT-4 Technical Report. arXiv preprint. <a href="https://arxiv.org/abs/2303.08774" target="_blank" rel="noopener noreferrer">arXiv:2303.08774</a></span></li>
+        <li><span class="article-ref-num">[10]</span> <span>Anthropic. (2023). Model Card and Evaluations for Claude Models. <a href="https://www.anthropic.com" target="_blank" rel="noopener noreferrer">anthropic.com</a></span></li>
+        <li><span class="article-ref-num">[11]</span> <span>Heath, N. (2026). From Capability to Control: Applying NIST AI RMF to Frontier Deployments. Syntony Research Working Papers. <a href="/research/frontier-control-nist-rmf/">syntonyresearch.org</a></span></li>
+      </ol>
+
+      <div class="article-citation">
+        <button class="article-citation-copy" onclick="navigator.clipboard.writeText(this.closest('.article-citation').querySelector('pre').textContent)">Copy BibTeX</button>
+        <pre>@article{heath2026constitutional,
+  title   = {Constitutional Alignment Under Adversarial Pressure: Guarantees, Gaps, and Defense in Depth},
+  author  = {Heath, Nathan},
+  year    = {2026},
+  journal = {Syntony Research Working Papers},
+  url     = {https://syntonyresearch.org/research/constitutional-alignment-and-adversarial-pressure/}
+}</pre>
+      </div>
+
+    </div>
+  </div>
+</main>
+<div data-include="/components/footer.html"></div>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>
