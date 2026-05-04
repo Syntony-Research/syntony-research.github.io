@@ -62,9 +62,9 @@ img { max-width: 100%; display: block; }
 .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: var(--accent); transition: width 0.25s ease; }
 .nav-links a:hover { color: var(--text); }
 .nav-links a:hover::after { width: 100%; }
-.nav-cta-link { font-size: 13.5px !important; font-weight: 500 !important; color: var(--white) !important; background: var(--text); padding: 9px 20px; border-radius: 6px; transition: all 0.25s ease !important; }
+.nav-cta-link { font-size: 13.5px !important; font-weight: 500 !important; color: #0b0d12 !important; background: linear-gradient(135deg, #c8925c, #e2b78e); padding: 9px 20px; border-radius: 6px; transition: all 0.25s ease !important; }
 .nav-cta-link::after { display: none !important; }
-.nav-cta-link:hover, .nav-cta-link:focus-visible, .nav-cta-link:active { background: var(--accent) !important; color: var(--white) !important; }
+.nav-cta-link:hover, .nav-cta-link:focus-visible, .nav-cta-link:active { background: linear-gradient(135deg, #e2b78e, #f0c9a3) !important; color: #0b0d12 !important; }
 .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 5px; }
 .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--text); }
 
@@ -377,10 +377,10 @@ img { max-width: 100%; display: block; }
 .footer-newsletter-form { display: flex; gap: 10px; }
 .footer-newsletter-form input { flex: 1; padding: 12px 16px; font-family: var(--font-body); font-size: 14px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-card); color: var(--text); outline: none; }
 .footer-newsletter-form input:focus { border-color: var(--accent); }
-.footer-newsletter-form button { padding: 12px 20px; background: var(--text); color: var(--white); font-family: var(--font-body); font-size: 13px; font-weight: 500; border: none; border-radius: 6px; cursor: pointer; transition: background 0.25s ease; }
+.footer-newsletter-form button { padding: 12px 20px; background: linear-gradient(135deg, #c8925c, #e2b78e); color: #0b0d12; font-family: var(--font-body); font-size: 13px; font-weight: 500; border: none; border-radius: 6px; cursor: pointer; transition: background 0.25s ease; }
 .footer-newsletter-form button:hover,
 .footer-newsletter-form button:focus-visible,
-.footer-newsletter-form button:active { background: var(--accent); color: var(--white); }
+.footer-newsletter-form button:active { background: linear-gradient(135deg, #e2b78e, #f0c9a3); color: #0b0d12; }
 
 .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 56px; margin-bottom: 60px; }
 .footer-brand { display: flex; flex-direction: column; }
