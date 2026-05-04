@@ -576,12 +576,15 @@ main, .footer, .nav { position: relative; z-index: 1; }
 
 .founder-trust-strip { padding-bottom: 40px; }
 .founder-trust-note { margin-top: 10px; color: var(--text-tertiary); font-size: 13px; max-width: 900px; }
-.logo-carousel { overflow: hidden; margin-top: 22px; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 16px 0; }
-.logo-track { display: flex; gap: 14px; width: max-content; animation: logoScroll 42s linear infinite; }
-.logo-track img { height: 54px; width: auto; opacity: 0.92; }
-@keyframes logoScroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+.logo-carousel { margin-top: 22px; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 14px 0; display: grid; grid-template-columns: 42px 1fr 42px; gap: 12px; align-items: center; }
+.logo-viewport { overflow: hidden; }
+.logo-track { display: flex; gap: 14px; transition: transform .55s cubic-bezier(.16,1,.3,1); }
+.logo-track img { height: 60px; width: auto; opacity: .96; flex: 0 0 auto; }
+.carousel-btn { height: 42px; width: 42px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.03); color: var(--text); font-size: 24px; line-height: 1; cursor: pointer; }
+.carousel-btn:hover { border-color: rgba(212,163,115,0.6); background: rgba(212,163,115,0.08); }
+@media (max-width: 980px) {
+  .logo-carousel { grid-template-columns: 36px 1fr 36px; }
+  .logo-track img { height: 52px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-wave-a, .hero-wave-b { animation: none; }

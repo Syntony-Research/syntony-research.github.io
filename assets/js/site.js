@@ -197,6 +197,43 @@ function initHeroAbstracts() {
   });
 }
 
+function initLogoCarousel() {
+  const root = document.querySelector('[data-logo-carousel]');
+  if (!root) return;
+  const track = root.querySelector('[data-carousel-track]');
+  const prev = root.querySelector('[data-carousel-prev]');
+  const next = root.querySelector('[data-carousel-next]');
+  if (!track || !prev || !next) return;
+
+  const slides = Array.from(track.querySelectorAll('img'));
+  if (!slides.length) return;
+  let index = 0;
+  let timer = 0;
+
+  const step = () => {
+    const slide = slides[index];
+    const left = slide.offsetLeft;
+    track.style.transform = `translateX(${-left}px)`;
+  };
+  const go = (dir) => {
+    index = (index + dir + slides.length) % slides.length;
+    step();
+  };
+  const start = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    timer = window.setInterval(() => go(1), 2400);
+  };
+  const stop = () => window.clearInterval(timer);
+
+  prev.addEventListener('click', () => go(-1));
+  next.addEventListener('click', () => go(1));
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  window.addEventListener('resize', step);
+  step();
+  start();
+}
+
 (async function bootstrap() {
   await includePartials();
   initAtmosphere();
@@ -208,4 +245,5 @@ function initHeroAbstracts() {
   initCalEmbed();
   initCountUp();
   initHeroAbstracts();
+  initLogoCarousel();
 })();
