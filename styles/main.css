@@ -580,6 +580,62 @@ main, .footer, .nav { position: relative; z-index: 1; }
   .hero-wave-a, .hero-wave-b { animation: none; }
 }
 
+/* Service hero visual upgrade */
+.page-hero .scope-item[aria-hidden="true"] {
+  margin-top: 32px !important;
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background:
+    radial-gradient(circle at 16% 18%, rgba(212,163,115,0.18), transparent 42%),
+    radial-gradient(circle at 88% 86%, rgba(107,159,212,0.14), transparent 44%),
+    rgba(255,255,255,0.025);
+  box-shadow: 0 20px 52px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.03);
+  transform: perspective(900px) rotateX(var(--viz-rx, 0deg)) rotateY(var(--viz-ry, 0deg)) translateY(var(--viz-ty, 0px));
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.page-hero .scope-item[aria-hidden="true"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+.page-hero .scope-item[aria-hidden="true"]::after {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(circle at var(--viz-x, 50%) var(--viz-y, 50%), rgba(212,163,115,0.16), transparent 36%);
+  pointer-events: none;
+}
+.page-hero .scope-item[aria-hidden="true"]:hover {
+  border-color: rgba(212,163,115,0.45);
+  box-shadow: 0 24px 62px rgba(0,0,0,0.42), inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+.page-hero .scope-item[aria-hidden="true"] svg {
+  position: relative;
+  z-index: 1;
+  transform: translate3d(var(--viz-sx, 0px), var(--viz-sy, 0px), 0) scale(1.01);
+  transition: transform 0.25s ease, filter 0.25s ease;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.25));
+}
+.page-hero .scope-item[aria-hidden="true"] svg text {
+  fill: #ddd8cf !important;
+  letter-spacing: 0.02em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-hero .scope-item[aria-hidden="true"],
+  .page-hero .scope-item[aria-hidden="true"] svg {
+    transform: none !important;
+    transition: none;
+  }
+}
+
 /* ── RESEARCH ARTICLE PAGES ── */
 .article-layout { max-width: 780px; margin: 0 auto; padding: 0 0 var(--section-pad); }
 .article-header { padding: 144px 0 48px; }

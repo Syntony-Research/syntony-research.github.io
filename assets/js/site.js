@@ -187,6 +187,56 @@ function initHeroAbstracts() {
   });
 }
 
+function initServiceHeroVisuals() {
+  const visuals = document.querySelectorAll('.page-hero .scope-item[aria-hidden="true"]');
+  if (!visuals.length) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  visuals.forEach((viz, idx) => {
+    let raf = 0;
+    let tick = 0;
+    const animateIdle = () => {
+      if (reduced) return;
+      tick += 0.016;
+      const sx = Math.sin(tick + idx * 0.7) * 1.4;
+      const sy = Math.cos(tick * 0.85 + idx * 0.5) * 1.2;
+      viz.style.setProperty('--viz-sx', `${sx}px`);
+      viz.style.setProperty('--viz-sy', `${sy}px`);
+      raf = window.requestAnimationFrame(animateIdle);
+    };
+    animateIdle();
+
+    viz.addEventListener('pointermove', (e) => {
+      if (reduced) return;
+      const r = viz.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      const rx = (0.5 - y) * 2.2;
+      const ry = (x - 0.5) * 3.2;
+      viz.style.setProperty('--viz-rx', `${rx}deg`);
+      viz.style.setProperty('--viz-ry', `${ry}deg`);
+      viz.style.setProperty('--viz-ty', '-2px');
+      viz.style.setProperty('--viz-x', `${x * 100}%`);
+      viz.style.setProperty('--viz-y', `${y * 100}%`);
+      viz.style.setProperty('--viz-sx', `${(x - 0.5) * 5}px`);
+      viz.style.setProperty('--viz-sy', `${(y - 0.5) * 4}px`);
+    });
+    viz.addEventListener('pointerleave', () => {
+      viz.style.setProperty('--viz-rx', '0deg');
+      viz.style.setProperty('--viz-ry', '0deg');
+      viz.style.setProperty('--viz-ty', '0px');
+      viz.style.setProperty('--viz-x', '50%');
+      viz.style.setProperty('--viz-y', '50%');
+      viz.style.setProperty('--viz-sx', '0px');
+      viz.style.setProperty('--viz-sy', '0px');
+    });
+
+    window.addEventListener('beforeunload', () => {
+      if (raf) window.cancelAnimationFrame(raf);
+    });
+  });
+}
+
 (async function bootstrap() {
   await includePartials();
   initAtmosphere();
@@ -198,4 +248,5 @@ function initHeroAbstracts() {
   initCalEmbed();
   initCountUp();
   initHeroAbstracts();
+  initServiceHeroVisuals();
 })();
