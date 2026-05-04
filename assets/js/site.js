@@ -211,9 +211,9 @@ function initLogoCarousel() {
   let timer = 0;
 
   const step = () => {
-    const slide = slides[index];
-    const left = slide.offsetLeft;
-    track.style.transform = `translateX(${-left}px)`;
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('is-active', i === index);
+    });
   };
   const go = (dir) => {
     index = (index + dir + slides.length) % slides.length;
@@ -229,7 +229,6 @@ function initLogoCarousel() {
   next.addEventListener('click', () => go(1));
   root.addEventListener('mouseenter', stop);
   root.addEventListener('mouseleave', start);
-  window.addEventListener('resize', step);
   step();
   start();
 }

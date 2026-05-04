@@ -1,13 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="340" height="120" viewBox="0 0 340 120" role="img" aria-label="DoD">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="rgba(212,163,115,0.22)"/>
-      <stop offset="100%" stop-color="rgba(107,159,212,0.16)"/>
-    </linearGradient>
-  </defs>
-  <rect x="1" y="1" width="338" height="118" rx="14" fill="url(#g)" stroke="rgba(242,240,235,.35)"/>
-  <circle cx="34" cy="60" r="16" fill="none" stroke="#d4a373" stroke-width="2"/>
-  <path d="M22 60h24M34 48v24" stroke="#8aa8cc" stroke-width="1.6" opacity="0.8"/>
-  <text x="62" y="58" fill="#f2f0eb" font-size="24" font-family="Inter, Arial, sans-serif" font-weight="600">DoD</text>
-  <text x="62" y="84" fill="#b0ada4" font-size="12" font-family="Inter, Arial, sans-serif" letter-spacing="0.06em">DEPARTMENT OF DEFENSE</text>
+  <rect x="1" y="1" width="338" height="118" rx="14" fill="#151a24" stroke="#8f8b83" stroke-width="1"/>
+  <circle cx="36" cy="60" r="14" fill="none" stroke="#d4a373" stroke-width="2"/>
+  <line x1="22" y1="60" x2="50" y2="60" stroke="#8aa8cc" stroke-width="1.5"/>
+  <line x1="36" y1="46" x2="36" y2="74" stroke="#8aa8cc" stroke-width="1.5"/>
+  <text x="64" y="58" fill="#f2f0eb" font-size="23" font-family="Inter, Arial, sans-serif" font-weight="600">DoD</text>
+  <text x="64" y="84" fill="#b0ada4" font-size="12" font-family="Inter, Arial, sans-serif">Department of Defense</text>
 </svg>

@@ -577,9 +577,23 @@ main, .footer, .nav { position: relative; z-index: 1; }
 .founder-trust-strip { padding-bottom: 40px; }
 .founder-trust-note { margin-top: 10px; color: var(--text-tertiary); font-size: 13px; max-width: 900px; }
 .logo-carousel { margin-top: 22px; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 14px 0; display: grid; grid-template-columns: 42px 1fr 42px; gap: 12px; align-items: center; }
-.logo-viewport { overflow: hidden; }
-.logo-track { display: flex; gap: 14px; transition: transform .55s cubic-bezier(.16,1,.3,1); }
-.logo-track img { height: 60px; width: auto; opacity: .96; flex: 0 0 auto; }
+.logo-viewport { overflow: hidden; min-height: 68px; display: grid; align-items: center; }
+.logo-track { position: relative; height: 68px; }
+.logo-track img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.985);
+  height: 60px;
+  width: auto;
+  opacity: 0;
+  transition: opacity .35s ease, transform .35s ease;
+  pointer-events: none;
+}
+.logo-track img.is-active {
+  opacity: .98;
+  transform: translate(-50%, -50%) scale(1);
+}
 .carousel-btn { height: 42px; width: 42px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.03); color: var(--text); font-size: 24px; line-height: 1; cursor: pointer; }
 .carousel-btn:hover { border-color: rgba(212,163,115,0.6); background: rgba(212,163,115,0.08); }
 @media (max-width: 980px) {
