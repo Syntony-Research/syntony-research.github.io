@@ -194,18 +194,7 @@ function initFaq() {
 }
 
 function initCalEmbed() {
-  const frame = document.querySelector('[data-cal-frame]');
-  if (!frame) return;
-  const buttons = document.querySelectorAll('[data-cal-link]');
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const link = btn.getAttribute('data-cal-link');
-      if (!link) return;
-      frame.setAttribute('src', link);
-      buttons.forEach((item) => item.classList.remove('active'));
-      btn.classList.add('active');
-    });
-  });
+  // Cal.com embed is now handled by the official Cal SDK inline script
 }
 
 function initForms() {

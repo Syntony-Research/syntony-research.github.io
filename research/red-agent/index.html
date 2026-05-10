@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A1628">
+  <title>RedAgent: Red Teaming Large Language Models | Syntony Research</title>
+  <meta name="description" content="Publication record for RedAgent: Red Teaming Large Language Models with Context-aware Autonomous Language Agent.">
+  <link rel="canonical" href="https://syntonyresearch.org/research/red-agent/">
+  <meta property="og:title" content="RedAgent: Red Teaming Large Language Models">
+  <meta property="og:description" content="Context-aware autonomous language agent for red teaming LLMs. arXiv:2407.16667.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://syntonyresearch.org/research/red-agent/">
+  <meta property="og:image" content="https://syntonyresearch.org/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RedAgent: Red Teaming Large Language Models">
+  <meta name="twitter:description" content="Context-aware autonomous language agent for red teaming LLMs. arXiv:2407.16667.">
+  <meta name="twitter:image" content="https://syntonyresearch.org/assets/og-image.png">
+  <link rel="stylesheet" href="/styles/main.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"RedAgent: Red Teaming Large Language Models with Context-aware Autonomous Language Agent","author":[{"@type":"Person","name":"Huangyu Li"},{"@type":"Person","name":"Bo Liu"},{"@type":"Person","name":"Yannan Li"},{"@type":"Person","name":"Yue Huang"},{"@type":"Person","name":"Lichao Sun"}],"datePublished":"2024-07-23","publisher":{"@type":"Organization","name":"Syntony Research","url":"https://syntonyresearch.org"},"identifier":"arXiv:2407.16667","url":"https://syntonyresearch.org/research/red-agent/","sameAs":"https://arxiv.org/abs/2407.16667","about":["AI safety","red teaming","LLM security","adversarial evaluation","autonomous agents"]}</script>
+</head>
+<body>
+  <div data-include="/components/header.html"></div>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><div class="container"><ol><li><a href="/">Home</a></li><li><a href="/research/">Research</a></li><li>RedAgent</li></ol></div></nav>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="section-num">arXiv:2407.16667 · July 2024</span>
+        <h1>RedAgent: Red Teaming Large Language Models</h1>
+        <p class="hero-sub">Context-aware autonomous language agent for red teaming LLMs. By Huangyu Li, Bo Liu, Yannan Li, Yue Huang, Lichao Sun.</p>
+        <div class="badge-row"><span class="badge status-badge">Verified arXiv record</span><span class="badge">cs.CL</span><span class="badge">Red teaming</span><span class="badge">LLM security</span></div>
+      </div>
+    </section>
+
+    <section class="service-detail">
+      <div class="container article-layout">
+        <aside class="article-aside">
+          <span class="label">Record</span>
+          <p>Authors: Huangyu Li, Bo Liu, Yannan Li, Yue Huang, Lichao Sun</p>
+          <p>Status: arXiv preprint</p>
+          <p>Identifier: 2407.16667</p>
+          <p><a href="https://arxiv.org/abs/2407.16667" target="_blank" rel="noopener noreferrer">View on arXiv</a></p>
+          <p><a href="/research/">← Back to research</a></p>
+        </aside>
+        <article class="article-body prose">
+          <h2>Summary</h2>
+          <p>RedAgent introduces a context-aware red teaming approach that uses an autonomous language agent to generate multi-turn jailbreak attacks against LLMs. Rather than relying on static prompt templates, the agent adapts its attack strategy based on the target model's responses, building context across turns to find exploitable weaknesses in safety guardrails.</p>
+
+          <h2>Why it matters</h2>
+          <p>Static red teaming templates quickly become stale as models patch known attack vectors. RedAgent demonstrates that adaptive, multi-turn adversarial strategies can bypass safety filters that handle single-turn attacks well. This has direct implications for how organizations scope adversarial evaluations and design defense-in-depth monitoring for deployed systems.</p>
+
+          <h2>Relevance to Syntony Research</h2>
+          <p>This paper informs our adversarial evaluation methodology. Context-aware attack generation reflects how real-world threat actors operate: they probe, adapt, and escalate. Evaluation programs that only test single-turn refusal are incomplete. We use findings like these to design evaluation protocols that test multi-turn robustness and adaptive threat scenarios.</p>
+
+          <h2>Publication lens</h2>
+          <div class="interactive-panel publication-lens" data-publication-lens>
+            <h3>Explore the paper</h3>
+            <p>Select a lens to translate the paper into the decision context you care about.</p>
+            <div class="choice-grid" role="tablist" aria-label="Publication lens">
+              <button class="choice-chip active" type="button" data-lens="question">Question</button>
+              <button class="choice-chip" type="button" data-lens="method">Method</button>
+              <button class="choice-chip" type="button" data-lens="implication">Implication</button>
+            </div>
+            <div class="interactive-output">
+              <h3 data-lens-title></h3>
+              <p class="interactive-copy" data-lens-copy></p>
+            </div>
+          </div>
+
+          <h2>Citation</h2>
+          <p>Li, Huangyu; Liu, Bo; Li, Yannan; Huang, Yue; Sun, Lichao. <em>RedAgent: Red Teaming Large Language Models with Context-aware Autonomous Language Agent.</em> arXiv:2407.16667, 2024.</p>
+          <p><a class="btn-dark" href="https://arxiv.org/abs/2407.16667" target="_blank" rel="noopener noreferrer">Open arXiv record <span class="btn-arrow">→</span></a></p>
+
+          <h2>Related services</h2>
+          <div class="related-grid">
+            <a class="service-card" href="/services/red-teaming/"><h3>Adversarial Evaluation</h3><p>Stress testing for failure modes, misuse pathways, and governance triggers.</p></a>
+            <a class="service-card" href="/services/safety-research/"><h3>AI Safety Research</h3><p>Evaluation methodology, metrics, and safety evidence design.</p></a>
+            <a class="service-card" href="/services/research/"><h3>Custom Research</h3><p>Focused analysis for nonstandard technical and governance questions.</p></a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <div data-include="/components/footer.html"></div>
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>
