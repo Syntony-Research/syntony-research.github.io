@@ -44,6 +44,18 @@
             <span class="badge">Research Triangle, NC</span>
           </div>
         </div>
+        <div class="hero-visual reveal reveal-d2" aria-hidden="true">
+          <div class="hero-orbit">
+            <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g class="spin-slow"><circle cx="200" cy="200" r="188" stroke="#C9A84C" stroke-width="0.8" opacity="0.28"/><circle cx="200" cy="12" r="4" fill="#C9A84C" opacity="0.9"/></g>
+              <g class="spin-med"><circle cx="200" cy="200" r="146" stroke="#3A5680" stroke-width="0.8" opacity="0.34"/><circle cx="346" cy="200" r="3.5" fill="#3A5680" opacity="0.85"/></g>
+              <g class="spin-fast"><circle cx="200" cy="200" r="106" stroke="#2E5959" stroke-width="0.8" opacity="0.24"/><circle cx="95" cy="200" r="3.5" fill="#2E5959" opacity="0.8"/></g>
+              <path d="M126,200 C150,172 176,172 200,200 C224,228 250,228 274,200" stroke="#C9A84C" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M118,222 C146,196 178,196 206,222 C232,246 258,246 286,222" stroke="#3A5680" stroke-width="1.8" stroke-linecap="round" opacity="0.72"/>
+            </svg>
+          </div>
+          <div class="hero-coords">Signal alignment · evidence → control → decision</div>
+        </div>
       </div>
     </section>
 
@@ -106,11 +118,44 @@
     <section class="etymology">
       <div class="container ety-grid">
         <div>
-          <p class="ety-pron">syn·to·ny</p>
-          <h2>Coordination in <em>phase</em>.</h2>
+          <p class="ety-pron">syn·to·ny | noun</p>
+          <h2>A state of <em>resonance</em>. Tuned to the same frequency.</h2>
           <div class="ety-body">
-            <p>Our name reflects a practical thesis: technical systems and institutions perform best when they are tuned to one another.</p>
-            <p>The work is not merely to make models more capable or policies more polished. The work is to align evidence, controls, incentives, and escalation paths before capability outruns accountability.</p>
+            <p>In 1897, physicist Oliver Lodge patented <strong>syntonic telegraphy</strong>. The principle was straightforward and profound: tune transmitter and receiver into resonance, and meaningful signal emerges from electromagnetic noise.</p>
+            <p>In music, syntony names disciplined tuning relationships that make harmony intelligible. Syntony Research applies the same logic to AI: technical systems, governance institutions, and decision structures must be tuned into phase.</p>
+          </div>
+        </div>
+        <div class="ety-visual" aria-hidden="true">
+          <svg viewBox="0 0 500 500" role="presentation">
+            <circle cx="250" cy="250" r="180" stroke="rgba(201,168,76,.36)" stroke-width="1.5" fill="none"/>
+            <circle cx="250" cy="250" r="120" stroke="rgba(58,86,128,.32)" stroke-width="1.2" fill="none"/>
+            <path d="M70,250 C120,170 170,330 220,250 C270,170 320,330 370,250 C410,190 440,235 430,250" stroke="rgba(201,168,76,.86)" stroke-width="2.5" fill="none"/>
+            <path d="M70,270 C120,190 170,350 220,270 C270,190 320,350 370,270 C410,210 440,255 430,270" stroke="rgba(58,86,128,.72)" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="resonance-lab-section">
+      <div class="container">
+        <div class="interactive-panel resonance-lab reveal" data-resonance-lab>
+          <div class="resonance-copy">
+            <span class="label">Interactive</span>
+            <h3>Resonance lab</h3>
+            <p>Tune evidence quality, control authority, and deployment pressure. The point is not a magic score; it is the operating logic Syntony uses: risk falls when evidence can trigger action at the tempo capability demands.</p>
+          </div>
+          <div class="interactive-grid">
+            <div class="interactive-controls">
+              <div class="range-row"><label for="evidence-quality">Evidence quality <span class="range-value" data-resonance-value="evidence">7</span></label><input id="evidence-quality" name="evidence" type="range" min="1" max="10" value="7"></div>
+              <div class="range-row"><label for="control-authority">Control authority <span class="range-value" data-resonance-value="authority">6</span></label><input id="control-authority" name="authority" type="range" min="1" max="10" value="6"></div>
+              <div class="range-row"><label for="deployment-pressure">Deployment pressure <span class="range-value" data-resonance-value="pressure">8</span></label><input id="deployment-pressure" name="pressure" type="range" min="1" max="10" value="8"></div>
+            </div>
+            <div class="resonance-visual">
+              <div class="resonance-orb" aria-hidden="true"><span></span></div>
+              <div class="interactive-score" data-resonance-score>0</div>
+              <div class="interactive-status" data-resonance-status>Out of phase</div>
+              <p class="interactive-copy" data-resonance-copy></p>
+            </div>
           </div>
         </div>
       </div>
@@ -131,9 +176,7 @@
       <div class="container">
         <div class="research-header"><div><span class="section-num">03</span><h2>Featured <em>research</em></h2></div><a class="research-link" href="/research/">View all publications →</a></div>
         <div class="pub-stack">
-          <a class="pub-card reveal" href="/research/system-dynamics-ai-safety/"><div class="pub-tag">AI Safety</div><h4>System Dynamics for AI Safety</h4><p>Feedback-loop modeling for deployment risk, governance lag, monitoring quality, and intervention timing.</p></a>
-          <a class="pub-card reveal reveal-d1" href="/research/institutional-controls-frontier-models/"><div class="pub-tag">Governance</div><h4>Institutional Controls for Frontier Models</h4><p>Control architecture for decision rights, audit pathways, escalation triggers, and accountability boundaries.</p></a>
-          <a class="pub-card reveal reveal-d2" href="/research/evaluating-agentic-escalation/"><div class="pub-tag">Adversarial Evaluation</div><h4>Evaluating Agentic Escalation Pathways</h4><p>A protocol for identifying autonomy creep, tool-use escalation, and policy-boundary bypass in agentic systems.</p></a>
+          <a class="pub-card reveal" href="/research/mona-camera-dropbox/"><div class="pub-tag">arXiv · 2603.29993</div><h4>Extending MONA in Camera Dropbox</h4><p>A reproduction-first extension of the public MONA Camera Dropbox environment, with learned-approval experiments for reward-hacking mitigation.</p><div class="pub-meta">Nathan Heath · Submitted Mar 31, 2026</div></a>
         </div>
       </div>
     </section>
@@ -154,7 +197,7 @@
     <section class="founder">
       <div class="container founder-grid">
         <aside class="founder-card">
-          <div class="founder-portrait" role="img" aria-label="Placeholder portrait mark for Nathan Heath"><div class="founder-portrait-mark">N</div></div>
+          <div class="founder-portrait"><img src="/assets/nathan-heath.jpg" alt="Nathan Heath, founder of Syntony Research" width="1200" height="1500" loading="lazy" decoding="async"></div>
           <div class="founder-name">Nathan Heath</div>
           <div class="founder-title">Founder & Chief Scientist</div>
           <div class="founder-meta">Fletcher School M.A. · Senior Research Scientist, NSI · CSA STAR for AI Expert Advisor</div>

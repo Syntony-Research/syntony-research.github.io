@@ -11,6 +11,53 @@ async function includePartials() {
   }));
 }
 
+function prefersReducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function initAtmosphere() {
+  if (prefersReducedMotion()) return;
+  const canvas = document.createElement('canvas');
+  canvas.id = 'atmosphere-canvas';
+  canvas.setAttribute('aria-hidden', 'true');
+  document.body.prepend(canvas);
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  let width = 0;
+  let height = 0;
+  let tick = 0;
+  const points = Array.from({ length: 72 }).map(() => ({ x: Math.random(), y: Math.random(), r: Math.random() * 1.45 + 0.25 }));
+
+  const resize = () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  };
+
+  const draw = () => {
+    tick += 0.004;
+    ctx.clearRect(0, 0, width, height);
+    const gradient = ctx.createRadialGradient(width * 0.72, height * 0.12, 40, width * 0.5, height * 0.25, Math.max(width, height));
+    gradient.addColorStop(0, 'rgba(201,168,76,0.18)');
+    gradient.addColorStop(0.45, 'rgba(58,86,128,0.09)');
+    gradient.addColorStop(1, 'rgba(10,22,40,0)');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+    points.forEach((point, index) => {
+      const pulse = 0.5 + Math.sin(tick * 4 + index * 0.73) * 0.5;
+      ctx.beginPath();
+      ctx.arc(point.x * width, point.y * height, point.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(10,22,40,${0.04 + pulse * 0.1})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  };
+
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+  draw();
+}
+
 function initNavigation() {
   const nav = document.getElementById('site-nav');
   const toggle = document.querySelector('.nav-toggle');
@@ -53,6 +100,62 @@ function initReveal() {
   }, { threshold: 0.16 });
 
   revealItems.forEach((el) => observer.observe(el));
+}
+
+function initMouseGlow() {
+  if (prefersReducedMotion()) return;
+  const glow = document.createElement('div');
+  glow.className = 'mouse-glow';
+  glow.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(glow);
+  window.addEventListener('pointermove', (event) => {
+    glow.style.transform = `translate3d(${event.clientX - 160}px, ${event.clientY - 160}px, 0)`;
+  }, { passive: true });
+}
+
+function initTiltCards() {
+  if (prefersReducedMotion()) return;
+  document.querySelectorAll('.service-card, .method-item, .eng-card, .scenario-card, .case-study, .pub-card, .pub-feature').forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+      const rotateX = (0.5 - y) * 4;
+      const rotateY = (x - 0.5) * 6;
+      card.style.transform = `perspective(760px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+function initHeroAbstracts() {
+  if (prefersReducedMotion()) return;
+  document.querySelectorAll('.page-hero, .hero').forEach((hero, index) => {
+    const layer = document.createElement('div');
+    layer.className = 'hero-abstract-layer';
+    layer.setAttribute('aria-hidden', 'true');
+    layer.innerHTML = `
+      <svg viewBox="0 0 1200 380" role="presentation" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="hgA${index}" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(201,168,76,0)"/>
+            <stop offset="50%" stop-color="rgba(201,168,76,0.48)"/>
+            <stop offset="100%" stop-color="rgba(201,168,76,0)"/>
+          </linearGradient>
+          <linearGradient id="hgB${index}" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(58,86,128,0)"/>
+            <stop offset="50%" stop-color="rgba(58,86,128,0.38)"/>
+            <stop offset="100%" stop-color="rgba(58,86,128,0)"/>
+          </linearGradient>
+        </defs>
+        <path class="hero-wave hero-wave-a" stroke="url(#hgA${index})" d="M0,240 C160,170 280,310 420,230 C560,150 700,300 840,220 C980,140 1080,280 1200,210"/>
+        <path class="hero-wave hero-wave-b" stroke="url(#hgB${index})" d="M0,270 C160,200 280,340 420,260 C560,180 700,330 840,250 C980,170 1080,310 1200,240"/>
+      </svg>
+    `;
+    hero.appendChild(layer);
+  });
 }
 
 function initFaq() {
@@ -143,6 +246,46 @@ function initBreadcrumbSchema() {
   document.head.appendChild(script);
 }
 
+function initResonanceLab() {
+  document.querySelectorAll('[data-resonance-lab]').forEach((panel) => {
+    const ranges = Array.from(panel.querySelectorAll('input[type="range"]'));
+    const scoreEl = panel.querySelector('[data-resonance-score]');
+    const statusEl = panel.querySelector('[data-resonance-status]');
+    const copyEl = panel.querySelector('[data-resonance-copy]');
+    const visual = panel.querySelector('.resonance-visual');
+    if (!ranges.length || !scoreEl || !statusEl || !copyEl || !visual) return;
+
+    const update = () => {
+      const values = Object.fromEntries(ranges.map((range) => [range.name, Number(range.value)]));
+      ranges.forEach((range) => {
+        const valueEl = panel.querySelector(`[data-resonance-value="${range.name}"]`);
+        if (valueEl) valueEl.textContent = range.value;
+      });
+
+      const alignment = Math.max(0, Math.min(100, Math.round(((values.evidence * 0.44 + values.authority * 0.42) - values.pressure * 0.34 + 3.8) * 10)));
+      const drift = Math.max(1, 11 - Math.round(alignment / 10));
+      let status = 'Out of phase';
+      let copy = 'Evidence and authority are not yet keeping pace with deployment pressure. Tighten stop conditions, escalation rights, and review cadence.';
+      if (alignment >= 76) {
+        status = 'In phase';
+        copy = 'Evidence, authority, and tempo are aligned enough to support governed action. Preserve cadence and monitor for drift.';
+      } else if (alignment >= 52) {
+        status = 'Partially tuned';
+        copy = 'The system has useful signal, but control authority or review tempo needs strengthening before pressure rises further.';
+      }
+
+      visual.style.setProperty('--resonance', alignment);
+      visual.style.setProperty('--drift', drift);
+      scoreEl.textContent = String(alignment);
+      statusEl.textContent = status;
+      copyEl.textContent = copy;
+    };
+
+    ranges.forEach((range) => range.addEventListener('input', update));
+    update();
+  });
+}
+
 function initSignalMatrix() {
   document.querySelectorAll('[data-signal-matrix]').forEach((panel) => {
     const ranges = Array.from(panel.querySelectorAll('input[type="range"]'));
@@ -207,6 +350,31 @@ function initServiceRecommender() {
   });
 }
 
+function initPublicationLens() {
+  const lenses = {
+    question: ['What question does it answer?', 'How can reward-hacking mitigation be studied in a reproducible environment where objective design, learned approval, and agent behavior can be examined together?'],
+    method: ['What was built?', 'The work extends the public MONA Camera Dropbox setup, emphasizes reproduction, and tests learned approval as part of the mitigation design space.'],
+    implication: ['Why does it matter?', 'Safety claims become more useful when they are reproducible, environment-aware, and connected to mechanisms that can constrain reward-seeking behavior before deployment.']
+  };
+
+  document.querySelectorAll('[data-publication-lens]').forEach((panel) => {
+    const chips = Array.from(panel.querySelectorAll('[data-lens]'));
+    const title = panel.querySelector('[data-lens-title]');
+    const copy = panel.querySelector('[data-lens-copy]');
+    if (!chips.length || !title || !copy) return;
+
+    const setLens = (key) => {
+      const next = lenses[key] || lenses.question;
+      chips.forEach((chip) => chip.classList.toggle('active', chip.dataset.lens === key));
+      title.textContent = next[0];
+      copy.textContent = next[1];
+    };
+
+    chips.forEach((chip) => chip.addEventListener('click', () => setLens(chip.dataset.lens)));
+    setLens(chips[0].dataset.lens);
+  });
+}
+
 function initForecastLab() {
   document.querySelectorAll('[data-forecast-lab]').forEach((panel) => {
     const selects = Array.from(panel.querySelectorAll('select'));
@@ -228,14 +396,20 @@ function initForecastLab() {
 
 (async function bootstrap() {
   await includePartials();
+  initAtmosphere();
   initNavigation();
+  initMouseGlow();
   initReveal();
+  initTiltCards();
   initFaq();
+  initHeroAbstracts();
   initCalEmbed();
   initForms();
   initTracking();
   initBreadcrumbSchema();
+  initResonanceLab();
   initSignalMatrix();
+  initPublicationLens();
   initServiceRecommender();
   initForecastLab();
 })();
