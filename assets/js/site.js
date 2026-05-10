@@ -288,21 +288,30 @@ function initResonanceLab() {
         if (valueEl) valueEl.textContent = range.value;
       });
 
-      const alignment = Math.max(0, Math.min(100, Math.round(((values.evidence * 0.44 + values.authority * 0.42) - values.pressure * 0.34 + 3.8) * 10)));
-      const drift = Math.max(1, 11 - Math.round(alignment / 10));
+      const artifactNames = ['model card', 'eval log', 'incident log', 'rollback plan', 'owner map', 'monitoring plan'];
+      const coverage = values.artifacts;
+      const rights = values.rights;
+      const launch = values.launch;
+      const coverageRatio = coverage / 6;
+      const readiness = Math.max(0, Math.min(100, Math.round((coverageRatio * 48) + ((rights / 5) * 22) + (Math.max(0, 1 - launch / 90) * 30))));
+      const risk = 100 - readiness;
+      const coveredArtifacts = artifactNames.slice(0, coverage);
+      const missingArtifacts = artifactNames.slice(coverage);
+      const drift = Math.max(1, Math.min(11, Math.round((launch / 12) + (5 - rights))));
+
       let status = 'Out of phase';
-      let copy = 'Evidence and authority are not yet keeping pace with deployment pressure. Tighten stop conditions, escalation rights, and review cadence.';
-      if (alignment >= 76) {
+      let copy = `Coverage spans ${coverage}/6 artifacts, ${rights}/5 decision rights, and ${launch} days to launch. Add named owners and a tighter review loop before deployment pressure rises.`;
+      if (readiness >= 74) {
         status = 'In phase';
-        copy = 'Evidence, authority, and tempo are aligned enough to support governed action. Preserve cadence and monitor for drift.';
-      } else if (alignment >= 52) {
+        copy = `Coverage spans ${coverage}/6 artifacts (${coveredArtifacts.join(' · ')}), ${rights}/5 decision rights, and ${launch} days to launch. The evidence stack is workable if the review cadence holds.`;
+      } else if (readiness >= 50) {
         status = 'Partially tuned';
-        copy = 'The system has useful signal, but control authority or review tempo needs strengthening before pressure rises further.';
+        copy = `Coverage spans ${coverage}/6 artifacts, ${rights}/5 decision rights, and ${launch} days to launch. Missing: ${missingArtifacts.join(' · ')}. Close the gaps before the next release.`;
       }
 
-      visual.style.setProperty('--resonance', alignment);
+      visual.style.setProperty('--resonance', Math.max(24, readiness));
       visual.style.setProperty('--drift', drift);
-      scoreEl.textContent = String(alignment);
+      scoreEl.textContent = String(risk);
       statusEl.textContent = status;
       copyEl.textContent = copy;
     };
@@ -322,26 +331,32 @@ function initSignalMatrix() {
     if (!ranges.length || !scoreEl || !statusEl || !copyEl) return;
 
     const update = () => {
-      const values = ranges.map((range) => Number(range.value));
+      const values = Object.fromEntries(ranges.map((range) => [range.name, Number(range.value)]));
       ranges.forEach((range) => {
         const valueEl = panel.querySelector(`[data-range-value="${range.name}"]`);
         if (valueEl) valueEl.textContent = range.value;
       });
-      const score = Math.round((values[0] * 0.38 + values[1] * 0.34 + values[2] * 0.28) * 10);
+      const lagRatio = values.release / Math.max(1, values.review);
+      const coverage = values.coverage;
+      const coveredFunctions = ['Govern', 'Map', 'Measure', 'Manage'].slice(0, coverage);
+      const coveredFunctionsText = coveredFunctions.length ? coveredFunctions.join(' · ') : 'none yet';
+      const score = Math.max(0, Math.min(100, Math.round((lagRatio * 28) + ((4 - coverage) * 18) + (values.release > values.review ? 12 : 0))));
       let status = 'Monitoring';
-      let copy = 'Keep a light watchlist: owner, review date, and one trigger that would change the decision.';
+      let copy = `Release cadence is ${values.release} days and review cadence is ${values.review} days. NIST AI RMF coverage spans ${coverage}/4 functions.`;
       let href = '/services/geopolitical-forecasting/';
-      let label = 'Build a watchlist';
+      let label = 'Review the control map';
       if (score >= 75) {
         status = 'Executive escalation';
-        copy = 'The operating tempo is behind the risk environment. Use a leadership briefing, explicit stop conditions, and a dated decision record.';
+        copy = `Release cadence is ${lagRatio.toFixed(1)}x the review cadence, with ${coverage}/4 NIST AI RMF functions covered. The control loop is too slow for the current tempo.`;
         href = '/services/briefings/';
         label = 'Scope an executive briefing';
       } else if (score >= 48) {
         status = 'Focused diagnostic';
-        copy = 'Governance, forecasting, and monitoring should be synchronized before exposure compounds.';
+        copy = `Release cadence is ${lagRatio.toFixed(1)}x the review cadence, with ${coverage}/4 NIST AI RMF functions covered (${coveredFunctionsText}). Tighten the next review before exposure compounds.`;
         href = '/services/risk-advisory/';
         label = 'Start a risk diagnostic';
+      } else {
+        copy = `Release cadence is ${values.release} days, review cadence is ${values.review} days, and coverage spans ${coverage}/4 NIST AI RMF functions (${coveredFunctionsText}). The loop is reasonably aligned.`;
       }
       scoreEl.textContent = String(score);
       statusEl.textContent = status;
