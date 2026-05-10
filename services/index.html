@@ -18,7 +18,7 @@
   <meta name="twitter:image" content="https://syntonyresearch.org/assets/og-image.png">
   <link rel="preload" href="/assets/fonts/cormorant-garamond-400.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="/styles/main.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Syntony Research Services","itemListElement":[{"@type":"ListItem","position":1,"url":"https://syntonyresearch.org/services/red-teaming/"},{"@type":"ListItem","position":2,"url":"https://syntonyresearch.org/services/safety-research/"},{"@type":"ListItem","position":3,"url":"https://syntonyresearch.org/services/governance/"},{"@type":"ListItem","position":4,"url":"https://syntonyresearch.org/services/risk-advisory/"},{"@type":"ListItem","position":5,"url":"https://syntonyresearch.org/services/briefings/"},{"@type":"ListItem","position":6,"url":"https://syntonyresearch.org/services/research/"},{"@type":"ListItem","position":7,"url":"https://syntonyresearch.org/services/technical-writing/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Syntony Research Services","itemListElement":[{"@type":"ListItem","position":1,"url":"https://syntonyresearch.org/services/red-teaming/"},{"@type":"ListItem","position":2,"url":"https://syntonyresearch.org/services/safety-research/"},{"@type":"ListItem","position":3,"url":"https://syntonyresearch.org/services/governance/"},{"@type":"ListItem","position":4,"url":"https://syntonyresearch.org/services/risk-advisory/"},{"@type":"ListItem","position":5,"url":"https://syntonyresearch.org/services/geopolitical-forecasting/"},{"@type":"ListItem","position":6,"url":"https://syntonyresearch.org/services/briefings/"},{"@type":"ListItem","position":7,"url":"https://syntonyresearch.org/services/research/"},{"@type":"ListItem","position":8,"url":"https://syntonyresearch.org/services/technical-writing/"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://syntonyresearch.org/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://syntonyresearch.org/services/"}]}</script>
 </head>
 <body>
@@ -35,11 +35,29 @@
     <section class="services">
       <div class="container">
         <p class="section-intro">The service portfolio covers the full loop from evaluation evidence to institutional control: test the system, interpret the risk, design the governance response, and communicate the decision clearly.</p>
-        <div class="services-grid services-grid-seven">
+        <div class="interactive-panel" data-service-recommender>
+          <h3>Which service fits the current problem?</h3>
+          <p>Select the pressure point closest to your situation. The recommendation updates locally in the browser.</p>
+          <div class="choice-grid">
+            <button class="choice-chip" type="button" data-recommend="testing">We need to test a system</button>
+            <button class="choice-chip" type="button" data-recommend="governance">We need controls</button>
+            <button class="choice-chip" type="button" data-recommend="geopolitics">We need external foresight</button>
+            <button class="choice-chip" type="button" data-recommend="executive">Leadership needs alignment</button>
+            <button class="choice-chip" type="button" data-recommend="writing">We need clearer documents</button>
+          </div>
+          <div class="interactive-output">
+            <div class="interactive-status">Recommended path</div>
+            <h3 data-recommend-title>Adversarial Evaluation</h3>
+            <p class="interactive-copy" data-recommend-copy></p>
+            <p><a class="btn-outline" data-recommend-link href="/services/red-teaming/">Explore service</a></p>
+          </div>
+        </div>
+        <div class="services-grid services-grid-eight" style="margin-top:42px;">
           <a class="service-card" href="/services/red-teaming/"><h3>Adversarial Evaluation</h3><p>Structured red-team exercises, failure-path analysis, and safety bypass discovery.</p><div class="service-tags"><span class="service-tag">Red team</span><span class="service-tag">Misuse</span><span class="service-tag">Escalation</span></div></a>
           <a class="service-card" href="/services/safety-research/"><h3>AI Safety Research</h3><p>Methodology development, testing design, and evidence synthesis for advanced systems.</p><div class="service-tags"><span class="service-tag">Evaluation</span><span class="service-tag">Metrics</span><span class="service-tag">Evidence</span></div></a>
           <a class="service-card" href="/services/governance/"><h3>Governance Advisory</h3><p>Policy architecture, accountability pathways, controls, and oversight planning.</p><div class="service-tags"><span class="service-tag">Controls</span><span class="service-tag">Policy</span><span class="service-tag">Board</span></div></a>
           <a class="service-card" href="/services/risk-advisory/"><h3>Strategic Risk Advisory</h3><p>Risk posture assessment for executive and board decision cycles.</p><div class="service-tags"><span class="service-tag">Risk</span><span class="service-tag">Strategy</span><span class="service-tag">Uncertainty</span></div></a>
+          <a class="service-card" href="/services/geopolitical-forecasting/"><h3>Geopolitical Forecasting</h3><p>Emerging technology forecasts for AI, compute, chips, cyber, defense, and regulatory competition.</p><div class="service-tags"><span class="service-tag">Forecast</span><span class="service-tag">Emerging tech</span><span class="service-tag">Scenario</span></div></a>
           <a class="service-card" href="/services/briefings/"><h3>Executive Briefings</h3><p>Leadership workshops and targeted strategic briefings for fast orientation.</p><div class="service-tags"><span class="service-tag">Board</span><span class="service-tag">Workshop</span><span class="service-tag">Decision</span></div></a>
           <a class="service-card" href="/services/research/"><h3>Custom Research</h3><p>Scoped analyses for priority policy, technical, or strategic questions.</p><div class="service-tags"><span class="service-tag">Memo</span><span class="service-tag">Landscape</span><span class="service-tag">Scenario</span></div></a>
           <a class="service-card" href="/services/technical-writing/"><h3>Technical Writing & Communications</h3><p>Technical clarity for research, policy, executive, and public audiences.</p><div class="service-tags"><span class="service-tag">Narrative</span><span class="service-tag">Report</span><span class="service-tag">Brief</span></div></a>

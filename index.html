@@ -70,18 +70,35 @@
         <div class="services-header">
           <div class="services-header-left"><span class="section-num">01</span><span class="label">Service Lines</span></div>
           <div>
-            <h2>Focused expertise across <em>seven lines</em>.</h2>
+            <h2>Focused expertise across <em>eight lines</em>.</h2>
             <p class="services-header-desc">Each line is built for high-consequence decision environments where technical behavior, governance controls, and public accountability must stay in phase.</p>
           </div>
         </div>
-        <div class="services-grid services-grid-seven">
+        <div class="services-grid services-grid-eight">
           <a class="service-card reveal" href="/services/red-teaming/"><h3>Adversarial Evaluation</h3><p>Targeted stress tests for model and deployment behavior, including misuse pathways and escalation risks.</p></a>
           <a class="service-card reveal reveal-d1" href="/services/safety-research/"><h3>AI Safety Research</h3><p>Safety methodology design, hypothesis testing, metric development, and evidence synthesis.</p></a>
           <a class="service-card reveal reveal-d2" href="/services/governance/"><h3>Governance Advisory</h3><p>Policy controls, accountability architecture, and oversight readiness for advanced AI use.</p></a>
           <a class="service-card reveal" href="/services/risk-advisory/"><h3>Strategic Risk Advisory</h3><p>Decision support for executive risk posture under uncertainty and fast-moving capability change.</p></a>
+          <a class="service-card reveal reveal-d1" href="/services/geopolitical-forecasting/"><h3>Geopolitical Forecasting</h3><p>Emerging technology forecasts that connect AI, compute, chips, cyber, defense, and regulatory competition to decision triggers.</p></a>
           <a class="service-card reveal reveal-d1" href="/services/briefings/"><h3>Executive Briefings</h3><p>Board and senior-leadership briefings that convert technical risk into decision options.</p></a>
           <a class="service-card reveal reveal-d2" href="/services/research/"><h3>Custom Research</h3><p>Scoped analytical engagements for priority questions that do not fit standard consulting templates.</p></a>
           <a class="service-card reveal reveal-d3" href="/services/technical-writing/"><h3>Technical Writing</h3><p>Clear, defensible writing for technical, policy, and executive audiences.</p></a>
+        </div>
+        <div class="interactive-panel reveal" data-signal-matrix>
+          <h3>Signal matrix</h3>
+          <p>Use the sliders to pressure-test whether capability velocity, governance lag, and geopolitical volatility are starting to outrun the current decision cadence.</p>
+          <div class="interactive-grid">
+            <div class="interactive-controls">
+              <div class="range-row"><label for="capability-velocity">Capability velocity <span class="range-value" data-range-value="capability">6</span></label><input id="capability-velocity" name="capability" type="range" min="1" max="10" value="6"></div>
+              <div class="range-row"><label for="governance-lag">Governance lag <span class="range-value" data-range-value="governance">5</span></label><input id="governance-lag" name="governance" type="range" min="1" max="10" value="5"></div>
+              <div class="range-row"><label for="external-volatility">External volatility <span class="range-value" data-range-value="volatility">7</span></label><input id="external-volatility" name="volatility" type="range" min="1" max="10" value="7"></div>
+            </div>
+            <div class="interactive-output">
+              <div class="interactive-score" data-signal-score>0</div>
+              <div class="interactive-status" data-signal-status>Watch</div>
+              <p class="interactive-copy" data-signal-copy></p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
