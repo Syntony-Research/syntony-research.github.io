@@ -3,22 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A1628">
   <title>Syntony Research | AI Safety and Governance Consultancy</title>
   <meta name="description" content="Syntony Research provides adversarial evaluation, AI safety research, governance advisory, and strategic risk analysis for high-stakes institutions.">
-  <meta property="og:title" content="Syntony Research">
-  <meta property="og:description" content="AI safety, governance, and adversarial evaluation consultancy.">
+  <link rel="canonical" href="https://syntonyresearch.org/">
+  <meta property="og:title" content="Syntony Research | AI Safety and Governance Consultancy">
+  <meta property="og:description" content="AI safety, governance, and adversarial evaluation consultancy for high-stakes institutions.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://syntonyresearch.org/">
   <meta property="og:image" content="https://syntonyresearch.org/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Syntony Research">
-  <meta name="twitter:description" content="AI safety, governance, and adversarial evaluation consultancy.">
+  <meta name="twitter:title" content="Syntony Research | AI Safety and Governance Consultancy">
+  <meta name="twitter:description" content="AI safety, governance, and adversarial evaluation consultancy for high-stakes institutions.">
   <meta name="twitter:image" content="https://syntonyresearch.org/assets/og-image.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/fonts/cormorant-garamond-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-400.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="/styles/main.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Syntony Research","url":"https://syntonyresearch.org","email":"hello@syntonyresearch.org","areaServed":"Global","address":{"@type":"PostalAddress","addressLocality":"Research Triangle Park","addressRegion":"NC","addressCountry":"US"}}</script>
+  <script defer data-domain="syntonyresearch.org" src="https://plausible.io/js/script.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Syntony Research","url":"https://syntonyresearch.org","email":"hello@syntonyresearch.org","areaServed":"Global","address":{"@type":"PostalAddress","addressLocality":"Research Triangle","addressRegion":"NC","addressCountry":"US"},"founder":{"@type":"Person","name":"Nathan Heath","jobTitle":"Founder & Chief Scientist"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Event","name":"Minderoo Centre AI safety briefing","startDate":"2026-06","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","location":{"@type":"Place","name":"University of Cambridge","address":{"@type":"PostalAddress","addressLocality":"Cambridge","addressCountry":"GB"}},"performer":{"@type":"Person","name":"Nathan Heath"}},{"@type":"Event","name":"UNIDIR AI governance briefing","startDate":"2026-06","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","location":{"@type":"Place","name":"UNIDIR","address":{"@type":"PostalAddress","addressLocality":"Geneva","addressCountry":"CH"}},"performer":{"@type":"Person","name":"Nathan Heath"}},{"@type":"Event","name":"American University of Paris AI risk briefing","startDate":"2026-06","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","location":{"@type":"Place","name":"American University of Paris","address":{"@type":"PostalAddress","addressLocality":"Paris","addressCountry":"FR"}},"performer":{"@type":"Person","name":"Nathan Heath"}}]}</script>
 </head>
 <body>
   <div data-include="/components/header.html"></div>
@@ -34,14 +38,30 @@
             <a class="btn-dark" href="/contact/">Begin a conversation <span class="btn-arrow">→</span></a>
             <a class="btn-outline" href="/services/">View services</a>
           </div>
+          <div class="badge-row reveal reveal-d3">
+            <span class="badge">All engagements under NDA</span>
+            <span class="badge">TS-cleared principal</span>
+            <span class="badge">Research Triangle, NC</span>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="trust-strip">
       <div class="container trust-inner">
-        <span class="trust-label">Trusted by</span>
-        <div class="trust-items"><span class="trust-item">Public sector teams</span><span class="trust-item">Research programs</span><span class="trust-item">Executive leadership</span></div>
+        <span class="trust-label">Experience across</span>
+        <div class="trust-items">
+          <span class="trust-item">Frontier AI Labs</span>
+          <span class="trust-item">Defense & National Security</span>
+          <span class="trust-item">Global Financial Services</span>
+          <span class="trust-item">International Governance Bodies</span>
+        </div>
+        <div class="badge-row">
+          <span class="badge">NIST AI RMF</span>
+          <span class="badge">EU AI Act</span>
+          <span class="badge">OECD AI Principles</span>
+          <span class="badge">ISO/IEC 42001</span>
+        </div>
       </div>
     </section>
 
@@ -49,15 +69,19 @@
       <div class="container">
         <div class="services-header">
           <div class="services-header-left"><span class="section-num">01</span><span class="label">Service Lines</span></div>
-          <div><h2>Focused expertise across <em>seven lines</em>.</h2></div>
+          <div>
+            <h2>Focused expertise across <em>seven lines</em>.</h2>
+            <p class="services-header-desc">Each line is built for high-consequence decision environments where technical behavior, governance controls, and public accountability must stay in phase.</p>
+          </div>
         </div>
-        <div class="services-grid">
-          <a class="service-card" href="/services/red-teaming/"><h3>Adversarial Evaluation</h3><p>Targeted stress tests for model and deployment behavior.</p></a>
-          <a class="service-card" href="/services/safety-research/"><h3>AI Safety Research</h3><p>Safety methodology design, hypothesis testing, and metric development.</p></a>
-          <a class="service-card" href="/services/governance/"><h3>Governance Advisory</h3><p>Policy controls, accountability architecture, and oversight readiness.</p></a>
-          <a class="service-card" href="/services/risk-advisory/"><h3>Strategic Risk Advisory</h3><p>Decision support for executive risk posture under uncertainty.</p></a>
-          <a class="service-card" href="/services/briefings/"><h3>Executive Briefings</h3><p>Briefings and workshops for boards and senior leadership.</p></a>
-          <a class="service-card" href="/services/technical-writing/"><h3>Technical Writing</h3><p>Distill-grade clarity for high-stakes technical communication.</p></a>
+        <div class="services-grid services-grid-seven">
+          <a class="service-card reveal" href="/services/red-teaming/"><h3>Adversarial Evaluation</h3><p>Targeted stress tests for model and deployment behavior, including misuse pathways and escalation risks.</p></a>
+          <a class="service-card reveal reveal-d1" href="/services/safety-research/"><h3>AI Safety Research</h3><p>Safety methodology design, hypothesis testing, metric development, and evidence synthesis.</p></a>
+          <a class="service-card reveal reveal-d2" href="/services/governance/"><h3>Governance Advisory</h3><p>Policy controls, accountability architecture, and oversight readiness for advanced AI use.</p></a>
+          <a class="service-card reveal" href="/services/risk-advisory/"><h3>Strategic Risk Advisory</h3><p>Decision support for executive risk posture under uncertainty and fast-moving capability change.</p></a>
+          <a class="service-card reveal reveal-d1" href="/services/briefings/"><h3>Executive Briefings</h3><p>Board and senior-leadership briefings that convert technical risk into decision options.</p></a>
+          <a class="service-card reveal reveal-d2" href="/services/research/"><h3>Custom Research</h3><p>Scoped analytical engagements for priority questions that do not fit standard consulting templates.</p></a>
+          <a class="service-card reveal reveal-d3" href="/services/technical-writing/"><h3>Technical Writing</h3><p>Clear, defensible writing for technical, policy, and executive audiences.</p></a>
         </div>
       </div>
     </section>
@@ -67,7 +91,10 @@
         <div>
           <p class="ety-pron">syn·to·ny</p>
           <h2>Coordination in <em>phase</em>.</h2>
-          <div class="ety-body"><p>Our name reflects a practical thesis, technical systems and institutions perform best when they are tuned to one another.</p></div>
+          <div class="ety-body">
+            <p>Our name reflects a practical thesis: technical systems and institutions perform best when they are tuned to one another.</p>
+            <p>The work is not merely to make models more capable or policies more polished. The work is to align evidence, controls, incentives, and escalation paths before capability outruns accountability.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -76,9 +103,9 @@
       <div class="container">
         <div class="method-header"><span class="section-num">02</span><h2>Our method in <em>three commitments</em>.</h2></div>
         <div class="method-grid">
-          <article class="method-item"><div class="method-step">I</div><h4>Empirical grounding</h4><p>Claims are linked to evidence, reproducible tests, and explicit assumptions.</p></article>
-          <article class="method-item"><div class="method-step">II</div><h4>Operational relevance</h4><p>Outputs are designed for decision environments, not abstract reporting.</p></article>
-          <article class="method-item"><div class="method-step">III</div><h4>Governance alignment</h4><p>Safety findings translate into policies, controls, and implementation pathways.</p></article>
+          <article class="method-item reveal"><div class="method-step">I</div><h4>Empirical grounding</h4><p>Claims are linked to evidence, reproducible tests, and explicit assumptions.</p></article>
+          <article class="method-item reveal reveal-d1"><div class="method-step">II</div><h4>Operational relevance</h4><p>Outputs are designed for decision environments, not abstract reporting.</p></article>
+          <article class="method-item reveal reveal-d2"><div class="method-step">III</div><h4>Governance alignment</h4><p>Safety findings translate into policies, controls, and implementation pathways.</p></article>
         </div>
       </div>
     </section>
@@ -87,26 +114,40 @@
       <div class="container">
         <div class="research-header"><div><span class="section-num">03</span><h2>Featured <em>research</em></h2></div><a class="research-link" href="/research/">View all publications →</a></div>
         <div class="pub-stack">
-          <article class="pub-card"><div class="pub-tag">Adversarial Evaluation</div><h4>System Dynamics for AI Safety</h4><p>Feedback-loop modeling for deployment risk and intervention timing.</p></article>
-          <article class="pub-card"><div class="pub-tag">Governance</div><h4>Institutional Controls for Frontier Models</h4><p><!-- PLACEHOLDER: replace with actual content --> Framework for decision rights and escalation triggers.</p></article>
-          <article class="pub-card"><div class="pub-tag">Strategic Risk</div><h4>Synthetic Media and Information Integrity</h4><p><!-- PLACEHOLDER: replace with actual content --> Risk analysis for public-sector communications infrastructure.</p></article>
+          <a class="pub-card reveal" href="/research/system-dynamics-ai-safety/"><div class="pub-tag">AI Safety</div><h4>System Dynamics for AI Safety</h4><p>Feedback-loop modeling for deployment risk, governance lag, monitoring quality, and intervention timing.</p></a>
+          <a class="pub-card reveal reveal-d1" href="/research/institutional-controls-frontier-models/"><div class="pub-tag">Governance</div><h4>Institutional Controls for Frontier Models</h4><p>Control architecture for decision rights, audit pathways, escalation triggers, and accountability boundaries.</p></a>
+          <a class="pub-card reveal reveal-d2" href="/research/evaluating-agentic-escalation/"><div class="pub-tag">Adversarial Evaluation</div><h4>Evaluating Agentic Escalation Pathways</h4><p>A protocol for identifying autonomy creep, tool-use escalation, and policy-boundary bypass in agentic systems.</p></a>
         </div>
+      </div>
+    </section>
+
+    <section class="event-ticker" aria-label="Speaking engagements">
+      <div class="container event-ticker-track">
+        <span class="event-item"><strong>June 2026</strong> Cambridge · Minderoo Centre</span>
+        <span class="event-item"><strong>June 2026</strong> Geneva · UNIDIR</span>
+        <span class="event-item"><strong>June 2026</strong> Paris · American University of Paris</span>
+        <span class="event-item"><strong>IASEAI 2026</strong> UNESCO House Paris</span>
+        <span class="event-item"><strong>June 2026</strong> Cambridge · Minderoo Centre</span>
+        <span class="event-item"><strong>June 2026</strong> Geneva · UNIDIR</span>
+        <span class="event-item"><strong>June 2026</strong> Paris · American University of Paris</span>
+        <span class="event-item"><strong>IASEAI 2026</strong> UNESCO House Paris</span>
       </div>
     </section>
 
     <section class="founder">
       <div class="container founder-grid">
         <aside class="founder-card">
-          <div class="founder-portrait"><div class="founder-portrait-mark">N</div></div>
+          <div class="founder-portrait" role="img" aria-label="Placeholder portrait mark for Nathan Heath"><div class="founder-portrait-mark">N</div></div>
           <div class="founder-name">Nathan Heath</div>
           <div class="founder-title">Founder & Chief Scientist</div>
-          <div class="founder-meta">Fletcher M.A. · Oxford · Harvard</div>
+          <div class="founder-meta">Fletcher School M.A. · Senior Research Scientist, NSI · CSA STAR for AI Expert Advisor</div>
         </aside>
         <article class="founder-content">
           <span class="label">Founder</span>
           <h2>Research and advisory grounded in <em>operational reality</em>.</h2>
           <div class="body">
-            <p>Nathan Heath leads Syntony Research with a focus on AI safety evaluation, governance architecture, and strategic risk under uncertainty.</p>
+            <p>Nathan Heath works across AI safety evaluation, governance architecture, and national-security risk. He spent six years at National Security Innovations, reaching Senior Research Scientist, and has conducted red teaming for OpenAI, Anthropic, and Handshake.</p>
+            <p>He is an Expert Advisor for catastrophic AI risk at the Cloud Security Alliance, an affiliate of the Rutgers AI Ethics Lab, a GLG expert network member, and a fellow or alumnus of Truman National Security Project, BlueDot Impact, NextGen, and the Hertog Foundation.</p>
           </div>
           <a class="btn-outline" href="/about/founder/">Read full bio</a>
         </article>
@@ -131,9 +172,11 @@
       <div class="container contact-inner">
         <span class="label">Contact</span>
         <h2>Begin a <em>conversation</em>.</h2>
-        <p>We respond to all inquiries within one business day.</p>
-        <div class="contact-actions"><a class="btn-dark" href="/contact/">Schedule consultation</a></div>
-        <p class="contact-email">hello@syntonyresearch.org</p>
+        <p>Book directly or send a structured inquiry. Under-NDA discussions are routine.</p>
+        <div class="contact-actions"><a class="btn-dark" href="/contact/">Schedule consultation</a><a class="btn-outline" href="mailto:hello@syntonyresearch.org">Email the firm</a></div>
+        <div class="cal-inline">
+          <iframe title="Schedule a Syntony Research consultation" src="https://cal.com/syntonyresearch/30min" loading="lazy"></iframe>
+        </div>
       </div>
     </section>
   </main>
