@@ -1,1 +1,1 @@
-# Syntony-AI-Labs.github.io
+# Syntony Research
