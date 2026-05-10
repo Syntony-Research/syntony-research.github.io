@@ -62,6 +62,8 @@ function initNavigation() {
   const nav = document.getElementById('site-nav');
   const toggle = document.querySelector('.nav-toggle');
   const links = document.getElementById('primary-nav');
+  const dropdown = document.querySelector('.nav-dropdown');
+  const dropdownTrigger = dropdown?.querySelector('[aria-haspopup="true"]');
   if (!nav || !toggle || !links) return;
 
   const onScroll = () => {
@@ -72,9 +74,31 @@ function initNavigation() {
 
   toggle.addEventListener('click', () => {
     const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!expanded));
-    links.classList.toggle('open');
-    document.body.classList.toggle('nav-open', !expanded);
+    const next = !expanded;
+    toggle.setAttribute('aria-expanded', String(next));
+    links.classList.toggle('open', next);
+    document.body.classList.toggle('nav-open', next);
+  });
+
+  const setDropdownExpanded = (expanded) => {
+    if (dropdownTrigger) dropdownTrigger.setAttribute('aria-expanded', String(expanded));
+  };
+
+  if (dropdown) {
+    dropdown.addEventListener('mouseenter', () => setDropdownExpanded(true));
+    dropdown.addEventListener('mouseleave', () => setDropdownExpanded(false));
+    dropdown.addEventListener('focusin', () => setDropdownExpanded(true));
+    dropdown.addEventListener('focusout', (event) => {
+      if (!dropdown.contains(event.relatedTarget)) setDropdownExpanded(false);
+    });
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || !links.classList.contains('open')) return;
+    toggle.setAttribute('aria-expanded', 'false');
+    links.classList.remove('open');
+    document.body.classList.remove('nav-open');
+    toggle.focus();
   });
 
   links.querySelectorAll('a').forEach((link) => {
@@ -84,6 +108,21 @@ function initNavigation() {
       links.classList.remove('open');
       document.body.classList.remove('nav-open');
     });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab' || !links.classList.contains('open')) return;
+    const focusables = Array.from(links.querySelectorAll('a, button')).filter((el) => !el.hasAttribute('disabled'));
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   });
 }
 
@@ -114,20 +153,7 @@ function initMouseGlow() {
 }
 
 function initTiltCards() {
-  if (prefersReducedMotion()) return;
-  document.querySelectorAll('.service-card, .method-item, .eng-card, .scenario-card, .case-study, .pub-card, .pub-feature').forEach((card) => {
-    card.addEventListener('pointermove', (event) => {
-      const rect = card.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width;
-      const y = (event.clientY - rect.top) / rect.height;
-      const rotateX = (0.5 - y) * 4;
-      const rotateY = (x - 0.5) * 6;
-      card.style.transform = `perspective(760px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
-    });
-    card.addEventListener('pointerleave', () => {
-      card.style.transform = '';
-    });
-  });
+  return;
 }
 
 function initHeroAbstracts() {
@@ -292,6 +318,7 @@ function initSignalMatrix() {
     const scoreEl = panel.querySelector('[data-signal-score]');
     const statusEl = panel.querySelector('[data-signal-status]');
     const copyEl = panel.querySelector('[data-signal-copy]');
+    const linkEl = panel.querySelector('[data-signal-link]');
     if (!ranges.length || !scoreEl || !statusEl || !copyEl) return;
 
     const update = () => {
@@ -301,18 +328,28 @@ function initSignalMatrix() {
         if (valueEl) valueEl.textContent = range.value;
       });
       const score = Math.round((values[0] * 0.38 + values[1] * 0.34 + values[2] * 0.28) * 10);
-      let status = 'Watch';
-      let copy = 'Maintain monitoring cadence and define the next review trigger.';
+      let status = 'Monitoring';
+      let copy = 'Keep a light watchlist: owner, review date, and one trigger that would change the decision.';
+      let href = '/services/geopolitical-forecasting/';
+      let label = 'Build a watchlist';
       if (score >= 75) {
-        status = 'Escalate';
-        copy = 'Decision tempo is likely behind the risk environment. Use executive review, scenario planning, and explicit intervention thresholds.';
+        status = 'Executive escalation';
+        copy = 'The operating tempo is behind the risk environment. Use a leadership briefing, explicit stop conditions, and a dated decision record.';
+        href = '/services/briefings/';
+        label = 'Scope an executive briefing';
       } else if (score >= 48) {
-        status = 'Pressure building';
-        copy = 'Governance, forecasting, and monitoring should be synchronized before emerging technology exposure compounds.';
+        status = 'Focused diagnostic';
+        copy = 'Governance, forecasting, and monitoring should be synchronized before exposure compounds.';
+        href = '/services/risk-advisory/';
+        label = 'Start a risk diagnostic';
       }
       scoreEl.textContent = String(score);
       statusEl.textContent = status;
       copyEl.textContent = copy;
+      if (linkEl) {
+        linkEl.href = href;
+        linkEl.textContent = label;
+      }
     };
 
     ranges.forEach((range) => range.addEventListener('input', update));
@@ -400,7 +437,6 @@ function initForecastLab() {
   initNavigation();
   initMouseGlow();
   initReveal();
-  initTiltCards();
   initFaq();
   initHeroAbstracts();
   initCalEmbed();
