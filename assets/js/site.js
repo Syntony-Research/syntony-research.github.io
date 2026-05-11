@@ -1170,6 +1170,9 @@ function initPageVisuals() {
     loadMapbox().then((mapboxgl) => {
       mapboxLib = mapboxgl;
       if (!mapCanvas) return;
+      mapCanvas.style.backgroundImage = `url("https://api.mapbox.com/styles/v1/mapbox/dark-v11/static/10,20,1.2/1280x760?access_token=${MAPBOX_ACCESS_TOKEN}")`;
+      mapCanvas.style.backgroundSize = 'cover';
+      mapCanvas.style.backgroundPosition = 'center';
       mapInstance = new mapboxgl.Map({
         container: mapCanvas,
         style: 'mapbox://styles/mapbox/dark-v11',
@@ -1184,6 +1187,9 @@ function initPageVisuals() {
 
       mapInstance.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'bottom-right');
       mapInstance.on('load', () => {
+        mapCanvas.classList.add('is-ready');
+        mapCanvas.style.backgroundImage = 'none';
+        mapInstance.resize();
         mapInstance.addSource('geo-regions', { type: 'geojson', data: featureCollection });
         mapInstance.addLayer({
           id: 'geo-regions-glow',
@@ -1240,6 +1246,11 @@ function initPageVisuals() {
         });
         updateFeatureStates();
         setRegion(selectedRegionId, { scroll: false });
+        requestAnimationFrame(() => mapInstance.resize());
+      });
+      mapInstance.on('error', (event) => {
+        console.warn('Mapbox map error', event?.error || event);
+        mapCanvas.classList.add('is-error');
       });
     }).catch(() => {
       if (mapCanvas) mapCanvas.innerHTML = '';

@@ -252,6 +252,10 @@ body.nav-open .mouse-glow { opacity: 0; }
 .visual-panel__sidebar { padding: 24px; border-left: 1px solid var(--border); background: rgba(255,255,255,0.015); }
 .geo-map { position: relative; min-height: 500px; background: radial-gradient(circle at 50% 42%, rgba(208,174,85,0.08), rgba(7,17,29,0.02) 52%, rgba(7,17,29,0.86) 100%); overflow: hidden; border-right: 1px solid var(--border); }
 .geo-map-canvas { position: absolute; inset: 0; }
+.geo-map-canvas { background-color: #07111D; background-repeat: no-repeat; background-position: center; background-size: cover; }
+.geo-map-canvas::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(7,17,29,0.14), rgba(7,17,29,0.28)); }
+.geo-map-canvas.is-ready::after { opacity: 0.55; }
+.geo-map-canvas.is-error::after { background: radial-gradient(circle at 50% 44%, rgba(208,174,85,0.14), rgba(7,17,29,0.32) 65%, rgba(7,17,29,0.82)); }
 .geo-map-canvas .mapboxgl-canvas-container,
 .geo-map-canvas .mapboxgl-canvas { width: 100% !important; height: 100% !important; }
 .geo-map-canvas .mapboxgl-canvas { outline: none; }
