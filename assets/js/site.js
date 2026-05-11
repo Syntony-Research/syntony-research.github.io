@@ -968,38 +968,6 @@ function projectLonLat(lon, lat) {
   };
 }
 
-const MAPBOX_ACCESS_TOKEN = [
-  'pk.eyJ1IjoibmF0aGFuaGVhdGg5MiIsImEiOiJjbXAxOHk2YjAwMnAwMnBweDMyZHd0NHkyIn0',
-  '.kc0UpdCp99AV9diZ1vuYiA'
-].join('');
-let mapboxLoaderPromise = null;
-function loadMapbox() {
-  if (window.mapboxgl) return Promise.resolve(window.mapboxgl);
-  if (mapboxLoaderPromise) return mapboxLoaderPromise;
-
-  mapboxLoaderPromise = new Promise((resolve, reject) => {
-    if (!document.querySelector('link[data-mapbox-css]')) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'https://api.mapbox.com/mapbox-gl-js/v3.6.2/mapbox-gl.css';
-      link.setAttribute('data-mapbox-css', 'true');
-      document.head.appendChild(link);
-    }
-
-    const script = document.createElement('script');
-    script.src = 'https://api.mapbox.com/mapbox-gl-js/v3.6.2/mapbox-gl.js';
-    script.async = true;
-    script.onload = () => {
-      window.mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
-      resolve(window.mapboxgl);
-    };
-    script.onerror = () => reject(new Error('Mapbox GL JS failed to load'));
-    document.head.appendChild(script);
-  });
-
-  return mapboxLoaderPromise;
-}
-
 function buildCardVisual(config) {
   const firstCard = config.cards[0];
   const cards = config.cards.map((card, index) => `
@@ -1035,6 +1003,20 @@ function buildCardVisual(config) {
 }
 
 function buildGeoVisual(config) {
+  const markers = config.regions.map((region) => {
+    const position = projectLonLat(region.lon, region.lat);
+    return `
+      <button
+        class="geo-marker"
+        type="button"
+        data-geo-marker="${region.id}"
+        style="left:${position.x}%; top:${position.y}%;"
+        aria-label="${region.name}: ${region.signals[0]}"
+      >
+        <span></span>
+      </button>
+    `;
+  }).join('');
   const list = config.regions.map((region) => `
     <button class="geo-region-row" type="button" data-geo-row="${region.id}">
       <span>${region.name}</span>
@@ -1057,7 +1039,11 @@ function buildGeoVisual(config) {
             <button class="geo-control" type="button" data-geo-zoom="in">+</button>
           </div>
           <div class="geo-hint">Click a marker or row. Drag to pan. Scroll to zoom.</div>
-          <div class="geo-map-canvas" data-geo-map-canvas></div>
+          <div class="geo-map-stage" data-geo-map-stage style="--geo-zoom:1;">
+            <img class="geo-map-image" src="/assets/world-map.svg" alt="" aria-hidden="true">
+            <div class="geo-graticule" aria-hidden="true"></div>
+            <div class="geo-markers" data-geo-markers>${markers}</div>
+          </div>
         </div>
         <aside class="visual-panel__sidebar">
           <div class="geo-detail" data-geo-detail>
@@ -1093,42 +1079,27 @@ function initPageVisuals() {
     const detailNote = section.querySelector('[data-geo-note]');
     const detailSignals = section.querySelector('[data-geo-signals]');
     const map = section.querySelector('[data-geo-map]');
+    const mapStage = section.querySelector('[data-geo-map-stage]');
     const zoomButtons = Array.from(section.querySelectorAll('[data-geo-zoom]'));
     const rows = Array.from(section.querySelectorAll('[data-geo-row]'));
-    const mapCanvas = section.querySelector('[data-geo-map-canvas]');
-    let mapInstance = null;
-    let mapboxLib = null;
+    const markers = Array.from(section.querySelectorAll('[data-geo-marker]'));
     let selectedRegionId = config.regions[0]?.id || null;
-    let popup = null;
-
-    const featureCollection = {
-      type: 'FeatureCollection',
-      features: config.regions.map((region) => ({
-        type: 'Feature',
-        id: region.id,
-        properties: {
-          id: region.id,
-          name: region.name,
-          note: region.note,
-          signal: region.signals[0]
-        },
-        geometry: {
-          type: 'Point',
-          coordinates: [region.lon, region.lat]
-        }
-      }))
-    };
+    let geoZoom = 1;
+    let geoPanX = 0;
+    let geoPanY = 0;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let dragOriginX = 0;
+    let dragOriginY = 0;
 
     const selectedRegion = () => config.regions.find((entry) => entry.id === selectedRegionId) || config.regions[0];
 
-    const updateFeatureStates = () => {
-      if (!mapInstance || !mapInstance.getSource('geo-regions')) return;
-      config.regions.forEach((region) => {
-        mapInstance.setFeatureState(
-          { source: 'geo-regions', id: region.id },
-          { selected: region.id === selectedRegionId }
-        );
-      });
+    const applyGeoTransform = () => {
+      if (!mapStage) return;
+      mapStage.style.setProperty('--geo-zoom', geoZoom.toFixed(2));
+      mapStage.style.setProperty('--geo-pan-x', `${Math.round(geoPanX)}px`);
+      mapStage.style.setProperty('--geo-pan-y', `${Math.round(geoPanY)}px`);
     };
 
     const setRegion = (regionId, options = {}) => {
@@ -1140,131 +1111,62 @@ function initPageVisuals() {
       detailSignals.innerHTML = region.signals.map((signal) => `<span class="geo-signal">${signal}</span>`).join('');
       rows.forEach((row) => row.classList.toggle('is-active', row.dataset.geoRow === region.id));
       rows.forEach((row) => row.setAttribute('aria-pressed', String(row.dataset.geoRow === region.id)));
+      markers.forEach((marker) => marker.classList.toggle('is-active', marker.dataset.geoMarker === region.id));
+      markers.forEach((marker) => marker.setAttribute('aria-pressed', String(marker.dataset.geoMarker === region.id)));
       const row = rows.find((entry) => entry.dataset.geoRow === region.id);
       if (options.scroll !== false) {
         row?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       }
-      updateFeatureStates();
-      if (mapInstance) {
-        const nextZoom = Math.max(mapInstance.getZoom(), 2.8);
-        mapInstance.flyTo({
-          center: [region.lon, region.lat],
-          zoom: nextZoom,
-          essential: true,
-          duration: 650
-        });
-        if (popup) popup.remove();
-        popup = new mapboxLib.Popup({ closeButton: false, closeOnClick: false, offset: 16 })
-          .setLngLat([region.lon, region.lat])
-          .setHTML(`
-            <div class="geo-popup">
-              <div class="geo-popup-title">${region.name}</div>
-              <div class="geo-popup-note">${region.note}</div>
-              <div class="geo-popup-signal">${region.signals[0]}</div>
-            </div>
-          `)
-          .addTo(mapInstance);
+      if (mapStage) {
+        mapStage.style.setProperty('--geo-focus-x', `${projectLonLat(region.lon, region.lat).x}%`);
+        mapStage.style.setProperty('--geo-focus-y', `${projectLonLat(region.lon, region.lat).y}%`);
       }
     };
 
     rows.forEach((row) => row.addEventListener('click', () => setRegion(row.dataset.geoRow)));
+    markers.forEach((marker) => marker.addEventListener('click', () => setRegion(marker.dataset.geoMarker)));
     zoomButtons.forEach((button) => {
       button.addEventListener('click', () => {
-        if (!mapInstance) return;
         const action = button.dataset.geoZoom;
-        if (action === 'in') mapInstance.zoomIn();
-        if (action === 'out') mapInstance.zoomOut();
-        if (action === 'reset') mapInstance.flyTo({ center: [10, 20], zoom: 2, essential: true, duration: 650 });
+        if (action === 'in') geoZoom = Math.min(1.5, geoZoom + 0.12);
+        if (action === 'out') geoZoom = Math.max(1, geoZoom - 0.12);
+        if (action === 'reset') {
+          geoZoom = 1;
+          geoPanX = 0;
+          geoPanY = 0;
+        }
+        applyGeoTransform();
       });
     });
-
-    loadMapbox().then((mapboxgl) => {
-      mapboxLib = mapboxgl;
-      if (!mapCanvas) return;
-      mapCanvas.style.backgroundImage = `url("https://api.mapbox.com/styles/v1/mapbox/dark-v11/static/10,20,1.2/1280x760?access_token=${MAPBOX_ACCESS_TOKEN}")`;
-      mapCanvas.style.backgroundSize = 'cover';
-      mapCanvas.style.backgroundPosition = 'center';
-      mapInstance = new mapboxgl.Map({
-        container: mapCanvas,
-        style: 'mapbox://styles/mapbox/dark-v11',
-        center: [10, 20],
-        zoom: 2,
-        minZoom: 1.4,
-        maxZoom: 5.5,
-        attributionControl: false,
-        cooperativeGestures: true,
-        projection: 'mercator'
+    if (mapStage) {
+      map.addEventListener('pointerdown', (event) => {
+        if (event.target.closest('.geo-control') || event.target.closest('.geo-marker')) return;
+        isDragging = true;
+        dragStartX = event.clientX;
+        dragStartY = event.clientY;
+        dragOriginX = geoPanX;
+        dragOriginY = geoPanY;
+        map.setPointerCapture(event.pointerId);
       });
-
-      mapInstance.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'bottom-right');
-      mapInstance.on('load', () => {
-        mapCanvas.classList.add('is-ready');
-        mapInstance.resize();
-        mapInstance.addSource('geo-regions', { type: 'geojson', data: featureCollection });
-        mapInstance.addLayer({
-          id: 'geo-regions-glow',
-          type: 'circle',
-          source: 'geo-regions',
-          paint: {
-            'circle-radius': [
-              'case',
-              ['boolean', ['feature-state', 'selected'], false],
-              16,
-              12
-            ],
-            'circle-color': 'rgba(208,174,85,0.18)',
-            'circle-blur': 0.7,
-            'circle-opacity': 0.95
-          }
-        });
-        mapInstance.addLayer({
-          id: 'geo-regions',
-          type: 'circle',
-          source: 'geo-regions',
-          paint: {
-            'circle-radius': [
-              'case',
-              ['boolean', ['feature-state', 'selected'], false],
-              9,
-              7
-            ],
-            'circle-color': [
-              'case',
-              ['boolean', ['feature-state', 'selected'], false],
-              '#F4EEE2',
-              '#D0AE55'
-            ],
-            'circle-stroke-width': [
-              'case',
-              ['boolean', ['feature-state', 'selected'], false],
-              3,
-              2
-            ],
-            'circle-stroke-color': '#07111D',
-            'circle-opacity': 0.96
-          }
-        });
-        mapInstance.on('click', 'geo-regions', (event) => {
-          const feature = event.features?.[0];
-          if (feature?.properties?.id) setRegion(feature.properties.id, { scroll: true });
-        });
-        mapInstance.on('mouseenter', 'geo-regions', () => {
-          mapCanvas.style.cursor = 'pointer';
-        });
-        mapInstance.on('mouseleave', 'geo-regions', () => {
-          mapCanvas.style.cursor = '';
-        });
-        updateFeatureStates();
-        setRegion(selectedRegionId, { scroll: false });
-        requestAnimationFrame(() => mapInstance.resize());
+      map.addEventListener('pointermove', (event) => {
+        if (!isDragging) return;
+        geoPanX = dragOriginX + (event.clientX - dragStartX);
+        geoPanY = dragOriginY + (event.clientY - dragStartY);
+        applyGeoTransform();
       });
-      mapInstance.on('error', (event) => {
-        console.warn('Mapbox map error', event?.error || event);
-        mapCanvas.classList.add('is-error');
-      });
-    }).catch(() => {
-      if (mapCanvas) mapCanvas.classList.add('is-error');
-    });
+      const endDrag = () => { isDragging = false; };
+      map.addEventListener('pointerup', endDrag);
+      map.addEventListener('pointercancel', endDrag);
+      map.addEventListener('pointerleave', endDrag);
+      map.addEventListener('wheel', (event) => {
+        event.preventDefault();
+        const delta = event.deltaY < 0 ? 0.08 : -0.08;
+        geoZoom = Math.max(1, Math.min(1.8, geoZoom + delta));
+        applyGeoTransform();
+      }, { passive: false });
+      applyGeoTransform();
+    }
+    setRegion(selectedRegionId, { scroll: false });
   }
 
   if (config.mode !== 'geo') {
