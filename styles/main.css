@@ -139,11 +139,13 @@ body.nav-open .mouse-glow { opacity: 0; }
 .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--text); }
 
 /* Nav dropdown / mega-menu */
-.nav-dropdown { position: relative; }
+.nav-dropdown { position: relative; padding-bottom: 14px; margin-bottom: -14px; }
 .nav-dropdown > a { cursor: pointer; }
-.nav-mega { position: absolute; top: calc(100% + 20px); left: 50%; transform: translateX(-50%); width: 680px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.25); opacity: 0; visibility: hidden; transition: opacity 0.3s ease, transform 0.3s ease; transform: translateX(-50%) translateY(8px); pointer-events: none; }
+.nav-mega { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px); width: 680px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.25); opacity: 0; visibility: hidden; transition: opacity 0.18s var(--ease-out), transform 0.18s var(--ease-out); pointer-events: none; }
 .nav-dropdown:hover .nav-mega,
 .nav-dropdown:focus-within .nav-mega { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+.nav-dropdown:hover > a,
+.nav-dropdown:focus-within > a { color: var(--text); }
 .nav-mega-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .nav-mega-item { display: block; padding: 14px 16px; border-radius: 8px; transition: background 0.2s ease; }
 .nav-mega-item:hover { background: var(--accent-light); }
