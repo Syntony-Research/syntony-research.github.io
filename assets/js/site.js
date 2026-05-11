@@ -1234,7 +1234,7 @@ function buildGeoVisual(config) {
           </div>
           <div class="geo-hint">Click a marker or row. Drag to pan. Scroll to zoom.</div>
           <div class="geo-map-stage" data-geo-map-stage style="--geo-zoom:1;">
-            <img class="geo-map-image" src="/assets/world-map.svg" alt="" aria-hidden="true">
+            <img class="geo-map-image" src="/assets/world-map-v2.svg" alt="" aria-hidden="true">
             <div class="geo-graticule" aria-hidden="true"></div>
             <div class="geo-markers" data-geo-markers>${markers}</div>
           </div>
