@@ -197,6 +197,77 @@ function initCalEmbed() {
   // Cal.com embed is now handled by the official Cal SDK inline script
 }
 
+function initGovernanceLagPanel() {
+  const panel = document.querySelector('[data-report-lag-panel]');
+  if (!panel) return;
+
+  const sectors = {
+    defence: {
+      score: 78,
+      kicker: 'Defence procurement and autonomous systems',
+      title: 'Decision rights move slower than deployment pressure.',
+      copy: 'Ukraine shows how feedback loops tighten when experimentation is close to operators. Broader European procurement still adds review cycles across national, EU, NATO, and minilateral authorities.',
+      values: [82, 76, 48, 42],
+      rotation: '-18deg',
+      scale: '1.03'
+    },
+    energy: {
+      score: 65,
+      kicker: 'Energy infrastructure and smart grids',
+      title: 'Technical readiness is ahead of institutional test capacity.',
+      copy: 'AI-enabled grid tools are available, but operators face overlapping AI Act, GDPR, NIS2, electricity market, and Data Act obligations before evidence can become a deployment decision.',
+      values: [74, 70, 44, 39],
+      rotation: '12deg',
+      scale: '0.95'
+    },
+    finance: {
+      score: 58,
+      kicker: 'Financial services and algorithmic markets',
+      title: 'Supervisory language trails emergent market behavior.',
+      copy: 'Algorithmic trading has scaled faster than oversight practice. The weak point is not formal authority, but evidence standards for opacity, interaction effects, and escalation thresholds.',
+      values: [80, 64, 42, 34],
+      rotation: '34deg',
+      scale: '0.9'
+    },
+    health: {
+      score: 71,
+      kicker: 'Public health and biosurveillance',
+      title: 'Fragmented capacity leaves biological AI poorly covered.',
+      copy: 'Surveillance delays and uneven capacity become more serious when biological AI capabilities relevant to protein design, pathogen evolution, and biosecurity sit outside the usual governance frame.',
+      values: [76, 68, 46, 38],
+      rotation: '-34deg',
+      scale: '0.98'
+    }
+  };
+
+  const score = panel.querySelector('[data-lag-score]');
+  const kicker = panel.querySelector('[data-lag-kicker]');
+  const title = panel.querySelector('[data-lag-title]');
+  const copy = panel.querySelector('[data-lag-copy]');
+  const bars = Array.from(panel.querySelectorAll('.lag-bar'));
+  const tabs = Array.from(panel.querySelectorAll('[data-lag-sector]'));
+  const ringA = panel.querySelector('.lag-orbit-ring-a');
+  const ringB = panel.querySelector('.lag-orbit-ring-b');
+
+  const setSector = (key) => {
+    const sector = sectors[key] || sectors.defence;
+    score.textContent = sector.score;
+    kicker.textContent = sector.kicker;
+    title.textContent = sector.title;
+    copy.textContent = sector.copy;
+    bars.forEach((bar, index) => bar.style.setProperty('--value', sector.values[index]));
+    if (ringA) ringA.style.setProperty('--ring-rotate', sector.rotation);
+    if (ringB) ringB.style.setProperty('--ring-scale', sector.scale);
+    tabs.forEach((tab) => {
+      const active = tab.dataset.lagSector === key;
+      tab.classList.toggle('is-active', active);
+      tab.setAttribute('aria-pressed', String(active));
+    });
+  };
+
+  tabs.forEach((tab) => tab.addEventListener('click', () => setSector(tab.dataset.lagSector)));
+}
+
 function initForms() {
   document.querySelectorAll('form').forEach((form) => {
     form.addEventListener('submit', (event) => {
@@ -1227,6 +1298,7 @@ function initPageVisuals() {
   initFaq();
   initHeroAbstracts();
   initCalEmbed();
+  initGovernanceLagPanel();
   initForms();
   initTracking();
   initBreadcrumbSchema();

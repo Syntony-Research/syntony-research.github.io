@@ -39,9 +39,11 @@
           <p>Author: Nathan Heath</p>
           <p>Date: May 2026</p>
           <p>Length: 22 pages</p>
-          <p><a href="/assets/reports/governance-lag-emerging-technology-adaptation-europe.pdf" download>Download PDF</a></p>
-          <p><a href="#pdf-viewer">Open viewer</a></p>
-          <p><a href="/research/">Back to research</a></p>
+          <div class="article-aside-actions">
+            <a class="aside-primary-link" href="/assets/reports/governance-lag-emerging-technology-adaptation-europe.pdf" download>Download PDF</a>
+            <a href="#pdf-viewer">Open viewer</a>
+            <a href="/research/">Back to research</a>
+          </div>
         </aside>
 
         <article class="article-body prose">
@@ -49,18 +51,59 @@
           <p>Europe's AI governance problem is often described as a regulatory problem. This report argues that the deeper constraint is organizational. Across defence, energy infrastructure, financial services, and public health, AI-enabled systems are moving faster than institutions can evaluate them, assign decision rights, update controls, and adapt in practice.</p>
           <p>The report calls that gap <strong>governance lag</strong>: the distance between the speed of technology deployment and the pace of institutional oversight. Rules can exist on paper while governance still fails in practice. That is the recurring pattern across the four sectors examined here.</p>
 
+          <section id="pdf-viewer" class="pdf-section pdf-section-top" aria-labelledby="pdf-title">
+            <div class="pdf-section-head">
+              <div>
+                <span class="label">PDF viewer</span>
+                <h2 id="pdf-title">Read the full report</h2>
+              </div>
+              <div class="pdf-actions">
+                <a class="btn-dark" href="/assets/reports/governance-lag-emerging-technology-adaptation-europe.pdf" download>Download PDF <span class="btn-arrow">→</span></a>
+                <a class="btn-outline" href="/assets/reports/governance-lag-emerging-technology-adaptation-europe.pdf" target="_blank" rel="noopener noreferrer">Open in new tab</a>
+              </div>
+            </div>
+            <iframe class="pdf-viewer" src="/assets/reports/governance-lag-emerging-technology-adaptation-europe.pdf#view=FitH" title="Governance Lag and Emerging Technology Adaptation in Europe PDF"></iframe>
+          </section>
+
           <h2>The core finding</h2>
           <p>The strongest European institutions usually have the front half of governance in place. They can <em>Govern</em> and <em>Map</em>: write frameworks, assign formal obligations, and identify risk categories. The weak points are <em>Measure</em> and <em>Manage</em>: testing deployed systems, acting on evidence, changing course, pausing deployment, or escalating to a named decision owner.</p>
           <p>That distinction matters. A governance framework that cannot measure deployed systems or change operations after evidence arrives is not a functioning control system. It is documentation.</p>
 
-          <div class="interactive-panel report-stat-panel">
-            <h3>Governance Lag Screen</h3>
-            <p>The report uses a Syntony Research screen built from three variables: release cadence, review cadence, and coverage of the NIST AI RMF functions: Govern, Map, Measure, and Manage.</p>
-            <div class="report-score-grid" aria-label="Illustrative governance lag scores by sector">
-              <div class="report-score"><span>Defence and autonomous systems</span><strong>78</strong><meter min="0" max="100" value="78">78</meter></div>
-              <div class="report-score"><span>Public health and biosurveillance</span><strong>71</strong><meter min="0" max="100" value="71">71</meter></div>
-              <div class="report-score"><span>Energy infrastructure</span><strong>65</strong><meter min="0" max="100" value="65">65</meter></div>
-              <div class="report-score"><span>Financial services</span><strong>58</strong><meter min="0" max="100" value="58">58</meter></div>
+          <div class="interactive-panel report-lag-panel" data-report-lag-panel>
+            <div class="report-lag-head">
+              <div>
+                <span class="label">Interactive screen</span>
+                <h3>Governance Lag Operating Screen</h3>
+              </div>
+              <p>Scores are an interpretive screen derived from the report's cross-sector cases: release cadence, review cadence, and coverage across the NIST AI RMF functions. Select a sector to see where oversight breaks down.</p>
+            </div>
+            <div class="report-lag-grid">
+              <div class="lag-orbit" aria-hidden="true">
+                <div class="lag-orbit-ring lag-orbit-ring-a"></div>
+                <div class="lag-orbit-ring lag-orbit-ring-b"></div>
+                <div class="lag-orbit-score"><span data-lag-score>78</span><small>Lag pressure</small></div>
+                <div class="lag-axis lag-axis-govern"><span>Govern</span></div>
+                <div class="lag-axis lag-axis-map"><span>Map</span></div>
+                <div class="lag-axis lag-axis-measure"><span>Measure</span></div>
+                <div class="lag-axis lag-axis-manage"><span>Manage</span></div>
+              </div>
+              <div class="lag-detail" aria-live="polite">
+                <div class="lag-sector-kicker" data-lag-kicker>Defence procurement and autonomous systems</div>
+                <h4 data-lag-title>Decision rights move slower than deployment pressure.</h4>
+                <p data-lag-copy>Ukraine shows how feedback loops tighten when experimentation is close to operators. Broader European procurement still adds review cycles across national, EU, NATO, and minilateral authorities.</p>
+                <div class="lag-bars" aria-label="NIST AI RMF function coverage">
+                  <div class="lag-bar" style="--value: 82"><span>Govern</span><i></i></div>
+                  <div class="lag-bar" style="--value: 76"><span>Map</span><i></i></div>
+                  <div class="lag-bar" style="--value: 48"><span>Measure</span><i></i></div>
+                  <div class="lag-bar" style="--value: 42"><span>Manage</span><i></i></div>
+                </div>
+              </div>
+            </div>
+            <div class="lag-sector-tabs" role="tablist" aria-label="Governance lag sectors">
+              <button class="lag-sector-tab is-active" type="button" data-lag-sector="defence" aria-pressed="true">Defence</button>
+              <button class="lag-sector-tab" type="button" data-lag-sector="energy" aria-pressed="false">Energy</button>
+              <button class="lag-sector-tab" type="button" data-lag-sector="finance" aria-pressed="false">Finance</button>
+              <button class="lag-sector-tab" type="button" data-lag-sector="health" aria-pressed="false">Public health</button>
             </div>
           </div>
 
@@ -77,19 +120,6 @@
           <h2>From lag to velocity</h2>
           <p>The report closes with three design principles for reducing governance lag. First, name decision rights for specific deployment contexts. Second, use bounded experimentation so institutions can learn before full deployment. Third, build operational governance coverage, especially the ability to measure deployed systems and manage risk after evidence arrives.</p>
           <p>The practical artifact is an evidence register: a living record that separates observation, inference, confidence, severity, decision owner, and governance trigger. It gives institutions a way to turn evaluation evidence into action rather than letting it sit in a report.</p>
-
-          <section id="pdf-viewer" class="pdf-section" aria-labelledby="pdf-title">
-            <div class="pdf-section-head">
-              <div>
-                <span class="label">PDF</span>
-                <h2 id="pdf-title">Read the full report</h2>
-              </div>
-              <a class="btn-dark" href="/assets/reports/governance-lag-emerging-technology-adaptation-europe.pdf" download>Download PDF <span class="btn-arrow">→</span></a>
-            </div>
-            <object class="pdf-viewer" data="/assets/reports/governance-lag-emerging-technology-adaptation-europe.pdf" type="application/pdf">
-              <p>Your browser cannot display the PDF inline. <a href="/assets/reports/governance-lag-emerging-technology-adaptation-europe.pdf" download>Download the report instead.</a></p>
-            </object>
-          </section>
 
           <h2>Citation</h2>
           <p>Heath, Nathan. <em>Governance Lag and Emerging Technology Adaptation in Europe: A Cross-Sector Analysis of Institutional Readiness for AI-Enabled Systems.</em> Syntony Research, May 2026.</p>
