@@ -1001,14 +1001,15 @@ function loadMapbox() {
 }
 
 function buildCardVisual(config) {
-  const cards = config.cards.map((card) => `
-    <article class="visual-card">
+  const firstCard = config.cards[0];
+  const cards = config.cards.map((card, index) => `
+    <button class="visual-card visual-card--button${index === 0 ? ' is-active' : ''}" type="button" data-visual-card-index="${index}">
       <span class="visual-card-kicker">${card.title}</span>
       <p>${card.copy}</p>
       <ul>
         ${card.points.map((point) => `<li>${point}</li>`).join('')}
       </ul>
-    </article>
+    </button>
   `).join('');
 
   return `
@@ -1018,7 +1019,17 @@ function buildCardVisual(config) {
         <h2>${config.title}</h2>
         <p>${config.intro}</p>
       </div>
-      <div class="visual-grid">${cards}</div>
+      <div class="visual-panel__body visual-panel__body--cards">
+        <aside class="visual-focus" data-visual-focus>
+          <span class="label">Selected lens</span>
+          <h3 data-visual-focus-title>${firstCard.title}</h3>
+          <p data-visual-focus-copy>${firstCard.copy}</p>
+          <div class="visual-focus-points" data-visual-focus-points>
+            ${firstCard.points.map((point) => `<span class="visual-focus-chip">${point}</span>`).join('')}
+          </div>
+        </aside>
+        <div class="visual-grid visual-grid--interactive">${cards}</div>
+      </div>
     </div>
   `;
 }
@@ -1188,7 +1199,6 @@ function initPageVisuals() {
       mapInstance.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'bottom-right');
       mapInstance.on('load', () => {
         mapCanvas.classList.add('is-ready');
-        mapCanvas.style.backgroundImage = 'none';
         mapInstance.resize();
         mapInstance.addSource('geo-regions', { type: 'geojson', data: featureCollection });
         mapInstance.addLayer({
@@ -1253,8 +1263,34 @@ function initPageVisuals() {
         mapCanvas.classList.add('is-error');
       });
     }).catch(() => {
-      if (mapCanvas) mapCanvas.innerHTML = '';
+      if (mapCanvas) mapCanvas.classList.add('is-error');
     });
+  }
+
+  if (config.mode !== 'geo') {
+    const focusTitle = section.querySelector('[data-visual-focus-title]');
+    const focusCopy = section.querySelector('[data-visual-focus-copy]');
+    const focusPoints = section.querySelector('[data-visual-focus-points]');
+    const cards = Array.from(section.querySelectorAll('[data-visual-card-index]'));
+    if (focusTitle && focusCopy && focusPoints && cards.length) {
+      const setCard = (index) => {
+        const card = config.cards[index];
+        if (!card) return;
+        focusTitle.textContent = card.title;
+        focusCopy.textContent = card.copy;
+        focusPoints.innerHTML = card.points.map((point) => `<span class="visual-focus-chip">${point}</span>`).join('');
+        cards.forEach((button) => {
+          const active = Number(button.dataset.visualCardIndex) === index;
+          button.classList.toggle('is-active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+      };
+
+      cards.forEach((button) => {
+        button.addEventListener('click', () => setCard(Number(button.dataset.visualCardIndex)));
+      });
+      setCard(0);
+    }
   }
 }
 
