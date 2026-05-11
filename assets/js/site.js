@@ -704,13 +704,13 @@ const PAGE_VISUALS = {
   '/research/': {
     mode: 'cards',
     kicker: 'Research map',
-    title: 'Public work, external references, and the topics behind them',
-    intro: 'The research page is easiest to use when the publication record and the adjacent reading list are visually distinct.',
+    title: 'Reports, verified papers, and the topics behind them',
+    intro: 'The research page separates original Syntony reports, verified papers, and external references so the record stays clear.',
     cards: [
       {
-        title: 'Verified papers',
-        copy: 'Only externally verifiable papers are listed as publications.',
-        points: ['arXiv', 'Real record', 'Clear status']
+        title: 'Original reports',
+        copy: 'Syntony reports turn emerging-technology risk into concrete governance questions, evidence standards, and decision artifacts.',
+        points: ['PDF', 'Governance lag', 'Decision use']
       },
       {
         title: 'Related reading',
@@ -721,6 +721,29 @@ const PAGE_VISUALS = {
         title: 'Research areas',
         copy: 'The site focuses on evaluation methodology, governance lag, risk characterization, and framework design.',
         points: ['Method', 'Governance', 'Frameworks']
+      }
+    ]
+  },
+  '/research/governance-lag-europe/': {
+    mode: 'cards',
+    kicker: 'Report frame',
+    title: 'Governance lag is an organizational problem',
+    intro: 'The report tracks the gap between fast AI-enabled deployment and slow institutional oversight across European defence, energy, finance, and public health.',
+    cards: [
+      {
+        title: 'Screen',
+        copy: 'The Governance Lag Screen compares release cadence, review cadence, and coverage of Govern, Map, Measure, and Manage.',
+        points: ['Cadence', 'NIST AI RMF', 'Coverage']
+      },
+      {
+        title: 'Pattern',
+        copy: 'European institutions usually have rules and risk maps. The weaker functions are operational measurement and active management.',
+        points: ['Measure', 'Manage', 'Feedback']
+      },
+      {
+        title: 'Use',
+        copy: 'The practical output is an evidence register that ties findings to owners, confidence, severity, and governance triggers.',
+        points: ['Evidence', 'Owners', 'Triggers']
       }
     ]
   },
