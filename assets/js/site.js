@@ -1017,8 +1017,16 @@ function buildGeoVisual(config) {
       </div>
       <div class="visual-panel__body">
         <div class="geo-map" data-geo-map>
-          <img class="geo-map-image" src="https://www.simplemaplab.com/maps/blank/world.svg" alt="World map showing country outlines" loading="lazy" decoding="async">
-          <div class="geo-pin-layer">${pins}</div>
+          <div class="geo-controls" aria-label="Map controls">
+            <button class="geo-control" type="button" data-geo-zoom="out">−</button>
+            <button class="geo-control" type="button" data-geo-zoom="reset">Reset</button>
+            <button class="geo-control" type="button" data-geo-zoom="in">+</button>
+          </div>
+          <div class="geo-hint">Drag to pan. Scroll to zoom.</div>
+          <div class="geo-stage" data-geo-stage>
+            <img class="geo-map-image" src="https://www.simplemaplab.com/maps/blank/world.svg" alt="World map showing country outlines" loading="lazy" decoding="async">
+            <div class="geo-pin-layer">${pins}</div>
+          </div>
         </div>
         <aside class="visual-panel__sidebar">
           <div class="geo-detail" data-geo-detail>
@@ -1053,8 +1061,33 @@ function initPageVisuals() {
     const detailName = section.querySelector('[data-geo-name]');
     const detailNote = section.querySelector('[data-geo-note]');
     const detailSignals = section.querySelector('[data-geo-signals]');
+    const stage = section.querySelector('[data-geo-stage]');
+    const map = section.querySelector('[data-geo-map]');
+    const zoomButtons = Array.from(section.querySelectorAll('[data-geo-zoom]'));
     const pins = Array.from(section.querySelectorAll('[data-geo-region]'));
     const rows = Array.from(section.querySelectorAll('[data-geo-row]'));
+    let scale = 1;
+    let panX = 0;
+    let panY = 0;
+    let dragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let panStartX = 0;
+    let panStartY = 0;
+
+    const applyTransform = () => {
+      if (!stage) return;
+      stage.style.setProperty('--geo-scale', scale.toFixed(3));
+      stage.style.setProperty('--geo-pan-x', `${panX}px`);
+      stage.style.setProperty('--geo-pan-y', `${panY}px`);
+    };
+
+    const clampScale = (next) => Math.max(0.85, Math.min(1.65, next));
+
+    const zoom = (delta) => {
+      scale = clampScale(scale + delta);
+      applyTransform();
+    };
 
     const setRegion = (regionId) => {
       const region = config.regions.find((entry) => entry.id === regionId) || config.regions[0];
@@ -1068,6 +1101,50 @@ function initPageVisuals() {
 
     pins.forEach((pin) => pin.addEventListener('click', () => setRegion(pin.dataset.geoRegion)));
     rows.forEach((row) => row.addEventListener('click', () => setRegion(row.dataset.geoRow)));
+    zoomButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const action = button.dataset.geoZoom;
+        if (action === 'in') zoom(0.12);
+        if (action === 'out') zoom(-0.12);
+        if (action === 'reset') {
+          scale = 1;
+          panX = 0;
+          panY = 0;
+          applyTransform();
+        }
+      });
+    });
+
+    const onPointerDown = (event) => {
+      dragging = true;
+      map?.setPointerCapture?.(event.pointerId);
+      dragStartX = event.clientX;
+      dragStartY = event.clientY;
+      panStartX = panX;
+      panStartY = panY;
+      map?.classList.add('is-dragging');
+    };
+    const onPointerMove = (event) => {
+      if (!dragging) return;
+      panX = panStartX + (event.clientX - dragStartX);
+      panY = panStartY + (event.clientY - dragStartY);
+      applyTransform();
+    };
+    const onPointerUp = () => {
+      dragging = false;
+      map?.classList.remove('is-dragging');
+    };
+
+    map?.addEventListener('pointerdown', onPointerDown);
+    map?.addEventListener('pointermove', onPointerMove);
+    map?.addEventListener('pointerup', onPointerUp);
+    map?.addEventListener('pointercancel', onPointerUp);
+    map?.addEventListener('wheel', (event) => {
+      event.preventDefault();
+      zoom(event.deltaY > 0 ? -0.05 : 0.05);
+    }, { passive: false });
+
+    applyTransform();
     setRegion(config.regions[0]?.id);
   }
 }
