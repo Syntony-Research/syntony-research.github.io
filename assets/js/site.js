@@ -1238,6 +1238,7 @@ function buildGeoVisual(config) {
             <div class="geo-graticule" aria-hidden="true"></div>
             <div class="geo-markers" data-geo-markers>${markers}</div>
           </div>
+          <div class="geo-source">Country boundaries: public GeoJSON · Syntony overlay</div>
         </div>
         <aside class="visual-panel__sidebar">
           <div class="geo-detail" data-geo-detail>
