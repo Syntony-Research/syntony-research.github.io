@@ -968,29 +968,36 @@ function projectLonLat(lon, lat) {
   };
 }
 
-let leafletLoaderPromise = null;
-function loadLeaflet() {
-  if (window.L) return Promise.resolve(window.L);
-  if (leafletLoaderPromise) return leafletLoaderPromise;
+const MAPBOX_ACCESS_TOKEN = [
+  'pk.eyJ1IjoibmF0aGFuaGVhdGg5MiIsImEiOiJjbXAxOHk2YjAwMnAwMnBweDMyZHd0NHkyIn0',
+  '.kc0UpdCp99AV9diZ1vuYiA'
+].join('');
+let mapboxLoaderPromise = null;
+function loadMapbox() {
+  if (window.mapboxgl) return Promise.resolve(window.mapboxgl);
+  if (mapboxLoaderPromise) return mapboxLoaderPromise;
 
-  leafletLoaderPromise = new Promise((resolve, reject) => {
-    if (!document.querySelector('link[data-leaflet-css]')) {
+  mapboxLoaderPromise = new Promise((resolve, reject) => {
+    if (!document.querySelector('link[data-mapbox-css]')) {
       const link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-      link.setAttribute('data-leaflet-css', 'true');
+      link.href = 'https://api.mapbox.com/mapbox-gl-js/v3.6.2/mapbox-gl.css';
+      link.setAttribute('data-mapbox-css', 'true');
       document.head.appendChild(link);
     }
 
     const script = document.createElement('script');
-    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    script.src = 'https://api.mapbox.com/mapbox-gl-js/v3.6.2/mapbox-gl.js';
     script.async = true;
-    script.onload = () => resolve(window.L);
-    script.onerror = () => reject(new Error('Leaflet failed to load'));
+    script.onload = () => {
+      window.mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+      resolve(window.mapboxgl);
+    };
+    script.onerror = () => reject(new Error('Mapbox GL JS failed to load'));
     document.head.appendChild(script);
   });
 
-  return leafletLoaderPromise;
+  return mapboxLoaderPromise;
 }
 
 function buildCardVisual(config) {
@@ -1039,7 +1046,7 @@ function buildGeoVisual(config) {
             <button class="geo-control" type="button" data-geo-zoom="in">+</button>
           </div>
           <div class="geo-hint">Click a marker or row. Drag to pan. Scroll to zoom.</div>
-          <div class="geo-leaflet-map" data-geo-map-canvas></div>
+          <div class="geo-map-canvas" data-geo-map-canvas></div>
         </div>
         <aside class="visual-panel__sidebar">
           <div class="geo-detail" data-geo-detail>
@@ -1079,45 +1086,76 @@ function initPageVisuals() {
     const rows = Array.from(section.querySelectorAll('[data-geo-row]'));
     const mapCanvas = section.querySelector('[data-geo-map-canvas]');
     let mapInstance = null;
-    let activeMarker = null;
-    const markerByRegion = new Map();
-    const activeStyle = {
-      radius: 10,
-      color: '#E2C978',
-      weight: 2,
-      fillColor: '#D0AE55',
-      fillOpacity: 0.95
-    };
-    const baseStyle = {
-      radius: 8,
-      color: '#D0AE55',
-      weight: 1.5,
-      fillColor: '#D0AE55',
-      fillOpacity: 0.28
+    let mapboxLib = null;
+    let selectedRegionId = config.regions[0]?.id || null;
+    let popup = null;
+
+    const featureCollection = {
+      type: 'FeatureCollection',
+      features: config.regions.map((region) => ({
+        type: 'Feature',
+        id: region.id,
+        properties: {
+          id: region.id,
+          name: region.name,
+          note: region.note,
+          signal: region.signals[0]
+        },
+        geometry: {
+          type: 'Point',
+          coordinates: [region.lon, region.lat]
+        }
+      }))
     };
 
-    const setRegion = (regionId) => {
-      const region = config.regions.find((entry) => entry.id === regionId) || config.regions[0];
+    const selectedRegion = () => config.regions.find((entry) => entry.id === selectedRegionId) || config.regions[0];
+
+    const updateFeatureStates = () => {
+      if (!mapInstance || !mapInstance.getSource('geo-regions')) return;
+      config.regions.forEach((region) => {
+        mapInstance.setFeatureState(
+          { source: 'geo-regions', id: region.id },
+          { selected: region.id === selectedRegionId }
+        );
+      });
+    };
+
+    const setRegion = (regionId, options = {}) => {
+      selectedRegionId = regionId;
+      const region = selectedRegion();
       if (!region) return;
       detailName.textContent = region.name;
       detailNote.textContent = region.note;
       detailSignals.innerHTML = region.signals.map((signal) => `<span class="geo-signal">${signal}</span>`).join('');
       rows.forEach((row) => row.classList.toggle('is-active', row.dataset.geoRow === region.id));
+      rows.forEach((row) => row.setAttribute('aria-pressed', String(row.dataset.geoRow === region.id)));
       const row = rows.find((entry) => entry.dataset.geoRow === region.id);
-      row?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-
-      if (activeMarker && activeMarker !== markerByRegion.get(region.id)) {
-        activeMarker.setStyle(baseStyle);
+      if (options.scroll !== false) {
+        row?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       }
-      const marker = markerByRegion.get(region.id);
-      if (marker) {
-        marker.setStyle(activeStyle);
-        activeMarker = marker;
-        if (mapInstance) mapInstance.flyTo(marker.getLatLng(), Math.max(mapInstance.getZoom(), 3), { duration: 0.55 });
+      updateFeatureStates();
+      if (mapInstance) {
+        const nextZoom = Math.max(mapInstance.getZoom(), 2.8);
+        mapInstance.flyTo({
+          center: [region.lon, region.lat],
+          zoom: nextZoom,
+          essential: true,
+          duration: 650
+        });
+        if (popup) popup.remove();
+        popup = new mapboxLib.Popup({ closeButton: false, closeOnClick: false, offset: 16 })
+          .setLngLat([region.lon, region.lat])
+          .setHTML(`
+            <div class="geo-popup">
+              <div class="geo-popup-title">${region.name}</div>
+              <div class="geo-popup-note">${region.note}</div>
+              <div class="geo-popup-signal">${region.signals[0]}</div>
+            </div>
+          `)
+          .addTo(mapInstance);
       }
     };
 
-    pins.forEach((pin) => pin.addEventListener('click', () => setRegion(pin.dataset.geoRegion)));
     rows.forEach((row) => row.addEventListener('click', () => setRegion(row.dataset.geoRow)));
     zoomButtons.forEach((button) => {
       button.addEventListener('click', () => {
@@ -1125,39 +1163,84 @@ function initPageVisuals() {
         const action = button.dataset.geoZoom;
         if (action === 'in') mapInstance.zoomIn();
         if (action === 'out') mapInstance.zoomOut();
-        if (action === 'reset') mapInstance.flyTo([20, 10], 2, { duration: 0.55 });
+        if (action === 'reset') mapInstance.flyTo({ center: [10, 20], zoom: 2, essential: true, duration: 650 });
       });
     });
 
-    loadLeaflet().then((L) => {
+    loadMapbox().then((mapboxgl) => {
+      mapboxLib = mapboxgl;
       if (!mapCanvas) return;
-      mapInstance = L.map(mapCanvas, {
-        zoomControl: false,
+      mapInstance = new mapboxgl.Map({
+        container: mapCanvas,
+        style: 'mapbox://styles/mapbox/dark-v11',
+        center: [10, 20],
+        zoom: 2,
+        minZoom: 1.4,
+        maxZoom: 5.5,
         attributionControl: false,
-        scrollWheelZoom: true,
-        worldCopyJump: true,
-        minZoom: 2,
-        maxZoom: 6
-      }).setView([20, 10], 2);
-
-      L.tileLayer('https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        subdomains: 'abcd',
-        maxZoom: 19,
-        opacity: 0.94
-      }).addTo(mapInstance);
-
-      config.regions.forEach((region) => {
-        const marker = L.circleMarker([region.lat, region.lon], baseStyle).addTo(mapInstance);
-        marker.bindTooltip(region.name, { direction: 'top', opacity: 0.9, sticky: true });
-        marker.on('click', () => setRegion(region.id));
-        markerByRegion.set(region.id, marker);
+        cooperativeGestures: true,
+        projection: 'mercator'
       });
 
-      mapInstance.on('click', () => {
-        if (activeMarker) activeMarker.openTooltip();
+      mapInstance.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'bottom-right');
+      mapInstance.on('load', () => {
+        mapInstance.addSource('geo-regions', { type: 'geojson', data: featureCollection });
+        mapInstance.addLayer({
+          id: 'geo-regions-glow',
+          type: 'circle',
+          source: 'geo-regions',
+          paint: {
+            'circle-radius': [
+              'case',
+              ['boolean', ['feature-state', 'selected'], false],
+              16,
+              12
+            ],
+            'circle-color': 'rgba(208,174,85,0.18)',
+            'circle-blur': 0.7,
+            'circle-opacity': 0.95
+          }
+        });
+        mapInstance.addLayer({
+          id: 'geo-regions',
+          type: 'circle',
+          source: 'geo-regions',
+          paint: {
+            'circle-radius': [
+              'case',
+              ['boolean', ['feature-state', 'selected'], false],
+              9,
+              7
+            ],
+            'circle-color': [
+              'case',
+              ['boolean', ['feature-state', 'selected'], false],
+              '#F4EEE2',
+              '#D0AE55'
+            ],
+            'circle-stroke-width': [
+              'case',
+              ['boolean', ['feature-state', 'selected'], false],
+              3,
+              2
+            ],
+            'circle-stroke-color': '#07111D',
+            'circle-opacity': 0.96
+          }
+        });
+        mapInstance.on('click', 'geo-regions', (event) => {
+          const feature = event.features?.[0];
+          if (feature?.properties?.id) setRegion(feature.properties.id, { scroll: true });
+        });
+        mapInstance.on('mouseenter', 'geo-regions', () => {
+          mapCanvas.style.cursor = 'pointer';
+        });
+        mapInstance.on('mouseleave', 'geo-regions', () => {
+          mapCanvas.style.cursor = '';
+        });
+        updateFeatureStates();
+        setRegion(selectedRegionId, { scroll: false });
       });
-
-      setRegion(config.regions[0]?.id);
     }).catch(() => {
       if (mapCanvas) mapCanvas.innerHTML = '';
     });
