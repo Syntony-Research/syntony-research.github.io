@@ -268,6 +268,106 @@ function initGovernanceLagPanel() {
   tabs.forEach((tab) => tab.addEventListener('click', () => setSector(tab.dataset.lagSector)));
 }
 
+function initResearchConsole() {
+  const consolePanel = document.querySelector('[data-research-console]');
+  if (!consolePanel) return;
+
+  const focus = {
+    redagent: {
+      score: 87,
+      kicker: 'Operational evaluation',
+      title: 'Red-team evidence has to survive contact with real providers.',
+      copy: 'Red-Agent separates model behavior from execution brittleness, then preserves traces, tables, and reports that can be reviewed later.'
+    },
+    mona: {
+      score: 74,
+      kicker: 'Reward-hacking mitigation',
+      title: 'Safety work needs reproducible environments and careful interpretation.',
+      copy: 'The MONA extension focuses on what can be reproduced, what changed, and how learned approval should be handled when evidence is incomplete.'
+    },
+    lag: {
+      score: 81,
+      kicker: 'Institutional readiness',
+      title: 'Rules are not enough if institutions cannot measure and manage systems in use.',
+      copy: 'The governance lag work tracks the distance between deployment speed and oversight cadence across European defence, energy, finance, and health systems.'
+    },
+    geo: {
+      score: 79,
+      kicker: 'Geopolitical pressure',
+      title: 'AI infrastructure turns into statecraft through bottlenecks.',
+      copy: 'Compute access, export controls, standards bodies, energy constraints, and semiconductor chokepoints shape where AI risk becomes geopolitical risk.'
+    }
+  };
+
+  const score = consolePanel.querySelector('[data-research-console-score]');
+  const kicker = consolePanel.querySelector('[data-research-console-kicker]');
+  const title = consolePanel.querySelector('[data-research-console-title]');
+  const copy = consolePanel.querySelector('[data-research-console-copy]');
+  const tabs = Array.from(consolePanel.querySelectorAll('[data-research-focus]'));
+
+  const setFocus = (key) => {
+    const item = focus[key] || focus.redagent;
+    score.textContent = item.score;
+    kicker.textContent = item.kicker;
+    title.textContent = item.title;
+    copy.textContent = item.copy;
+    tabs.forEach((tab) => {
+      const active = tab.dataset.researchFocus === key;
+      tab.classList.toggle('is-active', active);
+      tab.setAttribute('aria-pressed', String(active));
+    });
+  };
+
+  tabs.forEach((tab) => tab.addEventListener('click', () => setFocus(tab.dataset.researchFocus)));
+}
+
+function initRedAgentConsole() {
+  const panel = document.querySelector('[data-redagent-console]');
+  if (!panel) return;
+
+  const layers = {
+    taxonomy: {
+      kicker: 'Fixed campaign design',
+      title: 'Twenty probes mapped to an ATT&CK-inspired taxonomy.',
+      copy: 'The framework keeps the campaign stable across providers so model behavior can be compared without silently changing the test instrument.'
+    },
+    execution: {
+      kicker: 'Multi-provider execution',
+      title: 'Provider behavior is part of the evaluation record.',
+      copy: 'The run tracks execution errors, provider reachability, and response availability so operational brittleness is not mistaken for safety behavior.'
+    },
+    reachability: {
+      kicker: 'Operational reachability',
+      title: 'A refusal score is not enough if the probe never reached the model.',
+      copy: 'Reachability accounting separates target behavior from failures in routing, rate limits, infrastructure, or instrumentation.'
+    },
+    artifacts: {
+      kicker: 'Audit-ready package',
+      title: 'Reports, JSONL traces, summary tables, and figures travel together.',
+      copy: 'Artifact-complete reporting lets later reviewers inspect evidence instead of relying on a compressed narrative or a single headline metric.'
+    }
+  };
+
+  const kicker = panel.querySelector('[data-redagent-kicker]');
+  const title = panel.querySelector('[data-redagent-title]');
+  const copy = panel.querySelector('[data-redagent-copy]');
+  const buttons = Array.from(panel.querySelectorAll('[data-redagent-layer]'));
+
+  const setLayer = (key) => {
+    const layer = layers[key] || layers.taxonomy;
+    kicker.textContent = layer.kicker;
+    title.textContent = layer.title;
+    copy.textContent = layer.copy;
+    buttons.forEach((button) => {
+      const active = button.dataset.redagentLayer === key;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+  };
+
+  buttons.forEach((button) => button.addEventListener('click', () => setLayer(button.dataset.redagentLayer)));
+}
+
 function initForms() {
   document.querySelectorAll('form').forEach((form) => {
     form.addEventListener('submit', (event) => {
@@ -775,23 +875,23 @@ const PAGE_VISUALS = {
   '/research/': {
     mode: 'cards',
     kicker: 'Research map',
-    title: 'Reports, verified papers, and the topics behind them',
-    intro: 'The research page separates original Syntony reports, verified papers, and external references so the record stays clear.',
+    title: 'AI safety, red-team operations, and geopolitical technology risk',
+    intro: 'The research page now centers Syntony-authored publications and the operating questions behind them.',
     cards: [
       {
-        title: 'Original reports',
-        copy: 'Syntony reports turn emerging-technology risk into concrete governance questions, evidence standards, and decision artifacts.',
-        points: ['PDF', 'Governance lag', 'Decision use']
+        title: 'Red-Agent',
+        copy: 'A practical multi-provider framework for LLM red teaming with operational reachability and artifact-complete reporting.',
+        points: ['SSRN:6570383', '11 models', '20 probes']
       },
       {
-        title: 'Related reading',
-        copy: 'Reference papers that shape the service work can sit beside the publication record without being mislabelled.',
-        points: ['RedAgent', 'Evaluation', 'Red teaming']
+        title: 'Governance lag',
+        copy: 'A cross-sector report on European institutional readiness for AI-enabled systems.',
+        points: ['PDF', 'Europe', 'AI governance']
       },
       {
-        title: 'Research areas',
-        copy: 'The site focuses on evaluation methodology, governance lag, risk characterization, and framework design.',
-        points: ['Method', 'Governance', 'Frameworks']
+        title: 'MONA extension',
+        copy: 'A reproducible extension of reward-hacking mitigation work in Camera Dropbox.',
+        points: ['arXiv:2603.29993', 'Reproduction', 'Safety']
       }
     ]
   },
@@ -843,24 +943,24 @@ const PAGE_VISUALS = {
   },
   '/research/red-agent/': {
     mode: 'cards',
-    kicker: 'External paper',
-    title: 'A real reference for context-aware red teaming',
-    intro: 'RedAgent is relevant here because it maps directly to the site’s adversarial evaluation work. It should be read as an external paper, not a Syntony-authored publication.',
+    kicker: 'SSRN paper',
+    title: 'Multi-provider red teaming with artifact-complete reporting',
+    intro: 'Red-Agent is a Syntony-authored paper by Nathan Heath on operationally reliable LLM red-team campaigns.',
     cards: [
       {
         title: 'Paper',
-        copy: 'RedAgent: Red Teaming Large Language Models with Context-aware Autonomous Language Agent.',
-        points: ['arXiv:2407.16667', '2024', 'External']
+        copy: 'Red-Agent: A Practical Multi-Provider Framework for LLM Red Teaming with Operational Reachability and Artifact-Complete Reporting.',
+        points: ['SSRN:6570383', 'DOI', '2026']
       },
       {
         title: 'What it adds',
-        copy: 'The paper studies context-aware jailbreak strategies with an autonomous agent rather than a fixed prompt list.',
-        points: ['Context', 'Autonomy', 'Red teaming']
+        copy: 'The paper separates model behavior from provider reachability, execution errors, and artifact completeness.',
+        points: ['Reachability', 'Error accounting', 'Artifacts']
       },
       {
-        title: 'Why it sits here',
-        copy: 'It is a strong reference point for anyone trying to understand adversarial evaluation in practice.',
-        points: ['Evidence', 'Attack design', 'Operational relevance']
+        title: 'Why it matters',
+        copy: 'It turns red-team campaigns into evidence packages that can support review, governance, and procurement decisions.',
+        points: ['Evidence', 'Governance', 'Decision use']
       }
     ]
   },
@@ -1299,6 +1399,8 @@ function initPageVisuals() {
   initHeroAbstracts();
   initCalEmbed();
   initGovernanceLagPanel();
+  initResearchConsole();
+  initRedAgentConsole();
   initForms();
   initTracking();
   initBreadcrumbSchema();
