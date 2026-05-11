@@ -968,6 +968,31 @@ function projectLonLat(lon, lat) {
   };
 }
 
+let leafletLoaderPromise = null;
+function loadLeaflet() {
+  if (window.L) return Promise.resolve(window.L);
+  if (leafletLoaderPromise) return leafletLoaderPromise;
+
+  leafletLoaderPromise = new Promise((resolve, reject) => {
+    if (!document.querySelector('link[data-leaflet-css]')) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+      link.setAttribute('data-leaflet-css', 'true');
+      document.head.appendChild(link);
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    script.async = true;
+    script.onload = () => resolve(window.L);
+    script.onerror = () => reject(new Error('Leaflet failed to load'));
+    document.head.appendChild(script);
+  });
+
+  return leafletLoaderPromise;
+}
+
 function buildCardVisual(config) {
   const cards = config.cards.map((card) => `
     <article class="visual-card">
@@ -992,15 +1017,6 @@ function buildCardVisual(config) {
 }
 
 function buildGeoVisual(config) {
-  const pins = config.regions.map((region) => {
-    const coords = projectLonLat(region.lon, region.lat);
-    return `
-      <button class="geo-pin" type="button" data-geo-region="${region.id}" style="left:${coords.x}%; top:${coords.y}%">
-        <span class="sr-only">${region.name}</span>
-      </button>
-    `;
-  }).join('');
-
   const list = config.regions.map((region) => `
     <button class="geo-region-row" type="button" data-geo-row="${region.id}">
       <span>${region.name}</span>
@@ -1022,11 +1038,8 @@ function buildGeoVisual(config) {
             <button class="geo-control" type="button" data-geo-zoom="reset">Reset</button>
             <button class="geo-control" type="button" data-geo-zoom="in">+</button>
           </div>
-          <div class="geo-hint">Drag to pan. Scroll to zoom.</div>
-          <div class="geo-stage" data-geo-stage>
-            <img class="geo-map-image" src="https://www.simplemaplab.com/maps/blank/world.svg" alt="World map showing country outlines" loading="lazy" decoding="async">
-            <div class="geo-pin-layer">${pins}</div>
-          </div>
+          <div class="geo-hint">Click a marker or row. Drag to pan. Scroll to zoom.</div>
+          <div class="geo-leaflet-map" data-geo-map-canvas></div>
         </div>
         <aside class="visual-panel__sidebar">
           <div class="geo-detail" data-geo-detail>
@@ -1061,32 +1074,26 @@ function initPageVisuals() {
     const detailName = section.querySelector('[data-geo-name]');
     const detailNote = section.querySelector('[data-geo-note]');
     const detailSignals = section.querySelector('[data-geo-signals]');
-    const stage = section.querySelector('[data-geo-stage]');
     const map = section.querySelector('[data-geo-map]');
     const zoomButtons = Array.from(section.querySelectorAll('[data-geo-zoom]'));
-    const pins = Array.from(section.querySelectorAll('[data-geo-region]'));
     const rows = Array.from(section.querySelectorAll('[data-geo-row]'));
-    let scale = 1;
-    let panX = 0;
-    let panY = 0;
-    let dragging = false;
-    let dragStartX = 0;
-    let dragStartY = 0;
-    let panStartX = 0;
-    let panStartY = 0;
-
-    const applyTransform = () => {
-      if (!stage) return;
-      stage.style.setProperty('--geo-scale', scale.toFixed(3));
-      stage.style.setProperty('--geo-pan-x', `${panX}px`);
-      stage.style.setProperty('--geo-pan-y', `${panY}px`);
+    const mapCanvas = section.querySelector('[data-geo-map-canvas]');
+    let mapInstance = null;
+    let activeMarker = null;
+    const markerByRegion = new Map();
+    const activeStyle = {
+      radius: 10,
+      color: '#E2C978',
+      weight: 2,
+      fillColor: '#D0AE55',
+      fillOpacity: 0.95
     };
-
-    const clampScale = (next) => Math.max(0.85, Math.min(1.65, next));
-
-    const zoom = (delta) => {
-      scale = clampScale(scale + delta);
-      applyTransform();
+    const baseStyle = {
+      radius: 8,
+      color: '#D0AE55',
+      weight: 1.5,
+      fillColor: '#D0AE55',
+      fillOpacity: 0.28
     };
 
     const setRegion = (regionId) => {
@@ -1095,57 +1102,65 @@ function initPageVisuals() {
       detailName.textContent = region.name;
       detailNote.textContent = region.note;
       detailSignals.innerHTML = region.signals.map((signal) => `<span class="geo-signal">${signal}</span>`).join('');
-      pins.forEach((pin) => pin.classList.toggle('is-active', pin.dataset.geoRegion === region.id));
       rows.forEach((row) => row.classList.toggle('is-active', row.dataset.geoRow === region.id));
+      const row = rows.find((entry) => entry.dataset.geoRow === region.id);
+      row?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+
+      if (activeMarker && activeMarker !== markerByRegion.get(region.id)) {
+        activeMarker.setStyle(baseStyle);
+      }
+      const marker = markerByRegion.get(region.id);
+      if (marker) {
+        marker.setStyle(activeStyle);
+        activeMarker = marker;
+        if (mapInstance) mapInstance.flyTo(marker.getLatLng(), Math.max(mapInstance.getZoom(), 3), { duration: 0.55 });
+      }
     };
 
     pins.forEach((pin) => pin.addEventListener('click', () => setRegion(pin.dataset.geoRegion)));
     rows.forEach((row) => row.addEventListener('click', () => setRegion(row.dataset.geoRow)));
     zoomButtons.forEach((button) => {
       button.addEventListener('click', () => {
+        if (!mapInstance) return;
         const action = button.dataset.geoZoom;
-        if (action === 'in') zoom(0.12);
-        if (action === 'out') zoom(-0.12);
-        if (action === 'reset') {
-          scale = 1;
-          panX = 0;
-          panY = 0;
-          applyTransform();
-        }
+        if (action === 'in') mapInstance.zoomIn();
+        if (action === 'out') mapInstance.zoomOut();
+        if (action === 'reset') mapInstance.flyTo([20, 10], 2, { duration: 0.55 });
       });
     });
 
-    const onPointerDown = (event) => {
-      dragging = true;
-      map?.setPointerCapture?.(event.pointerId);
-      dragStartX = event.clientX;
-      dragStartY = event.clientY;
-      panStartX = panX;
-      panStartY = panY;
-      map?.classList.add('is-dragging');
-    };
-    const onPointerMove = (event) => {
-      if (!dragging) return;
-      panX = panStartX + (event.clientX - dragStartX);
-      panY = panStartY + (event.clientY - dragStartY);
-      applyTransform();
-    };
-    const onPointerUp = () => {
-      dragging = false;
-      map?.classList.remove('is-dragging');
-    };
+    loadLeaflet().then((L) => {
+      if (!mapCanvas) return;
+      mapInstance = L.map(mapCanvas, {
+        zoomControl: false,
+        attributionControl: false,
+        scrollWheelZoom: true,
+        worldCopyJump: true,
+        minZoom: 2,
+        maxZoom: 6
+      }).setView([20, 10], 2);
 
-    map?.addEventListener('pointerdown', onPointerDown);
-    map?.addEventListener('pointermove', onPointerMove);
-    map?.addEventListener('pointerup', onPointerUp);
-    map?.addEventListener('pointercancel', onPointerUp);
-    map?.addEventListener('wheel', (event) => {
-      event.preventDefault();
-      zoom(event.deltaY > 0 ? -0.05 : 0.05);
-    }, { passive: false });
+      L.tileLayer('https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        subdomains: 'abcd',
+        maxZoom: 19,
+        opacity: 0.94
+      }).addTo(mapInstance);
 
-    applyTransform();
-    setRegion(config.regions[0]?.id);
+      config.regions.forEach((region) => {
+        const marker = L.circleMarker([region.lat, region.lon], baseStyle).addTo(mapInstance);
+        marker.bindTooltip(region.name, { direction: 'top', opacity: 0.9, sticky: true });
+        marker.on('click', () => setRegion(region.id));
+        markerByRegion.set(region.id, marker);
+      });
+
+      mapInstance.on('click', () => {
+        if (activeMarker) activeMarker.openTooltip();
+      });
+
+      setRegion(config.regions[0]?.id);
+    }).catch(() => {
+      if (mapCanvas) mapCanvas.innerHTML = '';
+    });
   }
 }
 
