@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0A1628">
-  <title>Red-Agent: Multi-Provider LLM Red Teaming Framework | Syntony Research</title>
-  <meta name="description" content="Publication record for Red-Agent: A Practical Multi-Provider Framework for LLM Red Teaming with Operational Reachability and Artifact-Complete Reporting.">
+  <title>RedAgent: Red Teaming Large Language Models with Context-aware Autonomous Language Agent | Syntony Research</title>
+  <meta name="description" content="External paper reference for RedAgent, a context-aware autonomous language agent for LLM red teaming.">
   <link rel="canonical" href="https://syntonyresearch.org/research/red-agent/">
-  <meta property="og:title" content="Red-Agent: Multi-Provider LLM Red Teaming Framework">
-  <meta property="og:description" content="A practical multi-provider framework for LLM red teaming with operational reachability and artifact-complete reporting. SSRN:6570383.">
+  <meta property="og:title" content="RedAgent: Red Teaming Large Language Models with Context-aware Autonomous Language Agent">
+  <meta property="og:description" content="External paper reference for RedAgent, an autonomous agent for context-aware LLM red teaming.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://syntonyresearch.org/research/red-agent/">
   <meta property="og:image" content="https://syntonyresearch.org/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Red-Agent: Multi-Provider LLM Red Teaming Framework">
-  <meta name="twitter:description" content="A practical multi-provider framework for LLM red teaming with operational reachability and artifact-complete reporting. SSRN:6570383.">
+  <meta name="twitter:title" content="RedAgent: Red Teaming Large Language Models with Context-aware Autonomous Language Agent">
+  <meta name="twitter:description" content="External paper reference for RedAgent, an autonomous agent for context-aware LLM red teaming.">
   <meta name="twitter:image" content="https://syntonyresearch.org/assets/og-image.png">
   <link rel="stylesheet" href="/styles/main.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Red-Agent: A Practical Multi-Provider Framework for LLM Red Teaming with Operational Reachability and Artifact-Complete Reporting","author":{"@type":"Person","name":"Nathan Heath","url":"https://syntonyresearch.org/about/founder/"},"datePublished":"2026-04","publisher":{"@type":"Organization","name":"Syntony Research","url":"https://syntonyresearch.org"},"identifier":"SSRN:6570383","url":"https://syntonyresearch.org/research/red-agent/","sameAs":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6570383","about":["AI safety","red teaming","LLM security","adversarial evaluation","multi-provider framework","MITRE ATT&CK","StrongREJECT"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"RedAgent: Red Teaming Large Language Models with Context-aware Autonomous Language Agent","author":[{"@type":"Person","name":"Huiyu Xu"},{"@type":"Person","name":"Wenhui Zhang"},{"@type":"Person","name":"Zhibo Wang"},{"@type":"Person","name":"Feng Xiao"},{"@type":"Person","name":"Rui Zheng"},{"@type":"Person","name":"Yunhe Feng"},{"@type":"Person","name":"Zhongjie Ba"},{"@type":"Person","name":"Kui Ren"}],"datePublished":"2024-07","publisher":{"@type":"Organization","name":"arXiv"},"identifier":"arXiv:2407.16667","url":"https://syntonyresearch.org/research/red-agent/","sameAs":"https://arxiv.org/abs/2407.16667","about":["LLM red teaming","context-aware jailbreaks","autonomous agents","adversarial evaluation"]}</script>
 </head>
 <body>
   <div data-include="/components/header.html"></div>
@@ -25,10 +25,10 @@
   <main>
     <section class="page-hero">
       <div class="container">
-        <span class="section-num">SSRN:6570383 · April 2026</span>
-        <h1>Red-Agent: A Practical Multi-Provider Framework for LLM Red Teaming</h1>
-        <p class="hero-sub">Operational reachability and artifact-complete reporting across 11 models, 4 providers, and a 20-probe ATT&CK-inspired taxonomy. By Nathan Heath.</p>
-        <div class="badge-row"><span class="badge status-badge">Verified SSRN record</span><span class="badge">Red teaming</span><span class="badge">LLM security</span><span class="badge">Multi-provider</span></div>
+        <span class="section-num">arXiv:2407.16667 · July 2024</span>
+        <h1>RedAgent: Red Teaming Large Language Models with Context-aware Autonomous Language Agent</h1>
+        <p class="hero-sub">A context-aware autonomous language agent for jailbreak discovery, scenario-specific prompting, and more efficient red teaming of real LLM applications.</p>
+        <div class="badge-row"><span class="badge status-badge">External paper</span><span class="badge">Red teaming</span><span class="badge">Autonomous agent</span><span class="badge">LLM security</span></div>
       </div>
     </section>
 
@@ -36,29 +36,28 @@
       <div class="container article-layout">
         <aside class="article-aside">
           <span class="label">Record</span>
-          <p>Author: Nathan Heath</p>
-          <p>Affiliation: Independent Researcher</p>
-          <p>Status: SSRN preprint</p>
-          <p>Identifier: 6570383</p>
-          <p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6570383" target="_blank" rel="noopener noreferrer">View on SSRN</a></p>
+          <p>Authors: Huiyu Xu et al.</p>
+          <p>Status: arXiv preprint</p>
+          <p>Identifier: arXiv:2407.16667</p>
+          <p><a href="https://arxiv.org/abs/2407.16667" target="_blank" rel="noopener noreferrer">View on arXiv</a></p>
           <p><a href="/research/">← Back to research</a></p>
         </aside>
         <article class="article-body prose">
           <h2>Summary</h2>
-          <p>Red-Agent is a multi-provider red teaming framework built around four ideas: provider-agnostic target adapters with JSONL trajectory logging, an ATT&CK-inspired LLM probe taxonomy and campaign runner, analysis and reporting pipelines for CSV, plots, and LaTeX artifacts, and a vulnerability engine for recon, focused attack, and confirmation.</p>
-          <p>The empirical results come from a curated 11-model run across OpenAI GPT, Anthropic Claude, Google Gemini, and Mistral families using a fixed 20-probe campaign. The paper pairs model outcomes with operational reachability and error accounting to separate genuine safety behavior from execution brittleness, and applies post-hoc StrongREJECT scoring to archived trajectories without rerunning probes.</p>
+          <p>RedAgent proposes a context-aware autonomous language agent for red teaming large language models. Instead of treating jailbreaks as a static prompt list, the paper models attacks as strategies that adapt to the local context and keep a memory of what has already worked.</p>
+          <p>The paper reports that RedAgent can jailbreak many black-box LLMs in just five queries and can expose severe vulnerabilities in customized LLM applications more efficiently than fixed-template approaches. That makes it a relevant reference for adversarial evaluation work that needs to account for context, feedback, and operational reachability.</p>
 
           <h2>Key findings</h2>
           <ul>
-            <li>Gemini 2.5 Pro had the highest aggregate risk score (7.60) but also the highest probe error rate (45%), showing that risk scores and execution stability must be interpreted jointly.</li>
-            <li>Mistral Small and Mistral Large showed the highest campaign hit rates (75% and 50%), with both accepting simple override and persona-hijack prompts in plain English.</li>
-            <li>Claude and OpenAI clusters were operationally stable (near-zero error rates) with lower hit rates than Mistral.</li>
-            <li>Aggregate risk, hit/refusal rates, and error rates should be reported together rather than collapsed into a single scalar.</li>
+            <li>The paper treats jailbreak strategy as a first-class concept rather than relying on a fixed prompt bank.</li>
+            <li>Context feedback is stored and reused so the agent can adapt its next move instead of restarting from scratch.</li>
+            <li>The authors report strong efficiency gains over prior red teaming methods on black-box targets.</li>
+            <li>The work is directly relevant to any evaluation process that has to separate model behavior from attack orchestration.</li>
           </ul>
 
           <h2>Why it matters</h2>
-          <p>In live adversarial evaluations, the hard part is often not writing one more jailbreak prompt. It is running a reliable, traceable, cross-provider pipeline that distinguishes refusals from execution failures and emits outputs suitable for engineering decisions. Red-Agent addresses that gap with transparent operational accounting and artifact-complete reporting rather than benchmark novelty.</p>
-          <p>The framework also includes a vulnerability engine with recon-led prioritization and confirmation reruns, designed to improve cost-efficiency and finding quality in future sweeps. Finding routing converts confirmed vulnerabilities into provider-specific disclosure templates.</p>
+          <p>For practitioners, the useful part is the shift from prompt memorization to scenario-aware testing. That matches how real systems fail: in context, under changing constraints, and with different behaviors across applications and providers.</p>
+          <p>It also gives a concrete reference for how to present adversarial findings without reducing them to a single score. That fits the broader Syntony approach to evaluation, governance, and risk advisory.</p>
 
           <h2>Publication lens</h2>
           <div class="interactive-panel publication-lens" data-publication-lens>
@@ -76,8 +75,8 @@
           </div>
 
           <h2>Citation</h2>
-          <p>Heath, Nathan. <em>Red-Agent: A Practical Multi-Provider Framework for LLM Red Teaming with Operational Reachability and Artifact-Complete Reporting.</em> SSRN:6570383, April 2026.</p>
-          <p><a class="btn-dark" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6570383" target="_blank" rel="noopener noreferrer">Open SSRN record <span class="btn-arrow">→</span></a></p>
+          <p>Xu, Huiyu, Wenhui Zhang, Zhibo Wang, Feng Xiao, Rui Zheng, Yunhe Feng, Zhongjie Ba, and Kui Ren. <em>RedAgent: Red Teaming Large Language Models with Context-aware Autonomous Language Agent.</em> arXiv, 2024.</p>
+          <p><a class="btn-dark" href="https://arxiv.org/abs/2407.16667" target="_blank" rel="noopener noreferrer">Open arXiv record <span class="btn-arrow">→</span></a></p>
 
           <h2>Related services</h2>
           <div class="related-grid">

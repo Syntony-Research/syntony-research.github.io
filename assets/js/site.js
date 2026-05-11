@@ -436,18 +436,691 @@ function initForecastLab() {
   });
 }
 
+const PAGE_VISUALS = {
+  '/services/': {
+    mode: 'cards',
+    kicker: 'Service atlas',
+    title: 'Seven service lines, one operating picture',
+    intro: 'The portfolio is easier to use when each lane shows the decision it supports, the evidence it needs, and the output it produces.',
+    cards: [
+      {
+        title: 'Evaluation first',
+        copy: 'Adversarial testing, safety research, and methods work show up early in the cycle, before governance decisions lock in.',
+        points: ['Red teaming', 'Method design', 'Evidence synthesis']
+      },
+      {
+        title: 'Governance and risk',
+        copy: 'Controls, ownership, and escalation need to be visible before product tempo outruns review.',
+        points: ['Decision rights', 'Escalation paths', 'Board readiness']
+      },
+      {
+        title: 'External pressure',
+        copy: 'Forecasting and briefings connect emerging technology change to regulation, supply chains, and leadership timing.',
+        points: ['Geopolitics', 'Executive briefings', 'Decision triggers']
+      }
+    ]
+  },
+  '/services/red-teaming/': {
+    mode: 'cards',
+    kicker: 'Adversarial map',
+    title: 'Where the system usually breaks first',
+    intro: 'The useful question is not whether a model fails. It is which access path, tool chain, or workflow breaks under pressure.',
+    cards: [
+      {
+        title: 'Attack surface',
+        copy: 'Prompting, tool use, memory, retrieval, and output handling are mapped together so testing stays close to real workflows.',
+        points: ['Prompt flow', 'Tool calls', 'Memory', 'Retrieval']
+      },
+      {
+        title: 'Evidence',
+        copy: 'Findings are captured in a form operators can replay, audit, and hand to the next owner.',
+        points: ['Repro steps', 'Severity', 'Confidence', 'Artifacts']
+      },
+      {
+        title: 'Remediation',
+        copy: 'The output is a ranked set of fixes, not a decorative score.',
+        points: ['Controls', 'Owners', 'Rollback', 'Monitoring']
+      }
+    ]
+  },
+  '/services/governance/': {
+    mode: 'cards',
+    kicker: 'Control map',
+    title: 'Who owns the decision, and what happens when it changes',
+    intro: 'Governance work becomes concrete when decision rights, controls, and escalation points are visible together.',
+    cards: [
+      {
+        title: 'Decision rights',
+        copy: 'Map who can approve, pause, escalate, or override AI-related decisions.',
+        points: ['Product', 'Safety', 'Legal', 'Executive']
+      },
+      {
+        title: 'Control stack',
+        copy: 'Connect evaluation evidence to policy language, review cadence, and operating procedures.',
+        points: ['Policy', 'Review loop', 'Escalation', 'Audit trail']
+      },
+      {
+        title: 'Implementation',
+        copy: 'Turn the governance memo into a working sequence the team can actually run.',
+        points: ['Owners', 'Cadence', 'Backlog', 'Board packet']
+      }
+    ]
+  },
+  '/services/risk-advisory/': {
+    mode: 'cards',
+    kicker: 'Risk horizon',
+    title: 'What changes if the deployment pace stays the same',
+    intro: 'Risk advisory is most useful when it ties exposure, scenario moves, and decision timing to one view.',
+    cards: [
+      {
+        title: 'Exposure',
+        copy: 'Name the systems, functions, and dependencies that would change the risk posture if the model surface expands.',
+        points: ['Product lines', 'Partners', 'Regulators']
+      },
+      {
+        title: 'Scenario',
+        copy: 'Track the external events that would actually move the plan.',
+        points: ['Regulation', 'Supply chain', 'Incidents']
+      },
+      {
+        title: 'Decision',
+        copy: 'Show when leadership needs to act, not just what might happen later.',
+        points: ['Thresholds', 'Owners', 'Dates']
+      }
+    ]
+  },
+  '/services/safety-research/': {
+    mode: 'cards',
+    kicker: 'Method stack',
+    title: 'A cleaner path from question to evidence',
+    intro: 'Safety research gets legible when protocols, metrics, and interpretation live in the same frame.',
+    cards: [
+      {
+        title: 'Protocol',
+        copy: 'Start with a measurement plan that states what is being tested and what is not.',
+        points: ['Question', 'Assumptions', 'Limits']
+      },
+      {
+        title: 'Metrics',
+        copy: 'Use metrics that can survive review, reruns, and disagreement.',
+        points: ['Definitions', 'Failure modes', 'Caveats']
+      },
+      {
+        title: 'Evidence',
+        copy: 'Synthesis should make it easy to brief a researcher or an executive without changing the facts.',
+        points: ['Memo', 'Appendix', 'Next test']
+      }
+    ]
+  },
+  '/services/briefings/': {
+    mode: 'cards',
+    kicker: 'Briefing room',
+    title: 'Short sessions with a clear output',
+    intro: 'Briefings work best when the audience, the question, and the next action are visible before the meeting starts.',
+    cards: [
+      {
+        title: 'Audience',
+        copy: 'Board, C-suite, policy team, or cross-functional group.',
+        points: ['Directors', 'Leaders', 'Operators']
+      },
+      {
+        title: 'Session',
+        copy: 'Use a short, tailored deck and a live discussion focused on decisions.',
+        points: ['Pre-read', 'Facilitation', 'Q&A']
+      },
+      {
+        title: 'Follow-up',
+        copy: 'Leave with a decision log and a small set of concrete next steps.',
+        points: ['Actions', 'Owners', 'Dates']
+      }
+    ]
+  },
+  '/services/research/': {
+    mode: 'cards',
+    kicker: 'Research frame',
+    title: 'A narrow question, a clean evidence trail',
+    intro: 'Custom research works when the question, evidence standard, and final use are pinned down early.',
+    cards: [
+      {
+        title: 'Question',
+        copy: 'Translate the request into something specific enough to answer.',
+        points: ['Scope', 'Audience', 'Decision']
+      },
+      {
+        title: 'Evidence',
+        copy: 'Separate fact, inference, and judgment so the result can be reused.',
+        points: ['Sources', 'Notes', 'Bibliography']
+      },
+      {
+        title: 'Synthesis',
+        copy: 'Package the work as a memo, briefing, or appendix depending on who needs it.',
+        points: ['Memo', 'Deck', 'Appendix']
+      }
+    ]
+  },
+  '/services/technical-writing/': {
+    mode: 'cards',
+    kicker: 'Clarity layer',
+    title: 'Make the work readable without flattening it',
+    intro: 'Technical writing should make the logic easier to follow, not just shorter.',
+    cards: [
+      {
+        title: 'Structure',
+        copy: 'Rebuild long drafts into a sequence people can scan and trust.',
+        points: ['Headings', 'Order', 'Flow']
+      },
+      {
+        title: 'Language',
+        copy: 'Replace jargon with plain language where the meaning stays intact.',
+        points: ['Plain terms', 'Active voice', 'Shorter lines']
+      },
+      {
+        title: 'Delivery',
+        copy: 'Prepare the final version for the audience that actually has to use it.',
+        points: ['Report', 'Brief', 'Website']
+      }
+    ]
+  },
+  '/services/geopolitical-forecasting/': {
+    mode: 'geo',
+    kicker: 'Geopolitical signal map',
+    title: 'Where emerging technology pressure shows up first',
+    intro: 'Use the map to move from vague horizon scanning to the actual regions where export controls, standards fights, capital flows, and conflict spillovers change the forecast.',
+    regions: [
+      {
+        id: 'united-states',
+        name: 'United States',
+        lon: -98,
+        lat: 39,
+        note: 'Export controls, frontier labs, chip policy, cloud capex, and procurement timing.',
+        signals: ['Export controls', 'Cloud buildout', 'Model deployment']
+      },
+      {
+        id: 'europe',
+        name: 'Europe',
+        lon: 10,
+        lat: 50,
+        note: 'AI Act implementation, conformity work, and standards politics.',
+        signals: ['AI Act guidance', 'Standards votes', 'Procurement rules']
+      },
+      {
+        id: 'china',
+        name: 'China',
+        lon: 104,
+        lat: 35,
+        note: 'Domestic scaling, industrial policy, compute access, and standards alignment.',
+        signals: ['Compute access', 'Industrial policy', 'Standards']
+      },
+      {
+        id: 'taiwan',
+        name: 'Taiwan',
+        lon: 121,
+        lat: 24,
+        note: 'Foundry concentration and supply-chain continuity.',
+        signals: ['Wafer starts', 'Shipping risk', 'Inventory buffers']
+      },
+      {
+        id: 'japan-korea',
+        name: 'Japan and Korea',
+        lon: 136,
+        lat: 37,
+        note: 'Memory supply, equipment, and alliance coordination.',
+        signals: ['HBM capacity', 'Tool exports', 'Bilateral controls']
+      },
+      {
+        id: 'india',
+        name: 'India',
+        lon: 78,
+        lat: 22,
+        note: 'Diffusion, digital infrastructure, talent, and data policy.',
+        signals: ['Digital public infra', 'Model adoption', 'Data rules']
+      },
+      {
+        id: 'gulf',
+        name: 'Gulf states',
+        lon: 48,
+        lat: 24,
+        note: 'Sovereign capital, compute investment, and regional AI platforms.',
+        signals: ['Data centers', 'Investment deals', 'Partnerships']
+      },
+      {
+        id: 'asean',
+        name: 'Southeast Asia',
+        lon: 108,
+        lat: 12,
+        note: 'Manufacturing shifts, cloud expansion, and regulatory alignment.',
+        signals: ['Factory relocation', 'Cloud regions', 'Cross-border rules']
+      },
+      {
+        id: 'latin-america',
+        name: 'Latin America',
+        lon: -58,
+        lat: -18,
+        note: 'Digital infrastructure, public-sector adoption, and energy constraints.',
+        signals: ['Procurement', 'Energy costs', 'Regional governance']
+      }
+    ]
+  },
+  '/research/': {
+    mode: 'cards',
+    kicker: 'Research map',
+    title: 'Public work, external references, and the topics behind them',
+    intro: 'The research page is easiest to use when the publication record and the adjacent reading list are visually distinct.',
+    cards: [
+      {
+        title: 'Verified papers',
+        copy: 'Only externally verifiable papers are listed as publications.',
+        points: ['arXiv', 'Real record', 'Clear status']
+      },
+      {
+        title: 'Related reading',
+        copy: 'Reference papers that shape the service work can sit beside the publication record without being mislabelled.',
+        points: ['RedAgent', 'Evaluation', 'Red teaming']
+      },
+      {
+        title: 'Research areas',
+        copy: 'The site focuses on evaluation methodology, governance lag, risk characterization, and framework design.',
+        points: ['Method', 'Governance', 'Frameworks']
+      }
+    ]
+  },
+  '/research/mona-camera-dropbox/': {
+    mode: 'cards',
+    kicker: 'Paper frame',
+    title: 'A reproducible extension, not a claim without evidence',
+    intro: 'The paper matters because it shows what can be reproduced, what changed, and what the evidence actually supports.',
+    cards: [
+      {
+        title: 'Question',
+        copy: 'What happens when learned approval is studied inside a public environment that can be reproduced?',
+        points: ['Reproduction', 'Approval', 'Reward hacking']
+      },
+      {
+        title: 'Method',
+        copy: 'The paper leans on public artifacts and testable runs instead of vague summary claims.',
+        points: ['Public setup', 'Tracked runs', 'Artifacts']
+      },
+      {
+        title: 'Use',
+        copy: 'It is a useful example of how to turn evaluation work into readable evidence.',
+        points: ['Interpretation', 'Governance', 'Next test']
+      }
+    ]
+  },
+  '/research/red-agent/': {
+    mode: 'cards',
+    kicker: 'External paper',
+    title: 'A real reference for context-aware red teaming',
+    intro: 'RedAgent is relevant here because it maps directly to the site’s adversarial evaluation work. It should be read as an external paper, not a Syntony-authored publication.',
+    cards: [
+      {
+        title: 'Paper',
+        copy: 'RedAgent: Red Teaming Large Language Models with Context-aware Autonomous Language Agent.',
+        points: ['arXiv:2407.16667', '2024', 'External']
+      },
+      {
+        title: 'What it adds',
+        copy: 'The paper studies context-aware jailbreak strategies with an autonomous agent rather than a fixed prompt list.',
+        points: ['Context', 'Autonomy', 'Red teaming']
+      },
+      {
+        title: 'Why it sits here',
+        copy: 'It is a strong reference point for anyone trying to understand adversarial evaluation in practice.',
+        points: ['Evidence', 'Attack design', 'Operational relevance']
+      }
+    ]
+  },
+  '/about/': {
+    mode: 'cards',
+    kicker: 'About the firm',
+    title: 'Why Syntony exists',
+    intro: 'The firm sits at the gap between what AI systems can do and what institutions can safely own, review, and explain.',
+    cards: [
+      {
+        title: 'Mission',
+        copy: 'Turn technical signal into decisions people can carry through governance, policy, and operations.',
+        points: ['Clarity', 'Evidence', 'Action']
+      },
+      {
+        title: 'Method',
+        copy: 'Work is built around empirical checks, clean writing, and practical controls.',
+        points: ['Testing', 'Synthesis', 'Controls']
+      },
+      {
+        title: 'Affiliations',
+        copy: 'The public network around the firm gives the work broader context without turning it into noise.',
+        points: ['Truman', 'BlueDot', 'Hertog', 'CSET']
+      }
+    ]
+  },
+  '/about/founder/': {
+    mode: 'cards',
+    kicker: 'Founder profile',
+    title: 'A short timeline of the work behind the firm',
+    intro: 'The founder page should show the path, the current role, and the public references that are actually real.',
+    cards: [
+      {
+        title: 'Current role',
+        copy: 'Founder and Chief Scientist at Syntony Research.',
+        points: ['Research', 'Advisory', 'Writing']
+      },
+      {
+        title: 'Background',
+        copy: 'Experience spans research, red teaming, and policy-adjacent work across national security and AI safety contexts.',
+        points: ['Research', 'Red teaming', 'Policy']
+      },
+      {
+        title: 'Public work',
+        copy: 'The public record should point to real papers, real talks, and verifiable affiliations.',
+        points: ['arXiv', 'Speaking', 'Affiliations']
+      }
+    ]
+  },
+  '/insights/': {
+    mode: 'cards',
+    kicker: 'Insights hub',
+    title: 'Short notes, long questions, and a feed people can follow',
+    intro: 'The commentary page should behave like a proper reading hub, not a pile of teaser cards.',
+    cards: [
+      {
+        title: 'Topics',
+        copy: 'Track governance lag, evaluation design, strategic risk, and publication notes.',
+        points: ['Governance', 'Evaluation', 'Risk']
+      },
+      {
+        title: 'Format',
+        copy: 'Keep posts short enough to read and specific enough to use.',
+        points: ['Essay', 'Brief', 'Note']
+      },
+      {
+        title: 'Distribution',
+        copy: 'Use RSS and Substack so the page is a real entry point instead of a dead end.',
+        points: ['RSS', 'Substack', 'Newsletter']
+      }
+    ]
+  },
+  '/work/': {
+    mode: 'cards',
+    kicker: 'Engagement map',
+    title: 'A cleaner way to show what the firm does',
+    intro: 'Case studies are more useful when they show the problem, the approach, and the outcome in one place.',
+    cards: [
+      {
+        title: 'Industry',
+        copy: 'Anonymized by sector, not by meaning.',
+        points: ['Tech', 'Defense', 'Finance']
+      },
+      {
+        title: 'Work type',
+        copy: 'Evaluation, governance, forecasting, briefings, and research need separate presentation.',
+        points: ['Memo', 'Workshop', 'Advisory']
+      },
+      {
+        title: 'Outcome',
+        copy: 'Show what changed after the work landed.',
+        points: ['Decision', 'Control', 'Plan']
+      }
+    ]
+  },
+  '/contact/': {
+    mode: 'cards',
+    kicker: 'Contact paths',
+    title: 'Three ways to reach the firm',
+    intro: 'Make the next step obvious: email, phone, or a booking link that works on mobile.',
+    cards: [
+      {
+        title: 'Email',
+        copy: 'hello@syntonyresearch.org',
+        points: ['Fastest route', 'Written scope', 'Attachments']
+      },
+      {
+        title: 'Phone',
+        copy: '828-418-7587',
+        points: ['Direct call', 'Scheduling', 'Urgent follow-up']
+      },
+      {
+        title: 'Location',
+        copy: 'Research Triangle, NC',
+        points: ['Local', 'Virtual', 'On-site']
+      }
+    ]
+  },
+  '/privacy/': {
+    mode: 'cards',
+    kicker: 'Policy map',
+    title: 'What the site collects and why',
+    intro: 'A legal page is easier to use when it tells you what matters in one glance.',
+    cards: [
+      {
+        title: 'Data',
+        copy: 'Only the information needed to reply to inquiries and operate the site.',
+        points: ['Form input', 'Email', 'Analytics']
+      },
+      {
+        title: 'Use',
+        copy: 'Responses, scheduling, site reliability, and basic measurement.',
+        points: ['Reply', 'Book', 'Improve']
+      },
+      {
+        title: 'Contact',
+        copy: 'hello@syntonyresearch.org',
+        points: ['Questions', 'Deletion', 'Access']
+      }
+    ]
+  },
+  '/terms/': {
+    mode: 'cards',
+    kicker: 'Terms map',
+    title: 'How the site and services are used',
+    intro: 'This page should point users toward the rules that matter without making them hunt for them.',
+    cards: [
+      {
+        title: 'Use',
+        copy: 'Website content is informational until a written engagement begins.',
+        points: ['No promise', 'No legal advice', 'Written scope']
+      },
+      {
+        title: 'Engagement',
+        copy: 'Consulting work is governed by the final agreement and NDA terms if present.',
+        points: ['Agreement', 'Scope', 'Confidentiality']
+      },
+      {
+        title: 'Changes',
+        copy: 'The site may change as services, research, and contact details change.',
+        points: ['Updated content', 'Current terms', 'Versioning']
+      }
+    ]
+  },
+  '/disclosures/': {
+    mode: 'cards',
+    kicker: 'Disclosure map',
+    title: 'Where affiliations and conflicts belong',
+    intro: 'A disclosure page should make the visible relationships easy to scan.',
+    cards: [
+      {
+        title: 'Affiliations',
+        copy: 'Public affiliations and memberships belong here, not hidden in prose.',
+        points: ['Fellowships', 'Labs', 'Networks']
+      },
+      {
+        title: 'Conflicts',
+        copy: 'If there is overlap between work and external interests, state it plainly.',
+        points: ['Overlaps', 'Constraints', 'Transparency']
+      },
+      {
+        title: 'Contact',
+        copy: 'hello@syntonyresearch.org',
+        points: ['Questions', 'Corrections', 'Updates']
+      }
+    ]
+  }
+};
+
+function projectLonLat(lon, lat) {
+  const clampedLat = Math.max(-80, Math.min(80, lat));
+  const lonNorm = (lon + 180) / 360;
+  const latRad = clampedLat * Math.PI / 180;
+  const mercN = Math.log(Math.tan((Math.PI / 4) + (latRad / 2)));
+  const latNorm = 0.5 - (mercN / (2 * Math.PI));
+  return {
+    x: Math.max(0, Math.min(100, lonNorm * 100)),
+    y: Math.max(0, Math.min(100, latNorm * 100))
+  };
+}
+
+function buildCardVisual(config) {
+  const cards = config.cards.map((card) => `
+    <article class="visual-card">
+      <span class="visual-card-kicker">${card.title}</span>
+      <p>${card.copy}</p>
+      <ul>
+        ${card.points.map((point) => `<li>${point}</li>`).join('')}
+      </ul>
+    </article>
+  `).join('');
+
+  return `
+    <div class="visual-panel">
+      <div class="visual-panel__head">
+        <span class="label">${config.kicker}</span>
+        <h2>${config.title}</h2>
+        <p>${config.intro}</p>
+      </div>
+      <div class="visual-grid">${cards}</div>
+    </div>
+  `;
+}
+
+function buildGeoVisual(config) {
+  const pins = config.regions.map((region) => {
+    const coords = projectLonLat(region.lon, region.lat);
+    return `
+      <button class="geo-pin" type="button" data-geo-region="${region.id}" style="left:${coords.x}%; top:${coords.y}%">
+        <span class="sr-only">${region.name}</span>
+      </button>
+    `;
+  }).join('');
+
+  const list = config.regions.map((region) => `
+    <button class="geo-region-row" type="button" data-geo-row="${region.id}">
+      <span>${region.name}</span>
+      <span class="geo-region-row-note">${region.signals[0]}</span>
+    </button>
+  `).join('');
+
+  const gridLines = Array.from({ length: 6 }).map((_, index) => {
+    const y = 12 + index * 14;
+    const x = 10 + index * 15;
+    return `
+      <line x1="0" y1="${y}%" x2="100%" y2="${y}%" />
+      <line x1="${x}%" y1="0" x2="${x}%" y2="100%" />
+    `;
+  }).join('');
+
+  return `
+    <div class="visual-panel visual-panel--geo">
+      <div class="visual-panel__head">
+        <span class="label">${config.kicker}</span>
+        <h2>${config.title}</h2>
+        <p>${config.intro}</p>
+      </div>
+      <div class="visual-panel__body">
+        <div class="geo-map" data-geo-map>
+          <svg viewBox="0 0 1000 540" aria-hidden="true" preserveAspectRatio="none">
+            <defs>
+              <radialGradient id="geoGlow" cx="50%" cy="40%" r="60%">
+                <stop offset="0%" stop-color="rgba(208,174,85,0.22)" />
+                <stop offset="55%" stop-color="rgba(58,86,128,0.10)" />
+                <stop offset="100%" stop-color="rgba(7,17,29,0)" />
+              </radialGradient>
+              <linearGradient id="geoLand" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="rgba(244,238,226,0.20)" />
+                <stop offset="100%" stop-color="rgba(244,238,226,0.06)" />
+              </linearGradient>
+            </defs>
+            <rect width="1000" height="540" fill="rgba(7,17,29,0.15)" />
+            <rect width="1000" height="540" fill="url(#geoGlow)" />
+            <g class="geo-grid">${gridLines}</g>
+            <g class="geo-lands">
+              <path d="M116 188 C154 140, 236 126, 273 160 C316 199, 307 246, 254 255 C210 263, 176 246, 150 230 C128 217, 104 209, 116 188 Z" />
+              <path d="M205 312 C228 295, 266 300, 279 334 C289 361, 273 399, 250 430 C227 459, 191 458, 181 419 C171 381, 183 338, 205 312 Z" />
+              <path d="M408 164 C441 126, 522 118, 595 140 C642 154, 678 189, 705 226 C736 269, 774 270, 807 248 C846 220, 873 203, 911 215 C938 224, 947 250, 931 276 C909 310, 858 315, 820 334 C784 351, 774 392, 737 414 C692 441, 637 432, 603 404 C566 373, 552 334, 513 319 C472 304, 444 331, 404 324 C367 318, 333 282, 342 238 C349 206, 378 182, 408 164 Z" />
+              <path d="M752 360 C781 350, 841 356, 854 392 C864 417, 839 444, 801 444 C768 444, 745 425, 740 398 C736 378, 741 367, 752 360 Z" />
+            </g>
+            <g class="geo-latlon">
+              <text x="34" y="34">90°N</text>
+              <text x="34" y="136">45°N</text>
+              <text x="34" y="270">0°</text>
+              <text x="34" y="406">45°S</text>
+            </g>
+          </svg>
+          <div class="geo-pin-layer">${pins}</div>
+        </div>
+        <aside class="visual-panel__sidebar">
+          <div class="geo-detail" data-geo-detail>
+            <span class="label">Selected region</span>
+            <h3 data-geo-name></h3>
+            <p data-geo-note></p>
+            <div class="geo-signal-row" data-geo-signals></div>
+          </div>
+          <div class="geo-region-list" role="list" aria-label="Geographic watchpoints">
+            ${list}
+          </div>
+        </aside>
+      </div>
+    </div>
+  `;
+}
+
+function initPageVisuals() {
+  const hero = document.querySelector('main .page-hero');
+  if (!hero || document.querySelector('.page-visual')) return;
+  const path = window.location.pathname;
+  const normalizedPath = path === '/' ? '/' : (path.endsWith('/') ? path : `${path}/`);
+  const config = PAGE_VISUALS[path] || PAGE_VISUALS[normalizedPath] || null;
+  if (!config) return;
+
+  const section = document.createElement('section');
+  section.className = 'page-visual reveal';
+  section.innerHTML = config.mode === 'geo' ? buildGeoVisual(config) : buildCardVisual(config);
+  hero.insertAdjacentElement('afterend', section);
+
+  if (config.mode === 'geo') {
+    const detailName = section.querySelector('[data-geo-name]');
+    const detailNote = section.querySelector('[data-geo-note]');
+    const detailSignals = section.querySelector('[data-geo-signals]');
+    const pins = Array.from(section.querySelectorAll('[data-geo-region]'));
+    const rows = Array.from(section.querySelectorAll('[data-geo-row]'));
+
+    const setRegion = (regionId) => {
+      const region = config.regions.find((entry) => entry.id === regionId) || config.regions[0];
+      if (!region) return;
+      detailName.textContent = region.name;
+      detailNote.textContent = region.note;
+      detailSignals.innerHTML = region.signals.map((signal) => `<span class="geo-signal">${signal}</span>`).join('');
+      pins.forEach((pin) => pin.classList.toggle('is-active', pin.dataset.geoRegion === region.id));
+      rows.forEach((row) => row.classList.toggle('is-active', row.dataset.geoRow === region.id));
+    };
+
+    pins.forEach((pin) => pin.addEventListener('click', () => setRegion(pin.dataset.geoRegion)));
+    rows.forEach((row) => row.addEventListener('click', () => setRegion(row.dataset.geoRow)));
+    setRegion(config.regions[0]?.id);
+  }
+}
+
 (async function bootstrap() {
   await includePartials();
   initAtmosphere();
   initNavigation();
   initMouseGlow();
-  initReveal();
   initFaq();
   initHeroAbstracts();
   initCalEmbed();
   initForms();
   initTracking();
   initBreadcrumbSchema();
+  initPageVisuals();
+  initReveal();
   initResonanceLab();
   initSignalMatrix();
   initPublicationLens();
