@@ -1008,15 +1008,6 @@ function buildGeoVisual(config) {
     </button>
   `).join('');
 
-  const gridLines = Array.from({ length: 6 }).map((_, index) => {
-    const y = 12 + index * 14;
-    const x = 10 + index * 15;
-    return `
-      <line x1="0" y1="${y}%" x2="100%" y2="${y}%" />
-      <line x1="${x}%" y1="0" x2="${x}%" y2="100%" />
-    `;
-  }).join('');
-
   return `
     <div class="visual-panel visual-panel--geo">
       <div class="visual-panel__head">
@@ -1026,37 +1017,7 @@ function buildGeoVisual(config) {
       </div>
       <div class="visual-panel__body">
         <div class="geo-map" data-geo-map>
-          <svg viewBox="0 0 1000 540" aria-hidden="true" preserveAspectRatio="none">
-            <defs>
-              <radialGradient id="geoGlow" cx="50%" cy="40%" r="60%">
-                <stop offset="0%" stop-color="rgba(208,174,85,0.22)" />
-                <stop offset="55%" stop-color="rgba(58,86,128,0.10)" />
-                <stop offset="100%" stop-color="rgba(7,17,29,0)" />
-              </radialGradient>
-              <linearGradient id="geoLand" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="rgba(244,238,226,0.22)" />
-                <stop offset="100%" stop-color="rgba(244,238,226,0.08)" />
-              </linearGradient>
-            </defs>
-            <rect width="1000" height="540" fill="rgba(7,17,29,0.15)" />
-            <rect width="1000" height="540" fill="url(#geoGlow)" />
-            <g class="geo-grid">${gridLines}</g>
-            <g class="geo-lands">
-              <path d="M64 140 C83 114, 122 92, 171 86 C198 83, 224 90, 241 102 C253 111, 271 123, 287 124 C301 125, 310 136, 304 149 C298 161, 286 163, 277 169 C268 176, 266 187, 260 198 C250 217, 235 225, 217 228 C194 231, 181 220, 170 204 C160 191, 143 183, 125 179 C105 175, 87 166, 74 154 C67 148, 61 146, 64 140 Z" />
-              <path d="M154 289 C168 279, 188 276, 206 280 C220 283, 229 292, 233 304 C238 320, 237 339, 230 357 C221 383, 210 410, 195 439 C186 458, 163 456, 160 435 C156 406, 154 380, 152 353 C150 332, 145 306, 154 289 Z" />
-              <path d="M406 102 C427 88, 449 84, 472 88 C488 90, 504 96, 516 108 C526 118, 536 121, 549 123 C570 125, 587 132, 603 144 C622 158, 630 177, 626 198 C620 227, 614 257, 618 287 C623 323, 621 352, 610 380 C602 399, 586 415, 572 430 C552 451, 524 457, 501 448 C483 441, 474 425, 470 408 C466 389, 461 370, 448 353 C434 334, 420 327, 400 321 C374 313, 357 300, 353 278 C348 248, 357 226, 371 206 C384 187, 387 173, 384 154 C381 134, 388 116, 406 102 Z" />
-              <path d="M476 168 C496 159, 518 158, 540 162 C563 166, 587 177, 604 194 C620 211, 628 233, 629 255 C631 289, 619 320, 600 344 C584 363, 570 381, 565 404 C561 421, 547 433, 528 438 C501 444, 490 429, 484 414 C476 393, 468 373, 455 355 C442 337, 431 320, 428 298 C424 271, 431 249, 445 231 C457 214, 463 203, 464 186 C465 176, 468 171, 476 168 Z" />
-              <path d="M557 122 C590 98, 644 85, 700 84 C756 84, 806 98, 843 121 C870 138, 893 159, 913 178 C927 192, 935 208, 932 224 C928 245, 907 250, 890 252 C865 255, 844 249, 824 240 C802 231, 780 229, 757 232 C723 237, 696 248, 669 244 C641 239, 625 222, 618 200 C610 175, 593 162, 572 151 C557 143, 551 131, 557 122 Z" />
-              <path d="M810 339 C825 327, 848 324, 872 330 C892 335, 911 347, 918 363 C927 384, 920 409, 900 424 C874 443, 844 443, 821 428 C804 417, 797 399, 798 380 C799 362, 801 348, 810 339 Z" />
-              <path d="M412 470 C433 463, 458 462, 483 466 C491 467, 496 473, 493 480 C488 489, 477 494, 463 494 C441 495, 422 491, 411 484 C406 481, 405 474, 412 470 Z" />
-              </g>
-            <g class="geo-latlon">
-              <text x="34" y="34">90°N</text>
-              <text x="34" y="136">45°N</text>
-              <text x="34" y="270">0°</text>
-              <text x="34" y="406">45°S</text>
-            </g>
-          </svg>
+          <img class="geo-map-image" src="https://www.simplemaplab.com/maps/blank/world.svg" alt="World map showing country outlines" loading="lazy" decoding="async">
           <div class="geo-pin-layer">${pins}</div>
         </div>
         <aside class="visual-panel__sidebar">

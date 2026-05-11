@@ -251,10 +251,7 @@ body.nav-open .mouse-glow { opacity: 0; }
 .visual-panel__body { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.85fr); }
 .visual-panel__sidebar { padding: 24px; border-left: 1px solid var(--border); background: rgba(255,255,255,0.015); }
 .geo-map { position: relative; min-height: 500px; background: radial-gradient(circle at 50% 42%, rgba(208,174,85,0.08), rgba(7,17,29,0.02) 52%, rgba(7,17,29,0.86) 100%); }
-.geo-map svg { width: 100%; height: 100%; display: block; }
-.geo-grid line { stroke: rgba(244,238,226,0.08); stroke-width: 1; }
-.geo-lands path { fill: url(#geoLand); stroke: rgba(244,238,226,0.24); stroke-width: 1.5; }
-.geo-latlon text { fill: rgba(179,190,206,0.54); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; }
+.geo-map-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; filter: saturate(0.96) contrast(1.05) brightness(0.95); }
 .geo-pin-layer { position: absolute; inset: 0; }
 .geo-pin { position: absolute; transform: translate(-50%, -50%); width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(208,174,85,0.6); background: rgba(208,174,85,0.18); box-shadow: 0 0 0 0 rgba(208,174,85,0.24); cursor: pointer; transition: transform 0.18s var(--ease-out), background 0.18s var(--ease-out), border-color 0.18s var(--ease-out); }
 .geo-pin::after { content: ''; position: absolute; inset: -10px; border-radius: 50%; border: 1px solid rgba(208,174,85,0.22); opacity: 0.5; animation: geoPulse 2.8s ease-out infinite; }
