@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>Syntony Research Notes</title>
+    <title>Syntony Research Insights</title>
     <link>https://syntonyresearch.org/insights/</link>
-    <description>Commentary and public analysis from Syntony Research.</description>
+    <description>Forthcoming public analysis from Syntony Research.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 May 2026 00:00:00 -0400</lastBuildDate>
-    <item>
-      <title>Governance Lag Is an AI Risk Multiplier</title>
-      <link>https://syntonyresearch.org/insights/governance-lag-ai-risk/</link>
-      <guid>https://syntonyresearch.org/insights/governance-lag-ai-risk/</guid>
-      <pubDate>Sun, 10 May 2026 00:00:00 -0400</pubDate>
-      <description>Review cadence, escalation authority, and monitoring latency matter as much as model capability.</description>
-    </item>
-    <item>
-      <title>Why Evaluation Reports Need Interpretation Layers</title>
-      <link>https://syntonyresearch.org/insights/evaluation-cards-reporting/</link>
-      <guid>https://syntonyresearch.org/insights/evaluation-cards-reporting/</guid>
-      <pubDate>Sun, 10 May 2026 00:00:00 -0400</pubDate>
-      <description>Interpretive reporting as a bridge between technical findings and governance decisions.</description>
-    </item>
+    <lastBuildDate>Fri, 15 May 2026 00:00:00 -0400</lastBuildDate>
   </channel>
 </rss>

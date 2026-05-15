@@ -62,8 +62,7 @@ function initNavigation() {
   const nav = document.getElementById('site-nav');
   const toggle = document.querySelector('.nav-toggle');
   const links = document.getElementById('primary-nav');
-  const dropdown = document.querySelector('.nav-dropdown');
-  const dropdownTrigger = dropdown?.querySelector('[aria-haspopup="true"]');
+  const dropdowns = Array.from(document.querySelectorAll('.nav-dropdown'));
   if (!nav || !toggle || !links) return;
 
   const onScroll = () => {
@@ -80,18 +79,19 @@ function initNavigation() {
     document.body.classList.toggle('nav-open', next);
   });
 
-  const setDropdownExpanded = (expanded) => {
-    if (dropdownTrigger) dropdownTrigger.setAttribute('aria-expanded', String(expanded));
+  const setDropdownExpanded = (dropdown, expanded) => {
+    const trigger = dropdown?.querySelector('[aria-haspopup="true"]');
+    if (trigger) trigger.setAttribute('aria-expanded', String(expanded));
   };
 
-  if (dropdown) {
-    dropdown.addEventListener('mouseenter', () => setDropdownExpanded(true));
-    dropdown.addEventListener('mouseleave', () => setDropdownExpanded(false));
-    dropdown.addEventListener('focusin', () => setDropdownExpanded(true));
+  dropdowns.forEach((dropdown) => {
+    dropdown.addEventListener('mouseenter', () => setDropdownExpanded(dropdown, true));
+    dropdown.addEventListener('mouseleave', () => setDropdownExpanded(dropdown, false));
+    dropdown.addEventListener('focusin', () => setDropdownExpanded(dropdown, true));
     dropdown.addEventListener('focusout', (event) => {
-      if (!dropdown.contains(event.relatedTarget)) setDropdownExpanded(false);
+      if (!dropdown.contains(event.relatedTarget)) setDropdownExpanded(dropdown, false);
     });
-  }
+  });
 
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape' || !links.classList.contains('open')) return;
