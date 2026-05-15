@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Cross-Domain AI Risk · Causal Loop Diagrams — Syntony Research</title>
-<meta name="description" content="Interactive causal loop diagrams for AI safety, governance, alignment, evaluation, and strategic risk dynamics."/>
+<title>Syntony CLD Suite Preview · Causal Loop Diagrams — Syntony Research</title>
+<meta name="description" content="Public preview of interactive causal loop diagrams for AI safety, governance, alignment, evaluation, and strategic risk dynamics."/>
 <meta property="og:title" content="Syntony Research CLD Suite"/>
-<meta property="og:description" content="Interactive systems maps for AI safety, governance, alignment, evaluation, and strategic risk."/>
+<meta property="og:description" content="Public preview of interactive systems maps for AI safety, governance, alignment, evaluation, and strategic risk."/>
 <meta property="og:image" content="https://syntonyresearch.org/assets/og-image.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -74,6 +74,12 @@ body{max-width:1180px;margin:0 auto;padding:1.25rem 1.5rem 4rem;background-image
 .side-card h3{font-family:var(--display);font-size:20px;font-weight:500;line-height:1.1;margin-bottom:8px}
 .side-card p,.side-card li{font-size:12.5px;line-height:1.55;color:var(--tx2)}
 .side-card ul{padding-left:18px;display:grid;gap:5px}
+.preview-card{border-color:var(--client-primary,var(--amber));background:linear-gradient(180deg,var(--bg2),var(--bg))}
+.selection-card{min-height:150px}
+.selection-kicker{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);margin-bottom:5px}
+.selection-card h4{font-size:14px;font-weight:600;line-height:1.25;margin-bottom:6px;color:var(--tx)}
+.selection-card p{font-size:12.5px;line-height:1.55;color:var(--tx2);margin-bottom:7px}
+.selection-card code{font-family:var(--mono);font-size:10px;color:var(--tx3)}
 .export-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .tool-btn{border:1px solid var(--bd);background:var(--bg);border-radius:8px;padding:8px 9px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--tx2);cursor:pointer}
 .tool-btn:hover{border-color:var(--bd2);color:var(--tx)}
@@ -102,6 +108,11 @@ svg .node-g{transition:opacity .35s ease}
 svg .pol{transition:opacity .35s ease}
 svg .loop-lbl{transition:opacity .35s ease}
 svg .cross-edge{transition:opacity .35s ease}
+svg .node-g,svg .edge,svg .pol,svg .loop-lbl,svg .mega-zone,svg .zone-label{cursor:pointer}
+svg .node-g:focus rect,svg .loop-lbl:focus circle,svg .pol:focus,svg .edge:focus{outline:none;filter:drop-shadow(0 0 7px rgba(208,174,85,.35))}
+svg .node-g:hover rect{stroke:var(--client-primary,var(--amber));stroke-width:1.7}
+svg .edge:hover{stroke-width:3}
+svg .pol:hover{filter:drop-shadow(0 0 5px rgba(208,174,85,.35))}
 .faded{opacity:.08!important}
 .node-g.active-node rect{stroke:var(--client-primary,var(--amber));stroke-width:2.4;filter:drop-shadow(0 0 8px rgba(208,174,85,.28))}
 .edge.active-edge{stroke-width:3;filter:drop-shadow(0 0 5px rgba(208,174,85,.24))}
@@ -148,10 +159,10 @@ svg .cross-edge{transition:opacity .35s ease}
 </div>
 
 <div class="commercial-strip">
-  <div><strong>Tier 2</strong><span>Presentation license with guided narrative exports</span></div>
+  <div><strong>Public preview</strong><span>Representative CLDs, loop isolation, and explanatory notes</span></div>
+  <div><strong>Tier 2</strong><span>Client-specific presentation maps and guided exports</span></div>
   <div><strong>Tier 3</strong><span>Facilitated workshop mapping and snapshots</span></div>
   <div><strong>Tier 4</strong><span>Living dashboard with status overlays</span></div>
-  <div><strong>Scope</strong><span>25+ planned AI-risk systems and client-specific maps</span></div>
 </div>
 
 <div class="header">
@@ -159,8 +170,8 @@ svg .cross-edge{transition:opacity .35s ease}
     <img src="https://syntonyresearch.org/assets/logo-v2.svg" alt="Syntony Research logo"/>
     <div class="brand">Syntony Research</div>
   </div>
-  <h1>Cross-domain AI risk: causal loop dynamics</h1>
-  <p>Interactive systems maps showing reinforcing (R) and balancing (B) feedback loops across AI capability, governance, evaluation, and sociotechnical domains. The commercial platform adds client branding, guided narrative, exports, workshop editing, and dashboard overlays.</p>
+  <h1>Syntony CLD Suite public preview</h1>
+  <p>This public preview shows representative causal loop diagrams for AI capability, governance, evaluation, alignment, and sociotechnical risk. Paid deployments replace these examples with maps tailored to a client’s own AI risk ecosystem, evidence sources, owners, controls, vendors, and decisions.</p>
 </div>
 
 <div id="present-mode" class="workspace">
@@ -182,6 +193,10 @@ svg .cross-edge{transition:opacity .35s ease}
     </div>
   </main>
   <aside class="sidebar">
+    <section class="side-card preview-card">
+      <h3>Preview status</h3>
+      <p>This is an interactive public preview, not the licensed client suite. The paid suite includes client-specific maps, private project data, export packages, workshops, and dashboard overlays.</p>
+    </section>
     <section class="side-card">
       <h3>Presentation controls</h3>
       <div class="export-grid">
@@ -192,12 +207,17 @@ svg .cross-edge{transition:opacity .35s ease}
       </div>
     </section>
     <section class="side-card">
-      <h3>Commercial tiers</h3>
+      <h3>Client suite</h3>
       <ul>
-        <li>Presentation mode: branded CLD deliverables and export bundles.</li>
-        <li>Workshop mode: live facilitated mapping and client-specific systems.</li>
-        <li>Dashboard mode: living CLDs with status indicators and review notes.</li>
+        <li>Presentation: branded client CLDs and export bundles.</li>
+        <li>Workshop: facilitated mapping of the client AI risk ecosystem.</li>
+        <li>Dashboard: living CLDs with status indicators and review notes.</li>
       </ul>
+    </section>
+    <section class="side-card selection-card" id="selection-card">
+      <div class="selection-kicker">Selected element</div>
+      <h4>Click any node, arrow, polarity badge, loop label, or zone.</h4>
+      <p>Every diagram element exposes its causal meaning here. Use Tab and Enter for keyboard navigation.</p>
     </section>
     <section class="side-card">
       <h3>Leverage points</h3>
@@ -327,6 +347,7 @@ international: {
     {from:'multi',to:'gov', pol:'+',loops:['B3'],curve:15},
     {from:'gov', to:'iinc', pol:'−',loops:['B3','R4'],curve:35, dash:true, via:[{x:200,y:420}]},
     // R4
+    {from:'iinc',to:'tens', pol:'+',loops:['R4'],curve:16},
     {from:'tens',to:'frag', pol:'+',loops:['R4'],curve:30, via:[{x:420,y:170}]},
     {from:'frag',to:'gov',  pol:'−',loops:['R4'],curve:15, dash:true},
     // Cross
@@ -338,13 +359,13 @@ international: {
     {id:'B3',x:270,y:375},
     {id:'R4',x:190,y:260},
   ],
-  note: '<strong>R3</strong> is the great power AI arms race: national investment builds strategic advantage, which raises geopolitical tension, which drives further investment. <strong>B3</strong> is the hopeful counterpart: international incidents create multilateral pressure that strengthens governance frameworks, reducing future incidents. <strong>R4</strong> is the fragmentation trap — geopolitical tension fragments regulation, which weakens governance frameworks, which fails to prevent incidents, which raises tension further. The race between B3 (convergence) and R4 (fragmentation) determines whether international AI governance stabilizes or spirals. This is the UNIDIR and Cambridge conversation.'
+  note: '<strong>R3</strong> is the great power AI race: national investment builds strategic advantage, which raises geopolitical tension, which drives further investment. <strong>B3</strong> is the convergence channel: international incidents create multilateral pressure that strengthens governance frameworks, reducing future incidents. <strong>R4</strong> is the fragmentation trap: incidents raise geopolitical tension, tension fragments regulation, fragmentation weakens governance frameworks, and weaker governance leaves more room for future incidents. The balance between B3 and R4 determines whether international AI governance stabilizes or fragments.'
 },
 
 // ──────────── SYSTEM 3: Evaluation Ecosystem ────────────
 evaluation: {
   title: 'Evaluation & safety ecosystem',
-  subtitle: 'Red teaming, standards development, and the certification credibility cycle',
+  subtitle: 'Red teaming, standards development, and evaluation credibility',
   viewBox: '0 0 720 500',
   nodes: [
     {id:'complex',label:'Model complexity',     x:350, y:50,  w:168},
@@ -352,7 +373,7 @@ evaluation: {
     {id:'red',    label:'Red team capacity',    x:570, y:280, w:170},
     {id:'vuln',   label:'Vulnerability discovery',x:420,y:400,w:216},
     {id:'std',    label:'Safety standards',     x:190, y:420, w:160},
-    {id:'cert',   label:'Certification trust',  x:95,  y:290, w:184},
+    {id:'cert',   label:'Evaluation credibility',x:95, y:290, w:200},
     {id:'demand', label:'Eval market demand',   x:100, y:140, w:186},
   ],
   loops: [
@@ -381,7 +402,7 @@ evaluation: {
     {id:'B5',x:570,y:350},
     {id:'R6',x:115,y:350},
   ],
-  note: '<strong>R5</strong> is the discovery flywheel — Syntony\'s core business model: red team capacity generates vulnerability discoveries, which mature into safety standards, which build certification trust, which grows market demand for evaluation, which funds more red team capacity. <strong>B5</strong> is gap closure: as the evaluation gap widens, investment in red teaming increases, discoveries close the gap. <strong>R6</strong> is the credibility engine connecting certification trust to market demand and back to standards development. The cross-domain link from model complexity shows why the gap keeps reopening — this is the Evaluation Cards thesis.'
+  note: '<strong>R5</strong> is the discovery flywheel: red team capacity generates vulnerability discoveries, which mature into safety standards, which build evaluation credibility, which grows demand for evaluation, which funds more red team capacity. <strong>B5</strong> is gap closure: as the evaluation gap widens, investment in red teaming increases, and discoveries narrow the gap. <strong>R6</strong> is the credibility engine connecting evaluation credibility to market demand and back to standards development. The cross-domain link from model complexity shows why the gap keeps reopening.'
 },
 
 // ──────────── SYSTEM 4: Sociotechnical & Market ────────────
@@ -499,17 +520,17 @@ mega: {
   ],
   nodes: [
     // Core
-    {id:'m_inc',  label:'AI incidents',       x:190, y:110, w:142, zone:'core'},
-    {id:'m_reg',  label:'Regulatory pressure', x:140, y:190, w:184, zone:'core'},
-    {id:'m_safe', label:'Safety investment',   x:200, y:150, w:170, zone:'core'},
-    {id:'m_cap',  label:'AI capability',       x:100, y:80,  w:148, zone:'core'},
+    {id:'m_inc',  label:'AI incidents',       x:260, y:80,  w:142, zone:'core'},
+    {id:'m_reg',  label:'Regulatory pressure', x:235, y:205, w:184, zone:'core'},
+    {id:'m_safe', label:'Safety investment',   x:100, y:145, w:170, zone:'core'},
+    {id:'m_cap',  label:'AI capability',       x:105, y:80,  w:148, zone:'core'},
     // International
-    {id:'m_gov',  label:'Governance frameworks',x:490,y:120, w:194, zone:'intl'},
-    {id:'m_tens', label:'Geopolitical tension', x:530,y:190, w:190, zone:'intl'},
-    {id:'m_iinc', label:'Intl incidents',       x:460,y:80,  w:142, zone:'intl'},
+    {id:'m_gov',  label:'Governance frameworks',x:550,y:145, w:194, zone:'intl'},
+    {id:'m_tens', label:'Geopolitical tension', x:530,y:210, w:190, zone:'intl'},
+    {id:'m_iinc', label:'Intl incidents',       x:470,y:75,  w:142, zone:'intl'},
     // Evaluation
-    {id:'m_red',  label:'Red team capacity',   x:140, y:390, w:170, zone:'eval'},
-    {id:'m_cert', label:'Certification trust', x:190, y:460, w:184, zone:'eval'},
+    {id:'m_red',  label:'Red team capacity',   x:225, y:420, w:170, zone:'eval'},
+    {id:'m_cert', label:'Evaluation credibility', x:185, y:500, w:200, zone:'eval'},
     {id:'m_gap',  label:'Evaluation gap',      x:100, y:350, w:148, zone:'eval'},
     // Sociotech
     {id:'m_adopt',label:'AI adoption',         x:490, y:380, w:132, zone:'socio'},
@@ -540,14 +561,14 @@ mega: {
     {from:'m_tens',to:'m_conc', pol:'+',loops:['X4'],curve:-15, via:[{x:630,y:350}]},
   ],
   loopLabels: [],
-  note: '<strong>Incident transmission</strong> (amber): domestic AI incidents propagate internationally and fuel social resistance across borders. <strong>Regulatory cascade</strong> (pink): domestic regulatory pressure shapes safety investment, feeds into governance frameworks, and constrains global adoption. <strong>Trust–adoption bridge</strong> (green): certification credibility from the evaluation ecosystem enables adoption in the sociotechnical domain and legitimizes governance frameworks internationally. <strong>Capability–gap coupling</strong> (red): raw capability growth widens the evaluation gap, raises geopolitical tension, and drives market concentration. These cross-domain channels are where systemic risk lives — and where cross-domain advisory creates the most value.'
+  note: '<strong>Incident transmission</strong> (amber): domestic AI incidents propagate internationally and fuel social resistance across borders. <strong>Regulatory cascade</strong> (pink): domestic regulatory pressure shapes safety investment, feeds into governance frameworks, and constrains global adoption. <strong>Credibility–adoption bridge</strong> (green): evaluation credibility enables adoption in the sociotechnical domain and legitimizes governance frameworks internationally. <strong>Capability–gap coupling</strong> (red): raw capability growth widens the evaluation gap, raises geopolitical tension, and drives market concentration. These cross-domain channels are where systemic risk lives.'
 }
 };
 
 const DEFAULT_PROJECT = {
   id: 'syntony-ai-risk-platform-2026',
-  client: 'Licensable client deployment',
-  title: 'Syntony CLD Commercial Platform',
+  client: 'Public preview',
+  title: 'Syntony CLD Suite Preview',
   author: 'Nathan Heath, Syntony Research',
   created: '2026-05-15',
   version: '1.0',
@@ -555,7 +576,7 @@ const DEFAULT_PROJECT = {
     primaryColor: '#1a3a5c',
     logo: null,
     footer: '© 2026 Syntony Research · Powered by Syntony Research',
-    watermark: 'DRAFT — Syntony Research'
+    watermark: 'PUBLIC PREVIEW — Syntony Research'
   },
   systems: SYSTEMS
 };
@@ -657,6 +678,13 @@ function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 }
 
+function edgeMeaning(sys, edge) {
+  const from = sys.nodes.find(n => n.id === edge.from)?.label || edge.from;
+  const to = sys.nodes.find(n => n.id === edge.to)?.label || edge.to;
+  const verb = edge.pol === '−' ? 'counteracts or reduces' : 'increases or reinforces';
+  return `${from} ${verb} ${to}.`;
+}
+
 function renderSystem(sys) {
   const nodeMap = {};
   sys.nodes.forEach(n => nodeMap[n.id] = n);
@@ -681,10 +709,11 @@ function renderSystem(sys) {
 
   // Zones (megasystem only)
   if (sys.zones) {
-    sys.zones.forEach(z => {
+    sys.zones.forEach((z, zi) => {
       const col = COLORS[z.color];
-      svg += `<rect class="mega-zone" x="${z.x}" y="${z.y}" width="${z.w}" height="${z.h}" rx="16" fill="${col.bg}" stroke="${col.main}" stroke-opacity="0.3"/>`;
-      svg += `<text x="${z.x + 14}" y="${z.y + 22}" fill="${col.main}" style="font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.03em">${z.label}</text>`;
+      const zoneLabel = escapeHtml(z.label);
+      svg += `<rect class="mega-zone" data-zone-index="${zi}" tabindex="0" role="button" aria-label="Zone: ${zoneLabel}" x="${z.x}" y="${z.y}" width="${z.w}" height="${z.h}" rx="16" fill="${col.bg}" stroke="${col.main}" stroke-opacity="0.3"><title>Zone: ${zoneLabel}</title></rect>`;
+      svg += `<text class="zone-label" data-zone-index="${zi}" tabindex="0" role="button" aria-label="Zone: ${zoneLabel}" x="${z.x + 14}" y="${z.y + 22}" fill="${col.main}" style="font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.03em">${zoneLabel}<title>Zone: ${zoneLabel}</title></text>`;
     });
   }
 
@@ -705,13 +734,16 @@ function renderSystem(sys) {
     const sw = e.cross ? '1.2' : '1.8';
     const dashAttr = e.dash ? ' stroke-dasharray="6 3"' : '';
 
-    svg += `<path class="edge" data-from="${e.from}" data-to="${e.to}" data-loops="${loopIds.join(',')}" d="${d}" fill="none" stroke="${col.main}" stroke-width="${sw}" opacity="${opacity}"${dashAttr} marker-end="url(#arr-${colorName})"/>`;
+    const edgeTitle = escapeHtml(edgeMeaning(sys, e));
+    const loopText = loopIds.join(',');
+    svg += `<path class="edge" data-edge-index="${ei}" data-from="${e.from}" data-to="${e.to}" data-loops="${loopText}" tabindex="0" role="button" aria-label="${edgeTitle}" d="${d}" fill="none" stroke="${col.main}" stroke-width="${sw}" opacity="${opacity}"${dashAttr} marker-end="url(#arr-${colorName})"><title>${edgeTitle}</title></path>`;
 
     // Polarity badge
     const mid = pathMidpoint(conn.start, conn.end, e.curve || 0, via, 0.5);
     const pr = e.cross ? 7 : 9;
-    svg += `<circle class="pol" data-loops="${loopIds.join(',')}" cx="${mid.x.toFixed(1)}" cy="${mid.y.toFixed(1)}" r="${pr}" fill="var(--bg)" stroke="${col.main}" stroke-width="0.7" opacity="${opacity}"/>`;
-    svg += `<text class="pol" data-loops="${loopIds.join(',')}" x="${mid.x.toFixed(1)}" y="${(mid.y + 4).toFixed(1)}" text-anchor="middle" fill="${col.main}" style="font-family:var(--font);font-size:${e.cross?'11':'13'}px;font-weight:500" opacity="${opacity}">${e.pol}</text>`;
+    const polLabel = e.pol === '−' ? 'Negative polarity: opposite direction causal effect' : 'Positive polarity: same direction causal effect';
+    svg += `<circle class="pol" data-edge-index="${ei}" data-loops="${loopText}" tabindex="0" role="button" aria-label="${polLabel}. ${edgeTitle}" cx="${mid.x.toFixed(1)}" cy="${mid.y.toFixed(1)}" r="${pr}" fill="var(--bg)" stroke="${col.main}" stroke-width="0.7" opacity="${opacity}"><title>${polLabel}</title></circle>`;
+    svg += `<text class="pol" data-edge-index="${ei}" data-loops="${loopText}" tabindex="0" role="button" aria-label="${polLabel}. ${edgeTitle}" x="${mid.x.toFixed(1)}" y="${(mid.y + 4).toFixed(1)}" text-anchor="middle" fill="${col.main}" style="font-family:var(--font);font-size:${e.cross?'11':'13'}px;font-weight:500" opacity="${opacity}">${e.pol}<title>${polLabel}</title></text>`;
   });
 
   // Loop labels
@@ -720,9 +752,10 @@ function renderSystem(sys) {
       const loop = sys.loops.find(l => l.id === ll.id);
       if (!loop) return;
       const col = COLORS[loop.color];
-      svg += `<g class="loop-lbl" data-loops="${ll.id}" style="cursor:pointer" onclick="setLoop('${ll.id}')">`;
+      const loopTitle = escapeHtml(`${loop.id}: ${loop.label}`);
+      svg += `<g class="loop-lbl" data-loop-id="${ll.id}" data-loops="${ll.id}" tabindex="0" role="button" aria-label="Loop label ${loopTitle}" style="cursor:pointer" onclick="setLoop('${ll.id}'); selectLoopLabel('${ll.id}')">`;
       svg += `<circle cx="${ll.x}" cy="${ll.y}" r="17" fill="${col.bg}" stroke="${col.main}" stroke-width="1.2"/>`;
-      svg += `<text x="${ll.x}" y="${ll.y + 4}" text-anchor="middle" fill="${col.dk}" style="font-family:var(--mono);font-size:11px;font-weight:500">${ll.id}</text>`;
+      svg += `<text x="${ll.x}" y="${ll.y + 4}" text-anchor="middle" fill="${col.dk}" style="font-family:var(--mono);font-size:11px;font-weight:500">${ll.id}</text><title>${loopTitle}</title>`;
       svg += `</g>`;
     });
   }
@@ -738,9 +771,10 @@ function renderSystem(sys) {
       }
     });
     const leverage = n.leverage ? ` data-leverage-level="${n.leverage.level}" data-leverage-note="${escapeHtml(n.leverage.note)}"` : '';
-    svg += `<g class="node-g" data-id="${n.id}" data-nodes="${loops.join(',')}"${leverage}>`;
+    const nodeTitle = escapeHtml(`Node: ${n.label}`);
+    svg += `<g class="node-g" data-id="${n.id}" data-nodes="${loops.join(',')}"${leverage} tabindex="0" role="button" aria-label="${nodeTitle}">`;
     svg += `<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="${NODE_RX}" fill="var(--bg)" stroke="var(--bd2)" stroke-width="1"/>`;
-    svg += `<text x="${n.x}" y="${n.y + 1}" text-anchor="middle" dominant-baseline="central" fill="var(--tx)" style="font-family:var(--font);font-size:13px;font-weight:500">${n.label}</text>`;
+    svg += `<text x="${n.x}" y="${n.y + 1}" text-anchor="middle" dominant-baseline="central" fill="var(--tx)" style="font-family:var(--font);font-size:13px;font-weight:500">${escapeHtml(n.label)}</text><title>${nodeTitle}</title>`;
     if (n.leverage) {
       svg += `<circle cx="${(r.x + r.w - 16).toFixed(1)}" cy="${(r.y + 12).toFixed(1)}" r="11" fill="var(--client-primary)" opacity=".92"/>`;
       svg += `<text class="lp-badge" x="${(r.x + r.w - 16).toFixed(1)}" y="${(r.y + 15).toFixed(1)}" text-anchor="middle" fill="#fff">LP ${n.leverage.level}</text>`;
@@ -759,6 +793,7 @@ function renderSystem(sys) {
 let currentSystem = 'core';
 let currentLoop = 'all';
 let currentMode = 'present';
+let selectedElement = null;
 
 function applyProjectChrome() {
   document.getElementById('project-title').textContent = PROJECT.title;
@@ -781,12 +816,95 @@ function setLoop(id) {
   updateHighlight();
   updatePills();
   updateNarrativePanel();
+  if (currentLoop !== 'all') selectLoopLabel(currentLoop);
   updateHash();
 }
 
 function updatePills() {
   document.querySelectorAll('.lpill').forEach(p => {
     p.classList.toggle('active', p.dataset.loop === currentLoop);
+  });
+}
+
+function setSelection(kind, title, body, meta) {
+  selectedElement = {kind, title, body, meta};
+  const card = document.getElementById('selection-card');
+  if (!card) return;
+  card.innerHTML = `<div class="selection-kicker">${escapeHtml(kind)}</div><h4>${escapeHtml(title)}</h4><p>${escapeHtml(body)}</p>${meta ? `<code>${escapeHtml(meta)}</code>` : ''}`;
+}
+
+function selectNode(nodeId) {
+  const sys = SYSTEMS[currentSystem];
+  const node = sys.nodes.find(n => n.id === nodeId);
+  if (!node) return;
+  const incoming = sys.edges.filter(e => e.to === nodeId).length;
+  const outgoing = sys.edges.filter(e => e.from === nodeId).length;
+  const loops = [...new Set(sys.edges.filter(e => e.from === nodeId || e.to === nodeId).flatMap(e => e.loops || []))];
+  const leverage = node.leverage ? ` Leverage point ${node.leverage.level}: ${node.leverage.note}` : '';
+  setSelection(
+    'Node',
+    node.label,
+    `${incoming} incoming causal link(s), ${outgoing} outgoing causal link(s). Appears in ${loops.length ? loops.join(', ') : 'cross-system context only'}.${leverage}`,
+    node.id
+  );
+}
+
+function selectEdge(index) {
+  const sys = SYSTEMS[currentSystem];
+  const edge = sys.edges[Number(index)];
+  if (!edge) return;
+  const loops = edge.cross ? 'cross-domain context' : (edge.loops || []).join(', ');
+  const polarity = edge.pol === '−' ? 'Negative polarity: movement in the source tends to move the target in the opposite direction.' : 'Positive polarity: movement in the source tends to move the target in the same direction.';
+  setSelection('Arrow', edgeMeaning(sys, edge), polarity, `loops: ${loops}`);
+}
+
+function selectPolarity(index) {
+  const sys = SYSTEMS[currentSystem];
+  const edge = sys.edges[Number(index)];
+  if (!edge) return;
+  const title = edge.pol === '−' ? 'Negative polarity' : 'Positive polarity';
+  const body = edge.pol === '−'
+    ? `${edgeMeaning(sys, edge)} Dashed stroke marks an opposite-direction causal link.`
+    : `${edgeMeaning(sys, edge)} Solid stroke marks a same-direction causal link.`;
+  setSelection('Polarity badge', title, body, edge.pol);
+}
+
+function selectLoopLabel(loopId) {
+  const sys = SYSTEMS[currentSystem];
+  const loop = sys.loops.find(l => l.id === loopId);
+  if (!loop) return;
+  const narrative = getLoopNarrative(loopId);
+  const type = loop.type === 'R' ? 'Reinforcing' : loop.type === 'B' ? 'Balancing' : 'Cross-system coupling';
+  setSelection('Loop label', `${loop.id}: ${loop.label}`, `${type}. ${narrative.summary}`, loopId);
+}
+
+function selectZone(index) {
+  const sys = SYSTEMS[currentSystem];
+  const zone = sys.zones && sys.zones[Number(index)];
+  if (!zone) return;
+  const nodes = sys.nodes.filter(n => n.zone && zone.label.toLowerCase().includes(n.zone.replace('intl', 'international').replace('eval', 'evaluation').replace('socio', 'sociotechnical')));
+  setSelection('Megasystem zone', zone.label, `A quadrant cluster in the megasystem preview with ${nodes.length || 'several'} representative variables. Click arrows crossing the zone boundaries to inspect transmission mechanisms.`, `${zone.x},${zone.y}`);
+}
+
+function bindElementInteractions() {
+  document.querySelectorAll('.node-g[data-id]').forEach(el => {
+    el.addEventListener('click', event => { event.stopPropagation(); selectNode(el.dataset.id); });
+    el.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectNode(el.dataset.id); } });
+  });
+  document.querySelectorAll('.edge[data-edge-index]').forEach(el => {
+    el.addEventListener('click', event => { event.stopPropagation(); selectEdge(el.dataset.edgeIndex); });
+    el.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectEdge(el.dataset.edgeIndex); } });
+  });
+  document.querySelectorAll('.pol[data-edge-index]').forEach(el => {
+    el.addEventListener('click', event => { event.stopPropagation(); selectPolarity(el.dataset.edgeIndex); });
+    el.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectPolarity(el.dataset.edgeIndex); } });
+  });
+  document.querySelectorAll('.loop-lbl[data-loop-id]').forEach(el => {
+    el.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setLoop(el.dataset.loopId); selectLoopLabel(el.dataset.loopId); } });
+  });
+  document.querySelectorAll('.mega-zone[data-zone-index],.zone-label[data-zone-index]').forEach(el => {
+    el.addEventListener('click', event => { event.stopPropagation(); selectZone(el.dataset.zoneIndex); });
+    el.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectZone(el.dataset.zoneIndex); } });
   });
 }
 
@@ -836,6 +954,19 @@ function readHashState() {
 
 function validateSystem(sys, key) {
   if (!sys._validated) {
+    const rects = sys.nodes.map(n => ({...getNodeRect(n), id:n.id, label:n.label}));
+    rects.forEach(r => {
+      if (r.w <= r.label.length * 7.2 + 18) {
+        console.warn(`Node label may overflow in ${key}.${r.id}: "${r.label}"`);
+      }
+    });
+    for (let i = 0; i < rects.length; i++) {
+      for (let j = i + 1; j < rects.length; j++) {
+        const a = rects[i], b = rects[j];
+        const overlap = !(a.x + a.w + 8 < b.x || b.x + b.w + 8 < a.x || a.y + a.h + 8 < b.y || b.y + b.h + 8 < a.y);
+        if (overlap) console.warn(`Node overlap risk in ${key}: ${a.id} and ${b.id}`);
+      }
+    }
     sys.loops.forEach(loop => {
       if (loop.type !== 'R' && loop.type !== 'B') return;
       const negativeCount = sys.edges.filter(e => (e.loops || []).includes(loop.id) && e.pol === '−').length;
@@ -844,6 +975,12 @@ function validateSystem(sys, key) {
       if (!valid) {
         console.warn(`Loop polarity mismatch in ${key}.${loop.id}: ${loop.type} loop has ${negativeCount} negative links.`);
       }
+    });
+    (sys.loopLabels || []).forEach(label => {
+      rects.forEach(r => {
+        const inside = label.x > r.x - 20 && label.x < r.x + r.w + 20 && label.y > r.y - 20 && label.y < r.y + r.h + 20;
+        if (inside) console.warn(`Loop label overlap risk in ${key}.${label.id} near node ${r.id}`);
+      });
     });
     sys._validated = true;
   }
@@ -864,17 +1001,18 @@ function render() {
   document.getElementById('meta').innerHTML = `<h2>${sys.title}</h2><p>${sys.subtitle}</p>`;
 
   // Loop pills
-  let pills = `<div class="lpill active" data-loop="all" onclick="setLoop('all')"><span class="dot" style="background:var(--tx3)"></span>All</div>`;
+  let pills = `<button type="button" class="lpill active" data-loop="all" onclick="setLoop('all')" aria-label="Show all loops"><span class="dot" style="background:var(--tx3)"></span>All</button>`;
   sys.loops.forEach(l => {
     const col = COLORS[l.color];
     const typeLabel = l.type === 'R' ? 'Reinforcing' : l.type === 'B' ? 'Balancing' : 'Coupling';
-    pills += `<div class="lpill" data-loop="${l.id}" onclick="setLoop('${l.id}')" style="color:${col.main}"><span class="dot" style="background:${col.main}"></span><span class="tag">${l.id}</span>${l.label}</div>`;
+    pills += `<button type="button" class="lpill" data-loop="${l.id}" onclick="setLoop('${l.id}')" style="color:${col.main}" aria-label="${typeLabel} loop ${l.id}: ${escapeHtml(l.label)}"><span class="dot" style="background:${col.main}"></span><span class="tag">${l.id}</span>${escapeHtml(l.label)}</button>`;
   });
   document.getElementById('loops').innerHTML = pills;
   updatePills();
 
   // SVG
   document.getElementById('canvas').innerHTML = renderSystem(sys);
+  bindElementInteractions();
   bindLeverageTooltips();
 
   // Note
