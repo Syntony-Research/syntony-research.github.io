@@ -117,7 +117,6 @@ body.nav-open .mouse-glow { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   .spin-slow, .spin-med, .spin-fast, .hero-wave, .ety-visual path, .resonance-orb, .event-ticker-track { animation: none; }
-  @keyframes pulse { 0%, 100% { transform: none; opacity: 0.5; } }
 }
 
 /* ── NAV ── */
@@ -188,11 +187,6 @@ body.nav-open .mouse-glow { opacity: 0; }
 .hero::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.28; background-image: repeating-radial-gradient(ellipse at 78% 28%, transparent 0 30px, rgba(58,86,128,0.18) 31px 32px); animation: resonanceDrift 18s linear infinite; }
 @keyframes resonanceDrift { to { transform: translate3d(-24px, 12px, 0); } }
 .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
-.hero-meta { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; background: rgba(160,112,63,0.05); border: 1px solid rgba(160,112,63,0.14); border-radius: 100px; margin-bottom: 32px; }
-.hero-meta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); position: relative; }
-.hero-meta-dot::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--accent); opacity: 0.4; animation: pulse 2.4s ease-out infinite; }
-@keyframes pulse { 0% { transform: scale(0.8); opacity: 0.5; } 100% { transform: scale(1.6); opacity: 0; } }
-.hero-meta-text { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
 .hero h1 { font-family: var(--font-display); font-size: clamp(40px, 5.4vw, 68px); font-weight: 400; line-height: 1.06; color: var(--text); margin-bottom: 28px; letter-spacing: -0.015em; }
 .hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
 .hero-sub { font-size: 17px; line-height: 1.65; color: var(--text-secondary); margin-bottom: 40px; max-width: 540px; font-weight: 300; }
