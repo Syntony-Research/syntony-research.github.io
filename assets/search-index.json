@@ -3,14 +3,14 @@
     "title": "Syntony Research",
     "url": "/",
     "type": "Home",
-    "summary": "AI safety, governance, adversarial evaluation, forecasting, and technical writing for consequential AI decisions.",
+    "summary": "AI safety evidence tuned to decisions people can defend.",
     "keywords": ["home", "ai safety", "governance", "red teaming", "evidence", "decision records"]
   },
   {
     "title": "Services",
     "url": "/services/",
     "type": "Services",
-    "summary": "Service catalog covering adversarial evaluation, governance, risk advisory, forecasting, briefings, research, and technical writing.",
+    "summary": "Services for AI decisions that cannot be waved through.",
     "keywords": ["services", "consulting", "advisory", "evaluation", "governance", "briefings"]
   },
   {
@@ -101,21 +101,21 @@
     "title": "Products",
     "url": "/products/",
     "type": "Products",
-    "summary": "Software, paid research products, diagnostic tools, and executive briefing packages for AI risk leaders.",
+    "summary": "Products for the gap between AI evidence and governance action.",
     "keywords": ["products", "software", "research products", "diagnostics", "ai risk"]
   },
   {
     "title": "Software",
     "url": "/products/software/",
     "type": "Product",
-    "summary": "Software roadmap for red-team evidence translation, live monitoring, governance findings, and decision records.",
+    "summary": "Software roadmap for the work after red-team evidence arrives.",
     "keywords": ["software", "evidence translation", "live monitoring", "control map", "decision records"]
   },
   {
     "title": "Syntony Conductor",
     "url": "/products/syntony-conductor/",
     "type": "Product",
-    "summary": "Coming soon: software that translates adversarial evidence into governance findings, alignment implications, controls, and decision records.",
+    "summary": "Coming soon: software that conducts red-team evidence into governance action.",
     "keywords": ["syntony conductor", "conductor", "software", "governance findings", "alignment", "livemonitor"]
   },
   {
@@ -143,14 +143,14 @@
     "title": "About",
     "url": "/about/",
     "type": "Company",
-    "summary": "About Syntony Research and its work across applied AI safety, governance, and adversarial evaluation.",
+    "summary": "About Syntony Research and the tuning problem between AI safety evidence and institutional action.",
     "keywords": ["about", "company", "syntony research", "mission"]
   },
   {
     "title": "Founder",
     "url": "/about/founder/",
     "type": "Company",
-    "summary": "Founder profile for Nathan Heath, founder and chief scientist of Syntony Research.",
+    "summary": "Founder profile for Nathan Heath, AI safety researcher, decision scientist, and Truman National Security Fellow.",
     "keywords": ["founder", "nathan heath", "chief scientist", "profile"]
   },
   {
