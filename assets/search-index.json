@@ -1,0 +1,184 @@
+[
+  {
+    "title": "Syntony Research",
+    "url": "/",
+    "type": "Home",
+    "summary": "AI safety, governance, adversarial evaluation, forecasting, and technical writing for consequential AI decisions.",
+    "keywords": ["home", "ai safety", "governance", "red teaming", "evidence", "decision records"]
+  },
+  {
+    "title": "Services",
+    "url": "/services/",
+    "type": "Services",
+    "summary": "Service catalog covering adversarial evaluation, governance, risk advisory, forecasting, briefings, research, and technical writing.",
+    "keywords": ["services", "consulting", "advisory", "evaluation", "governance", "briefings"]
+  },
+  {
+    "title": "Adversarial Evaluation",
+    "url": "/services/red-teaming/",
+    "type": "Service",
+    "summary": "Failure-mode discovery, misuse-path analysis, and red-team design for models, tools, and AI workflows.",
+    "keywords": ["red teaming", "adversarial evaluation", "failure modes", "misuse", "llm", "testing"]
+  },
+  {
+    "title": "AI Safety Research",
+    "url": "/services/safety-research/",
+    "type": "Service",
+    "summary": "Methodological design and safety analytics for advanced AI systems and evaluation programs.",
+    "keywords": ["safety research", "alignment", "evaluation", "methodology", "reward hacking"]
+  },
+  {
+    "title": "Governance Advisory",
+    "url": "/services/governance/",
+    "type": "Service",
+    "summary": "Policy strategy, governance architecture, control maps, decision rights, and oversight evidence.",
+    "keywords": ["governance", "controls", "policy", "decision rights", "oversight", "nist"]
+  },
+  {
+    "title": "Strategic Risk Advisory",
+    "url": "/services/risk-advisory/",
+    "type": "Service",
+    "summary": "Executive risk posture, governance lag diagnostics, escalation planning, and board-ready action roadmaps.",
+    "keywords": ["risk advisory", "board", "executive", "governance lag", "roadmap", "escalation"]
+  },
+  {
+    "title": "Geopolitical Forecasting",
+    "url": "/services/geopolitical-forecasting/",
+    "type": "Service",
+    "summary": "Emerging technology scenarios, signposts, and decision triggers across AI, compute, chips, cyber, and regulation.",
+    "keywords": ["geopolitics", "forecasting", "scenarios", "compute", "chips", "regulation"]
+  },
+  {
+    "title": "Executive Briefings",
+    "url": "/services/briefings/",
+    "type": "Service",
+    "summary": "Board-level workshops, executive memos, and decision support for high-consequence AI questions.",
+    "keywords": ["briefings", "board", "executive", "memo", "workshop", "decision support"]
+  },
+  {
+    "title": "Custom Research",
+    "url": "/services/research/",
+    "type": "Service",
+    "summary": "Scoped analytical engagements for priority questions in AI safety, governance, and technology risk.",
+    "keywords": ["custom research", "analysis", "reports", "risk", "ai governance"]
+  },
+  {
+    "title": "Technical Writing",
+    "url": "/services/technical-writing/",
+    "type": "Service",
+    "summary": "Technical reports, executive memos, policy briefs, and public explanations for complex AI evidence.",
+    "keywords": ["technical writing", "memo", "report", "brief", "public explanation", "documentation"]
+  },
+  {
+    "title": "Research",
+    "url": "/research/",
+    "type": "Research",
+    "summary": "Syntony-authored reports and papers on AI safety, red teaming, governance lag, and geopolitical technology risk.",
+    "keywords": ["research", "publications", "papers", "reports", "ai safety", "red agent"]
+  },
+  {
+    "title": "Governance Lag and Emerging Technology Adaptation in Europe",
+    "url": "/research/governance-lag-europe/",
+    "type": "Report",
+    "summary": "Cross-sector report on institutional readiness for AI-enabled systems across defence, energy, finance, and public health.",
+    "keywords": ["governance lag", "europe", "defence", "energy", "finance", "biosurveillance", "causal map"]
+  },
+  {
+    "title": "Red-Agent: Multi-Provider LLM Red Teaming",
+    "url": "/research/red-agent/",
+    "type": "Paper",
+    "summary": "Practical multi-provider framework for LLM red teaming with operational reachability and artifact-complete reporting.",
+    "keywords": ["red-agent", "red teaming", "llm", "strongreject", "evaluation", "ssrn"]
+  },
+  {
+    "title": "Extending MONA in Camera Dropbox",
+    "url": "/research/mona-camera-dropbox/",
+    "type": "Paper",
+    "summary": "Reproduction, learned approval, and design implications for reward-hacking mitigation.",
+    "keywords": ["mona", "camera dropbox", "reward hacking", "arxiv", "learned approval", "ai safety"]
+  },
+  {
+    "title": "Products",
+    "url": "/products/",
+    "type": "Products",
+    "summary": "Software, paid research products, diagnostic tools, and executive briefing packages for AI risk leaders.",
+    "keywords": ["products", "software", "research products", "diagnostics", "ai risk"]
+  },
+  {
+    "title": "Software",
+    "url": "/products/software/",
+    "type": "Product",
+    "summary": "Software roadmap for red-team evidence translation, live monitoring, governance findings, and decision records.",
+    "keywords": ["software", "evidence translation", "live monitoring", "control map", "decision records"]
+  },
+  {
+    "title": "Syntony Conductor",
+    "url": "/products/syntony-conductor/",
+    "type": "Product",
+    "summary": "Coming soon: software that translates adversarial evidence into governance findings, alignment implications, controls, and decision records.",
+    "keywords": ["syntony conductor", "conductor", "software", "governance findings", "alignment", "livemonitor"]
+  },
+  {
+    "title": "Enterprise AI Risk Index 2026",
+    "url": "/products/enterprise-ai-risk-index-2026/",
+    "type": "Product",
+    "summary": "Board-ready research package on governance lag, adversarial evaluation, regulatory exposure, and geopolitical technology risk.",
+    "keywords": ["enterprise ai risk index", "risk index", "governance lag", "board", "regulatory exposure"]
+  },
+  {
+    "title": "Insights",
+    "url": "/insights/",
+    "type": "Insights",
+    "summary": "Forthcoming public analysis on AI safety, governance, evaluation, and institutional risk.",
+    "keywords": ["insights", "notes", "analysis", "substack", "public analysis"]
+  },
+  {
+    "title": "Engagements",
+    "url": "/work/",
+    "type": "Company",
+    "summary": "Representative engagement areas across AI transformation, governance, red teaming, and technology risk.",
+    "keywords": ["work", "engagements", "case studies", "clients", "transformation"]
+  },
+  {
+    "title": "About",
+    "url": "/about/",
+    "type": "Company",
+    "summary": "About Syntony Research and its work across applied AI safety, governance, and adversarial evaluation.",
+    "keywords": ["about", "company", "syntony research", "mission"]
+  },
+  {
+    "title": "Founder",
+    "url": "/about/founder/",
+    "type": "Company",
+    "summary": "Founder profile for Nathan Heath, founder and chief scientist of Syntony Research.",
+    "keywords": ["founder", "nathan heath", "chief scientist", "profile"]
+  },
+  {
+    "title": "Contact",
+    "url": "/contact/",
+    "type": "Company",
+    "summary": "Contact Syntony Research to discuss advisory work, briefings, research, or software early access.",
+    "keywords": ["contact", "email", "consultation", "early access", "briefing"]
+  },
+  {
+    "title": "Disclosures",
+    "url": "/disclosures/",
+    "type": "Company",
+    "summary": "Disclosures, independence notes, and operating boundaries for Syntony Research.",
+    "keywords": ["disclosures", "independence", "boundaries", "conflicts"]
+  },
+  {
+    "title": "Privacy Policy",
+    "url": "/privacy/",
+    "type": "Legal",
+    "summary": "Privacy policy for Syntony Research.",
+    "keywords": ["privacy", "policy", "data"]
+  },
+  {
+    "title": "Terms of Service",
+    "url": "/terms/",
+    "type": "Legal",
+    "summary": "Terms of service for Syntony Research.",
+    "keywords": ["terms", "service", "legal"]
+  }
+]
