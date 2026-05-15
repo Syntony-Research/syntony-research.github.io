@@ -47,14 +47,36 @@
   }
 }
 html{font-family:var(--font);background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased}
-body{max-width:960px;margin:0 auto;padding:2rem 1.5rem 4rem;background-image:radial-gradient(rgba(208,174,85,.07) .7px,transparent .7px);background-size:18px 18px}
+body{max-width:1180px;margin:0 auto;padding:1.25rem 1.5rem 4rem;background-image:radial-gradient(rgba(208,174,85,.07) .7px,transparent .7px);background-size:18px 18px}
 
-.header{margin-bottom:2rem}
+.project-bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;margin-bottom:18px;padding:12px 14px;border:1px solid var(--bd);border-radius:var(--radius);background:var(--bg2)}
+.project-left{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3)}
+.project-left img{width:28px;height:28px}
+.project-title{text-align:center;font-family:var(--display);font-size:22px;font-weight:500;line-height:1.05;color:var(--tx)}
+.project-right{text-align:right;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);line-height:1.5}
+.mode-switcher{display:flex;gap:8px;justify-content:center;margin:0 0 18px;flex-wrap:wrap}
+.mode-tab{border:1px solid var(--bd);background:var(--bg);color:var(--tx2);border-radius:999px;padding:8px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.mode-tab.active{border-color:var(--client-primary,var(--accent));color:var(--tx);background:var(--bg2)}
+.commercial-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px}
+.commercial-strip div{padding:12px;border:1px solid var(--bd);border-radius:var(--radius);background:var(--bg2)}
+.commercial-strip strong{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);margin-bottom:4px}
+.commercial-strip span{font-size:13px;color:var(--tx)}
+
+.header{margin-bottom:1.5rem}
 .header-mark{display:flex;align-items:center;gap:12px;margin-bottom:16px}
 .header-mark img{width:32px;height:32px}
 .header h1{font-family:var(--display);font-size:34px;font-weight:500;letter-spacing:-.01em;line-height:1.05;margin-bottom:8px}
 .header p{font-size:13px;color:var(--tx2);line-height:1.5;max-width:600px}
 .brand{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);margin-bottom:8px;font-family:var(--mono)}
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:18px;align-items:start}
+.sidebar{position:sticky;top:18px;display:grid;gap:12px}
+.side-card{padding:14px;border:1px solid var(--bd);border-radius:var(--radius);background:var(--bg2)}
+.side-card h3{font-family:var(--display);font-size:20px;font-weight:500;line-height:1.1;margin-bottom:8px}
+.side-card p,.side-card li{font-size:12.5px;line-height:1.55;color:var(--tx2)}
+.side-card ul{padding-left:18px;display:grid;gap:5px}
+.export-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tool-btn{border:1px solid var(--bd);background:var(--bg);border-radius:8px;padding:8px 9px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--tx2);cursor:pointer}
+.tool-btn:hover{border-color:var(--bd2);color:var(--tx)}
 
 .tab-bar{display:flex;gap:2px;margin-bottom:1.5rem;border-bottom:1px solid var(--bd);padding-bottom:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tab{padding:10px 16px;font-size:13px;font-weight:500;color:var(--tx3);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;font-family:var(--font)}
@@ -81,6 +103,12 @@ svg .pol{transition:opacity .35s ease}
 svg .loop-lbl{transition:opacity .35s ease}
 svg .cross-edge{transition:opacity .35s ease}
 .faded{opacity:.08!important}
+.node-g.active-node rect{stroke:var(--client-primary,var(--amber));stroke-width:2.4;filter:drop-shadow(0 0 8px rgba(208,174,85,.28))}
+.edge.active-edge{stroke-width:3;filter:drop-shadow(0 0 5px rgba(208,174,85,.24))}
+.loop-lbl.active-loop circle{stroke-width:2.4}
+.lp-badge{font-family:var(--mono);font-size:8px;font-weight:600;pointer-events:none}
+.node-tooltip{position:fixed;z-index:20;max-width:260px;padding:9px 10px;border:1px solid var(--bd2);border-radius:8px;background:var(--bg);box-shadow:0 16px 40px rgba(0,0,0,.18);font-size:12px;line-height:1.45;color:var(--tx2);display:none}
+.node-tooltip strong{display:block;color:var(--tx);margin-bottom:3px}
 
 .legend-row{display:flex;gap:16px;margin-top:12px;font-size:12px;color:var(--tx3);flex-wrap:wrap}
 .legend-row span{display:inline-flex;align-items:center;gap:5px}
@@ -92,9 +120,39 @@ svg .cross-edge{transition:opacity .35s ease}
 .footer{margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--bd);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--tx3)}
 .footer a{color:var(--tx2);text-decoration:none}
 .footer a:hover{color:var(--tx)}
+.mode-placeholder{padding:28px;border:1px dashed var(--bd2);border-radius:var(--radius-lg);background:var(--bg2)}
+.mode-placeholder h2{font-family:var(--display);font-size:30px;font-weight:500;margin-bottom:8px}
+.mode-placeholder p{color:var(--tx2);font-size:14px;line-height:1.6;max-width:760px}
+.narrative-panel{margin-top:14px;padding:14px 16px;border:1px solid var(--bd);border-radius:var(--radius);background:var(--bg)}
+.narrative-panel h3{font-family:var(--display);font-size:22px;font-weight:500;margin-bottom:6px}
+.narrative-panel p{font-size:13px;color:var(--tx2);line-height:1.6}
+.narrative-steps{margin-top:10px;display:grid;gap:8px}
+.narrative-step{font-size:13px;line-height:1.5;color:var(--tx);padding-left:14px;border-left:2px solid var(--client-primary,var(--amber))}
+@media(max-width:960px){.project-bar,.workspace{grid-template-columns:1fr}.project-title,.project-right{text-align:left}.commercial-strip{grid-template-columns:1fr 1fr}.sidebar{position:static}.canvas-wrap{overflow-x:auto}.canvas-wrap svg{min-width:720px}}
+@media(max-width:640px){body{padding:1rem}.commercial-strip{grid-template-columns:1fr}.header h1{font-size:28px}.project-title{font-size:19px}}
+@media print{body{background:#fff;color:#111;max-width:none}.mode-switcher,.commercial-strip,.sidebar,.tab-bar,.loop-bar,.tool-btn{display:none!important}.workspace{display:block}.canvas-wrap{border:0;background:#fff}.note-box{break-inside:avoid}.footer{position:fixed;bottom:0;left:0;right:0;padding:.5rem 1rem;background:#fff}}
 </style>
 </head>
 <body>
+
+<div class="project-bar">
+  <div class="project-left"><img src="https://syntonyresearch.org/assets/logo-v2.svg" alt="Syntony Research logo"/><span>Syntony Research</span></div>
+  <div class="project-title" id="project-title">Syntony CLD Platform</div>
+  <div class="project-right"><span id="project-client">AI Risk Feedback Intelligence</span><br/><span id="project-version">v1.0</span></div>
+</div>
+
+<div class="mode-switcher" id="mode-switcher">
+  <button class="mode-tab active" data-mode="present" onclick="setMode('present')">Present</button>
+  <button class="mode-tab" data-mode="workshop" onclick="setMode('workshop')">Workshop</button>
+  <button class="mode-tab" data-mode="dashboard" onclick="setMode('dashboard')">Dashboard</button>
+</div>
+
+<div class="commercial-strip">
+  <div><strong>Tier 2</strong><span>Presentation license with guided narrative exports</span></div>
+  <div><strong>Tier 3</strong><span>Facilitated workshop mapping and snapshots</span></div>
+  <div><strong>Tier 4</strong><span>Living dashboard with status overlays</span></div>
+  <div><strong>Scope</strong><span>25+ planned AI-risk systems and client-specific maps</span></div>
+</div>
 
 <div class="header">
   <div class="header-mark">
@@ -102,22 +160,65 @@ svg .cross-edge{transition:opacity .35s ease}
     <div class="brand">Syntony Research</div>
   </div>
   <h1>Cross-domain AI risk: causal loop dynamics</h1>
-  <p>Interactive systems maps showing reinforcing (R) and balancing (B) feedback loops across AI capability, governance, evaluation, and sociotechnical domains. Click any loop label to isolate it.</p>
+  <p>Interactive systems maps showing reinforcing (R) and balancing (B) feedback loops across AI capability, governance, evaluation, and sociotechnical domains. The commercial platform adds client branding, guided narrative, exports, workshop editing, and dashboard overlays.</p>
 </div>
 
-<div class="tab-bar" id="tabs"></div>
-<div class="system-meta" id="meta"></div>
-<div class="loop-bar" id="loops"></div>
-<div class="canvas-wrap" id="canvas"></div>
-<div class="legend-row">
-  <span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="var(--tx3)" stroke-width="1.2"/></svg> Positive polarity (+)</span>
-  <span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="var(--tx3)" stroke-width="1.2" stroke-dasharray="4 2.5"/></svg> Negative polarity (−)</span>
-  <span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="var(--gray)" stroke-width="1" opacity=".5"/></svg> Cross-domain link</span>
+<div id="present-mode" class="workspace">
+  <main>
+    <div class="tab-bar" id="tabs"></div>
+    <div class="system-meta" id="meta"></div>
+    <div class="loop-bar" id="loops"></div>
+    <div class="canvas-wrap" id="canvas"></div>
+    <div class="legend-row">
+      <span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="var(--tx3)" stroke-width="1.2"/></svg> Positive polarity (+)</span>
+      <span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="var(--tx3)" stroke-width="1.2" stroke-dasharray="4 2.5"/></svg> Negative polarity (−)</span>
+      <span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="var(--gray)" stroke-width="1" opacity=".5"/></svg> Cross-domain link</span>
+    </div>
+    <div class="note-box" id="note-box"></div>
+    <div class="narrative-panel" id="narrative-panel">
+      <h3>Guided narrative</h3>
+      <p>Select a loop or press Narrate to walk through the active system as a board-ready explanation.</p>
+      <div class="narrative-steps" id="narrative-steps"></div>
+    </div>
+  </main>
+  <aside class="sidebar">
+    <section class="side-card">
+      <h3>Presentation controls</h3>
+      <div class="export-grid">
+        <button class="tool-btn" onclick="startNarration()">Narrate</button>
+        <button class="tool-btn" onclick="setLoop('all')">Show all</button>
+        <button class="tool-btn" onclick="copyEmbedCode()">Embed</button>
+        <button class="tool-btn" onclick="exportSvg()">SVG</button>
+      </div>
+    </section>
+    <section class="side-card">
+      <h3>Commercial tiers</h3>
+      <ul>
+        <li>Presentation mode: branded CLD deliverables and export bundles.</li>
+        <li>Workshop mode: live facilitated mapping and client-specific systems.</li>
+        <li>Dashboard mode: living CLDs with status indicators and review notes.</li>
+      </ul>
+    </section>
+    <section class="side-card">
+      <h3>Leverage points</h3>
+      <p>Nodes marked LP identify Meadows-style intervention points: information flows, rules, goals, delays, and system structure.</p>
+    </section>
+  </aside>
 </div>
 
-<div class="note-box" id="note-box"></div>
+<section id="workshop-mode" class="mode-placeholder" hidden>
+  <h2>Workshop mode: commercial license tier</h2>
+  <p>Workshop deployments add live CLD editing, facilitator controls, snapshots, voting, undo/redo, and client-specific system building. The current public file exposes the product shell without enabling editing controls.</p>
+</section>
+
+<section id="dashboard-mode" class="mode-placeholder" hidden>
+  <h2>Dashboard mode: subscription intelligence tier</h2>
+  <p>Dashboard deployments add status indicators, trend sparklines, change logs, and optional data connections for living AI-risk maps that update across review cycles.</p>
+</section>
+
+<div class="node-tooltip" id="node-tooltip"></div>
 <footer class="footer">
-  <span>© 2026 Syntony Research</span>
+  <span id="project-footer">© 2026 Syntony Research · Powered by Syntony Research</span>
   <span><a href="https://syntonyresearch.org/" target="_blank" rel="noopener noreferrer">syntonyresearch.org</a></span>
 </footer>
 
@@ -151,9 +252,9 @@ core: {
     {id:'dep',  label:'Deployment speed',     x:590, y:220, w:164},
     {id:'inc',  label:'AI incidents',         x:495, y:385, w:142},
     {id:'trust',label:'Public trust',         x:295, y:470, w:132},
-    {id:'reg',  label:'Regulatory pressure',  x:115, y:385, w:184},
-    {id:'safe', label:'Safety investment',    x:80,  y:225, w:170},
-    {id:'eval', label:'Evaluation rigor',     x:190, y:108, w:160},
+    {id:'reg',  label:'Regulatory pressure',  x:115, y:385, w:184, leverage:{level:5,note:'Rules that determine when review constrains deployment'}},
+    {id:'safe', label:'Safety investment',    x:80,  y:225, w:170, leverage:{level:6,note:'Information and resources redirected toward prevention'}},
+    {id:'eval', label:'Evaluation rigor',     x:190, y:108, w:160, leverage:{level:6,note:'Who has access to evaluation results and what they can do with them'}},
   ],
   loops: [
     {id:'R1',label:'Capability arms race',     type:'R',color:'purple'},
@@ -188,6 +289,12 @@ core: {
     {id:'R2',x:155,y:345},
     {id:'B2',x:310,y:300},
   ],
+  narratives: {
+    R1: {summary:'Capability competition can become self-reinforcing when deployment rewards speed.', steps:['Market competition creates pressure to advance AI capabilities faster than rivals.','Greater AI capability enables broader and faster deployment of AI systems.','Rapid deployment intensifies competitive dynamics as market share shifts.']},
+    B1: {summary:'Incidents can create a corrective pressure that slows deployment.', steps:['Faster deployment increases the chance that AI incidents become visible.','Visible incidents increase regulatory pressure.','Regulatory pressure constrains deployment speed until controls catch up.']},
+    R2: {summary:'Safety investment can create a credibility flywheel.', steps:['Safety investment strengthens evaluation rigor.','Better evaluation increases public trust.','Public trust makes sustained safety investment easier to justify.']},
+    B2: {summary:'Incidents can force investment that reduces future incident risk.', steps:['Incidents create pressure for greater safety investment.','Safety investment improves evaluation rigor.','Better evaluation reduces unobserved incident pathways.']}
+  },
   note: '<strong>R1</strong> drives the pace: competition pushes capability, which accelerates deployment, which intensifies competition. <strong>B1</strong> acts as the societal brake — incidents generate regulatory pressure that constrains deployment. <strong>R2</strong> is Syntony\'s core thesis: safety investment, evaluation rigor, and public trust form a self-reinforcing virtuous cycle. <strong>B2</strong> is the correction channel — incidents drive the safety investment that closes evaluation gaps. The gray cross-domain links show how capability growth couples directly to incident risk, and how regulatory pressure redirects resources toward safety.'
 },
 
@@ -329,10 +436,10 @@ alignment: {
   nodes: [
     {id:'cap',     label:'AI capability',              x:170, y:70,  w:148},
     {id:'pressure',label:'Competitive pressure',       x:520, y:90,  w:190},
-    {id:'gap',     label:'Capability-alignment gap',   x:360, y:170, w:230},
+    {id:'gap',     label:'Capability-alignment gap',   x:360, y:170, w:230, leverage:{level:4,note:'Self-organization around evaluation, release, and safety investment'}},
     {id:'req',     label:'Safety requirements',        x:590, y:280, w:190},
     {id:'deploy',  label:'Deployment speed',           x:445, y:405, w:165},
-    {id:'interp',  label:'Interpretability tools',     x:110, y:385, w:205},
+    {id:'interp',  label:'Interpretability tools',     x:110, y:385, w:205, leverage:{level:6,note:'Information flows about model internals and failure modes'}},
     {id:'align',   label:'Alignment reliability',      x:165, y:235, w:198},
     {id:'decept',  label:'Deceptive alignment risk',   x:360, y:500, w:220},
   ],
@@ -370,6 +477,12 @@ alignment: {
     {id:'R10',x:240, y:350},
     {id:'R11',x:285, y:365},
   ],
+  narratives: {
+    R9: {summary:'Capability growth can widen the gap it is supposed to outrun.', steps:['Competitive pressure pushes capability development.','Capability growth widens the capability-alignment gap when safety work cannot keep pace.','A larger gap feeds pressure to move before constraints arrive.']},
+    B9: {summary:'Safety requirements act as a brake, but the brake creates pressure of its own.', steps:['A larger capability-alignment gap raises safety requirements.','Safety requirements slow deployment.','Slower deployment feeds competitive pressure to reduce friction.']},
+    R10: {summary:'Interpretability can become the constructive flywheel.', steps:['Competitive pressure and deployment resources can fund interpretability tools.','Interpretability tools improve alignment reliability.','More reliable alignment supports safer deployment.']},
+    R11: {summary:'Deceptive alignment risk can compound with capability.', steps:['Greater capability raises deceptive alignment risk.','Deceptive behavior reduces real alignment reliability.','Lower reliability widens the capability-alignment gap, feeding pressure back into the race.']}
+  },
   note: '<strong>R9</strong> captures the capability-gap race: competitive pressure drives capability, capability widens the capability-alignment gap, and the widening gap can create pressure to secure advantage before stronger constraints arrive. <strong>B9</strong> is the alignment tax: a larger gap raises safety requirements, requirements slow deployment, and deployment pressure feeds back into the competitive race. <strong>R10</strong> is the constructive path: pressure and funding can build interpretability tools, interpretability improves alignment reliability, reliable alignment supports safer deployment, and deployment resources fund the next round of tools. <strong>R11</strong> is the deceptive alignment concern: capability increases the risk that systems learn to appear aligned; deceptive behavior reduces real alignment reliability, widens the gap, and reinforces the race dynamic. Dashed links are negative polarity; gray links show contextual cross-pressure from requirements into interpretability and from interpretability back into gap reduction.'
 },
 
@@ -430,6 +543,47 @@ mega: {
   note: '<strong>Incident transmission</strong> (amber): domestic AI incidents propagate internationally and fuel social resistance across borders. <strong>Regulatory cascade</strong> (pink): domestic regulatory pressure shapes safety investment, feeds into governance frameworks, and constrains global adoption. <strong>Trust–adoption bridge</strong> (green): certification credibility from the evaluation ecosystem enables adoption in the sociotechnical domain and legitimizes governance frameworks internationally. <strong>Capability–gap coupling</strong> (red): raw capability growth widens the evaluation gap, raises geopolitical tension, and drives market concentration. These cross-domain channels are where systemic risk lives — and where cross-domain advisory creates the most value.'
 }
 };
+
+const DEFAULT_PROJECT = {
+  id: 'syntony-ai-risk-platform-2026',
+  client: 'Licensable client deployment',
+  title: 'Syntony CLD Commercial Platform',
+  author: 'Nathan Heath, Syntony Research',
+  created: '2026-05-15',
+  version: '1.0',
+  branding: {
+    primaryColor: '#1a3a5c',
+    logo: null,
+    footer: '© 2026 Syntony Research · Powered by Syntony Research',
+    watermark: 'DRAFT — Syntony Research'
+  },
+  systems: SYSTEMS
+};
+
+function loadProject() {
+  const key = `syntony-cld-project:${DEFAULT_PROJECT.id}`;
+  try {
+    const stored = localStorage.getItem(key);
+    if (stored) {
+      return {...DEFAULT_PROJECT, ...JSON.parse(stored), systems: SYSTEMS};
+    }
+  } catch (err) {
+    console.warn('Could not load stored CLD project', err);
+  }
+  return DEFAULT_PROJECT;
+}
+
+const PROJECT = loadProject();
+document.documentElement.style.setProperty('--client-primary', PROJECT.branding.primaryColor || '#1a3a5c');
+
+function persistProject() {
+  try {
+    localStorage.setItem(`syntony-cld-project:${PROJECT.id}`, JSON.stringify({...PROJECT, systems: undefined}));
+  } catch (err) {
+    console.warn('Could not persist CLD project metadata', err);
+  }
+}
+persistProject();
 
 // ════════════════════════════════════════════════════════════════
 // RENDERING ENGINE
@@ -499,6 +653,10 @@ function pathMidpoint(src, tgt, curve, via, t = 0.5) {
   return {x: mx + nx * curve * 0.5, y: my + ny * curve * 0.5};
 }
 
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+
 function renderSystem(sys) {
   const nodeMap = {};
   sys.nodes.forEach(n => nodeMap[n.id] = n);
@@ -547,7 +705,7 @@ function renderSystem(sys) {
     const sw = e.cross ? '1.2' : '1.8';
     const dashAttr = e.dash ? ' stroke-dasharray="6 3"' : '';
 
-    svg += `<path class="edge" data-loops="${loopIds.join(',')}" d="${d}" fill="none" stroke="${col.main}" stroke-width="${sw}" opacity="${opacity}"${dashAttr} marker-end="url(#arr-${colorName})"/>`;
+    svg += `<path class="edge" data-from="${e.from}" data-to="${e.to}" data-loops="${loopIds.join(',')}" d="${d}" fill="none" stroke="${col.main}" stroke-width="${sw}" opacity="${opacity}"${dashAttr} marker-end="url(#arr-${colorName})"/>`;
 
     // Polarity badge
     const mid = pathMidpoint(conn.start, conn.end, e.curve || 0, via, 0.5);
@@ -579,9 +737,14 @@ function renderSystem(sys) {
         if (e.cross && !loops.includes('cross')) loops.push('cross');
       }
     });
-    svg += `<g class="node-g" data-nodes="${loops.join(',')}">`;
+    const leverage = n.leverage ? ` data-leverage-level="${n.leverage.level}" data-leverage-note="${escapeHtml(n.leverage.note)}"` : '';
+    svg += `<g class="node-g" data-id="${n.id}" data-nodes="${loops.join(',')}"${leverage}>`;
     svg += `<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="${NODE_RX}" fill="var(--bg)" stroke="var(--bd2)" stroke-width="1"/>`;
     svg += `<text x="${n.x}" y="${n.y + 1}" text-anchor="middle" dominant-baseline="central" fill="var(--tx)" style="font-family:var(--font);font-size:13px;font-weight:500">${n.label}</text>`;
+    if (n.leverage) {
+      svg += `<circle cx="${(r.x + r.w - 16).toFixed(1)}" cy="${(r.y + 12).toFixed(1)}" r="11" fill="var(--client-primary)" opacity=".92"/>`;
+      svg += `<text class="lp-badge" x="${(r.x + r.w - 16).toFixed(1)}" y="${(r.y + 15).toFixed(1)}" text-anchor="middle" fill="#fff">LP ${n.leverage.level}</text>`;
+    }
     svg += `</g>`;
   });
 
@@ -595,11 +758,30 @@ function renderSystem(sys) {
 
 let currentSystem = 'core';
 let currentLoop = 'all';
+let currentMode = 'present';
+
+function applyProjectChrome() {
+  document.getElementById('project-title').textContent = PROJECT.title;
+  document.getElementById('project-client').textContent = PROJECT.client;
+  document.getElementById('project-version').textContent = `Version ${PROJECT.version}`;
+  document.getElementById('project-footer').textContent = PROJECT.branding.footer || '© 2026 Syntony Research · Powered by Syntony Research';
+}
+
+function setMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-tab').forEach(btn => btn.classList.toggle('active', btn.dataset.mode === mode));
+  document.getElementById('present-mode').hidden = mode !== 'present';
+  document.getElementById('workshop-mode').hidden = mode !== 'workshop';
+  document.getElementById('dashboard-mode').hidden = mode !== 'dashboard';
+  updateHash();
+}
 
 function setLoop(id) {
   currentLoop = currentLoop === id ? 'all' : id;
   updateHighlight();
   updatePills();
+  updateNarrativePanel();
+  updateHash();
 }
 
 function updatePills() {
@@ -632,6 +814,24 @@ function switchSystem(key) {
   currentSystem = key;
   currentLoop = 'all';
   render();
+  updateHash();
+}
+
+function updateHash() {
+  const state = new URLSearchParams({system: currentSystem, loop: currentLoop, mode: currentMode});
+  history.replaceState(null, '', `#${state.toString()}`);
+}
+
+function readHashState() {
+  const raw = window.location.hash.replace(/^#/, '');
+  if (!raw) return;
+  const params = new URLSearchParams(raw);
+  const system = params.get('system');
+  const loop = params.get('loop');
+  const mode = params.get('mode');
+  if (system && SYSTEMS[system]) currentSystem = system;
+  if (loop) currentLoop = loop;
+  if (mode && ['present','workshop','dashboard'].includes(mode)) currentMode = mode;
 }
 
 function validateSystem(sys, key) {
@@ -671,14 +871,112 @@ function render() {
     pills += `<div class="lpill" data-loop="${l.id}" onclick="setLoop('${l.id}')" style="color:${col.main}"><span class="dot" style="background:${col.main}"></span><span class="tag">${l.id}</span>${l.label}</div>`;
   });
   document.getElementById('loops').innerHTML = pills;
+  updatePills();
 
   // SVG
   document.getElementById('canvas').innerHTML = renderSystem(sys);
+  bindLeverageTooltips();
 
   // Note
   document.getElementById('note-box').innerHTML = sys.note;
+  updateHighlight();
+  updateNarrativePanel();
 }
 
+function getActiveLoop() {
+  const sys = SYSTEMS[currentSystem];
+  if (currentLoop !== 'all') return sys.loops.find(l => l.id === currentLoop) || sys.loops[0];
+  return sys.loops[0];
+}
+
+function getLoopNarrative(loopId) {
+  const sys = SYSTEMS[currentSystem];
+  const narrative = sys.narratives && sys.narratives[loopId];
+  if (narrative) return narrative;
+  const loop = sys.loops.find(l => l.id === loopId);
+  const edges = sys.edges.filter(e => (e.loops || []).includes(loopId));
+  return {
+    summary: `${loop ? loop.label : loopId} links ${edges.length} causal relationships in this system.`,
+    steps: edges.map(e => {
+      const from = sys.nodes.find(n => n.id === e.from)?.label || e.from;
+      const to = sys.nodes.find(n => n.id === e.to)?.label || e.to;
+      return `${from} ${e.pol === '−' ? 'reduces or counteracts' : 'increases or reinforces'} ${to}.`;
+    })
+  };
+}
+
+function updateNarrativePanel() {
+  const loop = getActiveLoop();
+  if (!loop) return;
+  const narrative = getLoopNarrative(loop.id);
+  const steps = narrative.steps.map(step => `<div class="narrative-step">${escapeHtml(step)}</div>`).join('');
+  document.getElementById('narrative-panel').innerHTML = `<h3>${loop.id}: ${escapeHtml(loop.label)}</h3><p>${escapeHtml(narrative.summary)}</p><div class="narrative-steps">${steps}</div>`;
+}
+
+function startNarration() {
+  const loop = getActiveLoop();
+  if (!loop) return;
+  currentLoop = loop.id;
+  updatePills();
+  updateHighlight();
+  const sys = SYSTEMS[currentSystem];
+  const edges = sys.edges.filter(e => (e.loops || []).includes(loop.id));
+  document.querySelectorAll('.active-node,.active-edge,.active-loop').forEach(el => el.classList.remove('active-node','active-edge','active-loop'));
+  edges.forEach((edge, index) => {
+    setTimeout(() => {
+      document.querySelectorAll('.active-node,.active-edge,.active-loop').forEach(el => el.classList.remove('active-node','active-edge','active-loop'));
+      document.querySelector(`.edge[data-from="${edge.from}"][data-to="${edge.to}"]`)?.classList.add('active-edge');
+      document.querySelector(`.node-g[data-id="${edge.from}"]`)?.classList.add('active-node');
+      document.querySelector(`.node-g[data-id="${edge.to}"]`)?.classList.add('active-node');
+      document.querySelector(`.loop-lbl[data-loops="${loop.id}"]`)?.classList.add('active-loop');
+    }, index * 900);
+  });
+  updateNarrativePanel();
+}
+
+function bindLeverageTooltips() {
+  const tooltip = document.getElementById('node-tooltip');
+  document.querySelectorAll('.node-g[data-leverage-level]').forEach(node => {
+    node.addEventListener('mousemove', event => {
+      tooltip.style.left = `${event.clientX + 14}px`;
+      tooltip.style.top = `${event.clientY + 14}px`;
+      tooltip.innerHTML = `<strong>Level ${node.dataset.leverageLevel}</strong>${escapeHtml(node.dataset.leverageNote || '')}`;
+      tooltip.style.display = 'block';
+    });
+    node.addEventListener('mouseleave', () => tooltip.style.display = 'none');
+  });
+}
+
+function copyEmbedCode() {
+  const code = `<iframe src="https://syntonyresearch.org/assets/interactive/syntony-cld-suite.html#system=${currentSystem}&loop=${currentLoop}&mode=${currentMode}" width="100%" height="820" style="border:0" title="Syntony CLD Suite"></iframe>`;
+  navigator.clipboard?.writeText(code);
+  alert('Embed code copied.');
+}
+
+function exportSvg() {
+  const svg = document.querySelector('#canvas svg');
+  if (!svg) return;
+  const copy = svg.cloneNode(true);
+  const footer = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  footer.setAttribute('x', '690');
+  footer.setAttribute('y', '98%');
+  footer.setAttribute('text-anchor', 'end');
+  footer.setAttribute('fill', 'currentColor');
+  footer.setAttribute('font-size', '10');
+  footer.textContent = PROJECT.branding.footer || 'Syntony Research';
+  copy.appendChild(footer);
+  const blob = new Blob([new XMLSerializer().serializeToString(copy)], {type:'image/svg+xml'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${PROJECT.id}-${currentSystem}-${currentLoop}.svg`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+readHashState();
+applyProjectChrome();
+setMode(currentMode);
 render();
 </script>
 </body>
