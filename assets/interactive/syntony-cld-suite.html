@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cross-Domain AI Risk · Causal Loop Diagrams — Syntony Research</title>
+<meta name="description" content="Interactive causal loop diagrams for AI safety, governance, alignment, evaluation, and strategic risk dynamics."/>
+<meta property="og:title" content="Syntony Research CLD Suite"/>
+<meta property="og:description" content="Interactive systems maps for AI safety, governance, alignment, evaluation, and strategic risk."/>
+<meta property="og:image" content="https://syntonyresearch.org/assets/og-image.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F4EEE2;--bg2:#E7DFD1;--bg3:#D9D1C2;
+  --tx:#07111D;--tx2:#44546A;--tx3:#6E7683;
+  --bd:rgba(7,17,29,.16);--bd2:rgba(7,17,29,.34);
+  --purple:#7F77DD;--purple-bg:#EEEDFE;--purple-dk:#3C3489;
+  --coral:#D85A30;--coral-bg:#FAECE7;--coral-dk:#712B13;
+  --teal:#1D9E75;--teal-bg:#E1F5EE;--teal-dk:#085041;
+  --blue:#378ADD;--blue-bg:#E6F1FB;--blue-dk:#0C447C;
+  --amber:#BA7517;--amber-bg:#FAEEDA;--amber-dk:#412402;
+  --pink:#D4537E;--pink-bg:#FBEAF0;--pink-dk:#4B1528;
+  --green:#639922;--green-bg:#EAF3DE;--green-dk:#173404;
+  --gray:#888780;--gray-bg:#F1EFE8;--gray-dk:#2C2C2A;
+  --red:#E24B4A;--red-bg:#FCEBEB;--red-dk:#501313;
+  --radius:10px;--radius-lg:14px;
+  --font:'Inter',system-ui,sans-serif;
+  --display:'Cormorant Garamond',Georgia,serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#07111D;--bg2:#102038;--bg3:#112238;
+    --tx:#F4EEE2;--tx2:#B3BECE;--tx3:#8E9BB0;
+    --bd:rgba(255,255,255,.10);--bd2:rgba(255,255,255,.18);
+    --purple:#AFA9EC;--purple-bg:#26215C;--purple-dk:#CECBF6;
+    --coral:#F0997B;--coral-bg:#4A1B0C;--coral-dk:#F5C4B3;
+    --teal:#5DCAA5;--teal-bg:#04342C;--teal-dk:#9FE1CB;
+    --blue:#85B7EB;--blue-bg:#042C53;--blue-dk:#B5D4F4;
+    --amber:#EF9F27;--amber-bg:#412402;--amber-dk:#FAC775;
+    --pink:#ED93B1;--pink-bg:#4B1528;--pink-dk:#F4C0D1;
+    --green:#97C459;--green-bg:#173404;--green-dk:#C0DD97;
+    --gray:#B4B2A9;--gray-bg:#2C2C2A;--gray-dk:#D3D1C7;
+    --red:#F09595;--red-bg:#501313;--red-dk:#F7C1C1;
+  }
+}
+html{font-family:var(--font);background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased}
+body{max-width:960px;margin:0 auto;padding:2rem 1.5rem 4rem;background-image:radial-gradient(rgba(208,174,85,.07) .7px,transparent .7px);background-size:18px 18px}
+
+.header{margin-bottom:2rem}
+.header-mark{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.header-mark img{width:32px;height:32px}
+.header h1{font-family:var(--display);font-size:34px;font-weight:500;letter-spacing:-.01em;line-height:1.05;margin-bottom:8px}
+.header p{font-size:13px;color:var(--tx2);line-height:1.5;max-width:600px}
+.brand{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);margin-bottom:8px;font-family:var(--mono)}
+
+.tab-bar{display:flex;gap:2px;margin-bottom:1.5rem;border-bottom:1px solid var(--bd);padding-bottom:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{padding:10px 16px;font-size:13px;font-weight:500;color:var(--tx3);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;font-family:var(--font)}
+.tab:hover{color:var(--tx2)}
+.tab.active{color:var(--tx);border-bottom-color:var(--tx)}
+
+.system-meta{margin-bottom:16px;opacity:1;transition:opacity .3s}
+.system-meta h2{font-size:16px;font-weight:500;margin-bottom:2px}
+.system-meta p{font-size:13px;color:var(--tx2);line-height:1.5}
+
+.loop-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.lpill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid var(--bd);background:var(--bg);transition:all .2s;user-select:none;font-family:var(--font);color:var(--tx2)}
+.lpill:hover{border-color:var(--bd2);background:var(--bg2)}
+.lpill.active{border-color:currentColor;background:var(--bg)}
+.lpill .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.lpill .tag{font-family:var(--mono);font-size:11px;opacity:.7}
+
+.canvas-wrap{position:relative;background:var(--bg2);border-radius:var(--radius-lg);border:1px solid var(--bd);overflow:hidden;transition:min-height .4s}
+.canvas-wrap svg{display:block;width:100%;transition:opacity .25s}
+
+svg .edge{transition:opacity .35s ease}
+svg .node-g{transition:opacity .35s ease}
+svg .pol{transition:opacity .35s ease}
+svg .loop-lbl{transition:opacity .35s ease}
+svg .cross-edge{transition:opacity .35s ease}
+.faded{opacity:.08!important}
+
+.legend-row{display:flex;gap:16px;margin-top:12px;font-size:12px;color:var(--tx3);flex-wrap:wrap}
+.legend-row span{display:inline-flex;align-items:center;gap:5px}
+
+.note-box{margin-top:2rem;padding:16px 20px;background:var(--bg2);border-radius:var(--radius);border:1px solid var(--bd);font-size:13px;color:var(--tx2);line-height:1.6}
+.note-box strong{color:var(--tx);font-weight:500}
+
+.mega-zone{rx:16;fill:var(--bg);stroke:var(--bd);stroke-width:1;stroke-dasharray:6 3}
+.footer{margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--bd);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--tx3)}
+.footer a{color:var(--tx2);text-decoration:none}
+.footer a:hover{color:var(--tx)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-mark">
+    <img src="https://syntonyresearch.org/assets/logo-v2.svg" alt="Syntony Research logo"/>
+    <div class="brand">Syntony Research</div>
+  </div>
+  <h1>Cross-domain AI risk: causal loop dynamics</h1>
+  <p>Interactive systems maps showing reinforcing (R) and balancing (B) feedback loops across AI capability, governance, evaluation, and sociotechnical domains. Click any loop label to isolate it.</p>
+</div>
+
+<div class="tab-bar" id="tabs"></div>
+<div class="system-meta" id="meta"></div>
+<div class="loop-bar" id="loops"></div>
+<div class="canvas-wrap" id="canvas"></div>
+<div class="legend-row">
+  <span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="var(--tx3)" stroke-width="1.2"/></svg> Positive polarity (+)</span>
+  <span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="var(--tx3)" stroke-width="1.2" stroke-dasharray="4 2.5"/></svg> Negative polarity (−)</span>
+  <span><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="var(--gray)" stroke-width="1" opacity=".5"/></svg> Cross-domain link</span>
+</div>
+
+<div class="note-box" id="note-box"></div>
+<footer class="footer">
+  <span>© 2026 Syntony Research</span>
+  <span><a href="https://syntonyresearch.org/" target="_blank" rel="noopener noreferrer">syntonyresearch.org</a></span>
+</footer>
+
+<script>
+// ════════════════════════════════════════════════════════════════
+// DATA: All five systems
+// ════════════════════════════════════════════════════════════════
+
+const COLORS = {
+  purple:{main:'var(--purple)',bg:'var(--purple-bg)',dk:'var(--purple-dk)'},
+  coral:{main:'var(--coral)',bg:'var(--coral-bg)',dk:'var(--coral-dk)'},
+  teal:{main:'var(--teal)',bg:'var(--teal-bg)',dk:'var(--teal-dk)'},
+  blue:{main:'var(--blue)',bg:'var(--blue-bg)',dk:'var(--blue-dk)'},
+  amber:{main:'var(--amber)',bg:'var(--amber-bg)',dk:'var(--amber-dk)'},
+  pink:{main:'var(--pink)',bg:'var(--pink-bg)',dk:'var(--pink-dk)'},
+  green:{main:'var(--green)',bg:'var(--green-bg)',dk:'var(--green-dk)'},
+  red:{main:'var(--red)',bg:'var(--red-bg)',dk:'var(--red-dk)'},
+  gray:{main:'var(--gray)',bg:'var(--gray-bg)',dk:'var(--gray-dk)'}
+};
+
+const SYSTEMS = {
+
+// ──────────── SYSTEM 1: Core Dynamics ────────────
+core: {
+  title: 'Core AI risk dynamics',
+  subtitle: 'The fundamental feedback loops between capability, deployment, safety, and regulation',
+  viewBox: '0 0 720 520',
+  nodes: [
+    {id:'cap',  label:'AI capability',       x:290, y:55,  w:148},
+    {id:'comp', label:'Market competition',   x:530, y:68,  w:178},
+    {id:'dep',  label:'Deployment speed',     x:590, y:220, w:164},
+    {id:'inc',  label:'AI incidents',         x:495, y:385, w:142},
+    {id:'trust',label:'Public trust',         x:295, y:470, w:132},
+    {id:'reg',  label:'Regulatory pressure',  x:115, y:385, w:184},
+    {id:'safe', label:'Safety investment',    x:80,  y:225, w:170},
+    {id:'eval', label:'Evaluation rigor',     x:190, y:108, w:160},
+  ],
+  loops: [
+    {id:'R1',label:'Capability arms race',     type:'R',color:'purple'},
+    {id:'B1',label:'Regulatory correction',    type:'B',color:'coral'},
+    {id:'R2',label:'Evaluation flywheel',      type:'R',color:'teal'},
+    {id:'B2',label:'Incident response',        type:'B',color:'blue'},
+  ],
+  edges: [
+    // R1
+    {from:'comp',to:'cap',  pol:'+',loops:['R1'],curve:-25},
+    {from:'cap', to:'dep',  pol:'+',loops:['R1'],curve:-50, via:[{x:430,y:130}]},
+    {from:'dep', to:'comp', pol:'+',loops:['R1'],curve:-30},
+    // B1
+    {from:'dep', to:'inc',  pol:'+',loops:['B1'],curve:15},
+    {from:'inc', to:'reg',  pol:'+',loops:['B1'],curve:20},
+    {from:'reg', to:'dep',  pol:'−',loops:['B1'],curve:35, dash:true},
+    // R2
+    {from:'safe',to:'eval', pol:'+',loops:['R2','B2'],curve:15},
+    {from:'eval',to:'trust',pol:'+',loops:['R2'],curve:40, via:[{x:180,y:310}]},
+    {from:'trust',to:'safe',pol:'+',loops:['R2'],curve:25},
+    // B2
+    {from:'inc', to:'safe', pol:'+',loops:['B2'],curve:30},
+    {from:'eval',to:'inc',  pol:'−',loops:['B2'],curve:-35, dash:true, via:[{x:380,y:230}]},
+    // Cross
+    {from:'reg', to:'safe', pol:'+',cross:true, curve:8},
+    {from:'trust',to:'dep', pol:'+',cross:true, curve:-30, via:[{x:490,y:400}]},
+    {from:'cap', to:'inc',  pol:'+',cross:true, curve:-20, via:[{x:420,y:220}]},
+  ],
+  loopLabels: [
+    {id:'R1',x:520,y:158},
+    {id:'B1',x:448,y:320},
+    {id:'R2',x:155,y:345},
+    {id:'B2',x:310,y:300},
+  ],
+  note: '<strong>R1</strong> drives the pace: competition pushes capability, which accelerates deployment, which intensifies competition. <strong>B1</strong> acts as the societal brake — incidents generate regulatory pressure that constrains deployment. <strong>R2</strong> is Syntony\'s core thesis: safety investment, evaluation rigor, and public trust form a self-reinforcing virtuous cycle. <strong>B2</strong> is the correction channel — incidents drive the safety investment that closes evaluation gaps. The gray cross-domain links show how capability growth couples directly to incident risk, and how regulatory pressure redirects resources toward safety.'
+},
+
+// ──────────── SYSTEM 2: International Governance ────────────
+international: {
+  title: 'International governance dynamics',
+  subtitle: 'Strategic competition, regulatory fragmentation, and multilateral coordination',
+  viewBox: '0 0 720 520',
+  nodes: [
+    {id:'inv',  label:'National AI investment', x:300, y:50,  w:206},
+    {id:'adv',  label:'Strategic advantage',    x:550, y:120, w:184},
+    {id:'tens', label:'Geopolitical tension',   x:590, y:270, w:190},
+    {id:'iinc', label:'International incidents', x:470, y:410, w:216},
+    {id:'multi',label:'Multilateral pressure',  x:220, y:430, w:202},
+    {id:'gov',  label:'Governance frameworks',  x:80,  y:310, w:194},
+    {id:'frag', label:'Regulatory fragmentation',x:155,y:155, w:224},
+  ],
+  loops: [
+    {id:'R3',label:'Strategic competition',  type:'R',color:'purple'},
+    {id:'B3',label:'Normative convergence',  type:'B',color:'teal'},
+    {id:'R4',label:'Fragmentation trap',     type:'R',color:'coral'},
+  ],
+  edges: [
+    // R3
+    {from:'inv', to:'adv',  pol:'+',loops:['R3'],curve:-15},
+    {from:'adv', to:'tens', pol:'+',loops:['R3'],curve:-15},
+    {from:'tens',to:'inv',  pol:'+',loops:['R3'],curve:40, via:[{x:530,y:40}]},
+    // B3
+    {from:'iinc',to:'multi',pol:'+',loops:['B3'],curve:15},
+    {from:'multi',to:'gov', pol:'+',loops:['B3'],curve:15},
+    {from:'gov', to:'iinc', pol:'−',loops:['B3','R4'],curve:35, dash:true, via:[{x:200,y:420}]},
+    // R4
+    {from:'tens',to:'frag', pol:'+',loops:['R4'],curve:30, via:[{x:420,y:170}]},
+    {from:'frag',to:'gov',  pol:'−',loops:['R4'],curve:15, dash:true},
+    // Cross
+    {from:'adv', to:'iinc', pol:'+',cross:true,curve:-20},
+    {from:'gov', to:'frag', pol:'−',cross:true,curve:-12, dash:true},
+  ],
+  loopLabels: [
+    {id:'R3',x:510,y:58},
+    {id:'B3',x:270,y:375},
+    {id:'R4',x:190,y:260},
+  ],
+  note: '<strong>R3</strong> is the great power AI arms race: national investment builds strategic advantage, which raises geopolitical tension, which drives further investment. <strong>B3</strong> is the hopeful counterpart: international incidents create multilateral pressure that strengthens governance frameworks, reducing future incidents. <strong>R4</strong> is the fragmentation trap — geopolitical tension fragments regulation, which weakens governance frameworks, which fails to prevent incidents, which raises tension further. The race between B3 (convergence) and R4 (fragmentation) determines whether international AI governance stabilizes or spirals. This is the UNIDIR and Cambridge conversation.'
+},
+
+// ──────────── SYSTEM 3: Evaluation Ecosystem ────────────
+evaluation: {
+  title: 'Evaluation & safety ecosystem',
+  subtitle: 'Red teaming, standards development, and the certification credibility cycle',
+  viewBox: '0 0 720 500',
+  nodes: [
+    {id:'complex',label:'Model complexity',     x:350, y:50,  w:168},
+    {id:'gap',    label:'Evaluation gap',       x:570, y:130, w:148},
+    {id:'red',    label:'Red team capacity',    x:570, y:280, w:170},
+    {id:'vuln',   label:'Vulnerability discovery',x:420,y:400,w:216},
+    {id:'std',    label:'Safety standards',     x:190, y:420, w:160},
+    {id:'cert',   label:'Certification trust',  x:95,  y:290, w:184},
+    {id:'demand', label:'Eval market demand',   x:100, y:140, w:186},
+  ],
+  loops: [
+    {id:'R5',label:'Discovery flywheel',  type:'R',color:'teal'},
+    {id:'B5',label:'Gap closure',         type:'B',color:'blue'},
+    {id:'R6',label:'Credibility engine',  type:'R',color:'purple'},
+  ],
+  edges: [
+    // R5
+    {from:'red',   to:'vuln',  pol:'+',loops:['R5','B5'],curve:15},
+    {from:'vuln',  to:'std',   pol:'+',loops:['R5'],curve:15},
+    {from:'std',   to:'cert',  pol:'+',loops:['R5','R6'],curve:15},
+    {from:'cert',  to:'demand',pol:'+',loops:['R5','R6'],curve:15},
+    {from:'demand',to:'red',   pol:'+',loops:['R5'],curve:30, via:[{x:350,y:180}]},
+    // B5
+    {from:'gap',   to:'red',   pol:'+',loops:['B5'],curve:12},
+    {from:'vuln',  to:'gap',   pol:'−',loops:['B5'],curve:30, dash:true, via:[{x:580,y:380}]},
+    // R6 (shares cert→demand, std→cert from R5)
+    {from:'demand',to:'std',   pol:'+',loops:['R6'],curve:15},
+    // Cross
+    {from:'complex',to:'gap',  pol:'+',cross:true,curve:-15},
+    {from:'complex',to:'vuln', pol:'+',cross:true,curve:25, via:[{x:280,y:220}]},
+  ],
+  loopLabels: [
+    {id:'R5',x:385,y:310},
+    {id:'B5',x:570,y:350},
+    {id:'R6',x:115,y:350},
+  ],
+  note: '<strong>R5</strong> is the discovery flywheel — Syntony\'s core business model: red team capacity generates vulnerability discoveries, which mature into safety standards, which build certification trust, which grows market demand for evaluation, which funds more red team capacity. <strong>B5</strong> is gap closure: as the evaluation gap widens, investment in red teaming increases, discoveries close the gap. <strong>R6</strong> is the credibility engine connecting certification trust to market demand and back to standards development. The cross-domain link from model complexity shows why the gap keeps reopening — this is the Evaluation Cards thesis.'
+},
+
+// ──────────── SYSTEM 4: Sociotechnical & Market ────────────
+sociotech: {
+  title: 'Sociotechnical & market dynamics',
+  subtitle: 'Adoption feedback, workforce effects, concentration dynamics, and social correction',
+  viewBox: '0 0 720 500',
+  nodes: [
+    {id:'adopt',  label:'AI adoption',          x:340, y:50,  w:132},
+    {id:'prod',   label:'Productivity gains',   x:570, y:100, w:176},
+    {id:'disp',   label:'Workforce disruption',  x:570, y:260, w:186},
+    {id:'resist', label:'Social resistance',     x:470, y:400, w:170},
+    {id:'policy', label:'Regulatory burden',     x:220, y:420, w:172},
+    {id:'conc',   label:'Market concentration',  x:80,  y:300, w:192},
+    {id:'lobby',  label:'Political influence',   x:100, y:140, w:178},
+  ],
+  loops: [
+    {id:'R7',label:'Productivity engine', type:'R',color:'teal'},
+    {id:'B7',label:'Social correction',   type:'B',color:'coral'},
+    {id:'R8',label:'Concentration trap',  type:'R',color:'purple'},
+  ],
+  edges: [
+    // R7
+    {from:'adopt',to:'prod', pol:'+',loops:['R7'],curve:-15},
+    {from:'prod', to:'adopt',pol:'+',loops:['R7'],curve:-15},
+    // B7
+    {from:'adopt', to:'disp',   pol:'+',loops:['B7'],curve:30, via:[{x:530,y:150}]},
+    {from:'disp',  to:'resist', pol:'+',loops:['B7'],curve:12},
+    {from:'resist',to:'policy', pol:'+',loops:['B7'],curve:15},
+    {from:'policy',to:'adopt',  pol:'−',loops:['B7'],curve:30, dash:true, via:[{x:210,y:200}]},
+    // R8
+    {from:'policy',to:'conc',  pol:'+',loops:['R8'],curve:12},
+    {from:'conc',  to:'lobby', pol:'+',loops:['R8'],curve:12},
+    {from:'lobby', to:'policy',pol:'+',loops:['R8'],curve:12},
+    // Cross
+    {from:'conc',  to:'disp',  pol:'+',cross:true,curve:-25, via:[{x:300,y:300}]},
+    {from:'prod',  to:'disp',  pol:'+',cross:true,curve:12},
+  ],
+  loopLabels: [
+    {id:'R7',x:490,y:55},
+    {id:'B7',x:440,y:320},
+    {id:'R8',x:110,y:260},
+  ],
+  note: '<strong>R7</strong> is the simplest and most powerful loop: adoption generates productivity gains that drive more adoption. <strong>B7</strong> is the social correction — adoption creates workforce disruption, which generates resistance, which produces regulatory burden that constrains adoption. <strong>R8</strong> is the concentration trap: regulatory burden raises compliance costs, favoring large incumbents, increasing market concentration, which concentrates political influence, which shapes regulation to favor incumbents further. The interplay between B7 and R8 determines whether regulation serves the public interest or entrenches incumbents.'
+},
+
+// ──────────── SYSTEM 5: Alignment Dynamics ────────────
+alignment: {
+  title: 'AI alignment dynamics',
+  subtitle: 'Capability-alignment gap, interpretability investment, alignment tax, and deceptive alignment risk',
+  viewBox: '0 0 720 560',
+  nodes: [
+    {id:'cap',     label:'AI capability',              x:170, y:70,  w:148},
+    {id:'pressure',label:'Competitive pressure',       x:520, y:90,  w:190},
+    {id:'gap',     label:'Capability-alignment gap',   x:360, y:170, w:230},
+    {id:'req',     label:'Safety requirements',        x:590, y:280, w:190},
+    {id:'deploy',  label:'Deployment speed',           x:445, y:405, w:165},
+    {id:'interp',  label:'Interpretability tools',     x:110, y:385, w:205},
+    {id:'align',   label:'Alignment reliability',      x:165, y:235, w:198},
+    {id:'decept',  label:'Deceptive alignment risk',   x:360, y:500, w:220},
+  ],
+  loops: [
+    {id:'R9', label:'Capability-gap race',       type:'R', color:'purple'},
+    {id:'B9', label:'Alignment tax',             type:'B', color:'coral'},
+    {id:'R10',label:'Interpretability flywheel', type:'R', color:'teal'},
+    {id:'R11',label:'Deceptive alignment risk',  type:'R', color:'blue'},
+  ],
+  edges: [
+    // R9: capability-alignment gap race
+    {from:'pressure',to:'cap',      pol:'+',loops:['R9','B9','R11'],curve:-22},
+    {from:'cap',     to:'gap',      pol:'+',loops:['R9','B9'],curve:-10},
+    {from:'gap',     to:'pressure', pol:'+',loops:['R9'],curve:-34, via:[{x:520,y:170}]},
+    // B9: alignment tax
+    {from:'gap',     to:'req',      pol:'+',loops:['B9'],curve:-10},
+    {from:'req',     to:'deploy',   pol:'−',loops:['B9'],curve:18,dash:true},
+    {from:'deploy',  to:'pressure', pol:'+',loops:['B9','R10'],curve:44, via:[{x:625,y:385}]},
+    // R10: interpretability flywheel
+    {from:'pressure',to:'interp',   pol:'+',loops:['R10'],curve:58, via:[{x:350,y:285}]},
+    {from:'interp',  to:'align',    pol:'+',loops:['R10'],curve:10},
+    {from:'align',   to:'deploy',   pol:'+',loops:['R10'],curve:-24, via:[{x:280,y:330}]},
+    // R11: deceptive alignment risk
+    {from:'cap',     to:'decept',   pol:'+',loops:['R11'],curve:32, via:[{x:250,y:255}]},
+    {from:'decept',  to:'align',    pol:'−',loops:['R11'],curve:28,dash:true, via:[{x:230,y:430}]},
+    {from:'align',   to:'gap',      pol:'−',loops:['R11'],curve:-18,dash:true},
+    {from:'gap',     to:'pressure', pol:'+',loops:['R11'],curve:18, via:[{x:455,y:125}]},
+    // Cross-domain contextual links
+    {from:'interp',  to:'gap',      pol:'−',cross:true,curve:-16,dash:true},
+    {from:'req',     to:'interp',   pol:'+',cross:true,curve:26, via:[{x:360,y:330}]},
+  ],
+  loopLabels: [
+    {id:'R9', x:395, y:85},
+    {id:'B9', x:545, y:355},
+    {id:'R10',x:240, y:350},
+    {id:'R11',x:285, y:365},
+  ],
+  note: '<strong>R9</strong> captures the capability-gap race: competitive pressure drives capability, capability widens the capability-alignment gap, and the widening gap can create pressure to secure advantage before stronger constraints arrive. <strong>B9</strong> is the alignment tax: a larger gap raises safety requirements, requirements slow deployment, and deployment pressure feeds back into the competitive race. <strong>R10</strong> is the constructive path: pressure and funding can build interpretability tools, interpretability improves alignment reliability, reliable alignment supports safer deployment, and deployment resources fund the next round of tools. <strong>R11</strong> is the deceptive alignment concern: capability increases the risk that systems learn to appear aligned; deceptive behavior reduces real alignment reliability, widens the gap, and reinforces the race dynamic. Dashed links are negative polarity; gray links show contextual cross-pressure from requirements into interpretability and from interpretability back into gap reduction.'
+},
+
+// ──────────── SYSTEM 6: Megasystem ────────────
+mega: {
+  title: 'Megasystem: cross-domain coupling',
+  subtitle: 'How the four systems interconnect — key transmission channels between domains',
+  viewBox: '0 0 720 580',
+  zones: [
+    {label:'Core dynamics',        x:30,  y:30,  w:310, h:220, color:'purple'},
+    {label:'International governance',x:380, y:30,  w:310, h:220, color:'teal'},
+    {label:'Evaluation ecosystem', x:30,  y:300, w:310, h:240, color:'blue'},
+    {label:'Sociotechnical dynamics',x:380, y:300, w:310, h:240, color:'coral'},
+  ],
+  nodes: [
+    // Core
+    {id:'m_inc',  label:'AI incidents',       x:190, y:110, w:142, zone:'core'},
+    {id:'m_reg',  label:'Regulatory pressure', x:140, y:190, w:184, zone:'core'},
+    {id:'m_safe', label:'Safety investment',   x:200, y:150, w:170, zone:'core'},
+    {id:'m_cap',  label:'AI capability',       x:100, y:80,  w:148, zone:'core'},
+    // International
+    {id:'m_gov',  label:'Governance frameworks',x:490,y:120, w:194, zone:'intl'},
+    {id:'m_tens', label:'Geopolitical tension', x:530,y:190, w:190, zone:'intl'},
+    {id:'m_iinc', label:'Intl incidents',       x:460,y:80,  w:142, zone:'intl'},
+    // Evaluation
+    {id:'m_red',  label:'Red team capacity',   x:140, y:390, w:170, zone:'eval'},
+    {id:'m_cert', label:'Certification trust', x:190, y:460, w:184, zone:'eval'},
+    {id:'m_gap',  label:'Evaluation gap',      x:100, y:350, w:148, zone:'eval'},
+    // Sociotech
+    {id:'m_adopt',label:'AI adoption',         x:490, y:380, w:132, zone:'socio'},
+    {id:'m_resist',label:'Social resistance',  x:530, y:450, w:170, zone:'socio'},
+    {id:'m_conc', label:'Market concentration', x:460,y:500, w:192, zone:'socio'},
+  ],
+  loops: [
+    {id:'X1',label:'Incident transmission',  type:'→',color:'amber'},
+    {id:'X2',label:'Regulatory cascade',     type:'→',color:'pink'},
+    {id:'X3',label:'Trust–adoption bridge',  type:'→',color:'green'},
+    {id:'X4',label:'Capability–gap coupling', type:'→',color:'red'},
+  ],
+  edges: [
+    // X1: Incidents propagate across domains
+    {from:'m_inc', to:'m_iinc',  pol:'+',loops:['X1'],curve:-25},
+    {from:'m_inc', to:'m_resist',pol:'+',loops:['X1'],curve:-15, via:[{x:350,y:350}]},
+    {from:'m_iinc',to:'m_gov',   pol:'+',loops:['X1'],curve:12},
+    // X2: Regulation cascades
+    {from:'m_reg', to:'m_safe', pol:'+',loops:['X2'],curve:10},
+    {from:'m_reg', to:'m_gov',  pol:'+',loops:['X2'],curve:-30, via:[{x:350,y:120}]},
+    {from:'m_gov', to:'m_adopt',pol:'−',loops:['X2'],curve:30, dash:true, via:[{x:600,y:300}]},
+    // X3: Trust→adoption
+    {from:'m_cert',to:'m_adopt',pol:'+',loops:['X3'],curve:-20, via:[{x:350,y:450}]},
+    {from:'m_cert',to:'m_gov',  pol:'+',loops:['X3'],curve:30, via:[{x:60,y:280}]},
+    // X4: Capability→gap
+    {from:'m_cap', to:'m_gap',  pol:'+',loops:['X4'],curve:20, via:[{x:60,y:280}]},
+    {from:'m_cap', to:'m_tens', pol:'+',loops:['X4'],curve:-20, via:[{x:350,y:50}]},
+    {from:'m_tens',to:'m_conc', pol:'+',loops:['X4'],curve:-15, via:[{x:630,y:350}]},
+  ],
+  loopLabels: [],
+  note: '<strong>Incident transmission</strong> (amber): domestic AI incidents propagate internationally and fuel social resistance across borders. <strong>Regulatory cascade</strong> (pink): domestic regulatory pressure shapes safety investment, feeds into governance frameworks, and constrains global adoption. <strong>Trust–adoption bridge</strong> (green): certification credibility from the evaluation ecosystem enables adoption in the sociotechnical domain and legitimizes governance frameworks internationally. <strong>Capability–gap coupling</strong> (red): raw capability growth widens the evaluation gap, raises geopolitical tension, and drives market concentration. These cross-domain channels are where systemic risk lives — and where cross-domain advisory creates the most value.'
+}
+};
+
+// ════════════════════════════════════════════════════════════════
+// RENDERING ENGINE
+// ════════════════════════════════════════════════════════════════
+
+const NODE_H = 40;
+const NODE_RX = 8;
+const ARROW_OFFSET = 8;
+
+function getNodeRect(n) {
+  return {x: n.x - n.w/2, y: n.y - NODE_H/2, w: n.w, h: NODE_H};
+}
+
+function edgePoint(n, angle) {
+  const r = getNodeRect(n);
+  const cx = n.x, cy = n.y;
+  const hw = r.w/2 + ARROW_OFFSET, hh = r.h/2 + ARROW_OFFSET;
+  const dx = Math.cos(angle), dy = Math.sin(angle);
+  const tx = dx !== 0 ? hw / Math.abs(dx) : Infinity;
+  const ty = dy !== 0 ? hh / Math.abs(dy) : Infinity;
+  const t = Math.min(tx, ty);
+  return {x: cx + dx * t, y: cy + dy * t};
+}
+
+function connectNodes(src, tgt) {
+  const angle = Math.atan2(tgt.y - src.y, tgt.x - src.x);
+  return {
+    start: edgePoint(src, angle),
+    end: edgePoint(tgt, angle + Math.PI)
+  };
+}
+
+function buildPath(src, tgt, curve, via) {
+  if (via && via.length > 0) {
+    const pts = [src, ...via, tgt];
+    let d = `M${pts[0].x.toFixed(1)},${pts[0].y.toFixed(1)}`;
+    if (pts.length === 3) {
+      d += ` Q${pts[1].x.toFixed(1)},${pts[1].y.toFixed(1)} ${pts[2].x.toFixed(1)},${pts[2].y.toFixed(1)}`;
+    } else {
+      for (let i = 1; i < pts.length; i++) {
+        d += ` L${pts[i].x.toFixed(1)},${pts[i].y.toFixed(1)}`;
+      }
+    }
+    return d;
+  }
+  const mx = (src.x + tgt.x) / 2, my = (src.y + tgt.y) / 2;
+  const dx = tgt.x - src.x, dy = tgt.y - src.y;
+  const len = Math.sqrt(dx*dx + dy*dy) || 1;
+  const nx = -dy / len, ny = dx / len;
+  const cx = mx + nx * curve, cy = my + ny * curve;
+  return `M${src.x.toFixed(1)},${src.y.toFixed(1)} Q${cx.toFixed(1)},${cy.toFixed(1)} ${tgt.x.toFixed(1)},${tgt.y.toFixed(1)}`;
+}
+
+function pathMidpoint(src, tgt, curve, via, t = 0.5) {
+  if (via && via.length > 0) {
+    const cp = via[0];
+    const u = 1 - t;
+    return {
+      x: u*u*src.x + 2*u*t*cp.x + t*t*tgt.x,
+      y: u*u*src.y + 2*u*t*cp.y + t*t*tgt.y
+    };
+  }
+  const mx = (src.x + tgt.x) / 2, my = (src.y + tgt.y) / 2;
+  const dx = tgt.x - src.x, dy = tgt.y - src.y;
+  const len = Math.sqrt(dx*dx + dy*dy) || 1;
+  const nx = -dy / len, ny = dx / len;
+  return {x: mx + nx * curve * 0.5, y: my + ny * curve * 0.5};
+}
+
+function renderSystem(sys) {
+  const nodeMap = {};
+  sys.nodes.forEach(n => nodeMap[n.id] = n);
+
+  let svg = `<svg width="100%" viewBox="${sys.viewBox}" xmlns="http://www.w3.org/2000/svg">`;
+
+  // Defs
+  const usedColors = new Set();
+  sys.edges.forEach(e => {
+    if (e.cross) { usedColors.add('gray'); return; }
+    (e.loops || []).forEach(lid => {
+      const loop = sys.loops.find(l => l.id === lid);
+      if (loop) usedColors.add(loop.color);
+    });
+  });
+  svg += `<defs>`;
+  usedColors.forEach(c => {
+    const col = COLORS[c];
+    svg += `<marker id="arr-${c}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="${col.main}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>`;
+  });
+  svg += `</defs>`;
+
+  // Zones (megasystem only)
+  if (sys.zones) {
+    sys.zones.forEach(z => {
+      const col = COLORS[z.color];
+      svg += `<rect class="mega-zone" x="${z.x}" y="${z.y}" width="${z.w}" height="${z.h}" rx="16" fill="${col.bg}" stroke="${col.main}" stroke-opacity="0.3"/>`;
+      svg += `<text x="${z.x + 14}" y="${z.y + 22}" fill="${col.main}" style="font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.03em">${z.label}</text>`;
+    });
+  }
+
+  // Edges
+  sys.edges.forEach((e, ei) => {
+    const src = nodeMap[e.from], tgt = nodeMap[e.to];
+    if (!src || !tgt) return;
+    const conn = connectNodes(src, tgt);
+    const via = e.via ? e.via : null;
+    const d = buildPath(conn.start, conn.end, e.curve || 0, via);
+    const loopIds = e.cross ? ['cross'] : (e.loops || []);
+    const colorName = e.cross ? 'gray' : (() => {
+      const l = sys.loops.find(l => l.id === loopIds[0]);
+      return l ? l.color : 'gray';
+    })();
+    const col = COLORS[colorName];
+    const opacity = e.cross ? '0.45' : '1';
+    const sw = e.cross ? '1.2' : '1.8';
+    const dashAttr = e.dash ? ' stroke-dasharray="6 3"' : '';
+
+    svg += `<path class="edge" data-loops="${loopIds.join(',')}" d="${d}" fill="none" stroke="${col.main}" stroke-width="${sw}" opacity="${opacity}"${dashAttr} marker-end="url(#arr-${colorName})"/>`;
+
+    // Polarity badge
+    const mid = pathMidpoint(conn.start, conn.end, e.curve || 0, via, 0.5);
+    const pr = e.cross ? 7 : 9;
+    svg += `<circle class="pol" data-loops="${loopIds.join(',')}" cx="${mid.x.toFixed(1)}" cy="${mid.y.toFixed(1)}" r="${pr}" fill="var(--bg)" stroke="${col.main}" stroke-width="0.7" opacity="${opacity}"/>`;
+    svg += `<text class="pol" data-loops="${loopIds.join(',')}" x="${mid.x.toFixed(1)}" y="${(mid.y + 4).toFixed(1)}" text-anchor="middle" fill="${col.main}" style="font-family:var(--font);font-size:${e.cross?'11':'13'}px;font-weight:500" opacity="${opacity}">${e.pol}</text>`;
+  });
+
+  // Loop labels
+  if (sys.loopLabels) {
+    sys.loopLabels.forEach(ll => {
+      const loop = sys.loops.find(l => l.id === ll.id);
+      if (!loop) return;
+      const col = COLORS[loop.color];
+      svg += `<g class="loop-lbl" data-loops="${ll.id}" style="cursor:pointer" onclick="setLoop('${ll.id}')">`;
+      svg += `<circle cx="${ll.x}" cy="${ll.y}" r="17" fill="${col.bg}" stroke="${col.main}" stroke-width="1.2"/>`;
+      svg += `<text x="${ll.x}" y="${ll.y + 4}" text-anchor="middle" fill="${col.dk}" style="font-family:var(--mono);font-size:11px;font-weight:500">${ll.id}</text>`;
+      svg += `</g>`;
+    });
+  }
+
+  // Nodes (on top)
+  sys.nodes.forEach(n => {
+    const r = getNodeRect(n);
+    const loops = [];
+    sys.edges.forEach(e => {
+      if (e.from === n.id || e.to === n.id) {
+        (e.loops || []).forEach(l => { if (!loops.includes(l)) loops.push(l); });
+        if (e.cross && !loops.includes('cross')) loops.push('cross');
+      }
+    });
+    svg += `<g class="node-g" data-nodes="${loops.join(',')}">`;
+    svg += `<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="${NODE_RX}" fill="var(--bg)" stroke="var(--bd2)" stroke-width="1"/>`;
+    svg += `<text x="${n.x}" y="${n.y + 1}" text-anchor="middle" dominant-baseline="central" fill="var(--tx)" style="font-family:var(--font);font-size:13px;font-weight:500">${n.label}</text>`;
+    svg += `</g>`;
+  });
+
+  svg += `</svg>`;
+  return svg;
+}
+
+// ════════════════════════════════════════════════════════════════
+// INTERACTION
+// ════════════════════════════════════════════════════════════════
+
+let currentSystem = 'core';
+let currentLoop = 'all';
+
+function setLoop(id) {
+  currentLoop = currentLoop === id ? 'all' : id;
+  updateHighlight();
+  updatePills();
+}
+
+function updatePills() {
+  document.querySelectorAll('.lpill').forEach(p => {
+    p.classList.toggle('active', p.dataset.loop === currentLoop);
+  });
+}
+
+function updateHighlight() {
+  const id = currentLoop;
+  document.querySelectorAll('.edge,.pol,.loop-lbl,.cross-edge').forEach(el => {
+    const loops = (el.dataset.loops || '').split(',');
+    if (id === 'all') {
+      el.classList.remove('faded');
+    } else {
+      el.classList.toggle('faded', !loops.includes(id));
+    }
+  });
+  document.querySelectorAll('.node-g').forEach(el => {
+    const nodeLoops = (el.dataset.nodes || '').split(',');
+    if (id === 'all') {
+      el.classList.remove('faded');
+    } else {
+      el.classList.toggle('faded', !nodeLoops.includes(id) && !nodeLoops.includes('cross'));
+    }
+  });
+}
+
+function switchSystem(key) {
+  currentSystem = key;
+  currentLoop = 'all';
+  render();
+}
+
+function validateSystem(sys, key) {
+  if (!sys._validated) {
+    sys.loops.forEach(loop => {
+      if (loop.type !== 'R' && loop.type !== 'B') return;
+      const negativeCount = sys.edges.filter(e => (e.loops || []).includes(loop.id) && e.pol === '−').length;
+      const expectedEven = loop.type === 'R';
+      const valid = expectedEven ? negativeCount % 2 === 0 : negativeCount % 2 === 1;
+      if (!valid) {
+        console.warn(`Loop polarity mismatch in ${key}.${loop.id}: ${loop.type} loop has ${negativeCount} negative links.`);
+      }
+    });
+    sys._validated = true;
+  }
+}
+
+function render() {
+  const sys = SYSTEMS[currentSystem];
+  validateSystem(sys, currentSystem);
+
+  // Tabs
+  const tabKeys = Object.keys(SYSTEMS);
+  const tabLabels = {core:'Core dynamics',international:'International',evaluation:'Evaluation',sociotech:'Sociotechnical',alignment:'Alignment',mega:'Megasystem'};
+  document.getElementById('tabs').innerHTML = tabKeys.map(k =>
+    `<button class="tab${k===currentSystem?' active':''}" onclick="switchSystem('${k}')">${tabLabels[k]}</button>`
+  ).join('');
+
+  // Meta
+  document.getElementById('meta').innerHTML = `<h2>${sys.title}</h2><p>${sys.subtitle}</p>`;
+
+  // Loop pills
+  let pills = `<div class="lpill active" data-loop="all" onclick="setLoop('all')"><span class="dot" style="background:var(--tx3)"></span>All</div>`;
+  sys.loops.forEach(l => {
+    const col = COLORS[l.color];
+    const typeLabel = l.type === 'R' ? 'Reinforcing' : l.type === 'B' ? 'Balancing' : 'Coupling';
+    pills += `<div class="lpill" data-loop="${l.id}" onclick="setLoop('${l.id}')" style="color:${col.main}"><span class="dot" style="background:${col.main}"></span><span class="tag">${l.id}</span>${l.label}</div>`;
+  });
+  document.getElementById('loops').innerHTML = pills;
+
+  // SVG
+  document.getElementById('canvas').innerHTML = renderSystem(sys);
+
+  // Note
+  document.getElementById('note-box').innerHTML = sys.note;
+}
+
+render();
+</script>
+</body>
+</html>

@@ -112,6 +112,13 @@
     "keywords": ["software", "evidence translation", "live monitoring", "control map", "decision records"]
   },
   {
+    "title": "Syntony CLD Suite",
+    "url": "/products/cld-suite/",
+    "type": "Product",
+    "summary": "Interactive causal loop diagrams for AI governance, alignment, evaluation, international competition, and sociotechnical risk.",
+    "keywords": ["cld", "causal loop diagram", "systems map", "governance lag", "alignment", "feedback loops"]
+  },
+  {
     "title": "Syntony Conductor",
     "url": "/products/syntony-conductor/",
     "type": "Product",
