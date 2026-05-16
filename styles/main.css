@@ -206,7 +206,8 @@ body.nav-open .mouse-glow { opacity: 0; }
 .hero-wave-a { stroke-width: 1.4; }
 .hero-wave-b { stroke-width: 1.1; animation-duration: 14s; animation-direction: reverse; }
 @keyframes waveTrace { to { stroke-dashoffset: -240; } }
-@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 56px; } .hero-visual { max-width: 380px; margin: 0 auto; } }
+.hero-conductor { transform: rotate(0.6deg); max-width: 520px; margin-left: auto; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 56px; } .hero-visual { max-width: 380px; margin: 0 auto; } .hero-conductor { max-width: 100%; transform: none; } }
 
 /* Page hero (for inner pages) */
 .page-hero { padding: 144px 0 72px; position: relative; overflow: hidden; }

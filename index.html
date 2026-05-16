@@ -37,24 +37,31 @@
             <a class="btn-dark" href="/contact/">Start a conversation <span class="btn-arrow">→</span></a>
             <a class="btn-outline" href="/services/">View services</a>
           </div>
-          <div class="badge-row reveal reveal-d3">
-            <span class="badge">All engagements under NDA</span>
-            <span class="badge">National security experience</span>
-            <span class="badge">Research Triangle, NC</span>
-          </div>
         </div>
-        <div class="hero-visual reveal reveal-d2" aria-hidden="true">
-          <div class="hero-orbit">
-            <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g class="spin-slow"><circle cx="200" cy="200" r="188" stroke="#C9A84C" stroke-width="0.8" opacity="0.28"/><circle cx="200" cy="12" r="4" fill="#C9A84C" opacity="0.9"/></g>
-              <g class="spin-med"><circle cx="200" cy="200" r="146" stroke="#3A5680" stroke-width="0.8" opacity="0.34"/><circle cx="346" cy="200" r="3.5" fill="#3A5680" opacity="0.85"/></g>
-              <g class="spin-fast"><circle cx="200" cy="200" r="106" stroke="#2E5959" stroke-width="0.8" opacity="0.24"/><circle cx="95" cy="200" r="3.5" fill="#2E5959" opacity="0.8"/></g>
-              <path d="M126,200 C150,172 176,172 200,200 C224,228 250,228 274,200" stroke="#C9A84C" stroke-width="2.6" stroke-linecap="round"/>
-              <path d="M118,222 C146,196 178,196 206,222 C232,246 258,246 286,222" stroke="#3A5680" stroke-width="1.8" stroke-linecap="round" opacity="0.72"/>
-            </svg>
+        <aside class="conductor-ai-demo hero-conductor reveal reveal-d2" aria-label="Syntony Conductor AI demo" data-conductor-demo>
+          <div class="conductor-demo-topbar">
+            <span></span><span></span><span></span>
+            <strong>Syntony Conductor AI</strong>
           </div>
-          <div class="hero-coords">Evidence → control → decision record</div>
-        </div>
+          <div class="conductor-demo-body">
+            <div class="conductor-demo-prompt">
+              <span class="conductor-demo-label">Prompt</span>
+              <p class="conductor-type-line" data-conductor-prompt="Red-team trace: an agent followed a retrieved instruction and attempted an unauthorized payment tool call. What should governance do next?"></p>
+            </div>
+            <div class="conductor-working" aria-hidden="true">
+              <span>Reading evidence</span>
+              <span>Separating observation from inference</span>
+              <span>Mapping decision path</span>
+            </div>
+            <div class="conductor-demo-response">
+              <span class="conductor-demo-label">Draft response</span>
+              <div class="conductor-finding-row"><strong>Finding</strong><span>Tool authority failure</span></div>
+              <div class="conductor-finding-row"><strong>Decision path</strong><span>Hold pending permission review</span></div>
+              <div class="conductor-finding-row"><strong>Implication</strong><span>Instruction hierarchy and delegated agency</span></div>
+              <div class="conductor-finding-row"><strong>Controls</strong><span>Tool scope, approval gate, monitoring trigger</span></div>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -77,56 +84,11 @@
       </div>
     </section>
 
-    <section class="trust-strip">
-      <div class="container trust-inner">
-        <span class="trust-label">Experience across</span>
-        <div class="trust-items">
-          <span class="trust-item">AI labs and evaluation teams</span>
-          <span class="trust-item">Public-sector programs</span>
-          <span class="trust-item">Boards and risk committees</span>
-          <span class="trust-item">Research organizations</span>
-          <span class="trust-item">Enterprise technology leaders</span>
-        </div>
-        <div class="badge-row">
-          <span class="badge">NIST AI RMF</span>
-          <span class="badge">EU AI Act</span>
-          <span class="badge">OECD AI Principles</span>
-          <span class="badge">ISO/IEC 42001</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="framework-strip" aria-label="Reference frameworks">
-      <div class="container">
-        <div class="framework-grid">
-          <article class="framework-card">
-            <div class="framework-kicker">Public framework</div>
-            <h3>NIST AI RMF</h3>
-            <p>4 functions: Govern, Map, Measure, Manage.</p>
-          </article>
-          <article class="framework-card">
-            <div class="framework-kicker">Public framework</div>
-            <h3>OECD AI Principles</h3>
-            <p>5 principles and 5 recommendations for trustworthy AI.</p>
-          </article>
-          <article class="framework-card">
-            <div class="framework-kicker">Public framework</div>
-            <h3>EU AI Act</h3>
-            <p>4 risk tiers, with stricter obligations as risk increases.</p>
-          </article>
-          <article class="framework-card">
-            <div class="framework-kicker">Public framework</div>
-            <h3>ISO/IEC 42001</h3>
-            <p>AI management systems for institutional controls and accountability.</p>
-          </article>
-        </div>
-      </div>
-    </section>
 
     <section class="services">
       <div class="container">
         <div class="services-header">
-          <div class="services-header-left"><span class="section-num">01</span><span class="label">Service Lines</span></div>
+          <div class="services-header-left"><span class="section-num">01</span><span class="label">Services</span></div>
           <div>
             <h2>Four starting points.</h2>
             <p class="services-header-desc">An AI system needs testing. A finding needs to become a control. Leadership needs to understand the external environment. A report needs to say clearly what the evidence supports.</p>
@@ -181,62 +143,11 @@
       </div>
     </section>
 
-    <section class="resonance-lab-section">
-      <div class="container">
-        <div class="interactive-panel resonance-lab reveal" data-resonance-lab>
-          <div class="resonance-copy">
-            <span class="label">Interactive</span>
-            <h3>Resonance check</h3>
-            <p>Compare artifact coverage, named decision rights, and days to launch. The check shows whether the current setup can convert findings into action quickly enough.</p>
-            <p class="form-note">Grounded in the kind of evidence stack used for real deployments: model card, eval log, incident log, rollback plan, owner map, and monitoring plan.</p>
-          </div>
-          <div class="interactive-grid">
-            <div class="interactive-controls">
-              <div class="range-row"><label for="artifact-coverage">Artifact coverage <span class="range-value" data-range-value="artifacts">4</span></label><input id="artifact-coverage" name="artifacts" type="range" min="0" max="6" step="1" value="4"></div>
-              <div class="range-row"><label for="decision-rights">Named decision rights <span class="range-value" data-range-value="rights">3</span></label><input id="decision-rights" name="rights" type="range" min="1" max="5" step="1" value="3"></div>
-              <div class="range-row"><label for="days-to-launch">Days to launch <span class="range-value" data-range-value="launch">21</span></label><input id="days-to-launch" name="launch" type="range" min="7" max="90" step="1" value="21"></div>
-            </div>
-            <div class="resonance-visual">
-              <div class="resonance-orb" aria-hidden="true"><span></span></div>
-              <div class="interactive-score" data-resonance-score>0</div>
-              <div class="interactive-status" data-resonance-status>Out of phase</div>
-              <p class="interactive-copy" data-resonance-copy></p>
-              <p class="form-note">Reference stack: model card, eval log, incident log, rollback plan, owner map, monitoring plan.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="methodology">
-      <div class="container">
-        <div class="method-header"><span class="section-num">02</span><h2>Principles.</h2></div>
-        <div class="method-grid">
-          <article class="method-item reveal"><div class="method-step">I</div><h4>Claims need evidence</h4><p>Each claim is tied to observations, assumptions, and limits.</p></article>
-          <article class="method-item reveal reveal-d1"><div class="method-step">II</div><h4>Evidence needs ownership</h4><p>A finding matters only if someone has the authority to act on it.</p></article>
-          <article class="method-item reveal reveal-d2"><div class="method-step">III</div><h4>Governance needs timing</h4><p>Controls fail when review cycles are slower than release cycles.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="proof-section">
-      <div class="container">
-        <div class="services-header">
-          <div class="services-header-left"><span class="section-num">03</span><span class="label">Outputs</span></div>
-          <div><h2>Deliverables.</h2><p class="services-header-desc">Every output is written to travel from technical teams to leadership, boards, and regulators.</p></div>
-        </div>
-        <div class="proof-grid">
-          <article class="proof-card"><span>01</span><h3>Evidence register</h3><p>Findings separated into observation, inference, severity, confidence, and reproduction constraints.</p></article>
-          <article class="proof-card"><span>02</span><h3>Control map</h3><p>Decision rights, escalation thresholds, monitoring cadence, and accountable owners in one operating view.</p></article>
-          <article class="proof-card"><span>03</span><h3>Scenario watchlist</h3><p>External signposts tied to choices: what changed, who decides, and when the posture updates.</p></article>
-          <article class="proof-card"><span>04</span><h3>Executive memo</h3><p>A short account of what is known, what remains uncertain, and what action follows.</p></article>
-        </div>
-      </div>
-    </section>
 
     <section class="research">
       <div class="container">
-        <div class="research-header"><div><span class="section-num">04</span><h2>Featured <em>research</em></h2></div><a class="research-link" href="/research/">View publication record →</a></div>
+        <div class="research-header"><div><span class="section-num">02</span><h2>Featured <em>research</em></h2></div><a class="research-link" href="/research/">View publication record →</a></div>
         <div class="pub-stack">
           <a class="pub-card reveal" href="/research/governance-lag-europe/"><div class="pub-tag">Syntony report · PDF</div><h4>Governance Lag and Emerging Technology Adaptation in Europe</h4><p>A cross-sector analysis of institutional readiness for AI-enabled systems in European defence, energy, finance, and biosurveillance.</p><div class="pub-meta">Nathan Heath · May 2026</div></a>
           <a class="pub-card reveal reveal-d1" href="/research/mona-camera-dropbox/"><div class="pub-tag">arXiv · 2603.29993</div><h4>Extending MONA in Camera Dropbox</h4><p>A reproduction-first extension of the public MONA Camera Dropbox environment, with learned-approval experiments for reward-hacking mitigation.</p><div class="pub-meta">Nathan Heath · Submitted Mar 31, 2026</div></a>
@@ -278,35 +189,6 @@
       </div>
     </section>
 
-    <section class="engagement">
-      <div class="container">
-        <div class="eng-header">
-          <span class="label">Engagement Models</span>
-          <h2>Engagement models.</h2>
-        </div>
-        <div class="eng-grid">
-          <article class="eng-card"><div class="eng-num">01</div><h4>Rapid diagnostic</h4><p>Two weeks to clarify the decision, the evidence, and the immediate risk.</p></article>
-          <article class="eng-card"><div class="eng-num">02</div><h4>Focused engagement</h4><p>Four to six weeks for a scoped test, memo, control map, or briefing package.</p></article>
-          <article class="eng-card"><div class="eng-num">03</div><h4>Ongoing advisory</h4><p>Quarterly support as systems, evidence, and external conditions change.</p></article>
-          <article class="eng-card"><div class="eng-num">04</div><h4>Enterprise transition</h4><p>Multi-month support when model capability changes product lines, workflows, or competitive assumptions.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="enterprise-context">
-      <div class="container">
-        <div class="services-header">
-          <div class="services-header-left"><span class="section-num">05</span><span class="label">Enterprise</span></div>
-          <div><h2>Enterprise AI transformation.</h2><p class="services-header-desc">Foundation models are commoditizing product features across enterprise software. We help organizations identify which product lines remain defensible, which need rebuilding, and where to invest.</p></div>
-        </div>
-        <div class="method-grid">
-          <article class="method-item reveal"><div class="method-step">I</div><h4>Displacement mapping</h4><p>Which product classes remain defensible against LLM-native alternatives, and which are already losing ground?</p></article>
-          <article class="method-item reveal reveal-d1"><div class="method-step">II</div><h4>Integration choices</h4><p>For each product class, decide whether to build, buy, partner, or stop investing.</p></article>
-          <article class="method-item reveal reveal-d2"><div class="method-step">III</div><h4>Board narrative</h4><p>A risk-adjusted business case, phased roadmap, and decision framework that can survive scrutiny.</p></article>
-        </div>
-        <div class="contact-actions" style="margin-top:36px;"><a class="btn-dark" href="/contact/">Discuss a transformation engagement <span class="btn-arrow">→</span></a><a class="btn-outline" href="/work/">View engagement patterns</a></div>
-      </div>
-    </section>
 
     <section class="contact">
       <div class="container contact-inner">
