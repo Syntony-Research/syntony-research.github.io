@@ -588,6 +588,101 @@ function initPublicationLens() {
   });
 }
 
+function initConductorDemo() {
+  const demo = document.querySelector('[data-conductor-demo]');
+  if (!demo) return;
+
+  const promptEl = demo.querySelector('[data-conductor-prompt]');
+  const fullText = promptEl.dataset.conductorPrompt;
+
+  // Reduced motion: show everything statically
+  if (prefersReducedMotion()) {
+    promptEl.textContent = fullText;
+    return;
+  }
+  const workingItems = Array.from(demo.querySelectorAll('.conductor-working span'));
+  const responseBlock = demo.querySelector('.conductor-demo-response');
+  const responseLabel = responseBlock.querySelector('.conductor-demo-label');
+  const findingRows = Array.from(responseBlock.querySelectorAll('.conductor-finding-row'));
+
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  const reset = () => {
+    promptEl.textContent = '';
+    workingItems.forEach((item) => item.classList.remove('is-visible'));
+    responseBlock.classList.remove('is-visible');
+    responseLabel.classList.remove('is-visible');
+    findingRows.forEach((row) => row.classList.remove('is-visible'));
+  };
+
+  const addCursor = () => {
+    let cursor = promptEl.querySelector('.conductor-cursor');
+    if (!cursor) {
+      cursor = document.createElement('span');
+      cursor.className = 'conductor-cursor';
+      cursor.setAttribute('aria-hidden', 'true');
+    }
+    promptEl.appendChild(cursor);
+    return cursor;
+  };
+
+  const typePrompt = async () => {
+    promptEl.textContent = '';
+    const cursor = addCursor();
+    for (let i = 0; i < fullText.length; i++) {
+      promptEl.insertBefore(document.createTextNode(fullText[i]), cursor);
+      // Vary speed: faster for spaces/common chars, slower for punctuation
+      const char = fullText[i];
+      let charDelay = 32;
+      if (char === '.' || char === '?' || char === '!') charDelay = 180;
+      else if (char === ',') charDelay = 100;
+      else if (char === ':') charDelay = 120;
+      else if (char === ' ') charDelay = 20;
+      await delay(charDelay);
+    }
+    await delay(400);
+  };
+
+  const showWorking = async () => {
+    for (const item of workingItems) {
+      item.classList.add('is-visible');
+      await delay(600);
+    }
+    await delay(800);
+  };
+
+  const showResponse = async () => {
+    responseBlock.classList.add('is-visible');
+    await delay(200);
+    responseLabel.classList.add('is-visible');
+    await delay(300);
+    for (const row of findingRows) {
+      row.classList.add('is-visible');
+      await delay(280);
+    }
+  };
+
+  const runLoop = async () => {
+    while (true) {
+      reset();
+      await delay(600);
+      await typePrompt();
+      await showWorking();
+      await showResponse();
+      await delay(5000);
+    }
+  };
+
+  // Start when the demo scrolls into view
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      observer.disconnect();
+      runLoop();
+    }
+  }, { threshold: 0.3 });
+  observer.observe(demo);
+}
+
 function initForecastLab() {
   document.querySelectorAll('[data-forecast-lab]').forEach((panel) => {
     const selects = Array.from(panel.querySelectorAll('select'));
@@ -1406,6 +1501,7 @@ function initPageVisuals() {
   initTracking();
   initBreadcrumbSchema();
   initPageVisuals();
+  initConductorDemo();
   initReveal();
   initResonanceLab();
   initSignalMatrix();
