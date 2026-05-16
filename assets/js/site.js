@@ -705,9 +705,9 @@ function initForecastLab() {
 const PAGE_VISUALS = {
   '/services/': {
     mode: 'cards',
-    kicker: 'Service atlas',
-    title: 'Seven service lines, one operating picture',
-    intro: 'The portfolio is easier to use when each lane shows the decision it supports, the evidence it needs, and the output it produces.',
+    kicker: 'Services',
+    title: 'Service overview',
+    intro: 'Evaluation, governance, risk advisory, forecasting, research, briefings, and technical communications.',
     cards: [
       {
         title: 'Evaluation first',
@@ -728,9 +728,9 @@ const PAGE_VISUALS = {
   },
   '/services/red-teaming/': {
     mode: 'cards',
-    kicker: 'Adversarial map',
-    title: 'Where the system usually breaks first',
-    intro: 'The useful question is not whether a model fails. It is which access path, tool chain, or workflow breaks under pressure.',
+    kicker: 'Evaluation',
+    title: 'Adversarial evaluation approach',
+    intro: 'Identifying failure modes across prompt flow, tool use, memory, and retrieval.',
     cards: [
       {
         title: 'Attack surface',
@@ -751,9 +751,9 @@ const PAGE_VISUALS = {
   },
   '/services/governance/': {
     mode: 'cards',
-    kicker: 'Control map',
-    title: 'Who owns the decision, and what happens when it changes',
-    intro: 'Governance work becomes concrete when decision rights, controls, and escalation points are visible together.',
+    kicker: 'Governance',
+    title: 'Governance architecture',
+    intro: 'Decision rights, controls, and escalation paths in a single operating view.',
     cards: [
       {
         title: 'Decision rights',
@@ -774,9 +774,9 @@ const PAGE_VISUALS = {
   },
   '/services/risk-advisory/': {
     mode: 'cards',
-    kicker: 'Risk horizon',
-    title: 'What changes if the deployment pace stays the same',
-    intro: 'Risk advisory is most useful when it ties exposure, scenario moves, and decision timing to one view.',
+    kicker: 'Risk advisory',
+    title: 'Strategic risk assessment',
+    intro: 'Exposure mapping, scenario analysis, and decision timing for leadership.',
     cards: [
       {
         title: 'Exposure',
@@ -797,9 +797,9 @@ const PAGE_VISUALS = {
   },
   '/services/safety-research/': {
     mode: 'cards',
-    kicker: 'Method stack',
-    title: 'A cleaner path from question to evidence',
-    intro: 'Safety research gets legible when protocols, metrics, and interpretation live in the same frame.',
+    kicker: 'Safety research',
+    title: 'Evaluation methodology',
+    intro: 'Protocol design, metric definitions, and evidence synthesis.',
     cards: [
       {
         title: 'Protocol',
@@ -820,9 +820,9 @@ const PAGE_VISUALS = {
   },
   '/services/briefings/': {
     mode: 'cards',
-    kicker: 'Briefing room',
-    title: 'Short sessions with a clear output',
-    intro: 'Briefings work best when the audience, the question, and the next action are visible before the meeting starts.',
+    kicker: 'Briefings',
+    title: 'Executive briefings',
+    intro: 'Tailored sessions for boards, leadership, and cross-functional teams.',
     cards: [
       {
         title: 'Audience',
@@ -843,9 +843,9 @@ const PAGE_VISUALS = {
   },
   '/services/research/': {
     mode: 'cards',
-    kicker: 'Research frame',
-    title: 'A narrow question, a clean evidence trail',
-    intro: 'Custom research works when the question, evidence standard, and final use are pinned down early.',
+    kicker: 'Research',
+    title: 'Custom research',
+    intro: 'Scoped engagements built around a specific question and decision context.',
     cards: [
       {
         title: 'Question',
@@ -866,9 +866,9 @@ const PAGE_VISUALS = {
   },
   '/services/technical-writing/': {
     mode: 'cards',
-    kicker: 'Clarity layer',
-    title: 'Make the work readable without flattening it',
-    intro: 'Technical writing should make the logic easier to follow, not just shorter.',
+    kicker: 'Technical writing',
+    title: 'Technical communications',
+    intro: 'Reports, memos, and communications for technical and executive audiences.',
     cards: [
       {
         title: 'Structure',
@@ -969,9 +969,9 @@ const PAGE_VISUALS = {
   },
   '/research/': {
     mode: 'cards',
-    kicker: 'Research map',
-    title: 'AI safety, red-team operations, and geopolitical technology risk',
-    intro: 'The research page now centers Syntony-authored publications and the operating questions behind them.',
+    kicker: 'Research',
+    title: 'Publications and research agenda',
+    intro: 'Syntony-authored publications on AI safety, adversarial evaluation, and governance.',
     cards: [
       {
         title: 'Red-Agent',
@@ -994,7 +994,7 @@ const PAGE_VISUALS = {
     mode: 'cards',
     kicker: 'Report frame',
     title: 'Governance lag is an organizational problem',
-    intro: 'The report tracks the gap between fast AI-enabled deployment and slow institutional oversight across European defence, energy, finance, and public health.',
+    intro: 'Cross-sector analysis of institutional readiness for AI governance in European defence, energy, finance, and health.',
     cards: [
       {
         title: 'Screen',
@@ -1017,7 +1017,7 @@ const PAGE_VISUALS = {
     mode: 'cards',
     kicker: 'Paper frame',
     title: 'A reproducible extension, not a claim without evidence',
-    intro: 'The paper matters because it shows what can be reproduced, what changed, and what the evidence actually supports.',
+    intro: 'Reproduction-first extension of MONA in Camera Dropbox for reward-hacking mitigation research.',
     cards: [
       {
         title: 'Question',
@@ -1040,7 +1040,7 @@ const PAGE_VISUALS = {
     mode: 'cards',
     kicker: 'SSRN paper',
     title: 'Multi-provider red teaming with artifact-complete reporting',
-    intro: 'Red-Agent is a Syntony-authored paper by Nathan Heath on operationally reliable LLM red-team campaigns.',
+    intro: 'A multi-provider framework for LLM red teaming with operational reachability and artifact-complete reporting.',
     cards: [
       {
         title: 'Paper',
@@ -1061,9 +1061,9 @@ const PAGE_VISUALS = {
   },
   '/about/': {
     mode: 'cards',
-    kicker: 'About the firm',
-    title: 'Why Syntony exists',
-    intro: 'The firm sits at the gap between what AI systems can do and what institutions can safely own, review, and explain.',
+    kicker: 'About',
+    title: 'Mission and approach',
+    intro: 'Bridging the gap between AI capability and institutional accountability.',
     cards: [
       {
         title: 'Mission',
@@ -1084,9 +1084,9 @@ const PAGE_VISUALS = {
   },
   '/about/founder/': {
     mode: 'cards',
-    kicker: 'Founder profile',
-    title: 'A short timeline of the work behind the firm',
-    intro: 'The founder page should show the path, the current role, and the public references that are actually real.',
+    kicker: 'Founder',
+    title: 'Nathan Heath',
+    intro: 'AI safety researcher and decision scientist.',
     cards: [
       {
         title: 'Current role',
@@ -1107,9 +1107,9 @@ const PAGE_VISUALS = {
   },
   '/insights/': {
     mode: 'cards',
-    kicker: 'Insights hub',
-    title: 'Short notes, long questions, and a feed people can follow',
-    intro: 'The commentary page should behave like a proper reading hub, not a pile of teaser cards.',
+    kicker: 'Insights',
+    title: 'Commentary and analysis',
+    intro: 'Notes on AI safety, governance, and technology risk.',
     cards: [
       {
         title: 'Topics',
@@ -1130,9 +1130,9 @@ const PAGE_VISUALS = {
   },
   '/work/': {
     mode: 'cards',
-    kicker: 'Engagement map',
-    title: 'A cleaner way to show what the firm does',
-    intro: 'Case studies are more useful when they show the problem, the approach, and the outcome in one place.',
+    kicker: 'Engagements',
+    title: 'Selected work',
+    intro: 'Anonymized engagement examples across evaluation, governance, and advisory.',
     cards: [
       {
         title: 'Industry',
@@ -1154,8 +1154,8 @@ const PAGE_VISUALS = {
   '/contact/': {
     mode: 'cards',
     kicker: 'Contact paths',
-    title: 'Three ways to reach the firm',
-    intro: 'Make the next step obvious: email, phone, or a booking link that works on mobile.',
+    title: 'Contact',
+    intro: 'Email, phone, or schedule a consultation.',
     cards: [
       {
         title: 'Email',
@@ -1176,9 +1176,9 @@ const PAGE_VISUALS = {
   },
   '/privacy/': {
     mode: 'cards',
-    kicker: 'Policy map',
-    title: 'What the site collects and why',
-    intro: 'A legal page is easier to use when it tells you what matters in one glance.',
+    kicker: 'Privacy',
+    title: 'Privacy policy',
+    intro: 'What we collect, how we use it, and how to contact us.',
     cards: [
       {
         title: 'Data',
@@ -1199,9 +1199,9 @@ const PAGE_VISUALS = {
   },
   '/terms/': {
     mode: 'cards',
-    kicker: 'Terms map',
-    title: 'How the site and services are used',
-    intro: 'This page should point users toward the rules that matter without making them hunt for them.',
+    kicker: 'Terms',
+    title: 'Terms of service',
+    intro: 'Website usage, engagement terms, and content policies.',
     cards: [
       {
         title: 'Use',
@@ -1222,9 +1222,9 @@ const PAGE_VISUALS = {
   },
   '/disclosures/': {
     mode: 'cards',
-    kicker: 'Disclosure map',
-    title: 'Where affiliations and conflicts belong',
-    intro: 'A disclosure page should make the visible relationships easy to scan.',
+    kicker: 'Disclosures',
+    title: 'Affiliations and disclosures',
+    intro: 'Public affiliations, memberships, and conflict disclosures.',
     cards: [
       {
         title: 'Affiliations',
