@@ -119,11 +119,11 @@
     "keywords": ["cld", "causal loop diagram", "systems map", "governance lag", "alignment", "feedback loops", "licensing", "dashboard", "client-specific ai risk"]
   },
   {
-    "title": "Syntony Conductor",
+    "title": "Syntony Conductor AI",
     "url": "/products/syntony-conductor/",
     "type": "Product",
-    "summary": "Coming soon: software that conducts red-team evidence into governance action.",
-    "keywords": ["syntony conductor", "conductor", "software", "governance findings", "alignment", "livemonitor"]
+    "summary": "Coming soon: evidence-to-decision AI for adversarial findings, alignment implications, controls, and governance records.",
+    "keywords": ["syntony conductor ai", "syntony conductor", "conductor", "software", "governance findings", "alignment", "evidence translation", "livemonitor"]
   },
   {
     "title": "Enterprise AI Risk Index 2026",
