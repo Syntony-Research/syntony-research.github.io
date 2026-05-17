@@ -160,9 +160,9 @@ svg .pol:hover{filter:drop-shadow(0 0 5px rgba(208,174,85,.35))}
 
 <div class="commercial-strip">
   <div><strong>Public preview</strong><span>Representative CLDs, loop isolation, and explanatory notes</span></div>
-  <div><strong>Tier 2</strong><span>Client-specific presentation maps and guided exports</span></div>
-  <div><strong>Tier 3</strong><span>Facilitated workshop mapping and snapshots</span></div>
-  <div><strong>Tier 4</strong><span>Living dashboard with status overlays</span></div>
+  <div><strong>Licensed</strong><span>Client-specific maps and guided outputs</span></div>
+  <div><strong>Workshop</strong><span>Facilitated mapping and interpretation</span></div>
+  <div><strong>Private</strong><span>Dashboard deployments by engagement</span></div>
 </div>
 
 <div class="header">
@@ -171,7 +171,7 @@ svg .pol:hover{filter:drop-shadow(0 0 5px rgba(208,174,85,.35))}
     <div class="brand">Syntony</div>
   </div>
   <h1>Syntony CLD Suite public preview</h1>
-  <p>This public preview shows representative causal loop diagrams for AI capability, governance, evaluation, alignment, and sociotechnical risk. Paid deployments replace these examples with maps tailored to a client’s own AI risk ecosystem, evidence sources, owners, controls, vendors, and decisions.</p>
+  <p>This public preview shows representative causal loop diagrams for AI capability, governance, evaluation, alignment, and sociotechnical risk. Paid deployments replace these examples with maps tailored to a client's own AI risk ecosystem, evidence sources, owners, controls, vendors, and decisions.</p>
 </div>
 
 <div id="present-mode" class="workspace">
@@ -227,18 +227,18 @@ svg .pol:hover{filter:drop-shadow(0 0 5px rgba(208,174,85,.35))}
 </div>
 
 <section id="workshop-mode" class="mode-placeholder" hidden>
-  <h2>Workshop mode: commercial license tier</h2>
-  <p>Workshop deployments add live CLD editing, facilitator controls, snapshots, voting, undo/redo, and client-specific system building. The current public file exposes the product shell without enabling editing controls.</p>
+  <h2>Workshop mode: licensed deployment</h2>
+  <p>Workshop deployments are configured for facilitated client sessions. The public preview shows the shell, not the full commercial workflow.</p>
 </section>
 
 <section id="dashboard-mode" class="mode-placeholder" hidden>
-  <h2>Dashboard mode: subscription intelligence tier</h2>
-  <p>Dashboard deployments add status indicators, trend sparklines, change logs, and optional data connections for living AI-risk maps that update across review cycles.</p>
+  <h2>Dashboard mode: private deployment</h2>
+  <p>Dashboard deployments are scoped to client review cycles and data environments under agreement.</p>
 </section>
 
 <div class="node-tooltip" id="node-tooltip"></div>
 <footer class="footer">
-  <span id="project-footer">© 2026 Syntony · Powered by Syntony</span>
+  <span id="project-footer">© 2026 Syntony Research LLC · Powered by Syntony</span>
   <span><a href="https://syntonyresearch.org/" target="_blank" rel="noopener noreferrer">syntonyresearch.org</a></span>
 </footer>
 
@@ -575,7 +575,7 @@ const DEFAULT_PROJECT = {
   branding: {
     primaryColor: '#1a3a5c',
     logo: null,
-    footer: '© 2026 Syntony · Powered by Syntony',
+    footer: '© 2026 Syntony Research LLC · Powered by Syntony',
     watermark: 'PUBLIC PREVIEW — Syntony'
   },
   systems: SYSTEMS
@@ -799,7 +799,7 @@ function applyProjectChrome() {
   document.getElementById('project-title').textContent = PROJECT.title;
   document.getElementById('project-client').textContent = PROJECT.client;
   document.getElementById('project-version').textContent = `Version ${PROJECT.version}`;
-  document.getElementById('project-footer').textContent = PROJECT.branding.footer || '© 2026 Syntony · Powered by Syntony';
+  document.getElementById('project-footer').textContent = PROJECT.branding.footer || '© 2026 Syntony Research LLC · Powered by Syntony';
 }
 
 function setMode(mode) {

@@ -109,7 +109,7 @@
     "url": "/products/software/",
     "type": "Product",
     "summary": "Licensed tools for the work after AI risk evidence arrives.",
-    "keywords": ["software", "evidence translation", "live monitoring", "control map", "decision records", "release gates"]
+    "keywords": ["software", "evidence interpretation", "monitoring", "governance workflow", "decision records"]
   },
   {
     "title": "Syntony CLD Suite",
@@ -122,8 +122,8 @@
     "title": "GovTune AI",
     "url": "/products/govtune-ai/",
     "type": "Product",
-    "summary": "Coming soon: evidence-to-decision AI for risk findings, alignment implications, controls, and governance records.",
-    "keywords": ["govtune ai", "govtune", "software", "governance findings", "alignment", "evidence translation", "livemonitor"]
+    "summary": "Coming soon: AI risk evidence translated into governance-ready interpretation and review records.",
+    "keywords": ["govtune ai", "govtune", "software", "governance interpretation", "evidence translation", "ai risk"]
   },
   {
     "title": "Enterprise AI Risk Index 2026",

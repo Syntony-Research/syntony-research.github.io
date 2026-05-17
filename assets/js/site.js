@@ -588,7 +588,7 @@ function initPublicationLens() {
   });
 }
 
-function initConductorDemo() {
+function initGovTuneDemo() {
   document.querySelectorAll('[data-conductor-demo]').forEach((demo) => {
     const promptEl = demo.querySelector('[data-conductor-prompt]');
     const fullText = promptEl.dataset.conductorPrompt;
@@ -1497,7 +1497,7 @@ function initPageVisuals() {
   initTracking();
   initBreadcrumbSchema();
   initPageVisuals();
-  initConductorDemo();
+  initGovTuneDemo();
   initReveal();
   initResonanceLab();
   initSignalMatrix();
