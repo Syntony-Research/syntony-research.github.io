@@ -1,1 +1,1 @@
-# Syntony Research
+# Syntony

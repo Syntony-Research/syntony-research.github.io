@@ -1086,7 +1086,7 @@ const PAGE_VISUALS = {
     cards: [
       {
         title: 'Current role',
-        copy: 'Founder and Chief Scientist at Syntony Research.',
+        copy: 'Founder and Chief Scientist at Syntony.',
         points: ['Research', 'Advisory', 'Writing']
       },
       {

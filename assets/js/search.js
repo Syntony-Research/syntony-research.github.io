@@ -70,7 +70,7 @@
       : `${results.length} results found.`;
 
     if (!results.length) {
-      renderEmpty('No matching pages found. Try a broader term such as governance, red teaming, risk, research, or Conductor.');
+      renderEmpty('No matching pages found. Try a broader term such as governance, red teaming, risk, research, or GovTune.');
       return;
     }
 

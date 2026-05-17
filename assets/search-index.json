@@ -1,6 +1,6 @@
 [
   {
-    "title": "Syntony Research",
+    "title": "Syntony",
     "url": "/",
     "type": "Home",
     "summary": "Founder-led AI risk advisory, licensed tools, and research products for decisions people can defend.",
@@ -119,11 +119,11 @@
     "keywords": ["cld", "causal loop diagram", "systems map", "governance lag", "alignment", "feedback loops", "licensing", "dashboard", "client-specific ai risk"]
   },
   {
-    "title": "Syntony Conductor AI",
-    "url": "/products/syntony-conductor/",
+    "title": "GovTune AI",
+    "url": "/products/govtune-ai/",
     "type": "Product",
     "summary": "Coming soon: evidence-to-decision AI for risk findings, alignment implications, controls, and governance records.",
-    "keywords": ["syntony conductor ai", "syntony conductor", "conductor", "software", "governance findings", "alignment", "evidence translation", "livemonitor"]
+    "keywords": ["govtune ai", "govtune", "software", "governance findings", "alignment", "evidence translation", "livemonitor"]
   },
   {
     "title": "Enterprise AI Risk Index 2026",
@@ -150,7 +150,7 @@
     "title": "About",
     "url": "/about/",
     "type": "Company",
-    "summary": "About Syntony Research and the tuning problem between AI safety evidence and institutional action.",
+    "summary": "About Syntony and the tuning problem between AI safety evidence and institutional action.",
     "keywords": ["about", "company", "syntony research", "mission"]
   },
   {
@@ -164,28 +164,28 @@
     "title": "Contact",
     "url": "/contact/",
     "type": "Company",
-    "summary": "Contact Syntony Research to discuss licensed tools, advisory work, briefings, research, or early access.",
+    "summary": "Contact Syntony to discuss licensed tools, advisory work, briefings, research, or early access.",
     "keywords": ["contact", "email", "consultation", "early access", "briefing"]
   },
   {
     "title": "Disclosures",
     "url": "/disclosures/",
     "type": "Company",
-    "summary": "Disclosures, independence notes, and operating boundaries for Syntony Research.",
+    "summary": "Disclosures, independence notes, and operating boundaries for Syntony.",
     "keywords": ["disclosures", "independence", "boundaries", "conflicts"]
   },
   {
     "title": "Privacy Policy",
     "url": "/privacy/",
     "type": "Legal",
-    "summary": "Privacy policy for Syntony Research.",
+    "summary": "Privacy policy for Syntony.",
     "keywords": ["privacy", "policy", "data"]
   },
   {
     "title": "Terms of Service",
     "url": "/terms/",
     "type": "Legal",
-    "summary": "Terms of service for Syntony Research.",
+    "summary": "Terms of service for Syntony.",
     "keywords": ["terms", "service", "legal"]
   }
 ]
