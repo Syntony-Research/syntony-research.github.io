@@ -3,15 +3,15 @@
     "title": "Syntony Research",
     "url": "/",
     "type": "Home",
-    "summary": "AI safety evidence tuned to decisions people can defend.",
-    "keywords": ["home", "ai safety", "governance", "red teaming", "evidence", "decision records"]
+    "summary": "Founder-led AI risk advisory, licensed tools, and research products for decisions people can defend.",
+    "keywords": ["home", "ai safety", "ai risk", "licensed tools", "software", "governance", "red teaming", "evidence", "decision records"]
   },
   {
     "title": "Services",
     "url": "/services/",
     "type": "Services",
-    "summary": "Services for AI decisions that cannot be waved through.",
-    "keywords": ["services", "consulting", "advisory", "evaluation", "governance", "briefings"]
+    "summary": "Advisory services that tailor Syntony products and analysis to client AI risk decisions.",
+    "keywords": ["services", "consulting", "advisory", "product tailoring", "evaluation", "governance", "briefings"]
   },
   {
     "title": "Adversarial Evaluation",
@@ -101,28 +101,28 @@
     "title": "Products",
     "url": "/products/",
     "type": "Products",
-    "summary": "Products for the gap between AI evidence and governance action.",
-    "keywords": ["products", "software", "research products", "diagnostics", "ai risk"]
+    "summary": "Licensed tools, research products, and emerging AI models for the gap between AI evidence and governance action.",
+    "keywords": ["products", "software", "research products", "diagnostics", "ai risk", "ai risk suite"]
   },
   {
     "title": "Software",
     "url": "/products/software/",
     "type": "Product",
-    "summary": "Software roadmap for the work after red-team evidence arrives.",
-    "keywords": ["software", "evidence translation", "live monitoring", "control map", "decision records"]
+    "summary": "Licensed tools for the work after AI risk evidence arrives.",
+    "keywords": ["software", "evidence translation", "live monitoring", "control map", "decision records", "release gates"]
   },
   {
     "title": "Syntony CLD Suite",
     "url": "/products/cld-suite/",
     "type": "Product",
-    "summary": "Public interactive preview of a first-of-its-kind AI-risk feedback intelligence platform tailored to client-specific AI risk ecosystems.",
+    "summary": "Public interactive preview of an AI-risk feedback intelligence platform tailored through product licensing and advisory work to client-specific AI risk ecosystems.",
     "keywords": ["cld", "causal loop diagram", "systems map", "governance lag", "alignment", "feedback loops", "licensing", "dashboard", "client-specific ai risk"]
   },
   {
     "title": "Syntony Conductor AI",
     "url": "/products/syntony-conductor/",
     "type": "Product",
-    "summary": "Coming soon: evidence-to-decision AI for adversarial findings, alignment implications, controls, and governance records.",
+    "summary": "Coming soon: evidence-to-decision AI for risk findings, alignment implications, controls, and governance records.",
     "keywords": ["syntony conductor ai", "syntony conductor", "conductor", "software", "governance findings", "alignment", "evidence translation", "livemonitor"]
   },
   {
@@ -164,7 +164,7 @@
     "title": "Contact",
     "url": "/contact/",
     "type": "Company",
-    "summary": "Contact Syntony Research to discuss advisory work, briefings, research, or software early access.",
+    "summary": "Contact Syntony Research to discuss licensed tools, advisory work, briefings, research, or early access.",
     "keywords": ["contact", "email", "consultation", "early access", "briefing"]
   },
   {
