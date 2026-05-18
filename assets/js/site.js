@@ -1086,8 +1086,8 @@ const PAGE_VISUALS = {
     cards: [
       {
         title: 'Current role',
-        copy: 'Founder and Chief Scientist at Syntony.',
-        points: ['Research', 'Advisory', 'Writing']
+        copy: 'Founder and CEO of Syntony.',
+        points: ['Products', 'Advisory', 'Research']
       },
       {
         title: 'Background',
@@ -1119,8 +1119,8 @@ const PAGE_VISUALS = {
       },
       {
         title: 'Distribution',
-        copy: 'Use RSS and Substack so the page is a real entry point instead of a dead end.',
-        points: ['RSS', 'Substack', 'Newsletter']
+        copy: 'Use the research library and search experience so the page is a real entry point instead of a dead end.',
+        points: ['Research', 'Search', 'Briefs']
       }
     ]
   },
