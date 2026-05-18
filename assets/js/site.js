@@ -544,7 +544,7 @@ function initServiceRecommender() {
       geopolitics: ['Geopolitical Forecasting', 'Track how emerging technology, state competition, regulation, and crisis dynamics affect your decisions.', '/services/geopolitical-forecasting/'],
       executive: ['Executive Briefings', 'Align leaders quickly around a decision-grade risk picture and next actions.', '/services/briefings/'],
       writing: ['Technical Writing', 'Turn complex evaluation or policy work into documents people can actually use.', '/services/technical-writing/'],
-      transformation: ['Strategic Risk Advisory + Executive Briefings', 'Map which product lines are defensible against foundational model displacement, design an integration strategy, and build the board-ready transformation case.', '/services/risk-advisory/']
+      transformation: ['Strategic Risk Advisory + Executive Briefings', 'Map which product lines are defensible against foundation-model displacement, define the decision path, and build the board-ready case.', '/services/risk-advisory/']
     };
 
     const setRecommendation = (key) => {

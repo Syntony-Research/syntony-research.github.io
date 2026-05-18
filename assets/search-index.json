@@ -3,14 +3,14 @@
     "title": "Syntony",
     "url": "/",
     "type": "Home",
-    "summary": "AI risk evidence translated into governance alignment, decision records, and cross-domain risk intelligence.",
+    "summary": "AI risk evidence turned into governance alignment, decision records, and cross-domain risk intelligence.",
     "keywords": ["home", "ai safety", "ai risk", "licensed tools", "software", "governance", "red teaming", "evaluation", "forecasting", "evidence", "decision records"]
   },
   {
     "title": "Services",
     "url": "/services/",
     "type": "Services",
-    "summary": "Advisory services that tailor Syntony products, cross-domain analysis, and forecasting to client AI risk decisions.",
+    "summary": "Advisory services that tune Syntony products, cross-domain analysis, and forecasting to client AI risk decisions.",
     "keywords": ["services", "consulting", "advisory", "product tailoring", "evaluation", "governance", "forecasting", "briefings"]
   },
   {
@@ -101,7 +101,7 @@
     "title": "Products",
     "url": "/products/",
     "type": "Products",
-    "summary": "Licensed tools, research products, and emerging AI models for the gap between AI evidence, cross-domain context, and governance action.",
+    "summary": "Licensed tools, research products, and emerging AI models for the gap between AI evidence, cross-domain context, and governance decisions.",
     "keywords": ["products", "software", "research products", "diagnostics", "ai risk", "ai risk suite", "forecasting", "governance alignment"]
   },
   {
@@ -115,14 +115,14 @@
     "title": "Syntony CLD Suite",
     "url": "/products/cld-suite/",
     "type": "Product",
-    "summary": "Public interactive preview of an AI-risk feedback intelligence platform for technical, institutional, sector, and geopolitical risk ecosystems.",
+    "summary": "Public interactive preview of an AI-risk feedback mapping suite for technical, institutional, sector, and geopolitical risk ecosystems.",
     "keywords": ["cld", "causal loop diagram", "systems map", "governance lag", "alignment", "feedback loops", "licensing", "dashboard", "client-specific ai risk", "geopolitics"]
   },
   {
     "title": "GovTune AI",
     "url": "/products/govtune-ai/",
     "type": "Product",
-    "summary": "Coming soon: AI risk, evaluation, and cross-domain evidence translated into governance-ready interpretation and review records.",
+    "summary": "Coming soon: AI risk, evaluation, and cross-domain evidence turned into governance interpretation and review records.",
     "keywords": ["govtune ai", "govtune", "software", "governance interpretation", "evidence translation", "ai risk", "evaluation", "forecasting"]
   },
   {
@@ -143,8 +143,8 @@
     "title": "Engagements",
     "url": "/work/",
     "type": "Company",
-    "summary": "Representative engagement areas across AI transformation, governance, red teaming, and technology risk.",
-    "keywords": ["work", "engagements", "case studies", "clients", "transformation"]
+    "summary": "Representative engagement areas across AI adoption, governance, red teaming, and technology risk.",
+    "keywords": ["work", "engagements", "case studies", "clients", "ai adoption"]
   },
   {
     "title": "About",
