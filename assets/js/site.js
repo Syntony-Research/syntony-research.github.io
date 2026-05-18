@@ -1072,32 +1072,9 @@ const PAGE_VISUALS = {
         points: ['Testing', 'Synthesis', 'Controls']
       },
       {
-        title: 'Affiliations',
-        copy: 'The public network around the firm gives the work broader context without turning it into noise.',
-        points: ['Truman', 'BlueDot', 'Hertog', 'CSET']
-      }
-    ]
-  },
-  '/about/founder/': {
-    mode: 'cards',
-    kicker: 'Founder',
-    title: 'Nathan Heath',
-    intro: 'AI safety researcher and decision scientist.',
-    cards: [
-      {
-        title: 'Current role',
-        copy: 'Founder and CEO of Syntony.',
-        points: ['Products', 'Advisory', 'Research']
-      },
-      {
-        title: 'Background',
-        copy: 'Experience spans research, red teaming, and policy-adjacent work across national security and AI safety contexts.',
-        points: ['Research', 'Red teaming', 'Policy']
-      },
-      {
-        title: 'Public work',
-        copy: 'The public record should point to real papers, real talks, and verifiable affiliations.',
-        points: ['arXiv', 'Speaking', 'Affiliations']
+        title: 'Operating principle',
+        copy: 'The work separates evidence, inference, uncertainty, and recommendation so decisions are easier to inspect.',
+        points: ['Evidence', 'Inference', 'Judgment']
       }
     ]
   },
