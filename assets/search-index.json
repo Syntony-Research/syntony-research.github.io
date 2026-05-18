@@ -3,15 +3,15 @@
     "title": "Syntony",
     "url": "/",
     "type": "Home",
-    "summary": "AI risk advisory, licensed tools, and research products for decisions people can defend.",
-    "keywords": ["home", "ai safety", "ai risk", "licensed tools", "software", "governance", "red teaming", "evidence", "decision records"]
+    "summary": "AI risk evidence translated into governance alignment, decision records, and cross-domain risk intelligence.",
+    "keywords": ["home", "ai safety", "ai risk", "licensed tools", "software", "governance", "red teaming", "evaluation", "forecasting", "evidence", "decision records"]
   },
   {
     "title": "Services",
     "url": "/services/",
     "type": "Services",
-    "summary": "Advisory services that tailor Syntony products and analysis to client AI risk decisions.",
-    "keywords": ["services", "consulting", "advisory", "product tailoring", "evaluation", "governance", "briefings"]
+    "summary": "Advisory services that tailor Syntony products, cross-domain analysis, and forecasting to client AI risk decisions.",
+    "keywords": ["services", "consulting", "advisory", "product tailoring", "evaluation", "governance", "forecasting", "briefings"]
   },
   {
     "title": "Adversarial Evaluation",
@@ -45,8 +45,8 @@
     "title": "Geopolitical Forecasting",
     "url": "/services/geopolitical-forecasting/",
     "type": "Service",
-    "summary": "Emerging technology scenarios, signposts, and decision triggers across AI, compute, chips, cyber, and regulation.",
-    "keywords": ["geopolitics", "forecasting", "scenarios", "compute", "chips", "regulation"]
+    "summary": "Emerging technology scenarios, signposts, and decision triggers across AI evaluations, compute, chips, cyber, state competition, and regulation.",
+    "keywords": ["geopolitics", "forecasting", "scenarios", "compute", "chips", "regulation", "evaluation context", "decision triggers"]
   },
   {
     "title": "Executive Briefings",
@@ -101,8 +101,8 @@
     "title": "Products",
     "url": "/products/",
     "type": "Products",
-    "summary": "Licensed tools, research products, and emerging AI models for the gap between AI evidence and governance action.",
-    "keywords": ["products", "software", "research products", "diagnostics", "ai risk", "ai risk suite"]
+    "summary": "Licensed tools, research products, and emerging AI models for the gap between AI evidence, cross-domain context, and governance action.",
+    "keywords": ["products", "software", "research products", "diagnostics", "ai risk", "ai risk suite", "forecasting", "governance alignment"]
   },
   {
     "title": "Software",
@@ -115,15 +115,15 @@
     "title": "Syntony CLD Suite",
     "url": "/products/cld-suite/",
     "type": "Product",
-    "summary": "Public interactive preview of an AI-risk feedback intelligence platform tailored through product licensing and advisory work to client-specific AI risk ecosystems.",
-    "keywords": ["cld", "causal loop diagram", "systems map", "governance lag", "alignment", "feedback loops", "licensing", "dashboard", "client-specific ai risk"]
+    "summary": "Public interactive preview of an AI-risk feedback intelligence platform for technical, institutional, sector, and geopolitical risk ecosystems.",
+    "keywords": ["cld", "causal loop diagram", "systems map", "governance lag", "alignment", "feedback loops", "licensing", "dashboard", "client-specific ai risk", "geopolitics"]
   },
   {
     "title": "GovTune AI",
     "url": "/products/govtune-ai/",
     "type": "Product",
-    "summary": "Coming soon: AI risk evidence translated into governance-ready interpretation and review records.",
-    "keywords": ["govtune ai", "govtune", "software", "governance interpretation", "evidence translation", "ai risk"]
+    "summary": "Coming soon: AI risk, evaluation, and cross-domain evidence translated into governance-ready interpretation and review records.",
+    "keywords": ["govtune ai", "govtune", "software", "governance interpretation", "evidence translation", "ai risk", "evaluation", "forecasting"]
   },
   {
     "title": "Enterprise AI Risk Index 2026",
