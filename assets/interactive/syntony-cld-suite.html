@@ -139,8 +139,21 @@ svg .pol:hover{filter:drop-shadow(0 0 5px rgba(208,174,85,.35))}
 .narrative-panel p{font-size:13px;color:var(--tx2);line-height:1.6}
 .narrative-steps{margin-top:10px;display:grid;gap:8px}
 .narrative-step{font-size:13px;line-height:1.5;color:var(--tx);padding-left:14px;border-left:2px solid var(--client-primary,var(--amber))}
+.mode-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.mode-metric{padding:10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg2)}
+.mode-metric strong{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);margin-bottom:5px}
+.mode-metric span{display:block;font-size:18px;font-weight:600;color:var(--tx)}
+.workshop-steps{margin-top:12px;display:grid;gap:8px}
+.workshop-step{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;font-size:13px;color:var(--tx2);line-height:1.5}
+.workshop-step b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--client-primary,var(--amber));color:#fff;font-family:var(--mono);font-size:11px}
+.dashboard-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:12.5px}
+.dashboard-table th,.dashboard-table td{padding:8px 7px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:top}
+.dashboard-table th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);font-weight:500}
+.status-pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--bd);border-radius:999px;padding:3px 8px;font-family:var(--mono);font-size:10px;text-transform:uppercase;white-space:nowrap}
+.status-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.mode-tab[aria-pressed="true"]{border-color:var(--client-primary,var(--accent));color:var(--tx);background:var(--bg2)}
 @media(max-width:960px){.project-bar,.workspace{grid-template-columns:1fr}.project-title,.project-right{text-align:left}.commercial-strip{grid-template-columns:1fr 1fr}.sidebar{position:static}.canvas-wrap{overflow-x:auto}.canvas-wrap svg{min-width:720px}}
-@media(max-width:640px){body{padding:1rem}.commercial-strip{grid-template-columns:1fr}.header h1{font-size:28px}.project-title{font-size:19px}}
+@media(max-width:640px){body{padding:1rem}.commercial-strip,.mode-metrics{grid-template-columns:1fr}.header h1{font-size:28px}.project-title{font-size:19px}}
 @media print{body{background:#fff;color:#111;max-width:none}.mode-switcher,.commercial-strip,.sidebar,.tab-bar,.loop-bar,.tool-btn{display:none!important}.workspace{display:block}.canvas-wrap{border:0;background:#fff}.note-box{break-inside:avoid}.footer{position:fixed;bottom:0;left:0;right:0;padding:.5rem 1rem;background:#fff}}
 </style>
 </head>
@@ -153,9 +166,9 @@ svg .pol:hover{filter:drop-shadow(0 0 5px rgba(208,174,85,.35))}
 </div>
 
 <div class="mode-switcher" id="mode-switcher">
-  <button class="mode-tab active" data-mode="present" onclick="setMode('present')">Present</button>
-  <button class="mode-tab" data-mode="workshop" onclick="setMode('workshop')">Workshop</button>
-  <button class="mode-tab" data-mode="dashboard" onclick="setMode('dashboard')">Dashboard</button>
+  <button class="mode-tab active" type="button" data-mode="present" aria-pressed="true">Present</button>
+  <button class="mode-tab" type="button" data-mode="workshop" aria-pressed="false">Workshop</button>
+  <button class="mode-tab" type="button" data-mode="dashboard" aria-pressed="false">Dashboard</button>
 </div>
 
 <div class="commercial-strip">
@@ -193,13 +206,13 @@ svg .pol:hover{filter:drop-shadow(0 0 5px rgba(208,174,85,.35))}
     </div>
   </main>
   <aside class="sidebar">
-    <section class="side-card preview-card">
-      <h3>Preview status</h3>
-      <p>This is an interactive public preview, not the licensed client suite. The paid suite includes client-specific maps, private project data, export packages, workshops, and dashboard overlays.</p>
+    <section class="side-card preview-card" id="mode-summary-card">
+      <h3 id="mode-summary-title">Preview status</h3>
+      <p id="mode-summary-text">This is an interactive public preview, not the licensed client suite. The paid suite includes client-specific maps, private project data, export packages, workshops, and dashboard overlays.</p>
     </section>
-    <section class="side-card">
-      <h3>Presentation controls</h3>
-      <div class="export-grid">
+    <section class="side-card" id="mode-tools-card">
+      <h3 id="mode-tools-title">Presentation controls</h3>
+      <div class="export-grid" id="mode-tools">
         <button class="tool-btn" onclick="startNarration()">Narrate</button>
         <button class="tool-btn" onclick="setLoop('all')">Show all</button>
         <button class="tool-btn" onclick="copyEmbedCode()">Embed</button>
@@ -225,16 +238,6 @@ svg .pol:hover{filter:drop-shadow(0 0 5px rgba(208,174,85,.35))}
     </section>
   </aside>
 </div>
-
-<section id="workshop-mode" class="mode-placeholder" hidden>
-  <h2>Workshop mode: licensed deployment</h2>
-  <p>Workshop deployments are configured for facilitated client sessions. The public preview shows the shell, not the full commercial workflow.</p>
-</section>
-
-<section id="dashboard-mode" class="mode-placeholder" hidden>
-  <h2>Dashboard mode: private deployment</h2>
-  <p>Dashboard deployments are scoped to client review cycles and data environments under agreement.</p>
-</section>
 
 <div class="node-tooltip" id="node-tooltip"></div>
 <footer class="footer">
@@ -597,6 +600,42 @@ function loadProject() {
 const PROJECT = loadProject();
 document.documentElement.style.setProperty('--client-primary', PROJECT.branding.primaryColor || '#1a3a5c');
 
+const MODE_CONTENT = {
+  present: {
+    title: 'Presentation view',
+    text: 'Board-ready causal maps with loop isolation, narration, embed, and SVG export.',
+    toolsTitle: 'Presentation controls',
+    tools: [
+      ['Narrate', 'startNarration()'],
+      ['Show all', "setLoop('all')"],
+      ['Embed', 'copyEmbedCode()'],
+      ['SVG', 'exportSvg()']
+    ]
+  },
+  workshop: {
+    title: 'Workshop view',
+    text: 'Facilitation prompts, leverage-point discovery, and loop-by-loop discussion framing for live mapping sessions.',
+    toolsTitle: 'Workshop controls',
+    tools: [
+      ['Facilitate', 'startNarration()'],
+      ['Reset map', "setLoop('all')"],
+      ['Prompt', 'copyWorkshopPrompt()'],
+      ['SVG', 'exportSvg()']
+    ]
+  },
+  dashboard: {
+    title: 'Dashboard view',
+    text: 'Operational readout with loop status, review cadence, and node-level indicators layered onto the active CLD.',
+    toolsTitle: 'Dashboard controls',
+    tools: [
+      ['Review', 'renderModePanel()'],
+      ['Show all', "setLoop('all')"],
+      ['Embed', 'copyEmbedCode()'],
+      ['SVG', 'exportSvg()']
+    ]
+  }
+};
+
 function persistProject() {
   try {
     localStorage.setItem(`syntony-cld-project:${PROJECT.id}`, JSON.stringify({...PROJECT, systems: undefined}));
@@ -612,7 +651,7 @@ persistProject();
 
 const NODE_H = 40;
 const NODE_RX = 8;
-const ARROW_OFFSET = 8;
+const EDGE_GAP = 0;
 
 function getNodeRect(n) {
   return {x: n.x - n.w/2, y: n.y - NODE_H/2, w: n.w, h: NODE_H};
@@ -621,7 +660,7 @@ function getNodeRect(n) {
 function edgePoint(n, angle) {
   const r = getNodeRect(n);
   const cx = n.x, cy = n.y;
-  const hw = r.w/2 + ARROW_OFFSET, hh = r.h/2 + ARROW_OFFSET;
+  const hw = r.w/2 + EDGE_GAP, hh = r.h/2 + EDGE_GAP;
   const dx = Math.cos(angle), dy = Math.sin(angle);
   const tx = dx !== 0 ? hw / Math.abs(dx) : Infinity;
   const ty = dy !== 0 ? hh / Math.abs(dy) : Infinity;
@@ -629,11 +668,14 @@ function edgePoint(n, angle) {
   return {x: cx + dx * t, y: cy + dy * t};
 }
 
-function connectNodes(src, tgt) {
-  const angle = Math.atan2(tgt.y - src.y, tgt.x - src.x);
+function connectNodes(src, tgt, via) {
+  const firstRoutePoint = via && via.length ? via[0] : tgt;
+  const lastRoutePoint = via && via.length ? via[via.length - 1] : src;
+  const startAngle = Math.atan2(firstRoutePoint.y - src.y, firstRoutePoint.x - src.x);
+  const endAngle = Math.atan2(lastRoutePoint.y - tgt.y, lastRoutePoint.x - tgt.x);
   return {
-    start: edgePoint(src, angle),
-    end: edgePoint(tgt, angle + Math.PI)
+    start: edgePoint(src, startAngle),
+    end: edgePoint(tgt, endAngle)
   };
 }
 
@@ -685,6 +727,21 @@ function edgeMeaning(sys, edge) {
   return `${from} ${verb} ${to}.`;
 }
 
+function getLoopStatus(loop, index) {
+  if (loop.type === 'B') return {label:'Control watch', color:'var(--coral)', review:'Owner review'};
+  if (loop.type === '→') return {label:'Transmission', color:'var(--red)', review:'Cross-domain review'};
+  return index % 2 === 0
+    ? {label:'Active driver', color:'var(--purple)', review:'Monthly review'}
+    : {label:'Monitored', color:'var(--teal)', review:'Quarterly review'};
+}
+
+function getNodeStatus(node, sys) {
+  const linkedBalancing = sys.edges.some(e => (e.from === node.id || e.to === node.id) && (e.loops || []).some(id => sys.loops.find(l => l.id === id)?.type === 'B'));
+  if (node.leverage) return {label:'leverage', color:'var(--client-primary,var(--amber))'};
+  if (linkedBalancing) return {label:'control', color:'var(--coral)'};
+  return {label:'tracked', color:'var(--teal)'};
+}
+
 function renderSystem(sys) {
   const nodeMap = {};
   sys.nodes.forEach(n => nodeMap[n.id] = n);
@@ -721,8 +778,8 @@ function renderSystem(sys) {
   sys.edges.forEach((e, ei) => {
     const src = nodeMap[e.from], tgt = nodeMap[e.to];
     if (!src || !tgt) return;
-    const conn = connectNodes(src, tgt);
     const via = e.via ? e.via : null;
+    const conn = connectNodes(src, tgt, via);
     const d = buildPath(conn.start, conn.end, e.curve || 0, via);
     const loopIds = e.cross ? ['cross'] : (e.loops || []);
     const colorName = e.cross ? 'gray' : (() => {
@@ -773,11 +830,16 @@ function renderSystem(sys) {
     const leverage = n.leverage ? ` data-leverage-level="${n.leverage.level}" data-leverage-note="${escapeHtml(n.leverage.note)}"` : '';
     const nodeTitle = escapeHtml(`Node: ${n.label}`);
     svg += `<g class="node-g" data-id="${n.id}" data-nodes="${loops.join(',')}"${leverage} tabindex="0" role="button" aria-label="${nodeTitle}">`;
-    svg += `<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="${NODE_RX}" fill="var(--bg)" stroke="var(--bd2)" stroke-width="1"/>`;
+    const workshopStroke = currentMode === 'workshop' && n.leverage ? ' stroke-dasharray="4 2"' : '';
+    svg += `<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" rx="${NODE_RX}" fill="var(--bg)" stroke="var(--bd2)" stroke-width="1"${workshopStroke}/>`;
     svg += `<text x="${n.x}" y="${n.y + 1}" text-anchor="middle" dominant-baseline="central" fill="var(--tx)" style="font-family:var(--font);font-size:13px;font-weight:500">${escapeHtml(n.label)}</text><title>${nodeTitle}</title>`;
     if (n.leverage) {
       svg += `<circle cx="${(r.x + r.w - 16).toFixed(1)}" cy="${(r.y + 12).toFixed(1)}" r="11" fill="var(--client-primary)" opacity=".92"/>`;
       svg += `<text class="lp-badge" x="${(r.x + r.w - 16).toFixed(1)}" y="${(r.y + 15).toFixed(1)}" text-anchor="middle" fill="#fff">LP ${n.leverage.level}</text>`;
+    }
+    if (currentMode === 'dashboard') {
+      const status = getNodeStatus(n, sys);
+      svg += `<circle cx="${(r.x + 13).toFixed(1)}" cy="${(r.y + 12).toFixed(1)}" r="5.5" fill="${status.color}" stroke="var(--bg)" stroke-width="1.5"><title>${escapeHtml(status.label)}</title></circle>`;
     }
     svg += `</g>`;
   });
@@ -802,12 +864,25 @@ function applyProjectChrome() {
   document.getElementById('project-footer').textContent = PROJECT.branding.footer || '© 2026 Syntony Research LLC · Powered by Syntony';
 }
 
+function setModeChrome() {
+  const mode = MODE_CONTENT[currentMode] || MODE_CONTENT.present;
+  document.getElementById('mode-summary-card').dataset.mode = currentMode;
+  document.getElementById('mode-summary-card').innerHTML = `<h3>${escapeHtml(mode.title)}</h3><p>${escapeHtml(mode.text)}</p>`;
+  document.getElementById('mode-tools-card').innerHTML = `<h3>${escapeHtml(mode.toolsTitle)}</h3><div class="export-grid" id="mode-tools">${mode.tools
+    .map(([label, action]) => `<button class="tool-btn" onclick="${action}">${escapeHtml(label)}</button>`)
+    .join('')}</div>`;
+}
+
 function setMode(mode) {
+  if (!MODE_CONTENT[mode]) mode = 'present';
   currentMode = mode;
-  document.querySelectorAll('.mode-tab').forEach(btn => btn.classList.toggle('active', btn.dataset.mode === mode));
-  document.getElementById('present-mode').hidden = mode !== 'present';
-  document.getElementById('workshop-mode').hidden = mode !== 'workshop';
-  document.getElementById('dashboard-mode').hidden = mode !== 'dashboard';
+  document.body.dataset.mode = mode;
+  document.querySelectorAll('.mode-tab').forEach(btn => {
+    const active = btn.dataset.mode === mode;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+  render();
   updateHash();
 }
 
@@ -988,6 +1063,8 @@ function validateSystem(sys, key) {
 
 function render() {
   const sys = SYSTEMS[currentSystem];
+  if (currentLoop !== 'all' && !sys.loops.some(l => l.id === currentLoop)) currentLoop = 'all';
+  setModeChrome();
   validateSystem(sys, currentSystem);
 
   // Tabs
@@ -1046,6 +1123,34 @@ function getLoopNarrative(loopId) {
 function updateNarrativePanel() {
   const loop = getActiveLoop();
   if (!loop) return;
+  renderModePanel();
+}
+
+function renderModePanel() {
+  const sys = SYSTEMS[currentSystem];
+  const loop = getActiveLoop();
+  if (!loop) return;
+  const panel = document.getElementById('narrative-panel');
+  const loopCount = sys.loops.length;
+  const edgeCount = sys.edges.length;
+  const leverageCount = sys.nodes.filter(n => n.leverage).length;
+
+  if (currentMode === 'workshop') {
+    const activeLabel = currentLoop === 'all' ? 'all loops' : `${loop.id}: ${loop.label}`;
+    panel.innerHTML = `<h3>Workshop facilitation: ${escapeHtml(sys.title)}</h3><p>Use ${escapeHtml(activeLabel)} to move from shared map reading into intervention design and owner assignment.</p><div class="mode-metrics"><div class="mode-metric"><strong>Variables</strong><span>${sys.nodes.length}</span></div><div class="mode-metric"><strong>Loops</strong><span>${loopCount}</span></div><div class="mode-metric"><strong>Leverage</strong><span>${leverageCount || '0'}</span></div></div><div class="workshop-steps"><div class="workshop-step"><b>1</b><span>Ask where participants see pressure building fastest in the active system.</span></div><div class="workshop-step"><b>2</b><span>Isolate the loop that best explains the current decision or risk review.</span></div><div class="workshop-step"><b>3</b><span>Convert leverage-point nodes into candidate actions, owners, and evidence requests.</span></div><div class="workshop-step"><b>4</b><span>Record disagreements as alternate causal links for the licensed client map.</span></div></div>`;
+    return;
+  }
+
+  if (currentMode === 'dashboard') {
+    const rows = sys.loops.map((l, index) => {
+      const status = getLoopStatus(l, index);
+      const links = sys.edges.filter(e => (e.loops || []).includes(l.id)).length;
+      return `<tr><td><strong>${escapeHtml(l.id)}</strong><br/>${escapeHtml(l.label)}</td><td><span class="status-pill" style="color:${status.color}">${escapeHtml(status.label)}</span></td><td>${links} link${links === 1 ? '' : 's'}</td><td>${escapeHtml(status.review)}</td></tr>`;
+    }).join('');
+    panel.innerHTML = `<h3>Dashboard readout: ${escapeHtml(sys.title)}</h3><p>Public-preview status indicators are illustrative. Licensed dashboards bind these rows to owners, controls, evidence, and review dates.</p><div class="mode-metrics"><div class="mode-metric"><strong>Tracked nodes</strong><span>${sys.nodes.length}</span></div><div class="mode-metric"><strong>Causal links</strong><span>${edgeCount}</span></div><div class="mode-metric"><strong>Active view</strong><span>${escapeHtml(currentLoop === 'all' ? 'All' : loop.id)}</span></div></div><table class="dashboard-table"><thead><tr><th>Loop</th><th>Status</th><th>Links</th><th>Cadence</th></tr></thead><tbody>${rows}</tbody></table>`;
+    return;
+  }
+
   const narrative = getLoopNarrative(loop.id);
   const steps = narrative.steps.map(step => `<div class="narrative-step">${escapeHtml(step)}</div>`).join('');
   document.getElementById('narrative-panel').innerHTML = `<h3>${loop.id}: ${escapeHtml(loop.label)}</h3><p>${escapeHtml(narrative.summary)}</p><div class="narrative-steps">${steps}</div>`;
@@ -1091,6 +1196,21 @@ function copyEmbedCode() {
   alert('Embed code copied.');
 }
 
+function copyWorkshopPrompt() {
+  const sys = SYSTEMS[currentSystem];
+  const loop = getActiveLoop();
+  const prompt = [
+    `Workshop system: ${sys.title}`,
+    `Active loop: ${currentLoop === 'all' ? 'all loops' : `${loop.id}: ${loop.label}`}`,
+    '1. Which variable is changing fastest?',
+    '2. Which causal link has the weakest evidence?',
+    '3. Which leverage point can be assigned an owner this cycle?',
+    '4. What dashboard signal would show whether the intervention is working?'
+  ].join('\n');
+  navigator.clipboard?.writeText(prompt);
+  alert('Workshop prompt copied.');
+}
+
 function exportSvg() {
   const svg = document.querySelector('#canvas svg');
   if (!svg) return;
@@ -1114,8 +1234,10 @@ function exportSvg() {
 
 readHashState();
 applyProjectChrome();
+document.querySelectorAll('.mode-tab[data-mode]').forEach(btn => {
+  btn.addEventListener('click', () => setMode(btn.dataset.mode));
+});
 setMode(currentMode);
-render();
 </script>
 </body>
 </html>
