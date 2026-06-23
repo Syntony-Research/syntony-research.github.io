@@ -3,66 +3,940 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0A1628">
-  <title>About | Syntony</title>
-  <meta name="description" content="Syntony helps institutions align AI capability, safety evidence, governance controls, and accountability.">
-  <link rel="canonical" href="https://syntonyresearch.org/about/">
-  <meta property="og:title" content="About | Syntony">
-  <meta property="og:description" content="The mission, philosophy, and operating thesis behind Syntony.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Syntony | AI Risk Advisory & Products</title>
+  <meta name="description" content="Syntony is an AI risk firm. We test AI systems, build governance tools, and help organizations figure out what to do with the results.">
+  <link rel="canonical" href="https://syntonyresearch.org/">
+  <meta property="og:title" content="Syntony | AI Risk Advisory & Products">
+  <meta property="og:description" content="AI risk firm. We test systems, build governance tools, and help organizations act on the results.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://syntonyresearch.org/about/">
+  <meta property="og:url" content="https://syntonyresearch.org/">
   <meta property="og:image" content="https://syntonyresearch.org/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About | Syntony">
-  <meta name="twitter:description" content="The mission, philosophy, and operating thesis behind Syntony.">
+  <meta name="twitter:title" content="Syntony | AI Risk Advisory & Products">
+  <meta name="twitter:description" content="AI risk firm. We test systems, build governance tools, and help organizations act on the results.">
   <meta name="twitter:image" content="https://syntonyresearch.org/assets/og-image.png">
-  <link rel="preload" href="/assets/fonts/cormorant-garamond-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/fonts/inter-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/assets/fonts/ibm-plex-mono-400.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="/styles/main.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://syntonyresearch.org/"},{"@type":"ListItem","position":2,"name":"About","item":"https://syntonyresearch.org/about/"}]}</script>
+  <script defer data-domain="syntonyresearch.org" src="https://plausible.io/js/script.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Syntony","url":"https://syntonyresearch.org","email":"hello@syntonyresearch.org","telephone":"+1-828-418-7587","areaServed":"Global","address":{"@type":"PostalAddress","addressLocality":"Research Triangle","addressRegion":"NC","addressCountry":"US"},"founder":{"@type":"Person","name":"Nathan Heath","jobTitle":"Founder & Chief Scientist"}}</script>
+  <style>
+    /* Work with Us Section Styles */
+    .work-with-us-section {
+      padding: 4rem 0;
+    }
+
+    .work-with-us-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .work-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      transition: all 0.2s ease;
+    }
+
+    .work-card:hover {
+      border-color: #d1d5db;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transform: translateY(-2px);
+    }
+
+    .work-card-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .work-card-header h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+      color: #171717;
+      letter-spacing: -0.3px;
+    }
+
+    .work-card-description {
+      font-size: 0.875rem;
+      color: #9ca3af;
+      margin: 0;
+    }
+
+    .work-card-body {
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .work-card-body p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #6b7280;
+      margin: 0 0 1rem;
+    }
+
+    .work-card-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .work-card-cta {
+      width: 100%;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .modal-content {
+      position: relative;
+      z-index: 1001;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 580px;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      padding: 2rem 2rem 1.5rem;
+      border-bottom: 1px solid #f3f4f6;
+      position: relative;
+    }
+
+    .modal-header h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+      color: #171717;
+      letter-spacing: -0.3px;
+    }
+
+    .modal-header p {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin: 0;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: #d1d5db;
+      cursor: pointer;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      color: #6b7280;
+    }
+
+    .modal-form {
+      padding: 2rem;
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #374151;
+    }
+
+    .required::after {
+      content: " *";
+      color: #ef4444;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="url"],
+    .form-group textarea {
+      padding: 0.75rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      background: #ffffff;
+      color: #171717;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #171717;
+      box-shadow: 0 0 0 3px rgba(23, 23, 23, 0.08);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+      font-family: inherit;
+    }
+
+    .checkbox-group {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: #2563eb;
+      flex-shrink: 0;
+    }
+
+    .checkbox-item label {
+      margin: 0;
+      font-weight: normal;
+      font-size: 0.95rem;
+      cursor: pointer;
+      color: #6b7280;
+    }
+
+    .form-submit {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    .form-message {
+      padding: 1rem;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 0.9rem;
+      display: none;
+      font-weight: 500;
+    }
+
+    .form-message.success {
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #d1fae5;
+      display: block;
+    }
+
+    .form-message.error {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fee2e2;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .work-with-us-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .modal-content {
+        width: 95%;
+      }
+
+      .modal-header {
+        padding: 1.5rem 1.5rem 1rem;
+      }
+
+      .modal-header h2 {
+        font-size: 1.2rem;
+      }
+
+      .modal-form {
+        padding: 1.5rem;
+      }
+
+      .work-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div data-include="/components/header.html"></div>
-  <nav class="breadcrumb" aria-label="Breadcrumb"><div class="container"><ol><li><a href="/">Home</a></li><li>About</li></ol></div></nav>
+
+  <!-- ── NAV ── -->
+  <header class="nav" id="site-nav">
+    <a class="nav-logo" href="/" aria-label="Syntony home">
+      <svg viewBox="0 0 44 44" fill="none" width="32" height="32" aria-hidden="true">
+        <path d="M5 20.5C9.5 16.8 13.1 16.8 17.2 20.5C21.3 24.2 24.7 24.2 28.8 20.5C32.9 16.8 36.5 16.8 39 20.5" stroke="#2563EB" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M5 24.5C9.5 19 13.1 19 17.2 24.5C21.3 30 24.7 30 28.8 24.5C32.9 19 36.5 19 39 24.5" stroke="#171717" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M5 28.5C9.5 32.2 13.1 32.2 17.2 28.5C21.3 24.8 24.7 24.8 28.8 28.5C32.9 32.2 36.5 32.2 39 28.5" stroke="#A3A3A3" stroke-width="1.1" stroke-linecap="round" opacity="0.9"/>
+        <circle cx="17.2" cy="24.5" r="1.15" fill="#2563EB"/>
+        <circle cx="28.8" cy="24.5" r="1.15" fill="#2563EB"/>
+      </svg>
+      <span class="nav-wordmark">Syntony</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span>
+    </button>
+    <nav class="nav-links" id="nav-links">
+      <a href="#services">Services</a>
+      <a href="#products">Products</a>
+      <a href="#featured-research">Research</a>
+      <a href="#work-with-us">Work with us</a>
+      <a href="#team">About</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </nav>
+  </header>
+
   <main>
-    <section class="page-hero">
-      <div class="container">
-        <span class="section-num">About</span>
-        <h1>Closing the gap between AI capability and institutional readiness.</h1>
-        <p class="hero-sub">Safety evaluation, governance architecture, and decision support for organizations deploying advanced AI systems.</p>
-      </div>
-    </section>
 
-    <section class="methodology">
-      <div class="container split-grid">
-        <article class="feature-card">
-          <span class="label">Mission</span>
-          <h3>Align capability with accountability.</h3>
-          <p>We help organizations build evaluation, oversight, and governance programs that keep pace with the systems they deploy.</p>
-        </article>
-        <article class="prose">
-          <h2>The syntony thesis</h2>
-          <p>Syntony means coordinated tuning. For advanced AI, the coordination problem is sociotechnical: model capabilities, deployment pressures, monitoring, legal obligations, and institutional decision-making all interact.</p>
-          <p>AI safety is a pattern of evidence and control, not a single benchmark or compliance checkbox. It requires understanding what a system can do, how it can fail, who decides, and how quickly intervention can happen.</p>
-          <p>We work where technical evaluation becomes institutional action: adversarial testing that informs controls, governance design grounded in observed system behavior, and research that decision-makers can act on.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="services">
+    <!-- ── HERO ── -->
+    <section class="hero" id="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-bg" aria-hidden="true"></div>
       <div class="container">
-        <div class="services-header">
-          <div class="services-header-left"><span class="section-num">01</span><span class="label">Why the firm exists</span></div>
-          <div><h2>From technical findings to institutional decisions.</h2><p class="services-header-desc">Technical teams produce findings. Legal, policy, and executive teams need decisions. We bridge that gap.</p></div>
+        <span class="hero-badge">AI risk advisory + tools</span>
+        <h1>We test AI systems.<br>Then we fix the governance.</h1>
+        <p class="hero-sub">Most red-team reports end up in a drawer. We do the evaluation, then we stick around to make sure someone actually owns the findings, writes the controls, and briefs leadership.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#contact">Talk to us</a>
+          <a class="btn-ghost" href="#services">What we do</a>
         </div>
-        <div class="method-grid">
-          <article class="method-item"><div class="method-step">01</div><h4>Capability without controls</h4><p>Capability can outpace review cycles, risk taxonomies, and escalation paths.</p></article>
-          <article class="method-item"><div class="method-step">02</div><h4>Evaluation without uptake</h4><p>Testing results matter only when tied to ownership, severity, and remediation timelines.</p></article>
-          <article class="method-item"><div class="method-step">03</div><h4>Governance without evidence</h4><p>Governance frameworks become brittle without grounding in observed system behavior.</p></article>
+        <div class="hero-proof">
+          <div class="hero-proof-item">
+            <strong>OpenAI & Anthropic</strong>
+            <span>Red-team & safety evaluation</span>
+          </div>
+          <div class="hero-proof-divider"></div>
+          <div class="hero-proof-item">
+            <strong>Cambridge · Geneva · Paris</strong>
+            <span>Summer 2026 speaking</span>
+          </div>
+          <div class="hero-proof-divider"></div>
+          <div class="hero-proof-item">
+            <strong>DoD · CSA · Truman</strong>
+            <span>National security & AI safety</span>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- ── SYNTONY DEFINITION ── -->
+    <section class="syntony-def" id="syntony">
+      <div class="container syntony-def-inner">
+        <div class="syntony-def-text">
+          <span class="syntony-def-pron">syn·to·ny /ˈsɪntəniː/ <em>noun</em></span>
+          <p>The condition of being tuned to the same frequency. Oliver Lodge coined it in 1897 for early radio: a signal is useless if the transmitter and receiver aren't in phase. Same problem in AI governance. The safety team finds something, legal has a different timeline, ops has a different process, and the exec team hasn't been briefed yet. We get those rhythms lined up before the system goes live.</p>
+        </div>
+        <div class="syntony-def-visual" aria-hidden="true">
+          <svg class="wave-svg" viewBox="0 0 600 200" preserveAspectRatio="none">
+            <path class="wave wave-1" d="M0,100 C50,40 100,160 150,100 C200,40 250,160 300,100 C350,40 400,160 450,100 C500,40 550,160 600,100" />
+            <path class="wave wave-2" d="M0,100 C50,50 100,150 150,100 C200,50 250,150 300,100 C350,50 400,150 450,100 C500,50 550,150 600,100" />
+            <path class="wave wave-3" d="M0,100 C50,70 100,130 150,100 C200,70 250,130 300,100 C350,70 400,130 450,100 C500,70 550,130 600,100" />
+          </svg>
+          <div class="wave-label-group">
+            <span class="wave-label wave-label-1">Technical findings</span>
+            <span class="wave-label wave-label-2">Governance</span>
+            <span class="wave-label wave-label-3">Operations</span>
+          </div>
+          <button class="wave-sync-btn" type="button" data-wave-sync>Sync the signals</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FEATURED RESEARCH ── -->
+    <section class="section featured-research" id="featured-research">
+      <div class="container featured-research-grid">
+        <div class="featured-research-copy reveal">
+          <span class="label">Featured research</span>
+          <h2>Governance lag is the hidden AI risk.</h2>
+          <p>Our Europe report shows where institutions can write frameworks, map risks, and still fail to measure deployed systems or manage them after evidence arrives.</p>
+          <div class="featured-research-actions">
+            <a class="btn-primary" href="/research/governance-lag-europe/">Read the report</a>
+            <a class="btn-ghost" href="/assets/reports/governance-lag-emerging-technology-adaptation-europe.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+          </div>
+        </div>
+        <a class="featured-research-card reveal reveal-d1" href="/research/governance-lag-europe/" aria-label="Governance Lag and Emerging Technology Adaptation in Europe">
+          <span>Report · Europe · May 2026</span>
+          <h3>Governance Lag and Emerging Technology Adaptation in Europe</h3>
+          <p>Cross-sector analysis of AI-enabled systems in defence, energy, finance, and biosurveillance.</p>
+          <div class="featured-research-metrics">
+            <div><strong>4</strong><small>sectors</small></div>
+            <div><strong>22</strong><small>pages</small></div>
+            <div><strong>AI RMF</strong><small>lens</small></div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── SERVICES ── -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="label">Services</span>
+          <h2>What we do</h2>
+        </div>
+        <div class="services-grid">
+          <article class="card card-hover reveal">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2a7 7 0 0 0 0 14 7 7 0 0 0 0-14z"/><path d="M9 11l3-3 3 3"/></svg>
+            </div>
+            <h3>Red teaming</h3>
+            <p>We break your AI systems on purpose, then write up exactly what went wrong and how to fix it.</p>
+            <div class="card-tags"><span>Red team</span><span>Evaluation</span></div>
+          </article>
+          <article class="card card-hover reveal reveal-d1">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </div>
+            <h3>Governance</h3>
+            <p>Who can approve a release? Who gets called when something breaks? We set up those answers before you need them.</p>
+            <div class="card-tags"><span>Controls</span><span>Boards</span></div>
+          </article>
+          <article class="card card-hover reveal reveal-d2">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h3>Forecasting</h3>
+            <p>AI policy is moving fast. We track what's changing across regions and tell you what it means for your roadmap.</p>
+            <div class="card-tags"><span>Scenario</span><span>Watchlist</span></div>
+          </article>
+          <article class="card card-hover reveal reveal-d3">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h3>Writing</h3>
+            <p>Reports that people actually read. Memos your board can act on. Briefings that don't need a glossary.</p>
+            <div class="card-tags"><span>Memo</span><span>Briefing</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WORK WITH US ── -->
+    <section class="section work-with-us-section" id="work-with-us">
+      <div class="container">
+        <div class="section-header">
+          <span class="label">Opportunities</span>
+          <h2>Work with us</h2>
+        </div>
+        <div class="work-with-us-grid">
+          <article class="work-card reveal">
+            <div class="work-card-header">
+              <h3>Trusted Red Team</h3>
+              <p class="work-card-description">Join our adversarial evaluation practice</p>
+            </div>
+            <div class="work-card-body">
+              <p>We conduct realistic and adversarial testing, baking in systems thinking, geopolitical forecasting, and multi-disciplinary analysis. Red teamers bring expertise in ML security, policy analysis, prompt engineering, and strategic risk.</p>
+              <p>Red team engagements are project-based. We're looking for specialists with published work and demonstrable expertise.</p>
+            </div>
+            <button class="btn-primary work-card-cta" onclick="openModal('red-team-modal')">Apply to Red Team</button>
+          </article>
+
+          <article class="work-card reveal reveal-d1">
+            <div class="work-card-header">
+              <h3>Research Affiliates Program</h3>
+              <p class="work-card-description">Collaborate on governance and risk research</p>
+            </div>
+            <div class="work-card-body">
+              <p>Syntony collaborates with researchers, security specialists, and policy practitioners on a project basis. We're building a network focused on evaluation methodology, governance architecture, policy analysis, and strategic risk forecasting.</p>
+              <p>Affiliates contribute to publications, co-author research, and gain visibility through our work.</p>
+            </div>
+            <button class="btn-primary work-card-cta" onclick="openModal('affiliates-modal')">Apply to Research Affiliates</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PRODUCTS ── -->
+    <section class="section section-alt" id="products">
+      <div class="container">
+        <div class="section-header">
+          <span class="label">Products</span>
+          <h2>Software we're building</h2>
+        </div>
+        <div class="products-grid">
+          <div class="product-card reveal">
+            <div class="product-card-header">
+              <span class="product-status">Public preview</span>
+              <h3>CLD Suite</h3>
+            </div>
+            <p>Interactive causal loop diagrams for AI risk. See how one policy change ripples through safety, ops, and compliance. Try the public version; licensed clients get it customized to their stack.</p>
+            <a class="btn-ghost btn-sm" href="/assets/interactive/syntony-cld-suite.html" target="_blank" rel="noopener noreferrer">Try it →</a>
+          </div>
+          <div class="product-card reveal reveal-d1">
+            <div class="product-card-header">
+              <span class="product-status">Coming soon</span>
+              <h3>GovTune AI</h3>
+            </div>
+            <p>You give it a red-team trace. It pulls out what actually happened, figures out the governance implications, and drafts a finding you can hand to a review board.</p>
+            <a class="btn-ghost btn-sm" href="#contact">Get on the list →</a>
+          </div>
+          <div class="product-card reveal reveal-d2">
+            <div class="product-card-header">
+              <span class="product-status">Available</span>
+              <h3>Enterprise AI Risk Index</h3>
+            </div>
+            <p>We analyzed 1,406 AI incidents and turned them into sector risk models, governance benchmarks, and the kind of visuals you can put in front of a board. Free preview PDF.</p>
+            <a class="btn-ghost btn-sm" href="/assets/reports/enterprise-ai-risk-index-2026-preview.pdf" target="_blank" rel="noopener noreferrer">Download preview →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ABOUT ── -->
+    <section class="section" id="team">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-content reveal">
+            <span class="label">About</span>
+            <h2>Who we are</h2>
+            <div class="about-body">
+              <p>Nathan Heath started Syntony after six years doing decision science for the Department of Defense and red-teaming frontier models for OpenAI and Anthropic. He kept seeing the same thing: good evaluation work that never made it into a governance decision.</p>
+              <p>So he built a firm to fix that. AI safety evaluation, governance, national security risk. Expert Advisor for catastrophic AI risk at the Cloud Security Alliance. Truman Fellow. Fletcher School.</p>
+            </div>
+            <div class="about-badges">
+              <span>OpenAI & Anthropic Red Teamer</span>
+              <span>Truman Fellow</span>
+              <span>Fletcher School</span>
+              <span>BlueDot Impact Fellow</span>
+              <span>CSA Expert Advisor</span>
+            </div>
+          </div>
+          <div class="about-visual reveal reveal-d1">
+            <img src="/assets/nathan-heath.jpg" alt="Nathan Heath" width="600" height="750" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EVENTS ── -->
+    <section class="events-bar">
+      <div class="events-track">
+        <span><strong>June 2026</strong> Cambridge · Minderoo Centre</span>
+        <span><strong>June 2026</strong> Geneva · UNIDIR</span>
+        <span><strong>June 2026</strong> Paris · American University of Paris</span>
+        <span><strong>IASEAI 2026</strong> UNESCO House Paris</span>
+        <span><strong>June 2026</strong> Cambridge · Minderoo Centre</span>
+        <span><strong>June 2026</strong> Geneva · UNIDIR</span>
+        <span><strong>June 2026</strong> Paris · American University of Paris</span>
+        <span><strong>IASEAI 2026</strong> UNESCO House Paris</span>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section class="section section-alt" id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-content reveal">
+            <span class="label">Contact</span>
+            <h2>Let's talk.</h2>
+            <p>Book a call or send a note. NDA discussions are standard.</p>
+            <div class="contact-actions">
+              <a class="btn-primary" href="https://cal.com/nathan-heath-byhebw/schedule-a-technical-consultation" target="_blank" rel="noopener noreferrer">Schedule consultation</a>
+              <a class="btn-ghost" href="mailto:hello@syntonyresearch.org">Email the firm</a>
+            </div>
+          </div>
+          <div class="contact-details reveal reveal-d1">
+            <div class="contact-detail-row">
+              <span class="contact-detail-label">Email</span>
+              <a href="mailto:hello@syntonyresearch.org">hello@syntonyresearch.org</a>
+            </div>
+            <div class="contact-detail-row">
+              <span class="contact-detail-label">Phone</span>
+              <a href="tel:+18284187587">828-418-7587</a>
+            </div>
+            <div class="contact-detail-row">
+              <span class="contact-detail-label">Location</span>
+              <span>Research Triangle, NC</span>
+            </div>
+            <div class="contact-detail-row">
+              <span class="contact-detail-label">LinkedIn</span>
+              <a href="https://www.linkedin.com/company/syntony-research-lab" target="_blank" rel="noopener noreferrer">Syntony Research Lab</a>
+            </div>
+            <div class="contact-detail-row">
+              <span class="contact-detail-label">Substack</span>
+              <a href="https://amindoftheirown.substack.com/" target="_blank" rel="noopener noreferrer">A Mind of Their Own</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
-  <div data-include="/components/footer.html"></div>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>&copy; 2026 Syntony</span>
+      <div class="footer-links">
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL: RED TEAM APPLICATION -->
+  <div class="modal" id="red-team-modal">
+    <div class="modal-overlay" onclick="closeModal('red-team-modal')"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Apply to Trusted Red Team</h2>
+        <p>Realistic adversarial testing. Systems thinking. Geopolitical forecasting.</p>
+        <button class="modal-close" onclick="closeModal('red-team-modal')" aria-label="Close modal">×</button>
+      </div>
+
+      <form class="modal-form" id="red-team-form" onsubmit="handleFormSubmit(event, 'red-team')">
+        <fieldset style="border: none; padding: 0; margin: 0;">
+          <legend style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: #171717;">Contact information</legend>
+          <div class="form-group">
+            <label for="rt-name" class="required">Full Name</label>
+            <input type="text" id="rt-name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="rt-email" class="required">Email</label>
+            <input type="email" id="rt-email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="rt-phone">Phone Number</label>
+            <input type="tel" id="rt-phone" name="phone" placeholder="(000) 000-0000">
+          </div>
+        </fieldset>
+
+        <fieldset style="border: none; padding: 0; margin: 0; margin-top: 1.5rem;">
+          <legend style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: #171717;">Professional background</legend>
+          <div class="form-group">
+            <label for="rt-current-role" class="required">Current Role / Title</label>
+            <input type="text" id="rt-current-role" name="current-role" required placeholder="e.g., Security Researcher, ML Engineer, Policy Analyst">
+          </div>
+
+          <div class="form-group">
+            <label for="rt-organization">Current Organization</label>
+            <input type="text" id="rt-organization" name="organization" placeholder="e.g., Acme Corp, Independent Researcher">
+          </div>
+
+          <div class="form-group">
+            <label for="rt-background" class="required">Professional Background & Relevant Experience</label>
+            <textarea id="rt-background" name="background" required placeholder="Describe your background, red teaming experience, publications, and key accomplishments. Include any past security testing or adversarial evaluation work."></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset style="border: none; padding: 0; margin: 0; margin-top: 1.5rem;">
+          <legend style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: #171717;">Areas of expertise (select all that apply)</legend>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="ml-security" name="expertise" value="ML Security & Adversarial Robustness">
+              <label for="ml-security">ML Security & Adversarial Robustness</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="prompt-engineering" name="expertise" value="Prompt Engineering & Jailbreaking">
+              <label for="prompt-engineering">Prompt Engineering & Jailbreaking</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="policy-analysis" name="expertise" value="Policy Analysis & Governance">
+              <label for="policy-analysis">Policy Analysis & Governance</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="geopolitical" name="expertise" value="Geopolitical Forecasting & Risk Analysis">
+              <label for="geopolitical">Geopolitical Forecasting & Risk Analysis</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="systems-thinking" name="expertise" value="Systems Thinking & Complex Systems">
+              <label for="systems-thinking">Systems Thinking & Complex Systems</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="other-rt" name="expertise" value="Other">
+              <label for="other-rt">Other (please specify below)</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset style="border: none; padding: 0; margin: 0; margin-top: 1.5rem;">
+          <legend style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: #171717;">Red teaming & evaluation</legend>
+          <div class="form-group">
+            <label for="rt-published-work" class="required">Published Work, GitHub, or Public Profile</label>
+            <input type="url" id="rt-published-work" name="published-work" required placeholder="Link to papers, GitHub, academic profile, etc.">
+          </div>
+
+          <div class="form-group">
+            <label for="rt-adversarial-experience" class="required">Describe your red teaming or adversarial testing experience</label>
+            <textarea id="rt-adversarial-experience" name="adversarial-experience" required placeholder="What systems have you tested? What methodologies do you use? What have you found?"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="rt-why">Why are you interested in Syntony's red team?</label>
+            <textarea id="rt-why" name="why" placeholder="Optional. Tell us what excites you about this work."></textarea>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn-primary form-submit">Submit Application</button>
+        <div class="form-message" id="red-team-message"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: AFFILIATES APPLICATION -->
+  <div class="modal" id="affiliates-modal">
+    <div class="modal-overlay" onclick="closeModal('affiliates-modal')"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Apply to Research Affiliates Program</h2>
+        <p>Project-based collaboration on governance and risk research.</p>
+        <button class="modal-close" onclick="closeModal('affiliates-modal')" aria-label="Close modal">×</button>
+      </div>
+
+      <form class="modal-form" id="affiliates-form" onsubmit="handleFormSubmit(event, 'affiliates')">
+        <fieldset style="border: none; padding: 0; margin: 0;">
+          <legend style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: #171717;">Contact information</legend>
+          <div class="form-group">
+            <label for="aff-name" class="required">Full Name</label>
+            <input type="text" id="aff-name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="aff-email" class="required">Email</label>
+            <input type="email" id="aff-email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="aff-phone">Phone Number</label>
+            <input type="tel" id="aff-phone" name="phone" placeholder="(000) 000-0000">
+          </div>
+        </fieldset>
+
+        <fieldset style="border: none; padding: 0; margin: 0; margin-top: 1.5rem;">
+          <legend style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: #171717;">Professional affiliation</legend>
+          <div class="form-group">
+            <label for="aff-current-role" class="required">Current Role / Title</label>
+            <input type="text" id="aff-current-role" name="current-role" required placeholder="e.g., Research Scientist, PhD Candidate, Policy Fellow">
+          </div>
+
+          <div class="form-group">
+            <label for="aff-organization" class="required">Organization / Institution</label>
+            <input type="text" id="aff-organization" name="organization" required placeholder="e.g., MIT, Stanford, Independent Researcher">
+          </div>
+        </fieldset>
+
+        <fieldset style="border: none; padding: 0; margin: 0; margin-top: 1.5rem;">
+          <legend style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: #171717;">Research interests (select all that apply)</legend>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="focus-red-teaming" name="focus" value="Red Teaming Methodology & Tooling">
+              <label for="focus-red-teaming">Red Teaming Methodology & Tooling</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="focus-governance" name="focus" value="Governance Architecture">
+              <label for="focus-governance">Governance Architecture</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="focus-policy" name="focus" value="Policy & International Security">
+              <label for="focus-policy">Policy & International Security</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="focus-forecasting" name="focus" value="AI Risk Forecasting">
+              <label for="focus-forecasting">AI Risk Forecasting</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="focus-synthetic" name="focus" value="Synthetic Media & IHL">
+              <label for="focus-synthetic">Synthetic Media & International Humanitarian Law</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="focus-other" name="focus" value="Other">
+              <label for="focus-other">Other</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset style="border: none; padding: 0; margin: 0; margin-top: 1.5rem;">
+          <legend style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: #171717;">Research background</legend>
+          <div class="form-group">
+            <label for="aff-bio" class="required">Brief Bio & Research Summary</label>
+            <textarea id="aff-bio" name="bio" required placeholder="Tell us about your research focus, recent projects, and areas of expertise. What problems are you interested in solving?"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="aff-published-work" class="required">Published Work & Public Profile</label>
+            <input type="url" id="aff-published-work" name="published-work" required placeholder="Link to papers, GitHub, academic profile, Substack, etc.">
+          </div>
+
+          <div class="form-group">
+            <label for="aff-recent-project">Recent Project or Publication</label>
+            <textarea id="aff-recent-project" name="recent-project" placeholder="Describe a recent project, paper, or work you're proud of. What was the impact?"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset style="border: none; padding: 0; margin: 0; margin-top: 1.5rem;">
+          <legend style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: #171717;">Interest in Syntony</legend>
+          <div class="form-group">
+            <label for="aff-why" class="required">Why are you interested in collaborating with Syntony?</label>
+            <textarea id="aff-why" name="why" required placeholder="What excites you about this network? How do you think collaboration could advance your research or work?"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="aff-availability">Availability & Scope</label>
+            <textarea id="aff-availability" name="availability" placeholder="Optional. How much time can you commit? Are you looking for ongoing collaboration, one-off projects, or both?"></textarea>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn-primary form-submit">Submit Application</button>
+        <div class="form-message" id="affiliates-message"></div>
+      </form>
+    </div>
+  </div>
+
   <script src="/assets/js/site.js" defer></script>
+  <script>
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function handleFormSubmit(event, formType) {
+      event.preventDefault();
+      
+      const form = event.target;
+      const formData = new FormData(form);
+      const messageEl = document.getElementById(formType + '-message');
+      
+      const expertise = formData.getAll('expertise');
+      const focus = formData.getAll('focus');
+      
+      // Build data object dynamically from form
+      const data = {};
+      formData.forEach((value, key) => {
+        if (key === 'expertise' || key === 'focus') {
+          // Handle checkboxes - already captured above
+          return;
+        }
+        if (data[key]) {
+          // Convert to array if multiple values
+          if (!Array.isArray(data[key])) {
+            data[key] = [data[key]];
+          }
+          data[key].push(value);
+        } else {
+          data[key] = value;
+        }
+      });
+      
+      if (expertise.length > 0) data.expertise = expertise;
+      if (focus.length > 0) data.focus = focus;
+      
+      const formId = formType === 'red-team' ? 'xqevabkj' : 'mjgqkrkp';
+      
+      fetch('https://formspree.io/f/' + formId, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (response.ok) {
+          messageEl.textContent = '✓ Application submitted. We\'ll be in touch soon.';
+          messageEl.className = 'form-message success';
+          form.reset();
+          setTimeout(() => closeModal(formType === 'red-team' ? 'red-team-modal' : 'affiliates-modal'), 2000);
+        } else {
+          throw new Error('Form submission failed');
+        }
+      })
+      .catch(error => {
+        messageEl.textContent = '✗ Error submitting application. Please try again.';
+        messageEl.className = 'form-message error';
+        console.error('Error:', error);
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal.active').forEach(modal => {
+          modal.classList.remove('active');
+        });
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
 </body>
 </html>
